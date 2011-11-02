@@ -39,18 +39,18 @@
 		3C34FF6914615502003D2644 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3C34FF6B14615502003D2644 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3C34FF6D14615502003D2644 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		3C34FF7114615502003D2644 /* Cookielicious-Info.plist */ = {isa = PBXFileReference; path = "Cookielicious-Info.plist"; sourceTree = "<group>"; };
+		3C34FF7114615502003D2644 /* Cookielicious-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cookielicious-Info.plist"; sourceTree = "<group>"; };
 		3C34FF7314615502003D2644 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3C34FF7514615502003D2644 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3C34FF7714615502003D2644 /* Cookielicious-Prefix.pch */ = {isa = PBXFileReference; path = "Cookielicious-Prefix.pch"; sourceTree = "<group>"; };
-		3C34FF7814615502003D2644 /* CLAppDelegate.h */ = {isa = PBXFileReference; path = CLAppDelegate.h; sourceTree = "<group>"; };
+		3C34FF7714615502003D2644 /* Cookielicious-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cookielicious-Prefix.pch"; sourceTree = "<group>"; };
+		3C34FF7814615502003D2644 /* CLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLAppDelegate.h; sourceTree = "<group>"; };
 		3C34FF7914615502003D2644 /* CLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLAppDelegate.m; sourceTree = "<group>"; };
 		3C34FF7C14615502003D2644 /* Cookielicious.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cookielicious.xcdatamodel; sourceTree = "<group>"; };
 		3C34FF8314615502003D2644 /* CookieliciousTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookieliciousTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C34FF8414615502003D2644 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		3C34FF8D14615502003D2644 /* CookieliciousTests-Info.plist */ = {isa = PBXFileReference; path = "CookieliciousTests-Info.plist"; sourceTree = "<group>"; };
+		3C34FF8D14615502003D2644 /* CookieliciousTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CookieliciousTests-Info.plist"; sourceTree = "<group>"; };
 		3C34FF8F14615502003D2644 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3C34FF9114615502003D2644 /* CookieliciousTests.h */ = {isa = PBXFileReference; path = CookieliciousTests.h; sourceTree = "<group>"; };
+		3C34FF9114615502003D2644 /* CookieliciousTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CookieliciousTests.h; sourceTree = "<group>"; };
 		3C34FF9214615502003D2644 /* CookieliciousTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookieliciousTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +198,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = cookcrowd;
 			};
 			buildConfigurationList = 3C34FF5D14615502003D2644 /* Build configuration list for PBXProject "Cookielicious" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -321,7 +322,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -340,7 +341,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;

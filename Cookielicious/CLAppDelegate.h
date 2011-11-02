@@ -3,7 +3,7 @@
 //  Cookielicious
 //
 //  Created by Orlando Schäfer on 02.11.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
