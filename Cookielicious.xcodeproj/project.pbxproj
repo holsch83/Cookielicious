@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C34FF6814615502003D2644 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6714615502003D2644 /* UIKit.framework */; };
+		3C34FF6A14615502003D2644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6914615502003D2644 /* Foundation.framework */; };
+		3C34FF6C14615502003D2644 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6B14615502003D2644 /* CoreGraphics.framework */; };
+		3C34FF6E14615502003D2644 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6D14615502003D2644 /* CoreData.framework */; };
+		3C34FF7414615502003D2644 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C34FF7214615502003D2644 /* InfoPlist.strings */; };
+		3C34FF7614615502003D2644 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF7514615502003D2644 /* main.m */; };
+		3C34FF7A14615502003D2644 /* CLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF7914615502003D2644 /* CLAppDelegate.m */; };
+		3C34FF7D14615502003D2644 /* Cookielicious.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF7B14615502003D2644 /* Cookielicious.xcdatamodeld */; };
+		3C34FF8514615502003D2644 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF8414615502003D2644 /* SenTestingKit.framework */; };
+		3C34FF8614615502003D2644 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6714615502003D2644 /* UIKit.framework */; };
+		3C34FF8714615502003D2644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6914615502003D2644 /* Foundation.framework */; };
+		3C34FF8814615502003D2644 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6D14615502003D2644 /* CoreData.framework */; };
+		3C34FF9014615502003D2644 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C34FF8E14615502003D2644 /* InfoPlist.strings */; };
+		3C34FF9314615502003D2644 /* CookieliciousTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF9214615502003D2644 /* CookieliciousTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3C34FF8914615502003D2644 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C34FF5A14615502003D2644 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C34FF6214615502003D2644;
+			remoteInfo = Cookielicious;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3C34FF6314615502003D2644 /* Cookielicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookielicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C34FF6714615502003D2644 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3C34FF6914615502003D2644 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3C34FF6B14615502003D2644 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3C34FF6D14615502003D2644 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3C34FF7114615502003D2644 /* Cookielicious-Info.plist */ = {isa = PBXFileReference; path = "Cookielicious-Info.plist"; sourceTree = "<group>"; };
+		3C34FF7314615502003D2644 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3C34FF7514615502003D2644 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3C34FF7714615502003D2644 /* Cookielicious-Prefix.pch */ = {isa = PBXFileReference; path = "Cookielicious-Prefix.pch"; sourceTree = "<group>"; };
+		3C34FF7814615502003D2644 /* CLAppDelegate.h */ = {isa = PBXFileReference; path = CLAppDelegate.h; sourceTree = "<group>"; };
+		3C34FF7914615502003D2644 /* CLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLAppDelegate.m; sourceTree = "<group>"; };
+		3C34FF7C14615502003D2644 /* Cookielicious.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cookielicious.xcdatamodel; sourceTree = "<group>"; };
+		3C34FF8314615502003D2644 /* CookieliciousTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookieliciousTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C34FF8414615502003D2644 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3C34FF8D14615502003D2644 /* CookieliciousTests-Info.plist */ = {isa = PBXFileReference; path = "CookieliciousTests-Info.plist"; sourceTree = "<group>"; };
+		3C34FF8F14615502003D2644 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3C34FF9114615502003D2644 /* CookieliciousTests.h */ = {isa = PBXFileReference; path = CookieliciousTests.h; sourceTree = "<group>"; };
+		3C34FF9214615502003D2644 /* CookieliciousTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookieliciousTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3C34FF6014615502003D2644 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C34FF6814615502003D2644 /* UIKit.framework in Frameworks */,
+				3C34FF6A14615502003D2644 /* Foundation.framework in Frameworks */,
+				3C34FF6C14615502003D2644 /* CoreGraphics.framework in Frameworks */,
+				3C34FF6E14615502003D2644 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C34FF7F14615502003D2644 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C34FF8514615502003D2644 /* SenTestingKit.framework in Frameworks */,
+				3C34FF8614615502003D2644 /* UIKit.framework in Frameworks */,
+				3C34FF8714615502003D2644 /* Foundation.framework in Frameworks */,
+				3C34FF8814615502003D2644 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3C34FF5814615502003D2644 = {
+			isa = PBXGroup;
+			children = (
+				3C34FF6F14615502003D2644 /* Cookielicious */,
+				3C34FF8B14615502003D2644 /* CookieliciousTests */,
+				3C34FF6614615502003D2644 /* Frameworks */,
+				3C34FF6414615502003D2644 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3C34FF6414615502003D2644 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C34FF6314615502003D2644 /* Cookielicious.app */,
+				3C34FF8314615502003D2644 /* CookieliciousTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3C34FF6614615502003D2644 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C34FF6714615502003D2644 /* UIKit.framework */,
+				3C34FF6914615502003D2644 /* Foundation.framework */,
+				3C34FF6B14615502003D2644 /* CoreGraphics.framework */,
+				3C34FF6D14615502003D2644 /* CoreData.framework */,
+				3C34FF8414615502003D2644 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C34FF6F14615502003D2644 /* Cookielicious */ = {
+			isa = PBXGroup;
+			children = (
+				3C34FF7814615502003D2644 /* CLAppDelegate.h */,
+				3C34FF7914615502003D2644 /* CLAppDelegate.m */,
+				3C34FF7B14615502003D2644 /* Cookielicious.xcdatamodeld */,
+				3C34FF7014615502003D2644 /* Supporting Files */,
+			);
+			path = Cookielicious;
+			sourceTree = "<group>";
+		};
+		3C34FF7014615502003D2644 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3C34FF7114615502003D2644 /* Cookielicious-Info.plist */,
+				3C34FF7214615502003D2644 /* InfoPlist.strings */,
+				3C34FF7514615502003D2644 /* main.m */,
+				3C34FF7714615502003D2644 /* Cookielicious-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C34FF8B14615502003D2644 /* CookieliciousTests */ = {
+			isa = PBXGroup;
+			children = (
+				3C34FF9114615502003D2644 /* CookieliciousTests.h */,
+				3C34FF9214615502003D2644 /* CookieliciousTests.m */,
+				3C34FF8C14615502003D2644 /* Supporting Files */,
+			);
+			path = CookieliciousTests;
+			sourceTree = "<group>";
+		};
+		3C34FF8C14615502003D2644 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3C34FF8D14615502003D2644 /* CookieliciousTests-Info.plist */,
+				3C34FF8E14615502003D2644 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3C34FF6214615502003D2644 /* Cookielicious */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C34FF9614615502003D2644 /* Build configuration list for PBXNativeTarget "Cookielicious" */;
+			buildPhases = (
+				3C34FF5F14615502003D2644 /* Sources */,
+				3C34FF6014615502003D2644 /* Frameworks */,
+				3C34FF6114615502003D2644 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cookielicious;
+			productName = Cookielicious;
+			productReference = 3C34FF6314615502003D2644 /* Cookielicious.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3C34FF8214615502003D2644 /* CookieliciousTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C34FF9914615502003D2644 /* Build configuration list for PBXNativeTarget "CookieliciousTests" */;
+			buildPhases = (
+				3C34FF7E14615502003D2644 /* Sources */,
+				3C34FF7F14615502003D2644 /* Frameworks */,
+				3C34FF8014615502003D2644 /* Resources */,
+				3C34FF8114615502003D2644 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C34FF8A14615502003D2644 /* PBXTargetDependency */,
+			);
+			name = CookieliciousTests;
+			productName = CookieliciousTests;
+			productReference = 3C34FF8314615502003D2644 /* CookieliciousTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3C34FF5A14615502003D2644 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 3C34FF5D14615502003D2644 /* Build configuration list for PBXProject "Cookielicious" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3C34FF5814615502003D2644;
+			productRefGroup = 3C34FF6414615502003D2644 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3C34FF6214615502003D2644 /* Cookielicious */,
+				3C34FF8214615502003D2644 /* CookieliciousTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3C34FF6114615502003D2644 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C34FF7414615502003D2644 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C34FF8014615502003D2644 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C34FF9014615502003D2644 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C34FF8114615502003D2644 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3C34FF5F14615502003D2644 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C34FF7614615502003D2644 /* main.m in Sources */,
+				3C34FF7A14615502003D2644 /* CLAppDelegate.m in Sources */,
+				3C34FF7D14615502003D2644 /* Cookielicious.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C34FF7E14615502003D2644 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C34FF9314615502003D2644 /* CookieliciousTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C34FF8A14615502003D2644 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C34FF6214615502003D2644 /* Cookielicious */;
+			targetProxy = 3C34FF8914615502003D2644 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3C34FF7214615502003D2644 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C34FF7314615502003D2644 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3C34FF8E14615502003D2644 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C34FF8F14615502003D2644 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3C34FF9414615502003D2644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		3C34FF9514615502003D2644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3C34FF9714615502003D2644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3C34FF9814615502003D2644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3C34FF9A14615502003D2644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cookielicious.app/Cookielicious";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+				INFOPLIST_FILE = "CookieliciousTests/CookieliciousTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3C34FF9B14615502003D2644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cookielicious.app/Cookielicious";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+				INFOPLIST_FILE = "CookieliciousTests/CookieliciousTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3C34FF5D14615502003D2644 /* Build configuration list for PBXProject "Cookielicious" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C34FF9414615502003D2644 /* Debug */,
+				3C34FF9514615502003D2644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C34FF9614615502003D2644 /* Build configuration list for PBXNativeTarget "Cookielicious" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C34FF9714615502003D2644 /* Debug */,
+				3C34FF9814615502003D2644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3C34FF9914615502003D2644 /* Build configuration list for PBXNativeTarget "CookieliciousTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C34FF9A14615502003D2644 /* Debug */,
+				3C34FF9B14615502003D2644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3C34FF7B14615502003D2644 /* Cookielicious.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3C34FF7C14615502003D2644 /* Cookielicious.xcdatamodel */,
+			);
+			currentVersion = 3C34FF7C14615502003D2644 /* Cookielicious.xcdatamodel */;
+			path = Cookielicious.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3C34FF5A14615502003D2644 /* Project object */;
+}
