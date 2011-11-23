@@ -7,11 +7,13 @@
 //
 
 #import "CLMainViewController.h"
+#import "CLIngredientCell.h"
 
 @implementation CLMainViewController
 
 @synthesize tableView = _tableView;
 @synthesize searchBar = _searchBar;
+@synthesize ingredientCell = _ingredientCell;
 
 @synthesize ingredients = _ingredients;
 
@@ -74,18 +76,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  static NSString *CellIdentifier = @"Cell";
+  static NSString *CellIdentifier = @"IngredientCell";
   
-  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  CLIngredientCell *cell = 
+  (CLIngredientCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   
   if (cell == nil) {
     
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
-                                  reuseIdentifier:CellIdentifier];
+    [[NSBundle mainBundle] loadNibNamed:@"CLIngredientCell" 
+                                  owner:self 
+                                options:nil];
+    cell = self.ingredientCell;
+    
   }
   
   // Configure the cell.
-  cell.textLabel.text = [self.ingredients objectAtIndex:indexPath.row];
+  cell.ingredientLabel.text = [self.ingredients objectAtIndex:indexPath.row];
   return cell;
 }
 

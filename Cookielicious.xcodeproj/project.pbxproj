@@ -11,6 +11,8 @@
 		3C26B1F4147D374000BE8BD6 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C26B1F3147D374000BE8BD6 /* CLNavigationBar.m */; };
 		3C26B1F7147D387E00BE8BD6 /* CLSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C26B1F6147D387E00BE8BD6 /* CLSearchBar.m */; };
 		3C26B202147D46F400BE8BD6 /* pattern_navigationbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C26B201147D46F400BE8BD6 /* pattern_navigationbar.png */; };
+		3C26B206147D4A3100BE8BD6 /* CLIngredientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C26B205147D4A3100BE8BD6 /* CLIngredientCell.m */; };
+		3C26B20A147D4A6300BE8BD6 /* CLIngredientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C26B209147D4A6300BE8BD6 /* CLIngredientCell.xib */; };
 		3C34FF6814615502003D2644 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6714615502003D2644 /* UIKit.framework */; };
 		3C34FF6A14615502003D2644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6914615502003D2644 /* Foundation.framework */; };
 		3C34FF6C14615502003D2644 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6B14615502003D2644 /* CoreGraphics.framework */; };
@@ -71,6 +73,9 @@
 		3C26B1F5147D387E00BE8BD6 /* CLSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSearchBar.h; sourceTree = "<group>"; };
 		3C26B1F6147D387E00BE8BD6 /* CLSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSearchBar.m; sourceTree = "<group>"; };
 		3C26B201147D46F400BE8BD6 /* pattern_navigationbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_navigationbar.png; sourceTree = "<group>"; };
+		3C26B204147D4A3100BE8BD6 /* CLIngredientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIngredientCell.h; sourceTree = "<group>"; };
+		3C26B205147D4A3100BE8BD6 /* CLIngredientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIngredientCell.m; sourceTree = "<group>"; };
+		3C26B209147D4A6300BE8BD6 /* CLIngredientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLIngredientCell.xib; sourceTree = "<group>"; };
 		3C34FF6314615502003D2644 /* Cookielicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookielicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C34FF6714615502003D2644 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3C34FF6914615502003D2644 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -186,13 +191,22 @@
 			name = CustomUI;
 			sourceTree = "<group>";
 		};
+		3C26B203147D4A0700BE8BD6 /* SelectIngredients */ = {
+			isa = PBXGroup;
+			children = (
+				3C5EC445146ADFFE00E8970A /* CLMainViewController.h */,
+				3C5EC446146ADFFE00E8970A /* CLMainViewController.m */,
+				3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */,
+				3C26B204147D4A3100BE8BD6 /* CLIngredientCell.h */,
+				3C26B205147D4A3100BE8BD6 /* CLIngredientCell.m */,
+				3C26B209147D4A6300BE8BD6 /* CLIngredientCell.xib */,
+			);
+			name = SelectIngredients;
+			sourceTree = "<group>";
+		};
 		3C34FF5814615502003D2644 = {
 			isa = PBXGroup;
 			children = (
-				3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */,
-				3CFEB31214615FE100DCD93D /* MobileCoreServices.framework */,
-				3CFEB31014615FD700DCD93D /* SystemConfiguration.framework */,
-				3CFEB30E14615FC600DCD93D /* CFNetwork.framework */,
 				3C34FF6F14615502003D2644 /* Cookielicious */,
 				3C34FF8B14615502003D2644 /* CookieliciousTests */,
 				3CFEAE7D14615DF300DCD93D /* Dependencies */,
@@ -213,6 +227,10 @@
 		3C34FF6614615502003D2644 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3CFEB31214615FE100DCD93D /* MobileCoreServices.framework */,
+				3CFEB31014615FD700DCD93D /* SystemConfiguration.framework */,
+				3CFEB30E14615FC600DCD93D /* CFNetwork.framework */,
+				3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */,
 				3C34FF6714615502003D2644 /* UIKit.framework */,
 				3C34FF6914615502003D2644 /* Foundation.framework */,
 				3C34FF6B14615502003D2644 /* CoreGraphics.framework */,
@@ -225,14 +243,12 @@
 		3C34FF6F14615502003D2644 /* Cookielicious */ = {
 			isa = PBXGroup;
 			children = (
+				3C26B203147D4A0700BE8BD6 /* SelectIngredients */,
 				3C26B1F1147D371800BE8BD6 /* CustomUI */,
 				3C34FF7814615502003D2644 /* CLAppDelegate.h */,
 				3C34FF7914615502003D2644 /* CLAppDelegate.m */,
 				3C26B1E8147D315B00BE8BD6 /* CLMainWindow.xib */,
 				3C34FF7B14615502003D2644 /* Cookielicious.xcdatamodeld */,
-				3C5EC445146ADFFE00E8970A /* CLMainViewController.h */,
-				3C5EC446146ADFFE00E8970A /* CLMainViewController.m */,
-				3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */,
 				3C34FF7014615502003D2644 /* Supporting Files */,
 			);
 			path = Cookielicious;
@@ -415,6 +431,7 @@
 				3C5EC449146ADFFE00E8970A /* CLMainViewController.xib in Resources */,
 				3C26B1E9147D315C00BE8BD6 /* CLMainWindow.xib in Resources */,
 				3C26B202147D46F400BE8BD6 /* pattern_navigationbar.png in Resources */,
+				3C26B20A147D4A6300BE8BD6 /* CLIngredientCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +493,7 @@
 				3C5EC448146ADFFE00E8970A /* CLMainViewController.m in Sources */,
 				3C26B1F4147D374000BE8BD6 /* CLNavigationBar.m in Sources */,
 				3C26B1F7147D387E00BE8BD6 /* CLSearchBar.m in Sources */,
+				3C26B206147D4A3100BE8BD6 /* CLIngredientCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
