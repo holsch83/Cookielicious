@@ -10,10 +10,17 @@
 #import "CLIngredientCell.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface CLMainViewController (Private)
+
+- (void)longPressDetectedByRecognizer:(UILongPressGestureRecognizer*)recognizer;
+
+@end
+
 @implementation CLMainViewController
 
 @synthesize tableView = _tableView;
 @synthesize searchBar = _searchBar;
+@synthesize potView = _potView;
 @synthesize ingredientCell = _ingredientCell;
 
 @synthesize ingredients = _ingredients;
@@ -100,13 +107,91 @@
     [[NSBundle mainBundle] loadNibNamed:@"CLIngredientCell" 
                                   owner:self 
                                 options:nil];
+  
     cell = self.ingredientCell;
+    
+    UILongPressGestureRecognizer *longPress = 
+    [[UILongPressGestureRecognizer alloc] initWithTarget:self 
+                                                  action:@selector(longPressDetectedByRecognizer:)];
+    [cell.dragLabel addGestureRecognizer:longPress];
     
   }
   
   // Configure the cell.
+  
   cell.ingredientLabel.text = [self.ingredients objectAtIndex:indexPath.row];
+  cell.dragLabel.text = cell.ingredientLabel.text;
+  [cell.dragLabel setUserInteractionEnabled:YES];
   return cell;
+}
+
+- (void)longPressDetectedByRecognizer:(UILongPressGestureRecognizer*)recognizer {
+
+  NSLog(@"longPressDetectedByRecognizer::");
+  
+  CLDragLabel *dragableLabel = (CLDragLabel*)[recognizer view];
+  CGPoint longPressPoint = [recognizer locationOfTouch:0 inView:self.view];
+  CGRect labelFrame = dragableLabel.frame;
+  
+  switch ([recognizer state]) {
+      
+    case UIGestureRecognizerStateBegan:
+      NSLog(@"UIGestureRecognizerStateBegan::");
+      
+      dragableLabel.textColor = [UIColor blueColor];
+      dragableLabel.backgroundColor = [UIColor whiteColor];
+      
+      labelFrame.origin.x = longPressPoint.x - 30;
+      labelFrame.origin.y = longPressPoint.y - 10;
+      
+      dragableLabel.frame = labelFrame;
+      [self.view addSubview:dragableLabel];
+      break;
+      
+    case UIGestureRecognizerStateChanged:
+      NSLog(@"UIGestureRecognizerStateChanged::");
+      
+      labelFrame.origin.x = longPressPoint.x - 30;
+      labelFrame.origin.y = longPressPoint.y - 10;
+      dragableLabel.frame = labelFrame;
+      
+      break;
+      
+    case UIGestureRecognizerStateEnded:
+      NSLog(@"UIGestureRecognizerStateEnded::");
+      
+      if ((longPressPoint.x > self.potView.frame.origin.x) &&
+          (longPressPoint.y > self.potView.frame.origin.y)) {
+        [self.potView addSubview:dragableLabel];
+        labelFrame.origin.x = 0;
+        labelFrame.origin.y = 0;
+        dragableLabel.frame = labelFrame;
+      }
+      else {
+      
+        CLIngredientCell *parent = dragableLabel.parentCell;
+        [parent addSubview:dragableLabel];
+        labelFrame.origin.x = 0;
+        labelFrame.origin.y = 0;
+        dragableLabel.frame = labelFrame;
+        dragableLabel.textColor = [UIColor clearColor];
+        dragableLabel.backgroundColor = [UIColor clearColor];
+        
+      }
+      
+      break;
+      
+    case UIGestureRecognizerStateCancelled:
+      NSLog(@"UIGestureRecognizerStateCancelled::");
+      break;
+      
+    case UIGestureRecognizerStateFailed:
+      NSLog(@"UIGestureRecognizerStateFailed::");
+      break;
+      
+    default:
+      break;
+  }
 }
 
 

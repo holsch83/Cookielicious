@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet CLSearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UIView *potView;
 @property (strong, nonatomic) IBOutlet CLIngredientCell *ingredientCell;
 
 @property (strong, nonatomic) NSMutableArray *ingredients;

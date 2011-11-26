@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLDragLabel.h"
 
 @interface CLIngredientCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *ingredientLabel;
+@property (strong, nonatomic) CLDragLabel *dragLabel;
 
 @end
