@@ -7,12 +7,17 @@
 //
 
 #import "CLMainViewController.h"
+#import "CLAppDelegate.h"
+#import "CLIngredient.h"
 #import "CLIngredientCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CLMainViewController (Private)
 
 - (void)longPressDetectedByRecognizer:(UILongPressGestureRecognizer*)recognizer;
+- (void)animateView:(UIView*)view toDestinationView:(UIView*)destination 
+          withPoint:(CGPoint)point selected:(BOOL)selected;
+- (void)configureCell:(CLIngredientCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -23,7 +28,9 @@
 @synthesize potView = _potView;
 @synthesize ingredientCell = _ingredientCell;
 
-@synthesize ingredients = _ingredients;
+
+@synthesize fetchedResultsController = __fetchedResultsController;
+@synthesize managedObjectContext = __managedObjectContext;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -39,9 +46,37 @@
 
   self = [super initWithCoder:aDecoder];
   if (self) {
-    self.ingredients = [[NSMutableArray alloc] initWithObjects:@"Alkohol", 
-                        @"Bier", @"Cornflakes", @"Dill", @"Erbsen", @"Fleisch",
-                        @"Zitronengras", @"Bambussprossen", nil];
+    if (__managedObjectContext == nil) { 
+      __managedObjectContext = 
+      [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
+    }
+//    int i = 0;
+//    NSArray *array = [NSArray arrayWithObjects:@"Mehl", @"Salz", @"Tomaten", @"Zwieblen", @"Zucker", @"Wurst", @"Bier", 
+//                      @"Fleisch", @"Apfel", @"Birne", @"Brokkoli", @"Blumenkohl", @"Kartoffel", @"Paprika", @"Milch"
+//                      , @"Cola", @"Snickers", @"Mate", @"Sekt", @"Rum", @"Hack", 
+//                      @"Rahm", @"Zimt", @"Schokolade", @"Meerrettich", @"Filet", nil];
+//    
+//    for (NSString *str in array) {
+//      CLIngredient *newIngredient =
+//      (CLIngredient*)[NSEntityDescription 
+//                      insertNewObjectForEntityForName:@"Ingredient" 
+//                      inManagedObjectContext:__managedObjectContext];
+//      
+//      
+//      newIngredient.identifier = [NSNumber numberWithInt:i];
+//      newIngredient.name = str;
+//      newIngredient.selected = [NSNumber numberWithBool:NO];
+//      
+//      NSError *error = nil;
+//      
+//      if (![__managedObjectContext save:&error]) {
+//        // Handle the error. 
+//        NSLog(@"Error saving: %@",error);
+//      }
+//      i++;
+//    }
+    
+    
   }
   return self;
 }
@@ -81,18 +116,17 @@
 	return (UIInterfaceOrientationIsLandscape(interfaceOrientation)) ? YES : NO;
 }
 
-
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   
-  return 1;
+  return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
-  return [self.ingredients count];
+  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+  return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,75 +144,152 @@
   
     cell = self.ingredientCell;
     
-    UILongPressGestureRecognizer *longPress = 
-    [[UILongPressGestureRecognizer alloc] initWithTarget:self 
-                                                  action:@selector(longPressDetectedByRecognizer:)];
-    [cell.dragLabel addGestureRecognizer:longPress];
-    
   }
   
   // Configure the cell.
+  [self configureCell:cell atIndexPath:indexPath];
   
-  cell.ingredientLabel.text = [self.ingredients objectAtIndex:indexPath.row];
-  cell.dragLabel.text = cell.ingredientLabel.text;
-  [cell.dragLabel setUserInteractionEnabled:YES];
   return cell;
 }
 
-- (void)longPressDetectedByRecognizer:(UILongPressGestureRecognizer*)recognizer {
+- (void)configureCell:(CLIngredientCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+  
+  CLIngredient *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  cell.delegate = self;
+  cell.ingredient = managedObject;
+  
+}
 
-  NSLog(@"longPressDetectedByRecognizer::");
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+  CLIngredient *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  BOOL sel = managedObject.selected.boolValue;
+  sel = !sel;
+  managedObject.selected = [NSNumber numberWithBool:sel];
   
-  CLDragLabel *dragableLabel = (CLDragLabel*)[recognizer view];
-  CGPoint longPressPoint = [recognizer locationOfTouch:0 inView:self.view];
-  CGRect labelFrame = dragableLabel.frame;
+  NSError *error = nil;
   
-  switch ([recognizer state]) {
+  if (![__managedObjectContext save:&error]) {
+    // Handle the error. 
+    NSLog(@"Error saving: %@",error);
+  }
+  
+}
+
+#pragma mark - NSFetchedResultControllerDelegate
+
+- (NSFetchedResultsController *)fetchedResultsController {
+  
+  if (__fetchedResultsController != nil) {
+    return __fetchedResultsController;
+  }
+  
+  // Set up the fetched results controller.
+  // Create the fetch request for the entity.
+  
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  // Edit the entity name as appropriate.
+  
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ingredient" 
+                                            inManagedObjectContext:self.managedObjectContext];
+  [fetchRequest setEntity:entity];
+  
+  // Set the batch size to a suitable number.
+  
+  [fetchRequest setFetchBatchSize:20];
+  
+  // Edit the sort key as appropriate.
+  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
+                                                                 ascending:YES];
+  NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+  
+  [fetchRequest setSortDescriptors:sortDescriptors];
+  
+  // Edit the section name key path and cache name if appropriate.
+  // nil for section name key path means "no sections".
+  
+  NSFetchedResultsController *aFetchedResultsController = 
+  [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                      managedObjectContext:self.managedObjectContext 
+                                        sectionNameKeyPath:nil 
+                                                 cacheName:@"Master"];
+  aFetchedResultsController.delegate = self;
+  self.fetchedResultsController = aFetchedResultsController;
+  
+	NSError *error = nil;
+	if (![self.fetchedResultsController performFetch:&error]) {
+    /*
+     Replace this implementation with code to handle the error appropriately.
+     abort() causes the application to generate a crash log and terminate. 
+     You should not use this function in a shipping application, although it may 
+     be useful during development. 
+     */
+    
+    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    abort();
+	}
+  
+  return __fetchedResultsController;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+  
+  UITableView *tableView = self.tableView;
+  
+  switch(type) {
+    case NSFetchedResultsChangeInsert:
+      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      break;
       
+    case NSFetchedResultsChangeDelete:
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      break;
+      
+    case NSFetchedResultsChangeUpdate:
+      [self configureCell:(CLIngredientCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+      break;
+      
+    case NSFetchedResultsChangeMove:
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+      break;
+  }
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+  
+  [self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+  
+  [self.tableView endUpdates];
+}
+
+#pragma mark - CLIngredientCellLongPressDelegate (Dragging)
+
+- (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer {
+
+  switch ([recognizer state]) {
+    
+    // Dragging begins...
     case UIGestureRecognizerStateBegan:
       NSLog(@"UIGestureRecognizerStateBegan::");
-      
-      dragableLabel.textColor = [UIColor blueColor];
-      dragableLabel.backgroundColor = [UIColor whiteColor];
-      
-      labelFrame.origin.x = longPressPoint.x - 30;
-      labelFrame.origin.y = longPressPoint.y - 10;
-      
-      dragableLabel.frame = labelFrame;
-      [self.view addSubview:dragableLabel];
+
       break;
-      
+    // Moving finger...drag action
     case UIGestureRecognizerStateChanged:
       NSLog(@"UIGestureRecognizerStateChanged::");
-      
-      labelFrame.origin.x = longPressPoint.x - 30;
-      labelFrame.origin.y = longPressPoint.y - 10;
-      dragableLabel.frame = labelFrame;
-      
+
       break;
-      
+    // Check if we are in the pot area
     case UIGestureRecognizerStateEnded:
       NSLog(@"UIGestureRecognizerStateEnded::");
-      
-      if ((longPressPoint.x > self.potView.frame.origin.x) &&
-          (longPressPoint.y > self.potView.frame.origin.y)) {
-        [self.potView addSubview:dragableLabel];
-        labelFrame.origin.x = 0;
-        labelFrame.origin.y = 0;
-        dragableLabel.frame = labelFrame;
-      }
-      else {
-      
-        CLIngredientCell *parent = dragableLabel.parentCell;
-        [parent addSubview:dragableLabel];
-        labelFrame.origin.x = 0;
-        labelFrame.origin.y = 0;
-        dragableLabel.frame = labelFrame;
-        dragableLabel.textColor = [UIColor clearColor];
-        dragableLabel.backgroundColor = [UIColor clearColor];
-        
-      }
-      
       break;
       
     case UIGestureRecognizerStateCancelled:
@@ -193,6 +304,9 @@
       break;
   }
 }
+
+
+
 
 
 @end

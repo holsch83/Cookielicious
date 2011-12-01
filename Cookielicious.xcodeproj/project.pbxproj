@@ -30,7 +30,7 @@
 		3C34FF9314615502003D2644 /* CookieliciousTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF9214615502003D2644 /* CookieliciousTests.m */; };
 		3C5EC448146ADFFE00E8970A /* CLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EC446146ADFFE00E8970A /* CLMainViewController.m */; };
 		3C5EC449146ADFFE00E8970A /* CLMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */; };
-		3C61D30414801C3200E5620B /* CLDragLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C61D30314801C3200E5620B /* CLDragLabel.m */; };
+		3CC4DF961487DA5500DD83BB /* CLIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC4DF951487DA5500DD83BB /* CLIngredient.m */; };
 		3CFEB2C314615F4F00DCD93D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB27214615F4E00DCD93D /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3CFEB2C414615F4F00DCD93D /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB27514615F4E00DCD93D /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3CFEB2C514615F4F00DCD93D /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB27714615F4E00DCD93D /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -100,8 +100,8 @@
 		3C5EC445146ADFFE00E8970A /* CLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMainViewController.h; sourceTree = "<group>"; };
 		3C5EC446146ADFFE00E8970A /* CLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMainViewController.m; sourceTree = "<group>"; };
 		3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMainViewController.xib; sourceTree = "<group>"; };
-		3C61D30214801C3200E5620B /* CLDragLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDragLabel.h; sourceTree = "<group>"; };
-		3C61D30314801C3200E5620B /* CLDragLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDragLabel.m; sourceTree = "<group>"; };
+		3CC4DF941487DA5500DD83BB /* CLIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIngredient.h; sourceTree = "<group>"; };
+		3CC4DF951487DA5500DD83BB /* CLIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIngredient.m; sourceTree = "<group>"; };
 		3CFEB27114615F4E00DCD93D /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		3CFEB27214615F4E00DCD93D /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		3CFEB27314615F4E00DCD93D /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -205,8 +205,6 @@
 				3C26B204147D4A3100BE8BD6 /* CLIngredientCell.h */,
 				3C26B205147D4A3100BE8BD6 /* CLIngredientCell.m */,
 				3C26B209147D4A6300BE8BD6 /* CLIngredientCell.xib */,
-				3C61D30214801C3200E5620B /* CLDragLabel.h */,
-				3C61D30314801C3200E5620B /* CLDragLabel.m */,
 			);
 			name = SelectIngredients;
 			sourceTree = "<group>";
@@ -250,6 +248,7 @@
 		3C34FF6F14615502003D2644 /* Cookielicious */ = {
 			isa = PBXGroup;
 			children = (
+				3C4AAC9D148120B700A906B8 /* Models */,
 				3C26B203147D4A0700BE8BD6 /* SelectIngredients */,
 				3C26B1F1147D371800BE8BD6 /* CustomUI */,
 				3C34FF7814615502003D2644 /* CLAppDelegate.h */,
@@ -291,6 +290,15 @@
 				3C34FF8E14615502003D2644 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C4AAC9D148120B700A906B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3CC4DF941487DA5500DD83BB /* CLIngredient.h */,
+				3CC4DF951487DA5500DD83BB /* CLIngredient.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		3CFEAE7D14615DF300DCD93D /* Dependencies */ = {
@@ -503,7 +511,7 @@
 				3C26B1F4147D374000BE8BD6 /* CLNavigationBar.m in Sources */,
 				3C26B1F7147D387E00BE8BD6 /* CLSearchBar.m in Sources */,
 				3C26B206147D4A3100BE8BD6 /* CLIngredientCell.m in Sources */,
-				3C61D30414801C3200E5620B /* CLDragLabel.m in Sources */,
+				3CC4DF961487DA5500DD83BB /* CLIngredient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

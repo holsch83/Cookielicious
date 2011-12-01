@@ -10,14 +10,15 @@
 #import "CLSearchBar.h"
 #import "CLIngredientCell.h"
 
-@interface CLMainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CLMainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet CLSearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UIView *potView;
 @property (strong, nonatomic) IBOutlet CLIngredientCell *ingredientCell;
 
-@property (strong, nonatomic) NSMutableArray *ingredients;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 
 @end

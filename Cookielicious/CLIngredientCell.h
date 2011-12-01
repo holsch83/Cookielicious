@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CLDragLabel.h"
+#import "CLIngredient.h"
+
+@protocol CLIngredientCellLongPressDelegate <NSObject>
+
+- (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer;
+
+@end
 
 @interface CLIngredientCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *ingredientLabel;
-@property (strong, nonatomic) CLDragLabel *dragLabel;
+@property (strong, nonatomic) id <NSObject> delegate;
+@property (strong, nonatomic, readonly) IBOutlet UILabel *ingredientLabel;
+@property (strong, nonatomic) CLIngredient *ingredient;
+@property (strong, nonatomic) UIView *dragView;
+
 
 @end
