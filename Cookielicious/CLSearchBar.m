@@ -10,7 +10,7 @@
 
 @implementation CLSearchBar
 
-/*
+/**
  * We want a UISearchBar without the "bar"-background.
  * We support iOS 4 so we have only this possibility to remove the
  * background of the searchbar.

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CLIngredient.h"
 
+
 @protocol CLIngredientCellLongPressDelegate <NSObject>
 
 - (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer;
@@ -20,7 +21,6 @@
 @property (strong, nonatomic) id <NSObject> delegate;
 @property (strong, nonatomic, readonly) IBOutlet UILabel *ingredientLabel;
 @property (strong, nonatomic) CLIngredient *ingredient;
-@property (strong, nonatomic) UIView *dragView;
 
 
 @end

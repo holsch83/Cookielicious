@@ -10,7 +10,8 @@
 #import "CLSearchBar.h"
 #import "CLIngredientCell.h"
 
-@interface CLMainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface CLMainViewController : UIViewController <UITableViewDelegate, 
+UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet CLSearchBar *searchBar;
@@ -19,6 +20,6 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
+@property (strong, nonatomic) NSFetchRequest *fetchRequest;
 
 @end

@@ -10,14 +10,19 @@
 #import "CLAppDelegate.h"
 #import "CLIngredient.h"
 #import "CLIngredientCell.h"
+#import "CLDragView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CLMainViewController (Private)
 
-- (void)longPressDetectedByRecognizer:(UILongPressGestureRecognizer*)recognizer;
-- (void)animateView:(UIView*)view toDestinationView:(UIView*)destination 
-          withPoint:(CGPoint)point selected:(BOOL)selected;
 - (void)configureCell:(CLIngredientCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+// If we search or sort our ingredients, we refetch from store
+- (void)reloadFetchRequest;
+
+// Sort Button Actions
+- (IBAction)touchedAlphabetSortButton:(id)sender;
+- (IBAction)touchedUsageSortButton:(id)sender;
 
 @end
 
@@ -31,6 +36,7 @@
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
+@synthesize fetchRequest = _fetchRequest;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -75,8 +81,7 @@
 //      }
 //      i++;
 //    }
-    
-    
+ 
   }
   return self;
 }
@@ -87,6 +92,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+  self.searchBar.delegate = self;
   
   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
   view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern_wood.png"]];
@@ -147,6 +153,8 @@
   }
   
   // Configure the cell.
+
+  
   [self configureCell:cell atIndexPath:indexPath];
   
   return cell;
@@ -160,24 +168,6 @@
   
 }
 
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-  CLIngredient *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  BOOL sel = managedObject.selected.boolValue;
-  sel = !sel;
-  managedObject.selected = [NSNumber numberWithBool:sel];
-  
-  NSError *error = nil;
-  
-  if (![__managedObjectContext save:&error]) {
-    // Handle the error. 
-    NSLog(@"Error saving: %@",error);
-  }
-  
-}
-
 #pragma mark - NSFetchedResultControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -186,19 +176,21 @@
     return __fetchedResultsController;
   }
   
+  [NSFetchedResultsController deleteCacheWithName:@"Master"];
+  __fetchedResultsController = nil;
   // Set up the fetched results controller.
   // Create the fetch request for the entity.
   
-  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  _fetchRequest = [[NSFetchRequest alloc] init];
   // Edit the entity name as appropriate.
   
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ingredient" 
                                             inManagedObjectContext:self.managedObjectContext];
-  [fetchRequest setEntity:entity];
+  [self.fetchRequest setEntity:entity];
   
   // Set the batch size to a suitable number.
   
-  [fetchRequest setFetchBatchSize:20];
+  [self.fetchRequest setFetchBatchSize:20];
   
   // Edit the sort key as appropriate.
   
@@ -206,13 +198,13 @@
                                                                  ascending:YES];
   NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
   
-  [fetchRequest setSortDescriptors:sortDescriptors];
+  [self.fetchRequest setSortDescriptors:sortDescriptors];
   
   // Edit the section name key path and cache name if appropriate.
   // nil for section name key path means "no sections".
   
   NSFetchedResultsController *aFetchedResultsController = 
-  [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+  [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest 
                                       managedObjectContext:self.managedObjectContext 
                                         sectionNameKeyPath:nil 
                                                  cacheName:@"Master"];
@@ -228,11 +220,29 @@
      be useful during development. 
      */
     
-    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    NSLog(@"fetchedResultsController::Unresolved error %@, %@", error, [error userInfo]);
     abort();
 	}
   
   return __fetchedResultsController;
+}
+
+- (void)reloadFetchRequest {
+  
+  [NSFetchedResultsController deleteCacheWithName:@"Master"];
+  NSError *error = nil;
+	if (![self.fetchedResultsController performFetch:&error]) {
+    /*
+     Replace this implementation with code to handle the error appropriately.
+     abort() causes the application to generate a crash log and terminate. 
+     You should not use this function in a shipping application, although it may 
+     be useful during development. 
+     */
+    
+    NSLog(@"reloadFetchRequest::Unresolved error %@, %@", error, [error userInfo]);
+    abort();
+	}
+  [self.tableView reloadData];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
@@ -243,11 +253,13 @@
   
   switch(type) {
     case NSFetchedResultsChangeInsert:
-      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] 
+                       withRowAnimation:UITableViewRowAnimationFade];
       break;
       
     case NSFetchedResultsChangeDelete:
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+                       withRowAnimation:UITableViewRowAnimationFade];
       break;
       
     case NSFetchedResultsChangeUpdate:
@@ -255,8 +267,10 @@
       break;
       
     case NSFetchedResultsChangeMove:
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+                       withRowAnimation:UITableViewRowAnimationFade];
+      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                       withRowAnimation:UITableViewRowAnimationFade];
       break;
   }
 }
@@ -271,27 +285,62 @@
   [self.tableView endUpdates];
 }
 
-#pragma mark - CLIngredientCellLongPressDelegate (Dragging)
+#pragma mark - UILongPressGestureRecognizer Action (Dragging)
 
 - (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer {
 
+  CLDragView *draggableView = (CLDragView*)[recognizer view];
+  CGPoint touchPoint = [recognizer locationOfTouch:0 inView:self.view];
+  
   switch ([recognizer state]) {
     
     // Dragging begins...
     case UIGestureRecognizerStateBegan:
       NSLog(@"UIGestureRecognizerStateBegan::");
+     
+      draggableView.center = touchPoint;
+      [self.view addSubview:draggableView];
+      draggableView.label.textColor = [UIColor darkGrayColor];
+      draggableView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.55 alpha:1.0];
+      
+      draggableView.layer.shadowColor = [[UIColor blackColor] CGColor];
+      draggableView.layer.shadowOffset = CGSizeMake(2.0, 0.0);
+      draggableView.layer.shadowRadius = 5.0;
+      draggableView.layer.shadowOpacity = 0.5;
+      draggableView.layer.masksToBounds = NO;
+      draggableView.layer.shouldRasterize = YES;
 
       break;
     // Moving finger...drag action
     case UIGestureRecognizerStateChanged:
       NSLog(@"UIGestureRecognizerStateChanged::");
+      
+      draggableView.center = touchPoint;
 
       break;
     // Check if we are in the pot area
-    case UIGestureRecognizerStateEnded:
+    case UIGestureRecognizerStateEnded: {
       NSLog(@"UIGestureRecognizerStateEnded::");
-      break;
+
+      if ((touchPoint.x > self.potView.frame.origin.x) && 
+          (touchPoint.y > self.potView.frame.origin.y)) {
+        [self.potView addSubview:draggableView];
+        draggableView.center = CGPointMake(200, 200);
+        draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
+        draggableView.gestureRecognizers = nil;
+        draggableView.userInteractionEnabled = NO;
+      }
+      else {
+        draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
+      }
+      NSError *error = nil;
+      if (![__managedObjectContext save:&error]) {
+        // Handle the error. 
+        NSLog(@"Error saving: %@",error);
+      }
       
+      break;
+    }  
     case UIGestureRecognizerStateCancelled:
       NSLog(@"UIGestureRecognizerStateCancelled::");
       break;
@@ -305,8 +354,49 @@
   }
 }
 
+#pragma mark - CLSearchBar Delegate
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 
+  NSLog(@"%@", searchBar.text);
+  
+  if (searchText != nil && ![searchText isEqualToString:@""]) {
+    NSPredicate *predicate = 
+    [NSPredicate predicateWithFormat:@"name beginswith[c] %@", searchText];
+    [self.fetchRequest setPredicate:predicate];
+  }
+  else {
+    [self.fetchRequest setPredicate:nil];
+  }
+  [self reloadFetchRequest];
 
+}
+
+#pragma mark - Action Sort Buttons
+
+- (IBAction)touchedAlphabetSortButton:(id)sender {
+  
+  [self.fetchRequest setSortDescriptors:nil];
+  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
+                                                                 ascending:YES];
+  NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+  [self.fetchRequest setSortDescriptors:sortDescriptors];
+  
+  [self reloadFetchRequest];
+}
+
+- (IBAction)touchedUsageSortButton:(id)sender {
+  
+  [self.fetchRequest setSortDescriptors:nil];
+  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"identifier" 
+                                                                 ascending:YES];
+  NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+  [self.fetchRequest setSortDescriptors:sortDescriptors];
+  
+  [self reloadFetchRequest];
+  
+}
 
 @end
