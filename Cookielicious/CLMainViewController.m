@@ -7,6 +7,7 @@
 //
 
 #import "CLMainViewController.h"
+#import "CLSelectedIngredientsController.h"
 #import "CLAppDelegate.h"
 #import "CLIngredient.h"
 #import "CLIngredientCell.h"
@@ -33,10 +34,11 @@
 @synthesize potView = _potView;
 @synthesize ingredientCell = _ingredientCell;
 
-
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize fetchRequest = _fetchRequest;
+
+@synthesize selectedIngredientsController = _selectedIngredientsController;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -106,8 +108,11 @@
   view.layer.masksToBounds = NO;
   view.layer.shouldRasterize = YES;
   
-  
-  
+  _selectedIngredientsController = 
+  [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
+                                                    bundle:nil];
+  [self.potView addSubview:self.selectedIngredientsController.view];
+
 }
 
 - (void)viewDidUnload {
@@ -163,7 +168,6 @@
 - (void)configureCell:(CLIngredientCell *)cell atIndexPath:(NSIndexPath *)indexPath {
   
   CLIngredient *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  cell.delegate = self;
   cell.ingredient = managedObject;
   
 }
@@ -285,7 +289,7 @@
   [self.tableView endUpdates];
 }
 
-#pragma mark - UILongPressGestureRecognizer Action (Dragging)
+#pragma mark - CLDragView Delegate
 
 - (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer {
 
@@ -300,15 +304,16 @@
      
       draggableView.center = touchPoint;
       [self.view addSubview:draggableView];
-      draggableView.label.textColor = [UIColor darkGrayColor];
-      draggableView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.55 alpha:1.0];
-      
-      draggableView.layer.shadowColor = [[UIColor blackColor] CGColor];
-      draggableView.layer.shadowOffset = CGSizeMake(2.0, 0.0);
-      draggableView.layer.shadowRadius = 5.0;
-      draggableView.layer.shadowOpacity = 0.5;
-      draggableView.layer.masksToBounds = NO;
-      draggableView.layer.shouldRasterize = YES;
+      draggableView.removeButton.alpha = 1.0;
+      draggableView.label.alpha = 1.0;
+      draggableView.imageView.alpha = 1.0;
+            
+      draggableView.label.layer.shadowColor = [[UIColor blackColor] CGColor];
+      draggableView.label.layer.shadowOffset = CGSizeMake(2.0, 0.0);
+      draggableView.label.layer.shadowRadius = 5.0;
+      draggableView.label.layer.shadowOpacity = 0.5;
+      draggableView.label.layer.masksToBounds = NO;
+      draggableView.label.layer.shouldRasterize = YES;
 
       break;
     // Moving finger...drag action
@@ -324,21 +329,20 @@
 
       if ((touchPoint.x > self.potView.frame.origin.x) && 
           (touchPoint.y > self.potView.frame.origin.y)) {
-        [self.potView addSubview:draggableView];
-        draggableView.center = CGPointMake(200, 200);
+
         draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
         draggableView.gestureRecognizers = nil;
-        draggableView.userInteractionEnabled = NO;
+        [self.selectedIngredientsController addIngredientWithView:draggableView];
       }
       else {
         draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
+        [draggableView removeFromSuperview];
       }
       NSError *error = nil;
       if (![__managedObjectContext save:&error]) {
         // Handle the error. 
         NSLog(@"Error saving: %@",error);
       }
-      
       break;
     }  
     case UIGestureRecognizerStateCancelled:
@@ -351,6 +355,19 @@
       
     default:
       break;
+  }
+}
+
+- (void)removeDragView:(CLDragView*)dragView withIngredient:(CLIngredient*)ingredient {
+
+  [_selectedIngredientsController removeIngredientWithView:dragView];
+  
+  ingredient.selected = [NSNumber numberWithBool:NO];
+  
+  NSError *error = nil;
+  if (![__managedObjectContext save:&error]) {
+    // Handle the error. 
+    NSLog(@"Error saving: %@",error);
   }
 }
 

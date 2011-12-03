@@ -9,22 +9,53 @@
 #import "CLDragView.h"
 #import "CLIngredient.h"
 
+@interface CLDragView (Private)
+
+- (IBAction)touchedRemoveButton:(UIButton*)sender;
+- (void)longPressDetected:(UILongPressGestureRecognizer*)sender;
+
+@end
+
 @implementation CLDragView
 
 @synthesize label = _label;
+@synthesize removeButton = _removeButton;
+@synthesize imageView = _imageView;
 @synthesize ingredient = _ingredient;
+@synthesize delegate = _delegate;
+@synthesize ingredientsController = _ingredientsController;
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithCoder:(NSCoder *)aDecoder {
   
-  self = [super initWithFrame:frame];
+  self = [super initWithCoder:aDecoder];
   if (self) {
-    _label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 44)];
-    _label.backgroundColor = [UIColor clearColor];
-    _label.textColor = [UIColor clearColor];
-    _label.font = [UIFont fontWithName:@"Noteworthy bold" size:18.0];
-    [self addSubview:_label];
+    
+    UILongPressGestureRecognizer *longPress =
+    [[UILongPressGestureRecognizer alloc] initWithTarget:self 
+                                                  action:@selector(longPressDetected:)];
+    [self addGestureRecognizer:longPress];
+    
+
   }
   return self;
+}
+
+- (IBAction)touchedRemoveButton:(UIButton*)sender {
+  
+  if ([self.delegate respondsToSelector:@selector(removeDragView:withIngredient:)]) {
+    
+    [self.delegate performSelector:@selector(removeDragView:withIngredient:) 
+                        withObject:self
+                        withObject:self.ingredient];
+  }
+}
+
+- (void)longPressDetected:(UILongPressGestureRecognizer*)sender {
+  
+  if ([self.delegate respondsToSelector:@selector(detectedLongPressWithRecognizer:)]) {
+    [self.delegate performSelector:@selector(detectedLongPressWithRecognizer:) 
+                        withObject:sender];
+  }
 }
 
 @end

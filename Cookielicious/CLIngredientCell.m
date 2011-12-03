@@ -6,20 +6,16 @@
 //  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
+#import "CLIngredient.h"
+#import "CLMainViewController.h"
 #import "CLIngredientCell.h"
 #import "CLDragView.h"
-
-@interface CLIngredientCell (Private)
-
-- (void)longPressDetected:(id)sender;
-
-@end
 
 @implementation CLIngredientCell
 
 @synthesize ingredientLabel = _ingredientLabel;
 @synthesize ingredient = _ingredient;
-@synthesize delegate = _delegate;
+@synthesize rootController = _rootController;
 
 - (NSString*)reuseIdentifier {
   return @"IngredientCell";
@@ -73,17 +69,20 @@
       self.ingredientLabel.alpha = 1.0;
       self.accessoryType = UITableViewCellAccessoryNone;
       
-      dragView = [[CLDragView alloc] initWithFrame:self.bounds];
-      dragView.backgroundColor = [UIColor clearColor];
+      NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLDragView" 
+                                                          owner:self 
+                                                        options:nil];
+      
+      for (NSObject *obj in objects) {
+        if ([obj isKindOfClass:NSClassFromString(@"CLDragView")]) {
+          dragView = (CLDragView*)obj;
+        }
+      }
+      dragView.delegate = self.rootController;
+      dragView.ingredientsController = self.rootController.selectedIngredientsController;
       dragView.label.text = _ingredient.name;
       dragView.ingredient = _ingredient;
       [self addSubview:dragView];
-      
-      UILongPressGestureRecognizer *longPress =
-      [[UILongPressGestureRecognizer alloc] initWithTarget:self 
-                                                    action:@selector(longPressDetected:)];
-      [dragView addGestureRecognizer:longPress];
-    
     }
   }
   else {
@@ -110,12 +109,6 @@
   }
 }
 
-- (void)longPressDetected:(UILongPressGestureRecognizer*)sender {
 
-  if ([self.delegate respondsToSelector:@selector(detectedLongPressWithRecognizer:)]) {
-    [self.delegate performSelector:@selector(detectedLongPressWithRecognizer:) 
-                        withObject:sender];
-  }
-}
 
 @end

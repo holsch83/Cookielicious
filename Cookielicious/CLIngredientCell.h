@@ -7,20 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CLIngredient.h"
-
-
-@protocol CLIngredientCellLongPressDelegate <NSObject>
-
-- (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer;
-
-@end
+@class CLIngredient;
+@class CLMainViewController;
 
 @interface CLIngredientCell : UITableViewCell
 
-@property (strong, nonatomic) id <NSObject> delegate;
 @property (strong, nonatomic, readonly) IBOutlet UILabel *ingredientLabel;
 @property (strong, nonatomic) CLIngredient *ingredient;
+@property (assign, nonatomic) IBOutlet CLMainViewController *rootController;
 
 
 @end
