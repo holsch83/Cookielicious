@@ -18,7 +18,7 @@
 
 - (void)configureCell:(CLIngredientCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
-// If we search or sort our ingredients, we refetch from store
+// If we search or sort our ingredients, we refetch the data from store
 - (void)reloadFetchRequest;
 
 // Sort Button Actions
@@ -112,6 +112,29 @@
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
                                                     bundle:nil];
   [self.potView addSubview:self.selectedIngredientsController.view];
+  
+  for (CLIngredient *ingr in self.fetchedResultsController.fetchedObjects) {
+    if ([ingr.selected boolValue]) {
+
+      CLDragView *dragView;
+      NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLDragView" 
+                                                       owner:self 
+                                                     options:nil];
+      
+      for (NSObject *obj in objects) {
+        if ([obj isKindOfClass:NSClassFromString(@"CLDragView")]) {
+          dragView = (CLDragView*)obj;
+        }
+      }
+      
+      dragView.delegate = self;
+      dragView.label.text = ingr.name;
+      dragView.ingredient = ingr;
+      [dragView setVisible];
+      
+      [self.selectedIngredientsController addIngredientWithView:dragView];
+    }
+  }
 
 }
 
@@ -304,17 +327,8 @@
      
       draggableView.center = touchPoint;
       [self.view addSubview:draggableView];
-      draggableView.removeButton.alpha = 1.0;
-      draggableView.label.alpha = 1.0;
-      draggableView.imageView.alpha = 1.0;
-            
-      draggableView.label.layer.shadowColor = [[UIColor blackColor] CGColor];
-      draggableView.label.layer.shadowOffset = CGSizeMake(2.0, 0.0);
-      draggableView.label.layer.shadowRadius = 5.0;
-      draggableView.label.layer.shadowOpacity = 0.5;
-      draggableView.label.layer.masksToBounds = NO;
-      draggableView.label.layer.shouldRasterize = YES;
-
+      [draggableView setVisible];
+      
       break;
     // Moving finger...drag action
     case UIGestureRecognizerStateChanged:
@@ -329,10 +343,16 @@
 
       if ((touchPoint.x > self.potView.frame.origin.x) && 
           (touchPoint.y > self.potView.frame.origin.y)) {
-
-        draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
-        draggableView.gestureRecognizers = nil;
-        [self.selectedIngredientsController addIngredientWithView:draggableView];
+        
+        BOOL success = [self.selectedIngredientsController addIngredientWithView:draggableView];
+ 
+        if (success) {
+          draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
+        }
+        else {
+          draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
+          [draggableView removeFromSuperview];
+        }
       }
       else {
         draggableView.ingredient.selected = [NSNumber numberWithBool:NO];

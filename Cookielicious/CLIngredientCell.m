@@ -79,7 +79,6 @@
         }
       }
       dragView.delegate = self.rootController;
-      dragView.ingredientsController = self.rootController.selectedIngredientsController;
       dragView.label.text = _ingredient.name;
       dragView.ingredient = _ingredient;
       [self addSubview:dragView];

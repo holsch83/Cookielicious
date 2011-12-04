@@ -8,6 +8,7 @@
 
 #import "CLDragView.h"
 #import "CLIngredient.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CLDragView (Private)
 
@@ -23,7 +24,6 @@
 @synthesize imageView = _imageView;
 @synthesize ingredient = _ingredient;
 @synthesize delegate = _delegate;
-@synthesize ingredientsController = _ingredientsController;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   
@@ -56,6 +56,21 @@
     [self.delegate performSelector:@selector(detectedLongPressWithRecognizer:) 
                         withObject:sender];
   }
+}
+
+- (void)setVisible {
+
+  self.removeButton.alpha = 1.0;
+  self.label.alpha = 1.0;
+  self.imageView.alpha = 1.0;
+  
+  self.label.layer.shadowColor = [[UIColor blackColor] CGColor];
+  self.label.layer.shadowOffset = CGSizeMake(2.0, 0.0);
+  self.label.layer.shadowRadius = 5.0;
+  self.label.layer.shadowOpacity = 0.5;
+  self.label.layer.masksToBounds = NO;
+  self.label.layer.shouldRasterize = YES;
+  
 }
 
 @end

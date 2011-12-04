@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class CLIngredient;
-@class CLSelectedIngredientsController;
 
 @interface CLDragView : UIView
 
 @property (nonatomic, strong) id <NSObject> delegate;
-@property (nonatomic, assign) CLSelectedIngredientsController *ingredientsController;
 @property (nonatomic, strong) IBOutlet UILabel *label;
 @property (nonatomic, strong) IBOutlet UIButton *removeButton;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) CLIngredient *ingredient;
+
+- (void)setVisible;
 
 @end

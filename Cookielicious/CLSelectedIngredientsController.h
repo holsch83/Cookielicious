@@ -17,7 +17,7 @@
 
 }
 
-- (void)addIngredientWithView:(CLDragView*)view;
+- (BOOL)addIngredientWithView:(CLDragView*)view;
 - (void)removeIngredientWithView:(CLDragView*)view;
 
 @end

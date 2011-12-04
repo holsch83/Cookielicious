@@ -44,7 +44,7 @@
   NSLog(@"Items left in array: %d", [_uiViews count]);
 }
 
-- (void)addIngredientWithView:(CLDragView*)view {
+- (BOOL)addIngredientWithView:(CLDragView*)view {
   
   // Place new items anywhere
 
@@ -52,8 +52,6 @@
                                     ceil(view.frame.size.height/2));
   
   CGPoint currentPosition = [view convertPoint:centerPoint toView:self.view];
-  NSLog(@"%f %f", currentPosition.x, currentPosition.y);
-  view.center = currentPosition;
   
   if(! [_uiViews containsObject:view] && [_uiViews count] < 5) {
     // In order to avoid seeing new items being animated
@@ -61,10 +59,19 @@
     // and only after the item circle has been reordered
     // (see reorderSubViews), fade all new items in.
     
+    view.center = currentPosition;
+    view.gestureRecognizers = nil;
+    
     [_uiViews addObject:view];
     [self.view addSubview:view];
     
     [self reorderDragViews];
+    
+    return YES;
+  }
+  else {
+
+    return NO;
   }
 }
 
