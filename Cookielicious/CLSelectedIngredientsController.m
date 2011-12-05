@@ -55,8 +55,8 @@
 
 - (BOOL)addIngredientWithView:(CLDragView*)view {
   
-  CGPoint centerPoint = CGPointMake(ceil(view.frame.size.width/2), 
-                                    ceil(view.frame.size.height/2));
+  CGPoint centerPoint = CGPointMake(ceil(view.frame.size.width/2) - 30, 
+                                    ceil(view.frame.size.height/2) - 30);
   
   CGPoint currentPosition = [view convertPoint:centerPoint toView:self.view];
   
