@@ -130,7 +130,7 @@
       dragView.delegate = self;
       dragView.label.text = ingr.name;
       dragView.ingredient = ingr;
-      [dragView setVisible];
+      [dragView setVisible:YES];
       
       [self.selectedIngredientsController addIngredientWithView:dragView];
     }
@@ -325,9 +325,11 @@
     case UIGestureRecognizerStateBegan:
       NSLog(@"UIGestureRecognizerStateBegan::");
      
+      _startingDragPosition = touchPoint;
       draggableView.center = touchPoint;
       [self.view addSubview:draggableView];
-      [draggableView setVisible];
+      [draggableView setVisible:YES];
+      [draggableView scaleUp];
       
       break;
     // Moving finger...drag action
@@ -348,15 +350,24 @@
  
         if (success) {
           draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
+          [draggableView scaleDown];
         }
         else {
           draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
-          [draggableView removeFromSuperview];
+          [draggableView setVisible:NO];
+          [UIView animateWithDuration:0.4 animations:^{
+            
+            draggableView.center = _startingDragPosition;
+          } completion:^(BOOL finished){}];
         }
       }
       else {
         draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
-        [draggableView removeFromSuperview];
+        [draggableView setVisible:NO];
+        [UIView animateWithDuration:0.4 animations:^{
+          
+          draggableView.center = _startingDragPosition;
+        } completion:^(BOOL finished){}];
       }
       NSError *error = nil;
       if (![__managedObjectContext save:&error]) {

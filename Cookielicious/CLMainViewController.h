@@ -15,7 +15,11 @@
 
 @interface CLMainViewController : UIViewController <UITableViewDelegate, 
 UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate,
-CLDragViewDelegate>
+CLDragViewDelegate> {
+
+  @private
+  CGPoint _startingDragPosition;
+}
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet CLSearchBar *searchBar;

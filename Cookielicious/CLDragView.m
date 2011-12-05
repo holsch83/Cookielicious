@@ -58,19 +58,71 @@
   }
 }
 
-- (void)setVisible {
+- (void)setVisible:(BOOL)visible {
 
-  self.removeButton.alpha = 1.0;
-  self.label.alpha = 1.0;
-  self.imageView.alpha = 1.0;
+  if (visible) {
+    [UIView animateWithDuration:0.4 animations:^{
+      
+      self.removeButton.alpha = 1.0;
+      self.label.alpha = 1.0;
+      self.imageView.alpha = 1.0;
+      
+      self.label.layer.shadowColor = [[UIColor blackColor] CGColor];
+      self.label.layer.shadowOffset = CGSizeMake(2.0, 0.0);
+      self.label.layer.shadowRadius = 5.0;
+      self.label.layer.shadowOpacity = 0.5;
+      self.label.layer.masksToBounds = NO;
+      self.label.layer.shouldRasterize = YES;
+      
+    } completion:^(BOOL finished){}];
+  }
+  else {
+    [UIView animateWithDuration:0.4 animations:^{
+      
+      self.removeButton.alpha = 0.0;
+      self.label.alpha = 0.0;
+      self.imageView.alpha = 0.0;
+      
+      self.label.layer.shadowColor = nil;
+      self.label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+      self.label.layer.shadowRadius = 0.0;
+      self.label.layer.shadowOpacity = 0.0;
+      
+    } completion:^(BOOL finished){
+      
+      [self removeFromSuperview];
+      
+    }];
   
-  self.label.layer.shadowColor = [[UIColor blackColor] CGColor];
-  self.label.layer.shadowOffset = CGSizeMake(2.0, 0.0);
-  self.label.layer.shadowRadius = 5.0;
-  self.label.layer.shadowOpacity = 0.5;
-  self.label.layer.masksToBounds = NO;
-  self.label.layer.shouldRasterize = YES;
+  }
+}
+
+- (void)scaleUp {
+    
+  [UIView animateWithDuration:0.4 animations:^{
+    CGAffineTransform zoom = 
+    CGAffineTransformScale(CGAffineTransformIdentity, 1.3, 1.3); 
+    self.transform = zoom;
+    
+    self.label.layer.shadowRadius = 10.0;
+    self.label.layer.shadowOpacity = 0.4;
+    
+  } completion:^(BOOL finished){}];
+}
+
+- (void)scaleDown {
   
+  [UIView animateWithDuration:0.4 animations:^{
+    CGAffineTransform zoom = 
+    CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0); 
+    self.transform = zoom;
+    
+    self.label.layer.shadowRadius = 5.0;
+    self.label.layer.shadowOpacity = 0.5;
+    
+  } completion:^(BOOL finished){
+    
+  }];
 }
 
 @end

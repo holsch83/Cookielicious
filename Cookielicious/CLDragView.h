@@ -18,6 +18,8 @@
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) CLIngredient *ingredient;
 
-- (void)setVisible;
+- (void)setVisible:(BOOL)visible;
+- (void)scaleUp;
+- (void)scaleDown;
 
 @end
