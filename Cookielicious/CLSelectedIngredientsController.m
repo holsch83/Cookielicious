@@ -24,9 +24,18 @@
       
     _uiViews = [[NSMutableArray alloc] init];
     self.view.clipsToBounds = NO;
-    self.view.backgroundColor = [UIColor lightGrayColor];
   }
   return self;
+}
+
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad {
+  
+  [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+  
 }
 
 #pragma mark - Action handlers
@@ -46,18 +55,12 @@
 
 - (BOOL)addIngredientWithView:(CLDragView*)view {
   
-  // Place new items anywhere
-
   CGPoint centerPoint = CGPointMake(ceil(view.frame.size.width/2), 
                                     ceil(view.frame.size.height/2));
   
   CGPoint currentPosition = [view convertPoint:centerPoint toView:self.view];
   
-  if(! [_uiViews containsObject:view] && [_uiViews count] < 5) {
-    // In order to avoid seeing new items being animated
-    // from its initial position to the circle, hide them
-    // and only after the item circle has been reordered
-    // (see reorderSubViews), fade all new items in.
+  if(! [_uiViews containsObject:view] && [_uiViews count] < MAX_DRAG_VIEWS) {
     
     view.center = currentPosition;
     view.gestureRecognizers = nil;
@@ -73,6 +76,11 @@
 
     return NO;
   }
+}
+
+- (BOOL)isDragViewLimitReached {
+
+  return (([_uiViews count] == MAX_DRAG_VIEWS) ? YES : NO);
 }
 
 #pragma mark - Private
@@ -121,47 +129,6 @@
   }];
 }
 
-# pragma mark - Memory management
 
-- (void)didReceiveMemoryWarning {
-  
-  [super didReceiveMemoryWarning];
-  // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad {
-  
-  [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-  
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  
-  [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  
-  [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-  
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-  
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  
-  // Return YES for supported orientations
-  return YES;
-}
 
 @end

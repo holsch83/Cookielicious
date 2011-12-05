@@ -32,6 +32,8 @@
 		3C5EC448146ADFFE00E8970A /* CLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EC446146ADFFE00E8970A /* CLMainViewController.m */; };
 		3C5EC449146ADFFE00E8970A /* CLMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */; };
 		3CC4DF961487DA5500DD83BB /* CLIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC4DF951487DA5500DD83BB /* CLIngredient.m */; };
+		3CC9CA1A148D648200F99EF2 /* icon_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9CA19148D648200F99EF2 /* icon_checkmark.png */; };
+		3CC9CA1D148D6A2D00F99EF2 /* cuttingboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9CA1C148D6A2D00F99EF2 /* cuttingboard.png */; };
 		3CF56D33148A41A600B3BBF1 /* CLDragView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF56D32148A41A600B3BBF1 /* CLDragView.xib */; };
 		3CF56D36148A428400B3BBF1 /* icon_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF56D35148A428400B3BBF1 /* icon_cancel.png */; };
 		3CF56D39148A457F00B3BBF1 /* icon_bag.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF56D38148A457F00B3BBF1 /* icon_bag.png */; };
@@ -110,6 +112,8 @@
 		3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMainViewController.xib; sourceTree = "<group>"; };
 		3CC4DF941487DA5500DD83BB /* CLIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIngredient.h; sourceTree = "<group>"; };
 		3CC4DF951487DA5500DD83BB /* CLIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIngredient.m; sourceTree = "<group>"; };
+		3CC9CA19148D648200F99EF2 /* icon_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkmark.png; sourceTree = "<group>"; };
+		3CC9CA1C148D6A2D00F99EF2 /* cuttingboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cuttingboard.png; sourceTree = "<group>"; };
 		3CF56D32148A41A600B3BBF1 /* CLDragView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLDragView.xib; sourceTree = "<group>"; };
 		3CF56D35148A428400B3BBF1 /* icon_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cancel.png; sourceTree = "<group>"; };
 		3CF56D37148A443D00B3BBF1 /* CLDragViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDragViewDelegate.h; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 		3C34FF7014615502003D2644 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3CC9CA1C148D6A2D00F99EF2 /* cuttingboard.png */,
+				3CC9CA19148D648200F99EF2 /* icon_checkmark.png */,
 				3CF56D38148A457F00B3BBF1 /* icon_bag.png */,
 				3CF56D35148A428400B3BBF1 /* icon_cancel.png */,
 				3C26B216147D6B4000BE8BD6 /* pattern_wood.png */,
@@ -477,6 +483,8 @@
 				3CF56D36148A428400B3BBF1 /* icon_cancel.png in Resources */,
 				3CF56D39148A457F00B3BBF1 /* icon_bag.png in Resources */,
 				3CF56D3E148A5FD600B3BBF1 /* CLSelectedIngredientsController.xib in Resources */,
+				3CC9CA1A148D648200F99EF2 /* icon_checkmark.png in Resources */,
+				3CC9CA1D148D6A2D00F99EF2 /* cuttingboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

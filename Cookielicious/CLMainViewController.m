@@ -25,6 +25,12 @@
 - (IBAction)touchedAlphabetSortButton:(id)sender;
 - (IBAction)touchedUsageSortButton:(id)sender;
 
+// Animation if dragging into drop area fails
+- (void)returnDragViewToStartPoint:(CLDragView*)dragView;
+
+// Save changes in core data
+- (void)saveManagedObjectContext;
+
 @end
 
 @implementation CLMainViewController
@@ -77,10 +83,7 @@
 //      
 //      NSError *error = nil;
 //      
-//      if (![__managedObjectContext save:&error]) {
-//        // Handle the error. 
-//        NSLog(@"Error saving: %@",error);
-//      }
+//      [self saveManagedObjectContext];
 //      i++;
 //    }
  
@@ -135,15 +138,8 @@
       [self.selectedIngredientsController addIngredientWithView:dragView];
     }
   }
-
 }
 
-- (void)viewDidUnload {
-  
-  [super viewDidUnload];
-  // Release any retained subviews of the main view.
-  // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
@@ -311,13 +307,25 @@
   
   [self.tableView endUpdates];
 }
+#pragma mark - Managed Object Context saving
 
+- (void)saveManagedObjectContext {
+
+  NSError *error = nil;
+  if (![__managedObjectContext save:&error]) {
+    // Handle the error. 
+    NSLog(@"Error saving: %@",error);
+  }
+}
 #pragma mark - CLDragView Delegate
 
 - (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer {
 
   CLDragView *draggableView = (CLDragView*)[recognizer view];
   CGPoint touchPoint = [recognizer locationOfTouch:0 inView:self.view];
+  CGPoint touchPointWithOffset;
+  touchPointWithOffset.x = touchPoint.x - 30;
+  touchPointWithOffset.y = touchPoint.y - 30;
   
   switch ([recognizer state]) {
     
@@ -325,59 +333,50 @@
     case UIGestureRecognizerStateBegan:
       NSLog(@"UIGestureRecognizerStateBegan::");
      
-      _startingDragPosition = touchPoint;
-      draggableView.center = touchPoint;
+      _startingDragPosition = touchPointWithOffset;
+      draggableView.center = touchPointWithOffset;
       [self.view addSubview:draggableView];
       [draggableView setVisible:YES];
-      [draggableView scaleUp];
+      [draggableView startDraggingAnimation];
       
       break;
     // Moving finger...drag action
     case UIGestureRecognizerStateChanged:
       NSLog(@"UIGestureRecognizerStateChanged::");
       
-      draggableView.center = touchPoint;
-
+      draggableView.center = touchPointWithOffset;
+      
+      if ((touchPoint.x > self.potView.frame.origin.x) && 
+          (touchPoint.y > self.potView.frame.origin.y) &&
+          ![self.selectedIngredientsController isDragViewLimitReached])
+        [draggableView setShadow:CLShadowGreen];
+      else
+        [draggableView setShadow:CLShadowRed];
       break;
     // Check if we are in the pot area
     case UIGestureRecognizerStateEnded: {
       NSLog(@"UIGestureRecognizerStateEnded::");
 
       if ((touchPoint.x > self.potView.frame.origin.x) && 
-          (touchPoint.y > self.potView.frame.origin.y)) {
+          (touchPoint.y > self.potView.frame.origin.y) &&
+          ![self.selectedIngredientsController isDragViewLimitReached]) {
         
-        BOOL success = [self.selectedIngredientsController addIngredientWithView:draggableView];
- 
-        if (success) {
-          draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
-          [draggableView scaleDown];
-        }
-        else {
-          draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
-          [draggableView setVisible:NO];
-          [UIView animateWithDuration:0.4 animations:^{
-            
-            draggableView.center = _startingDragPosition;
-          } completion:^(BOOL finished){}];
-        }
+        [self.selectedIngredientsController addIngredientWithView:draggableView];
+        draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
       }
       else {
         draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
-        [draggableView setVisible:NO];
-        [UIView animateWithDuration:0.4 animations:^{
-          
-          draggableView.center = _startingDragPosition;
-        } completion:^(BOOL finished){}];
+        [self returnDragViewToStartPoint:draggableView];
       }
-      NSError *error = nil;
-      if (![__managedObjectContext save:&error]) {
-        // Handle the error. 
-        NSLog(@"Error saving: %@",error);
-      }
+      [draggableView stopDraggingAnimation];
+      [self saveManagedObjectContext];
       break;
     }  
     case UIGestureRecognizerStateCancelled:
       NSLog(@"UIGestureRecognizerStateCancelled::");
+      draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
+      [self returnDragViewToStartPoint:draggableView];
+      [draggableView stopDraggingAnimation];
       break;
       
     case UIGestureRecognizerStateFailed:
@@ -389,17 +388,24 @@
   }
 }
 
+- (void)returnDragViewToStartPoint:(CLDragView*)dragView {
+
+  [dragView stopDraggingAnimation];
+  [dragView setVisible:NO];
+
+  [UIView animateWithDuration:0.4 animations:^{
+    
+    dragView.center = _startingDragPosition;
+  } completion:^(BOOL finished){}];
+}
+
 - (void)removeDragView:(CLDragView*)dragView withIngredient:(CLIngredient*)ingredient {
 
   [_selectedIngredientsController removeIngredientWithView:dragView];
   
   ingredient.selected = [NSNumber numberWithBool:NO];
   
-  NSError *error = nil;
-  if (![__managedObjectContext save:&error]) {
-    // Handle the error. 
-    NSLog(@"Error saving: %@",error);
-  }
+  [self saveManagedObjectContext];
 }
 
 #pragma mark - CLSearchBar Delegate

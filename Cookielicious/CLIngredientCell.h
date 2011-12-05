@@ -10,7 +10,10 @@
 @class CLIngredient;
 @class CLMainViewController;
 
-@interface CLIngredientCell : UITableViewCell
+@interface CLIngredientCell : UITableViewCell {
+
+  UIImageView *_checkmark;
+}
 
 @property (strong, nonatomic, readonly) IBOutlet UILabel *ingredientLabel;
 @property (strong, nonatomic) CLIngredient *ingredient;

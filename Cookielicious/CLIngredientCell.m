@@ -25,7 +25,8 @@
 
   self = [super initWithCoder:aDecoder];
   if (self) {
-    
+    _checkmark = 
+    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_checkmark.png"]];
   }
   return self;
 }
@@ -59,7 +60,8 @@
      */
     if ([[_ingredient selected] boolValue]) {
       self.ingredientLabel.alpha = 0.4;
-      self.accessoryType = UITableViewCellAccessoryCheckmark;
+
+      self.accessoryView = _checkmark;
     }
     /**
      We need it, so we allocate it...
@@ -67,7 +69,7 @@
     else {
       
       self.ingredientLabel.alpha = 1.0;
-      self.accessoryType = UITableViewCellAccessoryNone;
+      self.accessoryView = nil;
       
       NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLDragView" 
                                                           owner:self 
@@ -91,7 +93,7 @@
     if ([[_ingredient selected] boolValue]) {
       
       self.ingredientLabel.alpha = 0.4;
-      self.accessoryType = UITableViewCellAccessoryCheckmark;
+      self.accessoryView = _checkmark;
       [dragView removeFromSuperview];
       dragView = nil;
     }
@@ -101,7 +103,7 @@
     else {
       
       self.ingredientLabel.alpha = 1.0;
-      self.accessoryType = UITableViewCellAccessoryNone;
+      self.accessoryView = nil;
       dragView.label.text = _ingredient.name;
       dragView.ingredient = _ingredient;
     }

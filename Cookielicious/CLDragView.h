@@ -6,11 +6,21 @@
 //  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
+typedef enum {
+  CLShadowRed,
+  CLShadowGreen,
+  CLShadowDefault
+} CLShadow;
+
 #import <UIKit/UIKit.h>
 
 @class CLIngredient;
 
-@interface CLDragView : UIView
+@interface CLDragView : UIView {
+
+  @private
+  BOOL _isDragging;
+}
 
 @property (nonatomic, strong) id <NSObject> delegate;
 @property (nonatomic, strong) IBOutlet UILabel *label;
@@ -19,7 +29,8 @@
 @property (nonatomic, strong) CLIngredient *ingredient;
 
 - (void)setVisible:(BOOL)visible;
-- (void)scaleUp;
-- (void)scaleDown;
+- (void)startDraggingAnimation;
+- (void)stopDraggingAnimation;
+- (void)setShadow:(CLShadow)shadow;
 
 @end

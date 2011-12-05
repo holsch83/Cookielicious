@@ -15,6 +15,12 @@
 - (IBAction)touchedRemoveButton:(UIButton*)sender;
 - (void)longPressDetected:(UILongPressGestureRecognizer*)sender;
 
+// Custom animations for floating effect and scaling when dragging view
+- (void)animateRotationRight;
+- (void)animateRotationLeft;
+- (void)scaleUp;
+- (void)scaleDown;
+
 @end
 
 @implementation CLDragView
@@ -74,7 +80,8 @@
       self.label.layer.masksToBounds = NO;
       self.label.layer.shouldRasterize = YES;
       
-    } completion:^(BOOL finished){}];
+    } completion:^(BOOL finished){
+    }];
   }
   else {
     [UIView animateWithDuration:0.4 animations:^{
@@ -97,17 +104,87 @@
   }
 }
 
+- (void)setShadow:(CLShadow)shadow {
+
+  [UIView animateWithDuration:0.4 animations:^{
+    switch (shadow) {
+      case CLShadowGreen:
+        self.label.layer.shadowColor = [[UIColor greenColor] CGColor];
+        self.label.layer.shadowOpacity = 1.0;
+        break;
+      case CLShadowRed:
+        self.label.layer.shadowColor = [[UIColor redColor] CGColor];
+        self.label.layer.shadowOpacity = 1.0;
+        break;
+      case CLShadowDefault:
+        self.label.layer.shadowColor = [[UIColor blackColor] CGColor];
+        self.label.layer.shadowOpacity = 0.5;
+        break;
+      default:
+        break;
+    }
+  } completion:^(BOOL finished){}];
+}
+
+- (void)startDraggingAnimation {
+
+  _isDragging = YES;
+  [self scaleUp];
+}
+
+- (void)stopDraggingAnimation {
+  
+  _isDragging = NO;
+  [self scaleDown];
+  [self setShadow:CLShadowDefault];
+}
+- (void)animateRotationRight {
+  if (_isDragging) {
+    
+    [UIView animateWithDuration:0.5 
+                          delay:0.0 
+                        options:UIViewAnimationOptionAllowUserInteraction 
+                     animations:^{
+                       CGAffineTransform rotateRight = 
+                       CGAffineTransformRotate(CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2), M_PI_4/10); 
+                       self.transform = rotateRight;
+                     } 
+                     completion:^(BOOL finished) {
+                       [self animateRotationLeft];
+                     }];
+   
+  }
+}
+- (void)animateRotationLeft {
+  if (_isDragging) {
+    
+    [UIView animateWithDuration:0.5 
+                          delay:0.0 
+                        options:UIViewAnimationOptionAllowUserInteraction 
+                     animations:^{
+                       CGAffineTransform rotateLeft = 
+                       CGAffineTransformRotate(CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2), -M_PI_4/10); 
+                       self.transform = rotateLeft;
+                     } 
+                     completion:^(BOOL finished) {
+                       [self animateRotationRight];
+                     }]; 
+  }
+}
+
 - (void)scaleUp {
     
   [UIView animateWithDuration:0.4 animations:^{
     CGAffineTransform zoom = 
-    CGAffineTransformScale(CGAffineTransformIdentity, 1.3, 1.3); 
+    CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2); 
     self.transform = zoom;
     
     self.label.layer.shadowRadius = 10.0;
     self.label.layer.shadowOpacity = 0.4;
     
-  } completion:^(BOOL finished){}];
+  } completion:^(BOOL finished) {
+    [self animateRotationRight];
+  }];
 }
 
 - (void)scaleDown {
@@ -119,8 +196,6 @@
     
     self.label.layer.shadowRadius = 5.0;
     self.label.layer.shadowOpacity = 0.5;
-    
-  } completion:^(BOOL finished){
     
   }];
 }

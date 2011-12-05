@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
+#define MAX_DRAG_VIEWS 5
+
 #import <UIKit/UIKit.h>
 
 @class CLDragView;
@@ -19,5 +21,6 @@
 
 - (BOOL)addIngredientWithView:(CLDragView*)view;
 - (void)removeIngredientWithView:(CLDragView*)view;
+- (BOOL)isDragViewLimitReached;
 
 @end

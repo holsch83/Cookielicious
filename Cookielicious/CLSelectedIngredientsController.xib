@@ -37,11 +37,10 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIButton" id="530762379">
 						<reference key="NSNextResponder" ref="705606804"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{351, 443}, {129, 37}}</string>
+						<int key="NSvFlags">269</int>
+						<string key="NSFrame">{{211, 493}, {129, 37}}</string>
 						<reference key="NSSuperview" ref="705606804"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:241</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -74,17 +73,14 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{500, 500}</string>
+				<string key="NSFrameSize">{550, 550}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="530762379"/>
 				<string key="NSReuseIdentifierKey">_NS:212</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
+					<bytes key="NSWhite">MCAwAA</bytes>
 				</object>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 					<int key="IBUIInterfaceOrientation">3</int>
