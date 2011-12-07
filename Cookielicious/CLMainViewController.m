@@ -8,6 +8,7 @@
 
 #import "CLMainViewController.h"
 #import "CLSelectedIngredientsController.h"
+#import "CLResultRecipesController.h"
 #import "CLAppDelegate.h"
 #import "CLIngredient.h"
 #import "CLIngredientCell.h"
@@ -24,6 +25,9 @@
 // Sort Button Actions
 - (IBAction)touchedAlphabetSortButton:(id)sender;
 - (IBAction)touchedUsageSortButton:(id)sender;
+
+// Show recipes Button Action
+- (IBAction)touchedShowRecipesButton:(id)sender;
 
 // Animation if dragging into drop area fails
 - (void)returnDragViewToStartPoint:(CLDragView*)dragView;
@@ -451,6 +455,14 @@
   
   [self reloadFetchRequest];
   
+}
+
+#pragma mark - Show results Buttons
+
+- (IBAction)touchedShowRecipesButton:(id)sender {
+    CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
+    
+    [self.navigationController pushViewController:resultRecipesController animated:YES];
 }
 
 @end

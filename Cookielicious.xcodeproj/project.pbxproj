@@ -64,6 +64,8 @@
 		3CFEB31314615FE100DCD93D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFEB31214615FE100DCD93D /* MobileCoreServices.framework */; };
 		3CFEB3151461601A00DCD93D /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */; };
 		3CFEB3181461625B00DCD93D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB3171461625B00DCD93D /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5CB10C6D148FA15F0025EBA3 /* CLResultRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */; };
+		5CB10C6E148FA15F0025EBA3 /* CLResultRecipesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +174,9 @@
 		3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		3CFEB3161461625B00DCD93D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3CFEB3171461625B00DCD93D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5CB10C6A148FA15F0025EBA3 /* CLResultRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLResultRecipesController.h; sourceTree = "<group>"; };
+		5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLResultRecipesController.m; sourceTree = "<group>"; };
+		5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLResultRecipesController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +279,7 @@
 		3C34FF6F14615502003D2644 /* Cookielicious */ = {
 			isa = PBXGroup;
 			children = (
+				5C4642F9148F8FA600DCB11B /* ResultRecipes */,
 				3C4AAC9D148120B700A906B8 /* Models */,
 				3C26B203147D4A0700BE8BD6 /* SelectIngredients */,
 				3C26B1F1147D371800BE8BD6 /* CustomUI */,
@@ -401,6 +407,16 @@
 			path = SBJSON;
 			sourceTree = "<group>";
 		};
+		5C4642F9148F8FA600DCB11B /* ResultRecipes */ = {
+			isa = PBXGroup;
+			children = (
+				5CB10C6A148FA15F0025EBA3 /* CLResultRecipesController.h */,
+				5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */,
+				5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */,
+			);
+			name = ResultRecipes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -485,6 +501,7 @@
 				3CF56D3E148A5FD600B3BBF1 /* CLSelectedIngredientsController.xib in Resources */,
 				3CC9CA1A148D648200F99EF2 /* icon_checkmark.png in Resources */,
 				3CC9CA1D148D6A2D00F99EF2 /* cuttingboard.png in Resources */,
+				5CB10C6E148FA15F0025EBA3 /* CLResultRecipesController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +567,7 @@
 				3CC4DF961487DA5500DD83BB /* CLIngredient.m in Sources */,
 				3C2412E414882D1F00D41C3D /* CLDragView.m in Sources */,
 				3CF56D3D148A5FD600B3BBF1 /* CLSelectedIngredientsController.m in Sources */,
+				5CB10C6D148FA15F0025EBA3 /* CLResultRecipesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
