@@ -9,8 +9,11 @@
 #import "CLAppDelegate.h"
 #import "CLResultRecipesController.h"
 #import "CLIngredient.h"
+#import "CLRecipeView.h"
 
 @implementation CLResultRecipesController
+
+@synthesize recipeGridView = _recipeGridView;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -73,9 +76,33 @@
         NSLog(@"Failed fetching selected ingredients");
         exit(-1);
     }
-
-    for (CLIngredient *ingr in array) {
+    // 26px -- ||200px|| -- 26px -- ||200px|| -- 26px -- ||200px|| -- 26px
+    for (int i = 0, j = [array count]; i < j; i++) {
+        CLIngredient *ingr = (CLIngredient *)[array objectAtIndex:i];
+        
         NSLog(@"%@", ingr.name);
+        
+        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLRecipeView" 
+                                                         owner:self 
+                                                       options:nil];
+        CLRecipeView *recipeView;
+        for(NSObject *obj in objects) {
+            if([obj isKindOfClass:NSClassFromString(@"CLRecipeView")]) {
+                recipeView = (CLRecipeView *)obj;
+            }
+        }
+        
+        // Position the view in the griiiid! hell yeah
+        int col = i%3;
+        int row = i/3; // integer division
+        
+        int x = 26 * (col + 1) + 200 * col + 100;
+        int y = 26 * (row + 1) + 200 * row + 100;
+        
+        recipeView.center = CGPointMake(x, y);
+        
+        [recipeView.titleLabel setText:[ingr name]];        
+        [_recipeGridView addSubview:recipeView];
     }
 }
 

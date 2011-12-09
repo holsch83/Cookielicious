@@ -10,6 +10,8 @@
 
 @interface CLResultRecipesController : UIViewController <NSFetchedResultsControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIScrollView *recipeGridView;
+
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchRequest *fetchRequest;
