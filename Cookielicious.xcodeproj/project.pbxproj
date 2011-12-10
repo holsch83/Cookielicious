@@ -68,6 +68,10 @@
 		5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */; };
 		5CB10C6D148FA15F0025EBA3 /* CLResultRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */; };
 		5CB10C6E148FA15F0025EBA3 /* CLResultRecipesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */; };
+		5CB97FEB149389030028D06A /* CLShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB97FEA149389030028D06A /* CLShadowView.m */; };
+		5CB97FEE14939EED0028D06A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB97FED14939EED0028D06A /* QuartzCore.framework */; };
+		5CBA7128149289690001C3CD /* CLRecipeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA7127149289690001C3CD /* CLRecipeDetailView.m */; };
+		5CBA712A149289780001C3CD /* CLRecipeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CBA7129149289780001C3CD /* CLRecipeDetailView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +186,12 @@
 		5CB10C6A148FA15F0025EBA3 /* CLResultRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLResultRecipesController.h; sourceTree = "<group>"; };
 		5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLResultRecipesController.m; sourceTree = "<group>"; };
 		5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLResultRecipesController.xib; sourceTree = "<group>"; };
+		5CB97FE9149389030028D06A /* CLShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLShadowView.h; sourceTree = "<group>"; };
+		5CB97FEA149389030028D06A /* CLShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLShadowView.m; sourceTree = "<group>"; };
+		5CB97FED14939EED0028D06A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5CBA7126149289690001C3CD /* CLRecipeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLRecipeDetailView.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLRecipeDetailView.h; sourceTree = "<group>"; };
+		5CBA7127149289690001C3CD /* CLRecipeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLRecipeDetailView.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLRecipeDetailView.m; sourceTree = "<group>"; };
+		5CBA7129149289780001C3CD /* CLRecipeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CLRecipeDetailView.xib; path = ../../../Workspace/Cookielicious/Cookielicious/CLRecipeDetailView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CB97FEE14939EED0028D06A /* QuartzCore.framework in Frameworks */,
 				3CFEB3151461601A00DCD93D /* libz.1.2.5.dylib in Frameworks */,
 				3CFEB31314615FE100DCD93D /* MobileCoreServices.framework in Frameworks */,
 				3CFEB31114615FD700DCD93D /* SystemConfiguration.framework in Frameworks */,
@@ -268,6 +279,7 @@
 		3C34FF6614615502003D2644 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5CB97FED14939EED0028D06A /* QuartzCore.framework */,
 				3CFEB31214615FE100DCD93D /* MobileCoreServices.framework */,
 				3CFEB31014615FD700DCD93D /* SystemConfiguration.framework */,
 				3CFEB30E14615FC600DCD93D /* CFNetwork.framework */,
@@ -421,6 +433,11 @@
 				5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */,
 				5C55D7C5148FBE30005DC9CC /* CLRecipeView.h */,
 				5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */,
+				5CBA7126149289690001C3CD /* CLRecipeDetailView.h */,
+				5CBA7127149289690001C3CD /* CLRecipeDetailView.m */,
+				5CBA7129149289780001C3CD /* CLRecipeDetailView.xib */,
+				5CB97FE9149389030028D06A /* CLShadowView.h */,
+				5CB97FEA149389030028D06A /* CLShadowView.m */,
 			);
 			name = ResultRecipes;
 			sourceTree = "<group>";
@@ -511,6 +528,7 @@
 				3CC9CA1D148D6A2D00F99EF2 /* cuttingboard.png in Resources */,
 				5CB10C6E148FA15F0025EBA3 /* CLResultRecipesController.xib in Resources */,
 				5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */,
+				5CBA712A149289780001C3CD /* CLRecipeDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +596,8 @@
 				3CF56D3D148A5FD600B3BBF1 /* CLSelectedIngredientsController.m in Sources */,
 				5CB10C6D148FA15F0025EBA3 /* CLResultRecipesController.m in Sources */,
 				5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */,
+				5CBA7128149289690001C3CD /* CLRecipeDetailView.m in Sources */,
+				5CB97FEB149389030028D06A /* CLShadowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

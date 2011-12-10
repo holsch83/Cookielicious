@@ -7,10 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLRecipeView.h"
+#import "CLShadowView.h"
+#import "CLRecipeDetailView.h"
 
-@interface CLResultRecipesController : UIViewController <NSFetchedResultsControllerDelegate>
+@protocol CLRecipeDetailViewDelegate <NSObject>
+
+- (void) showRecipeDetailView:(NSObject *)recipeVal forView:(CLRecipeView *)viewVal;
+- (void) hideRecipeDetailView;
+
+@end
+
+@interface CLResultRecipesController : UIViewController <NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate> {
+    CLRecipeView *currRecipeView;
+    CGPoint currRecipeCenterPoint;
+}
 
 @property (strong, nonatomic) IBOutlet UIScrollView *recipeGridView;
+@property (strong, nonatomic) IBOutlet UIView *flipView;
+@property (strong, nonatomic) IBOutlet CLShadowView *shadowView;
+@property (strong, nonatomic) CLRecipeDetailView *recipeDetailView;
+
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

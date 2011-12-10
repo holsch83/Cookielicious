@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface CLRecipeView : UIView
+@interface CLRecipeView : UIView 
 
+@property(nonatomic, strong) id <NSObject> delegate;
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
 
 @end

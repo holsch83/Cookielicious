@@ -9,18 +9,25 @@
 #import "CLAppDelegate.h"
 #import "CLResultRecipesController.h"
 #import "CLIngredient.h"
-#import "CLRecipeView.h"
+
+@interface CLResultRecipesController (Private)
+
+- (void) flipToRecipe:(NSObject *)recipeVal fromView:(UIView *)viewVal;
+
+@end
 
 @implementation CLResultRecipesController
 
 @synthesize recipeGridView = _recipeGridView;
+@synthesize recipeDetailView = _recipeDetailView;
+@synthesize flipView = _flipView;
+@synthesize shadowView = _shadowView;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize fetchRequest = _fetchRequest;
 
 #pragma mark - Object initialization
-
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -76,7 +83,32 @@
         NSLog(@"Failed fetching selected ingredients");
         exit(-1);
     }
+    
+    // Set the delegate for the shadow view
+    _shadowView.delegate = self;
+    
+    // Load the recipe detail view
+    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLRecipeDetailView" 
+                                                     owner:self 
+                                                   options:nil];
+    for(NSObject *obj in objects) {
+        if([obj isKindOfClass:NSClassFromString(@"CLRecipeDetailView")]) {
+            _recipeDetailView = (CLRecipeDetailView *)obj;
+        }
+    }
+    
+    // We want the recipe detail view to be in the center of the result view
+    _recipeDetailView.center = CGPointMake(_recipeGridView.bounds.size.width/2, _recipeGridView.bounds.size.height/2);
+    
     // 26px -- ||200px|| -- 26px -- ||200px|| -- 26px -- ||200px|| -- 26px
+    int cols = 3;
+    int rows = [array count] / cols;
+    
+    _recipeGridView.contentSize = CGSizeMake(
+        26*2 + 26 * (cols - 1) + 200 * cols,
+        26*2 + 26 * (rows - 1) + 200 * rows
+    );
+    
     for (int i = 0, j = [array count]; i < j; i++) {
         CLIngredient *ingr = (CLIngredient *)[array objectAtIndex:i];
         
@@ -100,6 +132,9 @@
         int y = 26 * (row + 1) + 200 * row + 100;
         
         recipeView.center = CGPointMake(x, y);
+        recipeView.delegate = self;
+        
+        // Initialization code
         
         [recipeView.titleLabel setText:[ingr name]];        
         [_recipeGridView addSubview:recipeView];
@@ -117,6 +152,88 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma mark - Private member
+
+- (void) flipToRecipe:(NSObject *)recipeVal fromView:(UIView *)viewVal {
+    [UIView transitionWithView:_flipView
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    animations:^ {
+                        _flipView.center = _recipeDetailView.center;
+                    }
+                    completion:nil];
+}
+
+#pragma mark - CLRecipeDetailViewDelegate
+
+- (void) showRecipeDetailView:(NSObject *)recipeVal forView:(CLRecipeView *)viewVal {      
+    CGPoint flipViewCenterPoint = CGPointMake(_flipView.bounds.size.width/2, _flipView.bounds.size.height/2);
+    CGPoint recipeGridViewCenterPoint = CGPointMake(_recipeGridView.bounds.size.width/2, _recipeGridView.bounds.size.height/2 + _recipeGridView.contentOffset.y);
+    
+    [_recipeGridView addSubview:_shadowView];
+    [_recipeGridView addSubview:_flipView];
+    
+    // Save the current center point of the recipe in order to flip it back
+    currRecipeView = viewVal;
+    currRecipeCenterPoint = viewVal.center;
+    
+    // We need to set the flip views center to the center point of the current recipe.
+    // After we have done that, we need to reposition the current recipe view in the flip view,
+    // the same goes for the recipe detail view.
+    // If we skip this step, the flip animation would result in some weird transition.
+    _flipView.center = viewVal.center;
+    viewVal.center = flipViewCenterPoint;
+    _recipeDetailView.center = flipViewCenterPoint;
+    
+    _shadowView.center = recipeGridViewCenterPoint;
+    
+    // Position flip and shadow views in front of all recipe views
+    [_recipeGridView bringSubviewToFront:_shadowView];
+    [_recipeGridView bringSubviewToFront:_flipView];
+    
+    [UIView animateWithDuration:0
+                     animations:^{
+                         [_flipView addSubview:viewVal];
+                     }
+                     completion:^(BOOL finished) {
+                         [UIView transitionWithView:_flipView
+                                           duration:1.0
+                                            options:UIViewAnimationOptionTransitionFlipFromLeft
+                                         animations:^ {
+                                             _flipView.center = recipeGridViewCenterPoint;
+                                             
+                                             [_shadowView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9]];
+                                             
+                                             [viewVal removeFromSuperview];
+                                             [_flipView addSubview:_recipeDetailView];
+                                         }
+                                         completion:^(BOOL finished) {
+                                         }];
+                     }];
+}
+
+- (void) hideRecipeDetailView {
+    [UIView transitionWithView:_flipView
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^ {
+                        _flipView.center = currRecipeCenterPoint;
+                        
+                        [_shadowView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
+                        
+                        [_recipeDetailView removeFromSuperview];
+                        [_flipView addSubview:currRecipeView];
+                    }
+                    completion:^(BOOL finished) {
+                        [currRecipeView removeFromSuperview];
+                        currRecipeView.center = currRecipeCenterPoint;
+                        [_recipeGridView addSubview:currRecipeView];
+                        
+                        [_shadowView removeFromSuperview];
+                        [_flipView removeFromSuperview];
+                    }];
 }
 
 #pragma mark - NSFetchedResultControllerDelegate

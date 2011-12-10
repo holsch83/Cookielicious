@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
-#define MAX_DRAG_VIEWS 8
+#define MAX_DRAG_VIEWS 14
 
 #import <UIKit/UIKit.h>
 
