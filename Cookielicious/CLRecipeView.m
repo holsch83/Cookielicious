@@ -24,7 +24,7 @@
 - (id) init {
     self = [super init];
     if(self) {
-        [self makeShadow:self.layer];
+        //[self makeShadow:self.layer];
     }
     return self;
 }
@@ -32,7 +32,7 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if(self) {
-        [self makeShadow:self.layer];
+        //[self makeShadow:self.layer];
     }
     return self;
 }
@@ -41,7 +41,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self makeShadow:self.layer];
+        //[self makeShadow:self.layer];
     }
     return self;
 }
@@ -61,6 +61,21 @@
     if([_delegate respondsToSelector:@selector(showRecipeDetailView:forView:)]) {
         [_delegate performSelector:@selector(showRecipeDetailView:forView:) withObject:nil withObject:self];
     }
+}
+
+#pragma mark - Core Grahics
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(currentContext);
+    CGContextSetShadow(currentContext, CGSizeMake(0, 0), 5);
+    
+    // draw the rect
+    CGRect newRect = CGRectMake(rect.origin.x + 10, rect.origin.y + 10, 200, 200);
+    CGContextSetRGBFillColor(currentContext, 255, 255, 255, 1);
+    CGContextFillRect(currentContext, newRect);
+    
+    CGContextRestoreGState(currentContext);
 }
 
 @end

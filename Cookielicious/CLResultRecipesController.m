@@ -11,9 +11,7 @@
 #import "CLIngredient.h"
 
 @interface CLResultRecipesController (Private)
-
-- (void) flipToRecipe:(NSObject *)recipeVal fromView:(UIView *)viewVal;
-
+// Maybe put animations in separate member
 @end
 
 @implementation CLResultRecipesController
@@ -102,7 +100,7 @@
     
     // 26px -- ||200px|| -- 26px -- ||200px|| -- 26px -- ||200px|| -- 26px
     int cols = 3;
-    int rows = [array count] / cols;
+    int rows = ceil((float)[array count] / (float)cols);
     
     _recipeGridView.contentSize = CGSizeMake(
         26*2 + 26 * (cols - 1) + 200 * cols,
@@ -154,18 +152,6 @@
 	return YES;
 }
 
-#pragma mark - Private member
-
-- (void) flipToRecipe:(NSObject *)recipeVal fromView:(UIView *)viewVal {
-    [UIView transitionWithView:_flipView
-                      duration:1.0
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    animations:^ {
-                        _flipView.center = _recipeDetailView.center;
-                    }
-                    completion:nil];
-}
-
 #pragma mark - CLRecipeDetailViewDelegate
 
 - (void) showRecipeDetailView:(NSObject *)recipeVal forView:(CLRecipeView *)viewVal {      
@@ -193,13 +179,16 @@
     [_recipeGridView bringSubviewToFront:_shadowView];
     [_recipeGridView bringSubviewToFront:_flipView];
     
+    // Stop scrolling in recipe grid
+    [_recipeGridView setScrollEnabled:NO];
+    
     [UIView animateWithDuration:0
                      animations:^{
                          [_flipView addSubview:viewVal];
                      }
                      completion:^(BOOL finished) {
                          [UIView transitionWithView:_flipView
-                                           duration:1.0
+                                           duration:0.3
                                             options:UIViewAnimationOptionTransitionFlipFromLeft
                                          animations:^ {
                                              _flipView.center = recipeGridViewCenterPoint;
@@ -216,7 +205,7 @@
 
 - (void) hideRecipeDetailView {
     [UIView transitionWithView:_flipView
-                      duration:1.0
+                      duration:0.3
                        options:UIViewAnimationOptionTransitionFlipFromRight
                     animations:^ {
                         _flipView.center = currRecipeCenterPoint;
@@ -233,6 +222,10 @@
                         
                         [_shadowView removeFromSuperview];
                         [_flipView removeFromSuperview];
+                        
+                        
+                        // Reenable scrolling
+                        [_recipeGridView setScrollEnabled:YES];
                     }];
 }
 

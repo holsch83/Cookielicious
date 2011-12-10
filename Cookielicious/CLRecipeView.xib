@@ -65,13 +65,13 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{200, 200}</string>
+				<string key="NSFrameSize">{220, 220}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="315613467"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MCAxIDAAA</bytes>
+					<bytes key="NSRGB">MSAwLjA1ODg3MTU3NjQgMCAwAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
