@@ -8,8 +8,11 @@
 
 #import "CLAppDelegate.h"
 #import "CLMainViewController.h"
+#import "CLIngredient.h"
 
 @implementation CLAppDelegate
+
+@synthesize didSynchronizeIngredients = _didSynchronizeIngredients;
 
 @synthesize window = _window;
 @synthesize navigationController = _navigationController;
@@ -18,9 +21,6 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
-  // Override point for customization after application launch.
-
   self.window.rootViewController = self.navigationController;
   [self.window makeKeyAndVisible];
   return YES;
@@ -39,7 +39,9 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-
+  // Set flag to false, so CLMainViewController will perform an update of the ingredients
+  NSLog(@"Application did become active");
+  _didSynchronizeIngredients = NO;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

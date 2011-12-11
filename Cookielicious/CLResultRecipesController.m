@@ -9,8 +9,13 @@
 #import "CLAppDelegate.h"
 #import "CLResultRecipesController.h"
 #import "CLIngredient.h"
+#import "ASIHTTPRequest.h"
+#import "SBJson.h"
 
 @interface CLResultRecipesController (Private)
+
+- (void) requestRecipes:(NSArray *)ingredients;
+
 // Maybe put animations in separate member
 @end
 
@@ -48,6 +53,27 @@
         }
     }
     return self;
+}
+
+#pragma mark - Private members
+
+- (void) requestRecipes:(NSArray *)ingredients {
+  // Build get parameters
+  NSMutableString *parameters = [[NSMutableString alloc] init];
+  for(int i = 0, j = [ingredients count]; i < j; i++) {
+    CLIngredient *ingr = (CLIngredient *)[ingredients objectAtIndex:i];
+    if(i == 0) {
+      [parameters appendFormat:@"ingredients[]=%@",[ingr name]];
+    }
+    else {
+      [parameters appendFormat:@"&ingredients[]=%@",[ingr name]];
+    }
+  }
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/recipes?%@",CL_API_URL,parameters]];
+  ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+  
+  NSLog(@"%@", parameters);
 }
 
 #pragma mark - Memory warnings
@@ -137,6 +163,8 @@
         [recipeView.titleLabel setText:[ingr name]];        
         [_recipeGridView addSubview:recipeView];
     }
+  
+  [self requestRecipes:array];
 }
 
 - (void)viewDidUnload

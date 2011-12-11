@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
+#import "SBJson.h"
 #import "CLSearchBar.h"
 #import "CLIngredientCell.h"
 #import "CLDragViewDelegate.h"
@@ -15,11 +17,15 @@
 
 @interface CLMainViewController : UIViewController <UITableViewDelegate, 
 UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate,
-CLDragViewDelegate> {
+CLDragViewDelegate, ASIHTTPRequestDelegate> {
 
   @private
   CGPoint _startingDragPosition;
+  bool _didSynchronizeIngredients;
 }
+
+- (void)requestFinished:(ASIHTTPRequest*) request;
+- (void)requestFailed:(ASIHTTPRequest*) request;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet CLSearchBar *searchBar;

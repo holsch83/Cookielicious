@@ -35,6 +35,8 @@
 // Save changes in core data
 - (void)saveManagedObjectContext;
 
+- (void)synchronizeIngredients:(NSNotification *)aNotification;
+
 @end
 
 @implementation CLMainViewController
@@ -61,36 +63,12 @@
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-
   self = [super initWithCoder:aDecoder];
   if (self) {
     if (__managedObjectContext == nil) { 
       __managedObjectContext = 
       [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
     }
-//    int i = 0;
-//    NSArray *array = [NSArray arrayWithObjects:@"Mehl", @"Salz", @"Tomaten", @"Zwieblen", @"Zucker", @"Wurst", @"Bier", 
-//                      @"Fleisch", @"Apfel", @"Birne", @"Brokkoli", @"Blumenkohl", @"Kartoffel", @"Paprika", @"Milch"
-//                      , @"Cola", @"Snickers", @"Mate", @"Sekt", @"Rum", @"Hack", 
-//                      @"Rahm", @"Zimt", @"Schokolade", @"Meerrettich", @"Filet", nil];
-//    
-//    for (NSString *str in array) {
-//      CLIngredient *newIngredient =
-//      (CLIngredient*)[NSEntityDescription 
-//                      insertNewObjectForEntityForName:@"Ingredient" 
-//                      inManagedObjectContext:__managedObjectContext];
-//      
-//      
-//      newIngredient.identifier = [NSNumber numberWithInt:i];
-//      newIngredient.name = str;
-//      newIngredient.selected = [NSNumber numberWithBool:NO];
-//      
-//      NSError *error = nil;
-//      
-//      [self saveManagedObjectContext];
-//      i++;
-//    }
- 
   }
   return self;
 }
@@ -100,7 +78,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
+  
   self.searchBar.delegate = self;
   
   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
@@ -144,6 +122,20 @@
   }
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(synchronizeIngredients:)
+                                               name:UIApplicationDidBecomeActiveNotification
+                                             object:nil];
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UIApplicationDidBecomeActiveNotification
+                                                object:nil];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
@@ -277,11 +269,12 @@
       newIndexPath:(NSIndexPath *)newIndexPath {
   
   UITableView *tableView = self.tableView;
-  
+
   switch(type) {
     case NSFetchedResultsChangeInsert:
       [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] 
                        withRowAnimation:UITableViewRowAnimationFade];
+      //[tableView reloadData];
       break;
       
     case NSFetchedResultsChangeDelete:
@@ -303,7 +296,7 @@
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-  
+  NSLog(@"Controller will change content");
   [self.tableView beginUpdates];
 }
 
@@ -311,6 +304,57 @@
   
   [self.tableView endUpdates];
 }
+
+#pragma mark - ASIHttpRequest delegate
+
+- (void)requestFinished:(ASIHTTPRequest*) request {
+  // Select all existing ingredients
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Ingredient" inManagedObjectContext:[self managedObjectContext]];
+  
+  [fetchRequest setEntity:entityDescription];
+  [fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"identifier" ascending:YES]]];
+  
+  NSError *error = nil;
+  NSArray *currIngredients = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+  
+  // Now handle the received data and add it to core data
+  NSArray *ingredients = [[request responseString] JSONValue];
+  
+  for(NSDictionary *ingrDict in ingredients) {
+    NSNumber *identifier = [NSNumber numberWithDouble:[[ingrDict objectForKey:CL_API_JSON_IDKEY] doubleValue]];
+    NSString *name = [ingrDict objectForKey:CL_API_JSON_NAMEKEY];
+    
+    bool create = YES;
+    for(CLIngredient *currIngr in currIngredients) {
+      if([identifier isEqualToNumber:[currIngr identifier]]) {
+        create = NO;
+        break;
+      }
+    }
+    
+    if (create) {
+      CLIngredient *ingr = (CLIngredient *)[NSEntityDescription insertNewObjectForEntityForName:@"Ingredient"
+                                                                         inManagedObjectContext:__managedObjectContext];
+      ingr.identifier = identifier;
+      ingr.name = name;
+    }
+  }
+  
+  [[self managedObjectContext] save:&error];
+  if (error != nil) {
+    NSLog(@"Error saving data");
+  }
+
+  [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] setDidSynchronizeIngredients:YES];
+  
+  NSLog(@"Finished updating ingredients");
+}
+
+- (void)requestFailed:(ASIHTTPRequest*) request {
+  NSLog(@"Request failed. FAIL! AAAH!");
+}
+
 #pragma mark - Managed Object Context saving
 
 - (void)saveManagedObjectContext {
@@ -465,4 +509,21 @@
     [self.navigationController pushViewController:resultRecipesController animated:YES];
 }
 
+#pragma mark - Private
+
+- (void)synchronizeIngredients:(NSNotification *)aNotification {
+  if([(CLAppDelegate *)[[UIApplication sharedApplication] delegate] didSynchronizeIngredients] == YES) {
+    return;
+  }
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/ingredients",CL_API_URL]];
+  
+  ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+  
+  [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
+                                                                forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
+  
+  [request setDelegate:self];
+  [request startAsynchronous];
+}
 @end

@@ -10,6 +10,8 @@
 
 @interface CLAppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic) bool didSynchronizeIngredients;
+
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
 
