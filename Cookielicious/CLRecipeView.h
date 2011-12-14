@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "CLRecipe.h"
 
 @interface CLRecipeView : UIView 
 
 @property(nonatomic, strong) id <NSObject> delegate;
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property(nonatomic, strong) IBOutlet UITextView *ingredientsTextView;
+@property(nonatomic, strong) IBOutlet UIImageView *imageView;
+@property(nonatomic, strong) CLRecipe *recipe;
 
 @end

@@ -10,23 +10,20 @@
 #import "CLRecipeView.h"
 #import "CLShadowView.h"
 #import "CLRecipeDetailView.h"
+#import "CLRecipeDetailViewDelegate.h"
+#import "ASIHTTPRequest.h"
+#import "SBJson.h"
 
-@protocol CLRecipeDetailViewDelegate <NSObject>
-
-- (void) showRecipeDetailView:(NSObject *)recipeVal forView:(CLRecipeView *)viewVal;
-- (void) hideRecipeDetailView;
-
-@end
-
-@interface CLResultRecipesController : UIViewController <NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate> {
-    CLRecipeView *currRecipeView;
-    CGPoint currRecipeCenterPoint;
+@interface CLResultRecipesController : UIViewController <NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate, ASIHTTPRequestDelegate> {
+  CLRecipeView *_currRecipeView;
+  CGPoint _currRecipeCenterPoint;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *recipeGridView;
 @property (strong, nonatomic) IBOutlet UIView *flipView;
 @property (strong, nonatomic) IBOutlet CLShadowView *shadowView;
 @property (strong, nonatomic) CLRecipeDetailView *recipeDetailView;
+@property (strong, nonatomic) NSMutableArray *recipes;
 
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

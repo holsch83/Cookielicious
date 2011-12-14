@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CLShadowView : UIView
+@interface CLShadowView : UIView {
+  UIGestureRecognizer *_tapGestureRecognizer;
+}
 
 @property(nonatomic, strong) id <NSObject> delegate;
 
