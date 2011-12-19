@@ -11,10 +11,31 @@
 @implementation CLRecipeView
 
 @synthesize titleLabel = _titleLabel;
-@synthesize ingredientsTextView = _ingredientsTextView;
+@synthesize ingredientsLabel = _ingredientsLabel;
 @synthesize imageView = _imageView;
 @synthesize recipe = _recipe;
 @synthesize delegate = _delegate;
+
+- (void) configureView:(CLRecipe *)recipe {
+  NSString *ingredientString = [recipe ingredientsWithSeparator:@", "];
+  [self.titleLabel setText:[recipe title]];
+  [self.ingredientsLabel setText:ingredientString];
+  [self.imageView setImage:[recipe image]];
+  [self setRecipe:recipe];
+  
+  CGSize maximumSize = CGSizeMake(self.ingredientsLabel.bounds.size.width, self.ingredientsLabel.bounds.size.height);
+  UIFont *labelFont = [UIFont fontWithName:@"Helvetica" size:13];
+  CGSize labelStringSize = [ingredientString sizeWithFont:labelFont 
+                                       constrainedToSize:maximumSize 
+                                           lineBreakMode:self.ingredientsLabel.lineBreakMode];
+  
+  int x = self.titleLabel.frame.origin.x;
+  int y = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 5;
+  
+  CGRect labelFrame = CGRectMake(x, y, self.ingredientsLabel.bounds.size.width, labelStringSize.height);
+  
+  self.ingredientsLabel.frame = labelFrame;
+}
 
 #pragma mark - User interaction
 

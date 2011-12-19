@@ -155,14 +155,7 @@
     // Initialization code
     
     // Remove annoying padding on text view
-    //[recipeView.ingredientsTextView setContentInset:UIEdgeInsetsMake(-4, -8, 0, 0)];
-    
-    [recipeView.titleLabel setText:[recipe title]];
-    [recipeView.ingredientsTextView setText:[recipe ingredientsWithSeparator:@", "]];
-    [recipeView.imageView setImage:[recipe image]];
-    [recipeView setRecipe:recipe];
-    
-    NSLog(@"%@", [recipe ingredientsWithSeparator:@", "]);
+    [recipeView configureView:recipe];
     
     [_recipeGridView addSubview:recipeView];
   }
@@ -259,6 +252,11 @@
 #pragma mark - CLRecipeDetailViewDelegate
 
 - (void) showRecipeDetailView:(CLRecipeView *)viewVal {  
+  // Already showing a recipe?
+  if(_currRecipeView != nil) {
+    return;
+  }
+  
   CLRecipe *recipeVal = [viewVal recipe];
   
   CGPoint flipViewCenterPoint = CGPointMake(_flipView.bounds.size.width/2, _flipView.bounds.size.height/2);
@@ -331,6 +329,8 @@
                     [_shadowView removeFromSuperview];
                     [_flipView removeFromSuperview];
                     
+                    // Unset current recipe view
+                    _currRecipeView = nil;
                     
                     // Reenable scrolling
                     [_recipeGridView setScrollEnabled:YES];

@@ -17,6 +17,9 @@
 
 @interface CLMainViewController (Private)
 
+- (void) fetchRecipeCount;
+- (NSArray *) selectedIngredients;
+
 - (void)configureCell:(CLIngredientCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 // If we search or sort our ingredients, we refetch the data from store
@@ -45,6 +48,7 @@
 @synthesize searchBar = _searchBar;
 @synthesize potView = _potView;
 @synthesize ingredientCell = _ingredientCell;
+@synthesize showRecipesButton = _showRecipesButton;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -120,6 +124,8 @@
       [self.selectedIngredientsController addIngredientWithView:dragView];
     }
   }
+  
+  [self fetchRecipeCount];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -301,6 +307,7 @@
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+  [self fetchRecipeCount];
   
   [self.tableView endUpdates];
 }
@@ -308,6 +315,23 @@
 #pragma mark - ASIHttpRequest delegate
 
 - (void)requestFinished:(ASIHTTPRequest*) request {
+  NSDictionary *response = (NSDictionary *)[[request responseString] JSONValue];
+  if([response isKindOfClass:NSClassFromString(@"NSDictionary")]) {
+    NSLog(@"%@", [request responseString]);
+    for (NSString *key in [response allKeys]) {
+      if([key isEqualToString:@"count"]) {
+        int count = [[response objectForKey:@"count"] intValue];
+        if(count < 1) {
+          [[self showRecipesButton] setEnabled:NO];
+        }
+        else {
+          [[self showRecipesButton] setEnabled:YES];
+        }
+        return;
+      }
+    }
+  }
+  
   // Select all existing ingredients
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Ingredient" inManagedObjectContext:[self managedObjectContext]];
@@ -365,6 +389,7 @@
     NSLog(@"Error saving: %@",error);
   }
 }
+
 #pragma mark - CLDragView Delegate
 
 - (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer {
@@ -510,6 +535,51 @@
 }
 
 #pragma mark - Private
+
+- (NSArray *) selectedIngredients {
+  NSEntityDescription *entityDescription = [NSEntityDescription
+                                            entityForName:@"Ingredient" inManagedObjectContext:[self managedObjectContext]];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:entityDescription];
+  
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selected = %f", 1.0];
+  [request setPredicate:predicate];
+  
+  NSError *error = nil;
+  NSArray *array = [[self managedObjectContext] executeFetchRequest:request error:&error];
+  if (array == nil)
+  {
+    NSLog(@"Failed fetching selected ingredients");
+    exit(-1);
+  }
+  
+  return array;
+}
+
+- (void) fetchRecipeCount {
+  NSArray *ingredients = [self selectedIngredients];
+  
+  // Build get parameters
+  NSMutableString *parameters = [[NSMutableString alloc] init];
+  for(int i = 0, j = [ingredients count]; i < j; i++) {
+    CLIngredient *ingr = (CLIngredient *)[ingredients objectAtIndex:i];
+    if(i == 0) {
+      [parameters appendFormat:@"ingredients[]=%@",[[ingr name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    }
+    else {
+      [parameters appendFormat:@"&ingredients[]=%@",[[ingr name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    }
+  }
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/recipes/count?%@",CL_API_URL,parameters]];
+  ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+  
+  [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
+                                                                forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
+  
+  [request setDelegate:self];
+  [request startAsynchronous];
+}
 
 - (void)synchronizeIngredients:(NSNotification *)aNotification {
   if([(CLAppDelegate *)[[UIApplication sharedApplication] delegate] didSynchronizeIngredients] == YES) {

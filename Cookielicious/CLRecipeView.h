@@ -14,8 +14,10 @@
 
 @property(nonatomic, strong) id <NSObject> delegate;
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
-@property(nonatomic, strong) IBOutlet UITextView *ingredientsTextView;
+@property(nonatomic, strong) IBOutlet UILabel *ingredientsLabel;
 @property(nonatomic, strong) IBOutlet UIImageView *imageView;
 @property(nonatomic, strong) CLRecipe *recipe;
+
+- (void) configureView:(CLRecipe *)recipe;
 
 @end

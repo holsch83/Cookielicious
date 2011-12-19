@@ -13,14 +13,14 @@
 @class CLDragView;
 
 @interface CLSelectedIngredientsController : UIViewController {
-
+  
   @private
   NSMutableArray *_uiViews;
 
 }
 
-@property (strong, nonatomic) IBOutlet UILabel *selectedCountLabel;
-@property (strong, nonatomic) IBOutlet UILabel *maxCountLabel;
+@property (nonatomic, strong) IBOutlet UILabel *selectedCountLabel;
+@property (nonatomic, strong) IBOutlet UILabel *maxCountLabel;
 
 - (BOOL)addIngredientWithView:(CLDragView*)view;
 - (void)removeIngredientWithView:(CLDragView*)view;

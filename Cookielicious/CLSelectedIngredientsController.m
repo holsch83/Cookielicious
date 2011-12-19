@@ -6,12 +6,14 @@
 //  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
+#import "CLAppDelegate.h"
 #import "CLSelectedIngredientsController.h"
+#import "CLIngredient.h"
 #import "CLDragView.h"
 
 @interface CLSelectedIngredientsController(Private)
 
-- (void)reorderDragViews;
+- (void) reorderDragViews;
 
 @end
 
@@ -30,7 +32,6 @@
   }
   return self;
 }
-
 
 #pragma mark - View lifecycle
 
@@ -76,15 +77,13 @@
     
     [_uiViews addObject:view];
     [self.view addSubview:view];
-    self.selectedCountLabel.text = 
-    [NSString stringWithFormat:@"%i", [_uiViews count]];
+    self.selectedCountLabel.text = [NSString stringWithFormat:@"%i", [_uiViews count]];
     
     [self reorderDragViews];
-    
+
     return YES;
   }
   else {
-
     return NO;
   }
 }
