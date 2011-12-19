@@ -22,23 +22,23 @@
 - (id) initWithDictionary:(NSDictionary *)dictionaryVal {
   self = [super init];
   if(self) {
-    [self setIdentifier:[[dictionaryVal objectForKey:@"id"] intValue]];
-    [self setDuration:[[dictionaryVal objectForKey:@"duration"] intValue]];
-    [self setTitle:[dictionaryVal objectForKey:@"title"]];
-    [self setDescription:[dictionaryVal objectForKey:@"description"]];
+    [self setIdentifier:[[dictionaryVal objectForKey:CL_API_JSON_IDKEY] intValue]];
+    [self setDuration:[[dictionaryVal objectForKey:CL_API_JSON_DURATIONKEY] intValue]];
+    [self setTitle:[dictionaryVal objectForKey:CL_API_JSON_TITLEKEY]];
+    [self setDescription:[dictionaryVal objectForKey:CL_API_JSON_DESCRIPTIONKEY]];
     
     // Load the image
-    NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/images/%@",CL_API_URL,[dictionaryVal objectForKey:@"image"]]];
+    NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];
     [self setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:currImageUrl]]]; 
     
     NSMutableArray *todos = [[NSMutableArray alloc] init];
-    for(NSDictionary *todoDict in [dictionaryVal objectForKey:@"todos"]) {
+    for(NSDictionary *todoDict in [dictionaryVal objectForKey:CL_API_JSON_TODOSKEY]) {
       [todos addObject:[[CLTodo alloc] initWithDictionary:todoDict]];
     }
     [self setTodos:todos];
     
     NSMutableArray *ingredients = [[NSMutableArray alloc] init];
-    for(NSDictionary *ingredientDict in [dictionaryVal objectForKey:@"ingredients"]) {
+    for(NSDictionary *ingredientDict in [dictionaryVal objectForKey:CL_API_JSON_INGREDIENTSKEY]) {
       [ingredients addObject:[[CLStepIngredient alloc] initWithDictionary:ingredientDict]];
     }
     [self setIngredients:ingredients];

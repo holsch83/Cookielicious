@@ -16,8 +16,8 @@
 - (id) initWithDictionary:(NSDictionary *)dictionaryVal {
   self = [super init];
   if(self) {
-    [self setIdentifier:[[dictionaryVal objectForKey:@"id"] intValue]];
-    [self setDescription:[dictionaryVal objectForKey:@"description"]];
+    [self setIdentifier:[[dictionaryVal objectForKey:CL_API_JSON_IDKEY] intValue]];
+    [self setDescription:[dictionaryVal objectForKey:CL_API_JSON_DESCRIPTIONKEY]];
   }
   return self;
 }
