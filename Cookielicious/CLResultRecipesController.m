@@ -7,9 +7,11 @@
 //
 
 #import "CLAppDelegate.h"
+#import "CLSearchBarShadowView.h"
 #import "CLResultRecipesController.h"
 #import "CLIngredient.h"
 #import "CLRecipe.h"
+#import "CLIngredientCell.h"
 
 @interface CLResultRecipesController (Private)
 
@@ -17,6 +19,7 @@
 - (void) requestRecipes;
 - (void) displayRecipes:(NSArray *)recipes;
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 // Maybe put animations in separate member
 @end
 
@@ -25,8 +28,10 @@
 @synthesize recipeGridView = _recipeGridView;
 @synthesize recipeDetailView = _recipeDetailView;
 @synthesize flipView = _flipView;
+@synthesize tableView = _tableView;
 @synthesize shadowView = _shadowView;
 @synthesize recipes = _recipes;
+@synthesize ingredientCell = _ingredientCell;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -167,7 +172,7 @@
   // Add activity indicator
   [[self view] bringSubviewToFront:_shadowView];
   
-  UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+  UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
   
   CGPoint center = CGPointMake(_shadowView.bounds.size.width/2 - activityIndicator.bounds.size.width/2, _shadowView.bounds.size.height/2 - activityIndicator.bounds.size.height/2);
   
@@ -218,34 +223,40 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    // Set the delegate for the shadow view
-    _shadowView.delegate = self;
-    
-    // Load the recipe detail view
-    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLRecipeDetailView" 
-                                                     owner:self 
-                                                   options:nil];
-    for(NSObject *obj in objects) {
-        if([obj isKindOfClass:NSClassFromString(@"CLRecipeDetailView")]) {
-            _recipeDetailView = (CLRecipeDetailView *)obj;
-        }
+  [super viewDidLoad];
+  
+  // Set the delegate for the shadow view
+  _shadowView.delegate = self;
+  
+  // Add background to the table view
+  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
+  
+  [self.view insertSubview:view 
+              belowSubview:self.tableView];
+  
+  // Load the recipe detail view
+  NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLRecipeDetailView" 
+                                                   owner:self 
+                                                 options:nil];
+  for(NSObject *obj in objects) {
+    if([obj isKindOfClass:NSClassFromString(@"CLRecipeDetailView")]) {
+      _recipeDetailView = (CLRecipeDetailView *)obj;
     }
+  }
   
   [self requestRecipes];
 }
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+  [super viewDidUnload];
+  // Release any retained subviews of the main view.
+  // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+  // Return YES for supported orientations
 	return YES;
 }
 
@@ -337,48 +348,106 @@
                   }];
 }
 
+#pragma mark - UITableViewDelegate
+
+// did select row at index path
+
+#pragma mark - UITableViewDataSource
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+  
+  CLIngredient *managedObject = (CLIngredient *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+
+  UIFont *font = [UIFont fontWithName:@"Noteworthy-Bold" size:18.0];
+  
+  [cell.textLabel setText:managedObject.name];
+  [cell.textLabel setFont:font];
+  [cell.textLabel setTextColor:[UIColor whiteColor]];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  
+  return [[self.fetchedResultsController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  
+  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+  return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  static NSString *CellIdentifier = @"IngredientCell";
+  
+  UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  
+  if (cell == nil) {
+    
+    /*[[NSBundle mainBundle] loadNibNamed:@"CLIngredientCell" 
+                                  owner:self 
+                                options:nil];
+    
+    cell = self.ingredientCell;*/
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
+  }
+  
+  // Configure the cell.
+  
+  
+  [self configureCell:cell atIndexPath:indexPath];
+  
+  return cell;
+}
+
 #pragma mark - NSFetchedResultControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController {
     
-    if (__fetchedResultsController != nil) {
-        return __fetchedResultsController;
-    }
-    
-    [NSFetchedResultsController deleteCacheWithName:@"Master"];
-    __fetchedResultsController = nil;
-    // Set up the fetched results controller.
-    // Create the fetch request for the entity.
-    
-    _fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ingredient" 
-                                              inManagedObjectContext:self.managedObjectContext];
-    [self.fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    
-    [self.fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
-                                                                   ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-    
-    [self.fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    
-    NSFetchedResultsController *aFetchedResultsController = 
-    [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest 
-                                        managedObjectContext:self.managedObjectContext 
-                                          sectionNameKeyPath:nil 
-                                                   cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
+  if (__fetchedResultsController != nil) {
+      return __fetchedResultsController;
+  }
+  
+  [NSFetchedResultsController deleteCacheWithName:@"Master"];
+  __fetchedResultsController = nil;
+  // Set up the fetched results controller.
+  // Create the fetch request for the entity.
+  
+  _fetchRequest = [[NSFetchRequest alloc] init];
+  // Edit the entity name as appropriate.
+  
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ingredient" 
+                                            inManagedObjectContext:self.managedObjectContext];
+  [self.fetchRequest setEntity:entity];
+  
+  // Set the batch size to a suitable number.
+  
+  [self.fetchRequest setFetchBatchSize:20];
+  
+  // Edit the sort key as appropriate.
+  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
+                                                                 ascending:YES];
+  NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+  
+  [self.fetchRequest setSortDescriptors:sortDescriptors];
+
+  // Add filter
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selected = %f",1.0];
+  
+  [self.fetchRequest setPredicate:predicate];
+  
+  // Edit the section name key path and cache name if appropriate.
+  // nil for section name key path means "no sections".
+  
+  NSFetchedResultsController *aFetchedResultsController = 
+  [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest 
+                                      managedObjectContext:self.managedObjectContext 
+                                        sectionNameKeyPath:nil 
+                                                 cacheName:@"Master"];
+  aFetchedResultsController.delegate = self;
+  self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {

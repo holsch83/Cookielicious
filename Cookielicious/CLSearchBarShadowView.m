@@ -17,6 +17,7 @@
   if (self) {
       // Initialization code
     self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width + 10, frame.size.height);
+    self.backgroundColor = [UIColor clearColor];
   }
   return self;
 }
@@ -33,10 +34,6 @@
   // Drawing code
   CGContextRef currentContext = UIGraphicsGetCurrentContext();
   CGContextSaveGState(currentContext);
-  
-  // Set white background
-  CGContextSetFillColor(currentContext, (float[]){255.0, 255.0, 255.0, 1.0});
-  CGContextFillRect(currentContext, self.frame);
   
   // Add drop shadow
   CGContextSetShadow(currentContext, offset, blur);
