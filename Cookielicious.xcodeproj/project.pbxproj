@@ -67,6 +67,7 @@
 		5C54F26E1495073C0011BD74 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C54F26C149505A50011BD74 /* Constants.m */; };
 		5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */; };
 		5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */; };
+		5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */; };
 		5CB10C6D148FA15F0025EBA3 /* CLResultRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */; };
 		5CB10C6E148FA15F0025EBA3 /* CLResultRecipesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */; };
 		5CB97FEB149389030028D06A /* CLShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB97FEA149389030028D06A /* CLShadowView.m */; };
@@ -190,6 +191,8 @@
 		5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLRecipeView.xib; sourceTree = "<group>"; };
 		5C55D7C5148FBE30005DC9CC /* CLRecipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecipeView.h; sourceTree = "<group>"; };
 		5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRecipeView.m; sourceTree = "<group>"; };
+		5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSearchBarShadowView.h; sourceTree = "<group>"; };
+		5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSearchBarShadowView.m; sourceTree = "<group>"; };
 		5CB10C6A148FA15F0025EBA3 /* CLResultRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLResultRecipesController.h; sourceTree = "<group>"; };
 		5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLResultRecipesController.m; sourceTree = "<group>"; };
 		5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLResultRecipesController.xib; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				3C2412E214882D1F00D41C3D /* CLDragView.h */,
 				3C2412E314882D1F00D41C3D /* CLDragView.m */,
 				3CF56D32148A41A600B3BBF1 /* CLDragView.xib */,
+				5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */,
+				5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */,
 			);
 			name = SelectIngredients;
 			sourceTree = "<group>";
@@ -630,6 +635,7 @@
 				5CC0A8D3149615D700FAA0AE /* CLStep.m in Sources */,
 				5CC0A8D61496173200FAA0AE /* CLTodo.m in Sources */,
 				5CC0A8D91496178F00FAA0AE /* CLStepIngredient.m in Sources */,
+				5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

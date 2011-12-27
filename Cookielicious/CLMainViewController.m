@@ -13,6 +13,7 @@
 #import "CLIngredient.h"
 #import "CLIngredientCell.h"
 #import "CLDragView.h"
+#import "CLSearchBarShadowView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CLMainViewController (Private)
@@ -85,17 +86,17 @@
   
   self.searchBar.delegate = self;
   
-  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
-  view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern_wood.png"]];
+  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
+  //view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern_wood.png"]];
   [self.view insertSubview:view 
               belowSubview:self.searchBar];
   
-  view.layer.shadowColor = [[UIColor blackColor] CGColor];
+  /*view.layer.shadowColor = [[UIColor blackColor] CGColor];
   view.layer.shadowOffset = CGSizeMake(2.0, 0.0);
   view.layer.shadowRadius = 5.0;
   view.layer.shadowOpacity = 0.5;
   view.layer.masksToBounds = NO;
-  view.layer.shouldRasterize = YES;
+  view.layer.shouldRasterize = YES;*/
   
   _selectedIngredientsController = 
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
