@@ -120,6 +120,13 @@
 }
 
 - (void) displayRecipes:(NSArray *)recipes {
+  // Clear grid
+  for (UIView *currSubview in [_recipeGridView subviews]) {
+    if(currSubview != _shadowView && currSubview != _flipView) {
+      [currSubview removeFromSuperview];
+    }
+  }
+  
   // We want the recipe detail view to be in the center of the result view
   _recipeDetailView.center = CGPointMake(_recipeGridView.bounds.size.width/2, _recipeGridView.bounds.size.height/2);
   
@@ -280,6 +287,9 @@
   _currRecipeView = viewVal;
   _currRecipeCenterPoint = viewVal.center;
   
+  // Disable table view interaction
+  [self.tableView setUserInteractionEnabled:NO];
+  
   // We need to set the flip views center to the center point of the current recipe.
   // After we have done that, we need to reposition the current recipe view in the flip view,
   // the same goes for the recipe detail view.
@@ -345,12 +355,28 @@
                     
                     // Reenable scrolling
                     [_recipeGridView setScrollEnabled:YES];
+                    
+                    // Reenable table view user interaction
+                    [self.tableView setUserInteractionEnabled:YES];
                   }];
 }
 
 #pragma mark - UITableViewDelegate
 
-// did select row at index path
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  
+  NSMutableArray *filteredRecipes = [[NSMutableArray alloc] init];
+  for(CLRecipe *currRecipe in _recipes) {
+    NSLog(@"Loop ...s");
+    if ([currRecipe containsIngredient:currIngredient]) {
+      NSLog(@"Match :)");
+      [filteredRecipes addObject:currRecipe];
+    }
+  }
+  
+  [self displayRecipes:filteredRecipes];
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -363,6 +389,11 @@
   [cell.textLabel setText:managedObject.name];
   [cell.textLabel setFont:font];
   [cell.textLabel setTextColor:[UIColor whiteColor]];
+
+  // Set background view for selected cell
+  UIView *view = [[UIView alloc] initWithFrame:cell.selectedBackgroundView.frame];
+  [view setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.1]];
+  [cell setSelectedBackgroundView:view];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -383,19 +414,10 @@
   UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   
   if (cell == nil) {
-    
-    /*[[NSBundle mainBundle] loadNibNamed:@"CLIngredientCell" 
-                                  owner:self 
-                                options:nil];
-    
-    cell = self.ingredientCell;*/
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
   }
   
   // Configure the cell.
-  
-  
   [self configureCell:cell atIndexPath:indexPath];
   
   return cell;

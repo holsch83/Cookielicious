@@ -7,6 +7,7 @@
 //
 
 #import "CLRecipe.h"
+#import "CLStepIngredient.h"
 #import "SBJson.h"
 
 @implementation CLRecipe
@@ -39,6 +40,16 @@
 }
 
 #pragma mark - Accessor methods
+
+- (bool) containsIngredient:(CLIngredient *)ingredientVal {
+  for (CLStepIngredient *currIngredient in [self ingredients]) {
+    if([currIngredient.name isEqualToString:ingredientVal.name]) {
+      return YES;
+    }
+  }
+  
+  return NO;
+}
 
 - (NSArray *) ingredients {
   NSMutableArray *ingredients = [[NSMutableArray alloc] init];
