@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CLShadowView : UIView {
+@interface CLShadowView : UIView <UIGestureRecognizerDelegate> {
   UIGestureRecognizer *_tapGestureRecognizer;
 }
 

@@ -16,6 +16,7 @@
 @property(nonatomic, strong) IBOutlet UILabel *preparationTimeLabel;
 @property(nonatomic, strong) IBOutlet UITextView *ingredientsTextView;
 @property(nonatomic, strong) IBOutlet UITextView *descriptionTextView;
+@property(nonatomic, strong) IBOutlet UIButton *showRecipe;
 
 - (void) configureView:(CLRecipe *)recipeVal;
 
