@@ -11,9 +11,10 @@
 			<string key="NS.object.0">933</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
+			<string>IBUITableView</string>
 			<string>IBUIView</string>
 			<string>IBUIScrollView</string>
+			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -42,10 +43,10 @@
 							<object class="IBUIView" id="847001360">
 								<reference key="NSNextResponder" ref="908769691"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{704, 768}</string>
+								<string key="NSFrame">{{-10, 0}, {704, 768}}</string>
 								<reference key="NSSuperview" ref="908769691"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="207013784"/>
+								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwLjA1ODg3MTU3NjQgMCAwAA</bytes>
@@ -55,10 +56,10 @@
 							<object class="IBUIView" id="207013784">
 								<reference key="NSNextResponder" ref="908769691"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{704, 768}</string>
+								<string key="NSFrame">{{-58, 0}, {704, 768}}</string>
 								<reference key="NSSuperview" ref="908769691"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="847001360"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwLjA1ODg3MTU3NjQgMCAwAA</bytes>
@@ -67,24 +68,40 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 						</array>
-						<string key="NSFrame">{{300, 0}, {704, 768}}</string>
+						<string key="NSFrame">{{320, 0}, {684, 768}}</string>
 						<reference key="NSSuperview" ref="39669158"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="847001360"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC45MDE5NjA3OTAyIDAuOTAxOTYwNzkwMiAwLjkwMTk2MDc5MDIAA</bytes>
-						</object>
+						<reference key="NSNextKeyView" ref="207013784"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
 					</object>
+					<object class="IBUITableView" id="705810618">
+						<reference key="NSNextResponder" ref="39669158"/>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{300, 768}</string>
+						<reference key="NSSuperview" ref="39669158"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="908769691"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MSAwAA</bytes>
+						</object>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<bool key="IBUIAlwaysBounceVertical">YES</bool>
+						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
+						<float key="IBUIRowHeight">44</float>
+						<float key="IBUISectionHeaderHeight">22</float>
+						<float key="IBUISectionFooterHeight">22</float>
+					</object>
 				</array>
 				<string key="NSFrameSize">{1004, 768}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="908769691"/>
+				<reference key="NSNextKeyView" ref="705810618"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -115,6 +132,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">shadowView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="847001360"/>
+					</object>
+					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">flipView</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="207013784"/>
@@ -123,11 +148,27 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">shadowView</string>
+						<string key="label">tableView</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="847001360"/>
+						<reference key="destination" ref="705810618"/>
 					</object>
-					<int key="connectionID">15</int>
+					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="705810618"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="705810618"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">19</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -153,6 +194,7 @@
 						<int key="objectID">7</int>
 						<reference key="object" ref="39669158"/>
 						<array class="NSMutableArray" key="children">
+							<reference ref="705810618"/>
 							<reference ref="908769691"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -167,13 +209,19 @@
 						<reference key="parent" ref="39669158"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="207013784"/>
+						<int key="objectID">14</int>
+						<reference key="object" ref="847001360"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="908769691"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="847001360"/>
+						<int key="objectID">16</int>
+						<reference key="object" ref="705810618"/>
+						<reference key="parent" ref="39669158"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">12</int>
+						<reference key="object" ref="207013784"/>
 						<reference key="parent" ref="908769691"/>
 					</object>
 				</array>
@@ -186,6 +234,7 @@
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.CustomClassName">CLShadowView</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -193,7 +242,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -204,6 +253,7 @@
 						<string key="flipView">UIView</string>
 						<string key="recipeGridView">UIScrollView</string>
 						<string key="shadowView">CLShadowView</string>
+						<string key="tableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="flipView">
@@ -217,6 +267,10 @@
 						<object class="IBToOneOutletInfo" key="shadowView">
 							<string key="name">shadowView</string>
 							<string key="candidateClassName">CLShadowView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tableView">
+							<string key="name">tableView</string>
+							<string key="candidateClassName">UITableView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

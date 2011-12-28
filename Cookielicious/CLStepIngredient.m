@@ -18,10 +18,10 @@
 - (id) initWithDictionary:(NSDictionary *)dictionaryVal {
   self = [super init];
   if(self) {
-    [self setIdentifier:[[dictionaryVal objectForKey:@"id"] intValue]];
-    [self setAmount:[[dictionaryVal objectForKey:@"amount"] floatValue]];
-    [self setUnit:[dictionaryVal objectForKey:@"unit"]];
-    [self setName:[dictionaryVal objectForKey:@"name"]];
+    [self setIdentifier:[[dictionaryVal objectForKey:CL_API_JSON_IDKEY] intValue]];
+    [self setAmount:[[dictionaryVal objectForKey:CL_API_JSON_AMOUNTKEY] floatValue]];
+    [self setUnit:[dictionaryVal objectForKey:CL_API_JSON_UNITKEY]];
+    [self setName:[dictionaryVal objectForKey:CL_API_JSON_NAMEKEY]];
   }
   return self;
 }

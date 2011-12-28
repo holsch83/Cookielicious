@@ -21,5 +21,6 @@
 
 - (NSArray *) ingredients;
 - (NSString *) ingredientsWithSeparator:(NSString *)separatorVal;
+- (bool) containsIngredient:(CLIngredient *)ingredientVal;
 
 @end

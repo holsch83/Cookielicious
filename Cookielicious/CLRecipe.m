@@ -7,6 +7,7 @@
 //
 
 #import "CLRecipe.h"
+#import "CLStepIngredient.h"
 #import "SBJson.h"
 
 @implementation CLRecipe
@@ -20,19 +21,17 @@
 - (id) initWithDictionary:(NSDictionary *)dictionaryVal {
   self = [super init];
   if(self) {
-    [self setIdentifier:[[dictionaryVal objectForKey:@"id"] intValue]];
-    [self setPreparationTime:[[dictionaryVal objectForKey:@"preparation_time"] intValue]];
-    [self setTitle:[dictionaryVal objectForKey:@"title"]];
+    [self setIdentifier:[[dictionaryVal objectForKey:CL_API_JSON_IDKEY] intValue]];
+    [self setPreparationTime:[[dictionaryVal objectForKey:CL_API_JSON_PREPARATIONTIMEKEY] intValue]];
+    [self setTitle:[dictionaryVal objectForKey:CL_API_JSON_TITLEKEY]];
     
     // Load the image
-    NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/%@",CL_API_URL,[dictionaryVal objectForKey:@"image"]]];
+    NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];
     [self setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:currImageUrl]]];
-    NSLog(@"Fetching image at: %@/assets/%@",CL_API_URL,[dictionaryVal objectForKey:@"image"]);
+
     // Set up steps
     NSMutableArray *steps = [[NSMutableArray alloc] init];
-    for(NSDictionary *stepDict in [[dictionaryVal objectForKey:@"steps"] allValues]) {
-      //NSLog(@"%d", [stepDict isKindOfClass:NSClassFromString(@"NSDictionary")]);
-      //NSLog(@"%@", (NSString*)stepDict);
+    for(NSDictionary *stepDict in [[dictionaryVal objectForKey:CL_API_JSON_STEPSKEY] allValues]) {
       [steps addObject:[[CLStep alloc] initWithDictionary:stepDict]];
     }
     [self setSteps:steps];
@@ -41,6 +40,16 @@
 }
 
 #pragma mark - Accessor methods
+
+- (bool) containsIngredient:(CLIngredient *)ingredientVal {
+  for (CLStepIngredient *currIngredient in [self ingredients]) {
+    if([currIngredient.name isEqualToString:ingredientVal.name]) {
+      return YES;
+    }
+  }
+  
+  return NO;
+}
 
 - (NSArray *) ingredients {
   NSMutableArray *ingredients = [[NSMutableArray alloc] init];

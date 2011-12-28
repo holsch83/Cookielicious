@@ -7,9 +7,11 @@
 //
 
 #import "CLAppDelegate.h"
+#import "CLSearchBarShadowView.h"
 #import "CLResultRecipesController.h"
 #import "CLIngredient.h"
 #import "CLRecipe.h"
+#import "CLIngredientCell.h"
 
 @interface CLResultRecipesController (Private)
 
@@ -17,6 +19,7 @@
 - (void) requestRecipes;
 - (void) displayRecipes:(NSArray *)recipes;
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 // Maybe put animations in separate member
 @end
 
@@ -25,8 +28,10 @@
 @synthesize recipeGridView = _recipeGridView;
 @synthesize recipeDetailView = _recipeDetailView;
 @synthesize flipView = _flipView;
+@synthesize tableView = _tableView;
 @synthesize shadowView = _shadowView;
 @synthesize recipes = _recipes;
+@synthesize ingredientCell = _ingredientCell;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -115,6 +120,13 @@
 }
 
 - (void) displayRecipes:(NSArray *)recipes {
+  // Clear grid
+  for (UIView *currSubview in [_recipeGridView subviews]) {
+    if(currSubview != _shadowView && currSubview != _flipView) {
+      [currSubview removeFromSuperview];
+    }
+  }
+  
   // We want the recipe detail view to be in the center of the result view
   _recipeDetailView.center = CGPointMake(_recipeGridView.bounds.size.width/2, _recipeGridView.bounds.size.height/2);
   
@@ -155,14 +167,7 @@
     // Initialization code
     
     // Remove annoying padding on text view
-    //[recipeView.ingredientsTextView setContentInset:UIEdgeInsetsMake(-4, -8, 0, 0)];
-    
-    [recipeView.titleLabel setText:[recipe title]];
-    [recipeView.ingredientsTextView setText:[recipe ingredientsWithSeparator:@", "]];
-    [recipeView.imageView setImage:[recipe image]];
-    [recipeView setRecipe:recipe];
-    
-    NSLog(@"%@", [recipe ingredientsWithSeparator:@", "]);
+    [recipeView configureView:recipe];
     
     [_recipeGridView addSubview:recipeView];
   }
@@ -174,7 +179,7 @@
   // Add activity indicator
   [[self view] bringSubviewToFront:_shadowView];
   
-  UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+  UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
   
   CGPoint center = CGPointMake(_shadowView.bounds.size.width/2 - activityIndicator.bounds.size.width/2, _shadowView.bounds.size.height/2 - activityIndicator.bounds.size.height/2);
   
@@ -225,40 +230,51 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    // Set the delegate for the shadow view
-    _shadowView.delegate = self;
-    
-    // Load the recipe detail view
-    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLRecipeDetailView" 
-                                                     owner:self 
-                                                   options:nil];
-    for(NSObject *obj in objects) {
-        if([obj isKindOfClass:NSClassFromString(@"CLRecipeDetailView")]) {
-            _recipeDetailView = (CLRecipeDetailView *)obj;
-        }
+  [super viewDidLoad];
+  
+  // Set the delegate for the shadow view
+  _shadowView.delegate = self;
+  
+  // Add background to the table view
+  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
+  
+  [self.view insertSubview:view 
+              belowSubview:self.tableView];
+  
+  // Load the recipe detail view
+  NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLRecipeDetailView" 
+                                                   owner:self 
+                                                 options:nil];
+  for(NSObject *obj in objects) {
+    if([obj isKindOfClass:NSClassFromString(@"CLRecipeDetailView")]) {
+      _recipeDetailView = (CLRecipeDetailView *)obj;
     }
+  }
   
   [self requestRecipes];
 }
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+  [super viewDidUnload];
+  // Release any retained subviews of the main view.
+  // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+  // Return YES for supported orientations
 	return YES;
 }
 
 #pragma mark - CLRecipeDetailViewDelegate
 
 - (void) showRecipeDetailView:(CLRecipeView *)viewVal {  
+  // Already showing a recipe?
+  if(_currRecipeView != nil) {
+    return;
+  }
+  
   CLRecipe *recipeVal = [viewVal recipe];
   
   CGPoint flipViewCenterPoint = CGPointMake(_flipView.bounds.size.width/2, _flipView.bounds.size.height/2);
@@ -270,6 +286,9 @@
   // Save the current center point of the recipe in order to flip it back
   _currRecipeView = viewVal;
   _currRecipeCenterPoint = viewVal.center;
+  
+  // Disable table view interaction
+  [self.tableView setUserInteractionEnabled:NO];
   
   // We need to set the flip views center to the center point of the current recipe.
   // After we have done that, we need to reposition the current recipe view in the flip view,
@@ -331,54 +350,126 @@
                     [_shadowView removeFromSuperview];
                     [_flipView removeFromSuperview];
                     
+                    // Unset current recipe view
+                    _currRecipeView = nil;
                     
                     // Reenable scrolling
                     [_recipeGridView setScrollEnabled:YES];
+                    
+                    // Reenable table view user interaction
+                    [self.tableView setUserInteractionEnabled:YES];
                   }];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  
+  NSMutableArray *filteredRecipes = [[NSMutableArray alloc] init];
+  for(CLRecipe *currRecipe in _recipes) {
+    NSLog(@"Loop ...s");
+    if ([currRecipe containsIngredient:currIngredient]) {
+      NSLog(@"Match :)");
+      [filteredRecipes addObject:currRecipe];
+    }
+  }
+  
+  [self displayRecipes:filteredRecipes];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+  
+  CLIngredient *managedObject = (CLIngredient *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+
+  UIFont *font = [UIFont fontWithName:@"Noteworthy-Bold" size:18.0];
+  
+  [cell.textLabel setText:managedObject.name];
+  [cell.textLabel setFont:font];
+  [cell.textLabel setTextColor:[UIColor whiteColor]];
+
+  // Set background view for selected cell
+  UIView *view = [[UIView alloc] initWithFrame:cell.selectedBackgroundView.frame];
+  [view setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.1]];
+  [cell setSelectedBackgroundView:view];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  
+  return [[self.fetchedResultsController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  
+  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+  return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  static NSString *CellIdentifier = @"IngredientCell";
+  
+  UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  
+  if (cell == nil) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  }
+  
+  // Configure the cell.
+  [self configureCell:cell atIndexPath:indexPath];
+  
+  return cell;
 }
 
 #pragma mark - NSFetchedResultControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController {
     
-    if (__fetchedResultsController != nil) {
-        return __fetchedResultsController;
-    }
-    
-    [NSFetchedResultsController deleteCacheWithName:@"Master"];
-    __fetchedResultsController = nil;
-    // Set up the fetched results controller.
-    // Create the fetch request for the entity.
-    
-    _fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ingredient" 
-                                              inManagedObjectContext:self.managedObjectContext];
-    [self.fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    
-    [self.fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
-                                                                   ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-    
-    [self.fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    
-    NSFetchedResultsController *aFetchedResultsController = 
-    [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest 
-                                        managedObjectContext:self.managedObjectContext 
-                                          sectionNameKeyPath:nil 
-                                                   cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
+  if (__fetchedResultsController != nil) {
+      return __fetchedResultsController;
+  }
+  
+  [NSFetchedResultsController deleteCacheWithName:@"Master"];
+  __fetchedResultsController = nil;
+  // Set up the fetched results controller.
+  // Create the fetch request for the entity.
+  
+  _fetchRequest = [[NSFetchRequest alloc] init];
+  // Edit the entity name as appropriate.
+  
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ingredient" 
+                                            inManagedObjectContext:self.managedObjectContext];
+  [self.fetchRequest setEntity:entity];
+  
+  // Set the batch size to a suitable number.
+  
+  [self.fetchRequest setFetchBatchSize:20];
+  
+  // Edit the sort key as appropriate.
+  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
+                                                                 ascending:YES];
+  NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+  
+  [self.fetchRequest setSortDescriptors:sortDescriptors];
+
+  // Add filter
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selected = %f",1.0];
+  
+  [self.fetchRequest setPredicate:predicate];
+  
+  // Edit the section name key path and cache name if appropriate.
+  // nil for section name key path means "no sections".
+  
+  NSFetchedResultsController *aFetchedResultsController = 
+  [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest 
+                                      managedObjectContext:self.managedObjectContext 
+                                        sectionNameKeyPath:nil 
+                                                 cacheName:@"Master"];
+  aFetchedResultsController.delegate = self;
+  self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
