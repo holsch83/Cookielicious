@@ -9,6 +9,12 @@
 #import "CLRecipeDetailView.h"
 #import "CLStepIngredient.h"
 
+@interface CLRecipeDetailView (Private)
+
+- (IBAction)touchedShowRecipeButton:(id)sender;
+
+@end
+
 @implementation CLRecipeDetailView
 
 @synthesize imageView = _imageView;
@@ -16,6 +22,7 @@
 @synthesize preparationTimeLabel = _preparationTimeLabel;
 @synthesize ingredientsTextView = _ingredientsTextView;
 @synthesize descriptionTextView = _descriptionTextView;
+@synthesize showRecipe = _showRecipe;
 
 #pragma mark - Object initialization
 
@@ -26,6 +33,12 @@
         // Initialization code
     }
     return self;
+}
+
+#pragma mark - Actions
+
+- (IBAction)touchedShowRecipeButton:(id)sender {
+  NSLog(@"Click click.");
 }
 
 #pragma mark - View configuration

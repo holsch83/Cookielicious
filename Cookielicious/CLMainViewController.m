@@ -323,9 +323,11 @@
       if([key isEqualToString:@"count"]) {
         int count = [[response objectForKey:@"count"] intValue];
         if(count < 1) {
+          [[self showRecipesButton] setTitle:@"Keine Rezepte" forState:UIControlStateDisabled];
           [[self showRecipesButton] setEnabled:NO];
         }
         else {
+          [[self showRecipesButton] setTitle:[NSString stringWithFormat:@"%d Rezept(e)", [[response objectForKey:@"count"] intValue]] forState:UIControlStateNormal];
           [[self showRecipesButton] setEnabled:YES];
         }
         return;
