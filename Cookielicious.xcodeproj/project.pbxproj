@@ -765,115 +765,115 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3C34FF9414615502003D2644 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Debug;
-		};
-		3C34FF9514615502003D2644 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		3C34FF9714615502003D2644 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
-				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		3C34FF9814615502003D2644 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
-				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		3C34FF9A14615502003D2644 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cookielicious.app/Cookielicious";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
-				INFOPLIST_FILE = "CookieliciousTests/CookieliciousTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		3C34FF9B14615502003D2644 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cookielicious.app/Cookielicious";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
-				INFOPLIST_FILE = "CookieliciousTests/CookieliciousTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
+        3C34FF9414615502003D2644 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+                CLANG_ENABLE_OBJC_ARC = YES;
+                "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+                COPY_PHASE_STRIP = NO;
+                GCC_C_LANGUAGE_STANDARD = gnu99;
+                GCC_DYNAMIC_NO_PIC = NO;
+                GCC_OPTIMIZATION_LEVEL = 0;
+                GCC_PREPROCESSOR_DEFINITIONS = (
+                    "DEBUG=1",
+                    "$(inherited)",
+                );
+                GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+                GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+                GCC_WARN_ABOUT_RETURN_TYPE = YES;
+                GCC_WARN_UNUSED_VARIABLE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+                SDKROOT = iphoneos;
+                TARGETED_DEVICE_FAMILY = 2;
+            };
+            name = Debug;
+        };
+        3C34FF9514615502003D2644 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+                CLANG_ENABLE_OBJC_ARC = YES;
+                "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+                COPY_PHASE_STRIP = YES;
+                GCC_C_LANGUAGE_STANDARD = gnu99;
+                GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+                GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+                GCC_WARN_ABOUT_RETURN_TYPE = YES;
+                GCC_WARN_UNUSED_VARIABLE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+                OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+                SDKROOT = iphoneos;
+                TARGETED_DEVICE_FAMILY = 2;
+                VALIDATE_PRODUCT = YES;
+            };
+            name = Release;
+        };
+        3C34FF9714615502003D2644 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+                "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+                GCC_PRECOMPILE_PREFIX_HEADER = YES;
+                GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+                INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+                "PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+                WRAPPER_EXTENSION = app;
+            };
+            name = Debug;
+        };
+        3C34FF9814615502003D2644 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+                GCC_PRECOMPILE_PREFIX_HEADER = YES;
+                GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+                INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+                WRAPPER_EXTENSION = app;
+            };
+            name = Release;
+        };
+        3C34FF9A14615502003D2644 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cookielicious.app/Cookielicious";
+                FRAMEWORK_SEARCH_PATHS = (
+                    "$(SDKROOT)/Developer/Library/Frameworks",
+                    "$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+                );
+                GCC_PRECOMPILE_PREFIX_HEADER = YES;
+                GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+                INFOPLIST_FILE = "CookieliciousTests/CookieliciousTests-Info.plist";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                TEST_HOST = "$(BUNDLE_LOADER)";
+                WRAPPER_EXTENSION = octest;
+            };
+            name = Debug;
+        };
+        3C34FF9B14615502003D2644 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cookielicious.app/Cookielicious";
+                FRAMEWORK_SEARCH_PATHS = (
+                    "$(SDKROOT)/Developer/Library/Frameworks",
+                    "$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+                );
+                GCC_PRECOMPILE_PREFIX_HEADER = YES;
+                GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
+                INFOPLIST_FILE = "CookieliciousTests/CookieliciousTests-Info.plist";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                TEST_HOST = "$(BUNDLE_LOADER)";
+                WRAPPER_EXTENSION = octest;
+            };
+            name = Release;
+        };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */

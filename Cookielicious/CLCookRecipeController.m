@@ -161,9 +161,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  // Do any additional setup after loading the view from its nib.  
+  // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = _recipe.title;
-  
+
   _scrollView.clipsToBounds = NO;
 	_scrollView.pagingEnabled = YES;
 	_scrollView.showsHorizontalScrollIndicator = NO;
@@ -197,6 +197,7 @@
 	}
 
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated {
   NSLog(@"View will disappear");
