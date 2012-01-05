@@ -12,6 +12,7 @@
 #import "CLIngredient.h"
 #import "CLRecipe.h"
 #import "CLIngredientCell.h"
+#import "CLCookRecipeController.h"
 
 @interface CLResultRecipesController (Private)
 
@@ -245,6 +246,8 @@
   for(NSObject *obj in objects) {
     if([obj isKindOfClass:NSClassFromString(@"CLRecipeDetailView")]) {
       _recipeDetailView = (CLRecipeDetailView *)obj;
+      // Set detail view delegate
+      _recipeDetailView.delegate = self;
     }
   }
   
@@ -266,7 +269,17 @@
 	return YES;
 }
 
+#pragma mark - CLRecipeDetailDelegate
+
+- (void)recipeDetailView:(CLRecipeDetailView*)recipeDetailView didSelectShowRecipeWithRecipe:(CLRecipe*)recipe; {
+
+  CLCookRecipeController *crc = [[CLCookRecipeController alloc] initWithRecipe:recipe];
+  [self.navigationController pushViewController:crc animated:YES];
+  
+}
+
 #pragma mark - CLRecipeDetailViewDelegate
+
 
 - (void) showRecipeDetailView:(CLRecipeView *)viewVal {  
   // Already showing a recipe?

@@ -54,7 +54,7 @@
 }
 
 - (IBAction)touchedShowRecipeButton:(id)sender {
-  NSLog(@"Clicked show recipe button.");
+  [_delegate recipeDetailView:self didSelectShowRecipeWithRecipe:_recipe];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -70,6 +70,7 @@
 #pragma mark - View configuration
 
 - (void) configureView:(CLRecipe *)recipeVal {
+  _recipe = recipeVal;
   [[self imageView] setImage:[recipeVal image]];
   [[self titleLabel] setText:[recipeVal title]];
   [[self preparationTimeLabel] setText:[NSString stringWithFormat:@"%d Min.",[recipeVal preparationTime]]];

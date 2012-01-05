@@ -31,6 +31,11 @@
 		3C34FF9314615502003D2644 /* CookieliciousTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF9214615502003D2644 /* CookieliciousTests.m */; };
 		3C5EC448146ADFFE00E8970A /* CLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EC446146ADFFE00E8970A /* CLMainViewController.m */; };
 		3C5EC449146ADFFE00E8970A /* CLMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */; };
+		3C8344DA14B4995400F053AA /* CLCookRecipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8344D814B4995400F053AA /* CLCookRecipeController.m */; };
+		3C8344DB14B4995400F053AA /* CLCookRecipeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C8344D914B4995400F053AA /* CLCookRecipeController.xib */; };
+		3C8344DE14B499DF00F053AA /* CLScrollViewEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8344DD14B499DF00F053AA /* CLScrollViewEnhancer.m */; };
+		3CB3E68314B49CD0001725D3 /* CLStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB3E68214B49CCF001725D3 /* CLStepView.m */; };
+		3CB3E68614B49CF6001725D3 /* CLStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CB3E68514B49CF6001725D3 /* CLStepView.xib */; };
 		3CC4DF961487DA5500DD83BB /* CLIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC4DF951487DA5500DD83BB /* CLIngredient.m */; };
 		3CC9CA1A148D648200F99EF2 /* icon_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9CA19148D648200F99EF2 /* icon_checkmark.png */; };
 		3CC9CA1D148D6A2D00F99EF2 /* cuttingboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9CA1C148D6A2D00F99EF2 /* cuttingboard.png */; };
@@ -127,6 +132,14 @@
 		3C5EC445146ADFFE00E8970A /* CLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMainViewController.h; sourceTree = "<group>"; };
 		3C5EC446146ADFFE00E8970A /* CLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMainViewController.m; sourceTree = "<group>"; };
 		3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMainViewController.xib; sourceTree = "<group>"; };
+		3C8344D714B4995400F053AA /* CLCookRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCookRecipeController.h; sourceTree = "<group>"; };
+		3C8344D814B4995400F053AA /* CLCookRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCookRecipeController.m; sourceTree = "<group>"; };
+		3C8344D914B4995400F053AA /* CLCookRecipeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLCookRecipeController.xib; sourceTree = "<group>"; };
+		3C8344DC14B499DF00F053AA /* CLScrollViewEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScrollViewEnhancer.h; sourceTree = "<group>"; };
+		3C8344DD14B499DF00F053AA /* CLScrollViewEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLScrollViewEnhancer.m; sourceTree = "<group>"; };
+		3CB3E68114B49CCF001725D3 /* CLStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepView.h; sourceTree = "<group>"; };
+		3CB3E68214B49CCF001725D3 /* CLStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepView.m; sourceTree = "<group>"; };
+		3CB3E68514B49CF6001725D3 /* CLStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLStepView.xib; sourceTree = "<group>"; };
 		3CC4DF941487DA5500DD83BB /* CLIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIngredient.h; sourceTree = "<group>"; };
 		3CC4DF951487DA5500DD83BB /* CLIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIngredient.m; sourceTree = "<group>"; };
 		3CC9CA19148D648200F99EF2 /* icon_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkmark.png; sourceTree = "<group>"; };
@@ -329,6 +342,7 @@
 		3C34FF6F14615502003D2644 /* Cookielicious */ = {
 			isa = PBXGroup;
 			children = (
+				3C8344D514B4990100F053AA /* CookRecipe */,
 				5C4642F9148F8FA600DCB11B /* ResultRecipes */,
 				3C4AAC9D148120B700A906B8 /* Models */,
 				3C26B203147D4A0700BE8BD6 /* SelectIngredients */,
@@ -396,6 +410,21 @@
 				5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		3C8344D514B4990100F053AA /* CookRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				3C8344D714B4995400F053AA /* CLCookRecipeController.h */,
+				3C8344D814B4995400F053AA /* CLCookRecipeController.m */,
+				3C8344D914B4995400F053AA /* CLCookRecipeController.xib */,
+				3C8344DC14B499DF00F053AA /* CLScrollViewEnhancer.h */,
+				3C8344DD14B499DF00F053AA /* CLScrollViewEnhancer.m */,
+				3CB3E68114B49CCF001725D3 /* CLStepView.h */,
+				3CB3E68214B49CCF001725D3 /* CLStepView.m */,
+				3CB3E68514B49CF6001725D3 /* CLStepView.xib */,
+			);
+			name = CookRecipe;
 			sourceTree = "<group>";
 		};
 		3CFEAE7D14615DF300DCD93D /* Dependencies */ = {
@@ -575,6 +604,8 @@
 				5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */,
 				5CBA712A149289780001C3CD /* CLRecipeDetailView.xib in Resources */,
 				5C12AC0714A9EDDB0041DC45 /* Default-Landscape.png in Resources */,
+				3C8344DB14B4995400F053AA /* CLCookRecipeController.xib in Resources */,
+				3CB3E68614B49CF6001725D3 /* CLStepView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +683,9 @@
 				5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */,
 				5CEDF62814B6FC16008CE4A4 /* CLSynchronizeIngredients.m in Sources */,
 				5CEDF62C14B701D7008CE4A4 /* CLUpdateRecipeCount.m in Sources */,
+				3C8344DA14B4995400F053AA /* CLCookRecipeController.m in Sources */,
+				3C8344DE14B499DF00F053AA /* CLScrollViewEnhancer.m in Sources */,
+				3CB3E68314B49CD0001725D3 /* CLStepView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,14 +777,14 @@
 		3C34FF9714615502003D2644 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Orlando Schäfer (NUP3453W4F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Orlando Schäfer (NUP3453W4F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+				PROVISIONING_PROFILE = "96619D2A-7153-4681-90DF-7C37564D0F7B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "96619D2A-7153-4681-90DF-7C37564D0F7B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -758,12 +792,12 @@
 		3C34FF9814615502003D2644 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Orlando Schäfer (NUP3453W4F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+				PROVISIONING_PROFILE = "96619D2A-7153-4681-90DF-7C37564D0F7B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

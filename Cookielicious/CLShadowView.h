@@ -12,6 +12,6 @@
   UIGestureRecognizer *_tapGestureRecognizer;
 }
 
-@property(nonatomic, strong) id <NSObject> delegate;
+@property(nonatomic, assign) id <NSObject> delegate;
 
 @end

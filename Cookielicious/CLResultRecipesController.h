@@ -15,7 +15,7 @@
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
 
-@interface CLResultRecipesController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate, ASIHTTPRequestDelegate> {
+@interface CLResultRecipesController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate, ASIHTTPRequestDelegate, CLRecipeDetailDelegate> {
   CLRecipeView *_currRecipeView;
   CGPoint _currRecipeCenterPoint;
 }

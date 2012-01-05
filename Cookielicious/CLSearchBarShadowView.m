@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "CLSearchBarShadowView.h"
 
 @implementation CLSearchBarShadowView
