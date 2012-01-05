@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "CLRecipe.h"
+#import "CLRecipeDetailViewDelegate.h"
 
 @interface CLRecipeView : UIView 
 
-@property(nonatomic, assign) id <NSObject> delegate;
+@property(nonatomic, assign) id <CLRecipeDetailViewDelegate> delegate;
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property(nonatomic, strong) IBOutlet UILabel *ingredientsLabel;
 @property(nonatomic, strong) IBOutlet UIImageView *imageView;

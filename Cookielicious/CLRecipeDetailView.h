@@ -12,18 +12,13 @@
 @class CLRecipeDetailView;
 @class CLRecipe;
 
-@protocol CLRecipeDetailDelegate <NSObject>
-
-- (void)recipeDetailView:(CLRecipeDetailView*)recipeDetailView didSelectShowRecipeWithRecipe:(CLRecipe*)recipe;
-
-@end
 
 @interface CLRecipeDetailView : UIView <UIGestureRecognizerDelegate> {
   UITapGestureRecognizer *tapGestureRecognizer;
   CLRecipe *_recipe;
 }
 
-@property (nonatomic, assign) id<CLRecipeDetailDelegate> delegate;
+@property (nonatomic, assign) id<CLRecipeDetailViewDelegate> delegate;
 @property(nonatomic, strong) IBOutlet UIImageView *imageView;
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property(nonatomic, strong) IBOutlet UILabel *preparationTimeLabel;
