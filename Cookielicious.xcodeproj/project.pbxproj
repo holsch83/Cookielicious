@@ -79,6 +79,8 @@
 		5CC0A8D3149615D700FAA0AE /* CLStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D2149615D700FAA0AE /* CLStep.m */; };
 		5CC0A8D61496173200FAA0AE /* CLTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D51496173200FAA0AE /* CLTodo.m */; };
 		5CC0A8D91496178F00FAA0AE /* CLStepIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */; };
+		5CEDF62814B6FC16008CE4A4 /* CLSynchronizeIngredients.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */; };
+		5CEDF62C14B701D7008CE4A4 /* CLUpdateRecipeCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +215,10 @@
 		5CC0A8D71496178F00FAA0AE /* CLStepIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepIngredient.h; sourceTree = "<group>"; };
 		5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepIngredient.m; sourceTree = "<group>"; };
 		5CC0A8DA1496192B00FAA0AE /* CLRecipeDetailViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecipeDetailViewDelegate.h; sourceTree = "<group>"; };
+		5CEDF62614B6FC16008CE4A4 /* CLSynchronizeIngredients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLSynchronizeIngredients.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.h; sourceTree = "<group>"; };
+		5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLSynchronizeIngredients.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.m; sourceTree = "<group>"; };
+		5CEDF62A14B701D7008CE4A4 /* CLUpdateRecipeCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLUpdateRecipeCount.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLUpdateRecipeCount.h; sourceTree = "<group>"; };
+		5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLUpdateRecipeCount.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLUpdateRecipeCount.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +281,10 @@
 				3CF56D32148A41A600B3BBF1 /* CLDragView.xib */,
 				5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */,
 				5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */,
+				5CEDF62614B6FC16008CE4A4 /* CLSynchronizeIngredients.h */,
+				5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */,
+				5CEDF62A14B701D7008CE4A4 /* CLUpdateRecipeCount.h */,
+				5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */,
 			);
 			name = SelectIngredients;
 			sourceTree = "<group>";
@@ -640,6 +650,8 @@
 				5CC0A8D61496173200FAA0AE /* CLTodo.m in Sources */,
 				5CC0A8D91496178F00FAA0AE /* CLStepIngredient.m in Sources */,
 				5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */,
+				5CEDF62814B6FC16008CE4A4 /* CLSynchronizeIngredients.m in Sources */,
+				5CEDF62C14B701D7008CE4A4 /* CLUpdateRecipeCount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -193,7 +193,6 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-  NSLog(@"Request finished");
   NSLog(@"Response body: %@", [request responseString]);
   
   [[self recipes] removeAllObjects];
@@ -201,8 +200,6 @@
     CLRecipe *recipe = [[CLRecipe alloc] initWithDictionary:recipeDict];
     [_recipes addObject:recipe];
   }
-  
-  NSLog(@"Recipes count: %d", [_recipes count]);
   
   [_shadowView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
   for(UIView *subview in [_shadowView subviews]) {
@@ -250,6 +247,8 @@
       _recipeDetailView = (CLRecipeDetailView *)obj;
     }
   }
+  
+  [_recipeDetailView setDelegate:self];
   
   [self requestRecipes];
 }

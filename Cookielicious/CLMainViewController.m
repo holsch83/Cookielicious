@@ -14,6 +14,7 @@
 #import "CLIngredientCell.h"
 #import "CLDragView.h"
 #import "CLSearchBarShadowView.h"
+#import "CLSynchronizeIngredients.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CLMainViewController (Private)
@@ -87,16 +88,8 @@
   self.searchBar.delegate = self;
   
   CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
-  //view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern_wood.png"]];
   [self.view insertSubview:view 
               belowSubview:self.searchBar];
-  
-  /*view.layer.shadowColor = [[UIColor blackColor] CGColor];
-  view.layer.shadowOffset = CGSizeMake(2.0, 0.0);
-  view.layer.shadowRadius = 5.0;
-  view.layer.shadowOpacity = 0.5;
-  view.layer.masksToBounds = NO;
-  view.layer.shouldRasterize = YES;*/
   
   _selectedIngredientsController = 
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
@@ -313,73 +306,17 @@
   [self.tableView endUpdates];
 }
 
-#pragma mark - ASIHttpRequest delegate
+#pragma mark - CLRecipeButtonDelegate
 
-- (void)requestFinished:(ASIHTTPRequest*) request {
-  NSDictionary *response = (NSDictionary *)[[request responseString] JSONValue];
-  if([response isKindOfClass:NSClassFromString(@"NSDictionary")]) {
-    NSLog(@"%@", [request responseString]);
-    for (NSString *key in [response allKeys]) {
-      if([key isEqualToString:@"count"]) {
-        int count = [[response objectForKey:@"count"] intValue];
-        if(count < 1) {
-          [[self showRecipesButton] setTitle:@"Keine Rezepte" forState:UIControlStateDisabled];
-          [[self showRecipesButton] setEnabled:NO];
-        }
-        else {
-          [[self showRecipesButton] setTitle:[NSString stringWithFormat:@"%d Rezept(e)", [[response objectForKey:@"count"] intValue]] forState:UIControlStateNormal];
-          [[self showRecipesButton] setEnabled:YES];
-        }
-        return;
-      }
-    }
+- (void) updateRecipeCount:(NSNumber *)count {
+  if([count intValue] < 1) {
+    [[self showRecipesButton] setTitle:@"Keine Rezepte" forState:UIControlStateDisabled];
+    [[self showRecipesButton] setEnabled:NO];
   }
-  
-  // Select all existing ingredients
-  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-  NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Ingredient" inManagedObjectContext:[self managedObjectContext]];
-  
-  [fetchRequest setEntity:entityDescription];
-  [fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"identifier" ascending:YES]]];
-  
-  NSError *error = nil;
-  NSArray *currIngredients = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-  
-  // Now handle the received data and add it to core data
-  NSArray *ingredients = [[request responseString] JSONValue];
-  
-  for(NSDictionary *ingrDict in ingredients) {
-    NSNumber *identifier = [NSNumber numberWithDouble:[[ingrDict objectForKey:CL_API_JSON_IDKEY] doubleValue]];
-    NSString *name = [ingrDict objectForKey:CL_API_JSON_NAMEKEY];
-    
-    bool create = YES;
-    for(CLIngredient *currIngr in currIngredients) {
-      if([identifier isEqualToNumber:[currIngr identifier]]) {
-        create = NO;
-        break;
-      }
-    }
-    
-    if (create) {
-      CLIngredient *ingr = (CLIngredient *)[NSEntityDescription insertNewObjectForEntityForName:@"Ingredient"
-                                                                         inManagedObjectContext:__managedObjectContext];
-      ingr.identifier = identifier;
-      ingr.name = name;
-    }
+  else {
+    [[self showRecipesButton] setTitle:[NSString stringWithFormat:@"%d Rezept(e)", [count intValue]] forState:UIControlStateNormal];
+    [[self showRecipesButton] setEnabled:YES];
   }
-  
-  [[self managedObjectContext] save:&error];
-  if (error != nil) {
-    NSLog(@"Error saving data");
-  }
-
-  [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] setDidSynchronizeIngredients:YES];
-  
-  NSLog(@"Finished updating ingredients");
-}
-
-- (void)requestFailed:(ASIHTTPRequest*) request {
-  NSLog(@"Request failed. FAIL! AAAH!");
 }
 
 #pragma mark - Managed Object Context saving
@@ -580,7 +517,10 @@
   [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
                                                                 forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
   
-  [request setDelegate:self];
+  updateRecipeCountDelegate = [[CLUpdateRecipeCount alloc] init];
+  [updateRecipeCountDelegate setDelegate:self];
+  
+  [request setDelegate:updateRecipeCountDelegate];
   [request startAsynchronous];
 }
 
@@ -596,7 +536,9 @@
   [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
                                                                 forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
   
-  [request setDelegate:self];
+  synchronizeIngredientsDelegate = [[CLSynchronizeIngredients alloc] init];
+  
+  [request setDelegate:synchronizeIngredientsDelegate];
   [request startAsynchronous];
 }
 @end
