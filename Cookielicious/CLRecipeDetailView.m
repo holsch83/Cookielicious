@@ -17,6 +17,7 @@
 
 @implementation CLRecipeDetailView
 
+@synthesize delegate = _delegate;
 @synthesize imageView = _imageView;
 @synthesize titleLabel = _titleLabel;
 @synthesize preparationTimeLabel = _preparationTimeLabel;
@@ -28,17 +29,42 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+  self = [super initWithFrame:frame];
+  if (self) {
+    // Initialization code
+  }
+  return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchedView:)];
+    [tapGestureRecognizer setDelegate:self];
+    [self addGestureRecognizer:tapGestureRecognizer];
+  }
+  return self;
 }
 
 #pragma mark - Actions
+- (void) touchedView:(id)sender {
+  if(_delegate != nil && [_delegate respondsToSelector:@selector(hideRecipeDetailView)]) {
+    [_delegate performSelector:@selector(hideRecipeDetailView)];
+  }
+}
 
 - (IBAction)touchedShowRecipeButton:(id)sender {
-  NSLog(@"Click click.");
+  NSLog(@"Clicked show recipe button.");
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+  if(touch.view == self) {
+    return YES;
+  }
+  
+  return NO;
 }
 
 #pragma mark - View configuration

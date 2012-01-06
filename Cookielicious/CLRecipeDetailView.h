@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CLRecipe.h"
+#import "CLRecipeDetailViewDelegate.h"
 
-@interface CLRecipeDetailView : UIView
+@interface CLRecipeDetailView : UIView <UIGestureRecognizerDelegate> {
+  UITapGestureRecognizer *tapGestureRecognizer;
+}
 
+@property(nonatomic, assign) id<CLRecipeDetailViewDelegate> delegate;
 @property(nonatomic, strong) IBOutlet UIImageView *imageView;
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property(nonatomic, strong) IBOutlet UILabel *preparationTimeLabel;
@@ -19,5 +23,6 @@
 @property(nonatomic, strong) IBOutlet UIButton *showRecipe;
 
 - (void) configureView:(CLRecipe *)recipeVal;
+- (void) touchedView:(id)sender;
 
 @end
