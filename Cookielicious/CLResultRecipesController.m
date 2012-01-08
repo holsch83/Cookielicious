@@ -13,6 +13,7 @@
 #import "CLRecipe.h"
 #import "CLIngredientCell.h"
 #import "CLCookRecipeController.h"
+#import "JSONKit.h"
 
 @interface CLResultRecipesController (Private)
 
@@ -197,7 +198,7 @@
   NSLog(@"Response body: %@", [request responseString]);
   
   [[self recipes] removeAllObjects];
-  for(NSDictionary *recipeDict in [[request responseString] JSONValue]) {
+  for(NSDictionary *recipeDict in [[request responseString] objectFromJSONString]) {
     CLRecipe *recipe = [[CLRecipe alloc] initWithDictionary:recipeDict];
     [_recipes addObject:recipe];
   }

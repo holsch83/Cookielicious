@@ -16,6 +16,7 @@
 #import "CLSearchBarShadowView.h"
 #import "CLSynchronizeIngredients.h"
 #import <QuartzCore/QuartzCore.h>
+#import "JSONKit.h"
 
 @interface CLMainViewController (Private)
 

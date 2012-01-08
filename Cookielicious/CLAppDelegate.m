@@ -9,6 +9,9 @@
 #import "CLAppDelegate.h"
 #import "CLMainViewController.h"
 #import "CLIngredient.h"
+#import "SHKConfiguration.h"
+#import "SHKFacebook.h"
+#import "CLDefaultSHKConfigurator.h"
 
 @implementation CLAppDelegate
 
@@ -21,6 +24,11 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
+  //Here you load ShareKit submodule with app specific configuration
+  CLDefaultSHKConfigurator *configurator = [[CLDefaultSHKConfigurator alloc] init];
+  [SHKConfiguration sharedInstanceWithConfigurator:configurator];
+  
   self.window.rootViewController = self.navigationController;
   [self.window makeKeyAndVisible];
   return YES;
@@ -77,6 +85,27 @@
         abort();
     } 
   }
+}
+
+#pragma mark - Facebook SSO
+
+- (BOOL)handleOpenURL:(NSURL*)url {
+  
+  NSString* scheme = [url scheme];
+  NSString* prefix = [NSString stringWithFormat:@"fb%@", SHKCONFIG(facebookAppId)];
+  if ([scheme hasPrefix:prefix])
+    return [SHKFacebook handleOpenURL:url];
+  return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
+  
+  return [self handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+  
+  return [self handleOpenURL:url];  
 }
 
 #pragma mark - Core Data stack

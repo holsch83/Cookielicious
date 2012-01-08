@@ -11,8 +11,12 @@
 #import "CLStepView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
+<<<<<<< HEAD
 #import "CLTimerView.h"
 #import "CLTimersView.h"
+=======
+#import "SHK.h"
+>>>>>>> - Major project settings for getting social integration working properly - Deleted SBJSON framework, now using JSONKit from sharekit FIX
 
 @implementation CLCookRecipeController
 
@@ -163,6 +167,10 @@
   
   // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = _recipe.title;
+  self.navigationItem.rightBarButtonItem = 
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                target:self 
+                                                action:@selector(shareRecipe)];
 
   _scrollView.clipsToBounds = NO;
 	_scrollView.pagingEnabled = YES;
@@ -198,10 +206,29 @@
 
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated {
   NSLog(@"View will disappear");
   // Remove timers here
+}
+
+- (void)shareRecipe {
+
+  NSLog(@"Sharing Recipe ...");
+  
+  // Create the item to share (in this example, a url)
+//  NSURL *url = [NSURL URLWithString:@"http://www.example.com"];
+//  NSString *shareText = [NSString stringWithFormat:@"Koche gerade mit Cookielicious \"%@\"! Mjamm! ", _recipe.title];
+//  SHKItem *item = [SHKItem URL:url title:shareText];
+  
+  NSURL *url = [NSURL URLWithString:@"http://www.twitter.com"];
+  SHKItem *item = [SHKItem URL:url title:@"Testing ShareKit for iOS"];
+  
+  // Get the ShareKit action sheet
+  SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+  
+  // Display the action sheet
+  [actionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem 
+                            animated:YES];
 }
 
 - (void)viewDidUnload

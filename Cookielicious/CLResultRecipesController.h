@@ -13,7 +13,6 @@
 #import "CLRecipeDetailViewDelegate.h"
 #import "CLIngredientCell.h"
 #import "ASIHTTPRequest.h"
-#import "SBJson.h"
 
 @interface CLResultRecipesController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate, ASIHTTPRequestDelegate> {
   CLRecipeView *_currRecipeView;

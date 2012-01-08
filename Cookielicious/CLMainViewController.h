@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
-#import "SBJson.h"
 #import "CLSearchBar.h"
 #import "CLIngredientCell.h"
 #import "CLDragViewDelegate.h"
