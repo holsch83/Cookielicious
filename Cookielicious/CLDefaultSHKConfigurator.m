@@ -61,11 +61,6 @@
  leaving that decision up to the user.
  */
 
-// Vkontakte
-// SHKVkontakteAppID is the Application ID provided by Vkontakte
-- (NSString*)vkontakteAppId {
-	return @"";
-}
 
 // Facebook - https://developers.facebook.com/apps
 // SHKFacebookAppID is the Application ID provided by Facebook
@@ -124,78 +119,6 @@
 - (NSString*)twitterUsername {
 	return @"";
 }
-// Evernote - http://www.evernote.com/about/developer/api/
-/*	You need to set to sandbox until you get approved by evernote
- // Sandbox
- #define SHKEvernoteUserStoreURL    @"https://sandbox.evernote.com/edam/user"
- #define SHKEvernoteNetStoreURLBase @"http://sandbox.evernote.com/edam/note/"
- 
- // Or production
- #define SHKEvernoteUserStoreURL    @"https://www.evernote.com/edam/user"
- #define SHKEvernoteNetStoreURLBase @"http://www.evernote.com/edam/note/"
- */
-
-- (NSString*)evernoteUserStoreURL {
-	return @"";
-}
-
-- (NSString*)evernoteNetStoreURLBase {
-	return @"";
-}
-
-- (NSString*)evernoteConsumerKey {
-	return @"";
-}
-
-- (NSString*)evernoteSecret {
-	return @"";
-}
-// Flickr - http://www.flickr.com/services/apps/create/
-/*
- 1 - This requires the CFNetwork.framework 
- 2 - One needs to setup the flickr app as a "web service" on the flickr authentication flow settings, and enter in your app's custom callback URL scheme. 
- 3 - make sure you define and create the same URL scheme in your apps info.plist. It can be as simple as yourapp://flickr */
-- (NSString*)flickrConsumerKey {
-  return @"";
-}
-
-- (NSString*)flickrSecretKey {
-  return @"";
-}
-// The user defined callback url
-- (NSString*)flickrCallbackUrl{
-  return @"app://flickr";
-}
-// Bit.ly (for shortening URLs on Twitter) - http://bit.ly/account/register - after signup: http://bit.ly/a/your_api_key
-- (NSString*)bitLyLogin {
-	return @"";
-}
-
-- (NSString*)bitLyKey {
-	return @"";
-}
-
-// LinkedIn - https://developer.linkedin.com/documents/authentication
-- (NSString*)linkedInConsumerKey {
-	return @"";
-}
-
-- (NSString*)linkedInSecret {
-	return @"";
-}
-
-- (NSString*)linkedInCallbackUrl {
-	return @"";
-}
-
-// Foursquare V2 - https://developer.foursquare.com
-- (NSString*)foursquareV2ClientId {
-  return @"";
-}
-
-- (NSString*)foursquareV2RedirectURI {
-  return @"";
-}
 
 /*
  UI Configuration : Basic
@@ -208,94 +131,17 @@
 	return @"UIBarStyleDefault";// See: http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIKitDataTypesReference/Reference/reference.html#//apple_ref/c/econst/UIBarStyleDefault
 }
 
-- (UIColor*)barTintForView:(UIViewController*)vc {
+- (UIColor*)barTintForView:(UIViewController*)vc {    
+  
+  if ([NSStringFromClass([vc class]) isEqualToString:@"SHKTwitter"]) 
+    return [UIColor colorWithRed:0 green:151.0f/255 blue:222.0f/255 alpha:1];
+  
+  if ([NSStringFromClass([vc class]) isEqualToString:@"SHKFacebook"]) 
+    return [UIColor colorWithRed:59.0f/255 green:89.0f/255 blue:152.0f/255 alpha:1];
+  
   return nil;
 }
-// Forms
-- (NSNumber*)formFontColorRed {
-	return [NSNumber numberWithInt:-1];// Value between 0-255, set all to -1 for default
-}
 
-- (NSNumber*)formFontColorGreen {
-	return [NSNumber numberWithInt:-1];// Value between 0-255, set all to -1 for default
-}
 
-- (NSNumber*)formFontColorBlue {
-	return [NSNumber numberWithInt:-1];// Value between 0-255, set all to -1 for default
-}
-
-- (NSNumber*)formBgColorRed {
-	return [NSNumber numberWithInt:-1];// Value between 0-255, set all to -1 for default
-}
-
-- (NSNumber*)formBgColorGreen {
-	return [NSNumber numberWithInt:-1];// Value between 0-255, set all to -1 for default
-}
-
-- (NSNumber*)formBgColorBlue {
-	return [NSNumber numberWithInt:-1];// Value between 0-255, set all to -1 for default
-}
-// iPad views
-- (NSString*)modalPresentationStyle {
-	return @"UIModalPresentationFormSheet";// See: http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UIViewController/modalPresentationStyle
-}
-
-- (NSString*)modalTransitionStyle {
-	return @"UIModalTransitionStyleCoverVertical";// See: http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UIViewController/modalTransitionStyle
-}
-// ShareMenu Ordering
-- (NSNumber*)shareMenuAlphabeticalOrder {
-	return [NSNumber numberWithInt:0];// Setting this to 1 will show list in Alphabetical Order, setting to 0 will follow the order in SHKShares.plist
-}
-// Append 'Shared With 'Signature to Email (and related forms)
-- (NSNumber*)sharedWithSignature {
-	return [NSNumber numberWithInt:0];
-}
-// Name of the plist file that defines the class names of the sharers to use. Usually should not be changed, but 
-// this allows you to subclass a sharer and have the subclass be used.
-- (NSString*)sharersPlistName {
-	return @"SHKSharers.plist";
-}
-/*
- UI Configuration : Advanced
- ---------------------------
- If you'd like to do more advanced customization of the ShareKit UI, like background images and more,
- check out http://getsharekit.com/customize
- */
-
-// turn on to use placeholders in edit fields instead of labels to the left for input fields.
-- (NSNumber*)usePlaceholders {
-	return [NSNumber numberWithBool:false];
-}
-/*
- Advanced Configuration
- ----------------------
- These settings can be left as is.  This only need to be changed for uber custom installs.
- */
-- (NSNumber*)maxFavCount {
-	return [NSNumber numberWithInt:3];
-}
-
-- (NSString*)favsPrefixKey {
-	return @"SHK_FAVS_";
-}
-
-- (NSString*)authPrefix {
-	return @"SHK_AUTH_";
-}
-
-- (NSNumber*)allowOffline {
-	return [NSNumber numberWithBool:true];
-}
-
-- (NSNumber*)allowAutoShare {
-	return [NSNumber numberWithBool:true];
-}
-
-/* 
- Debugging settings
- ------------------
- see DefaultSHKConfigurator.h
- */
 
 @end

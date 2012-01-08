@@ -89,6 +89,10 @@
 
 #pragma mark - Facebook SSO
 
+- (void)testOffline {	
+	[SHK flushOfflineQueue];
+}
+
 - (BOOL)handleOpenURL:(NSURL*)url {
   
   NSString* scheme = [url scheme];

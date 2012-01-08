@@ -11,12 +11,10 @@
 #import "CLStepView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
-<<<<<<< HEAD
 #import "CLTimerView.h"
 #import "CLTimersView.h"
-=======
 #import "SHK.h"
->>>>>>> - Major project settings for getting social integration working properly - Deleted SBJSON framework, now using JSONKit from sharekit FIX
+#import "SHKFacebook.h"
 
 @implementation CLCookRecipeController
 
@@ -216,13 +214,9 @@
   NSLog(@"Sharing Recipe ...");
   
   // Create the item to share (in this example, a url)
-//  NSURL *url = [NSURL URLWithString:@"http://www.example.com"];
-//  NSString *shareText = [NSString stringWithFormat:@"Koche gerade mit Cookielicious \"%@\"! Mjamm! ", _recipe.title];
-//  SHKItem *item = [SHKItem URL:url title:shareText];
-  
-  NSURL *url = [NSURL URLWithString:@"http://www.twitter.com"];
-  SHKItem *item = [SHKItem URL:url title:@"Testing ShareKit for iOS"];
-  
+  NSString *shareText = [NSString stringWithFormat:@"Koche gerade mit Cookielicious \"%@\"! Mjamm!", _recipe.title];
+  SHKItem *item = [SHKItem text:shareText];
+    
   // Get the ShareKit action sheet
   SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
   
