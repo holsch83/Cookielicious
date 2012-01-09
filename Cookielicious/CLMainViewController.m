@@ -94,7 +94,7 @@
   CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
   [self.view insertSubview:view 
               belowSubview:self.searchBar];
-  
+
   _selectedIngredientsController = 
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
                                                     bundle:nil];
@@ -337,7 +337,19 @@
 
 #pragma mark - CLDragView Delegate
 
-- (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer {
+- (void)dragView:(CLDragView *)dragView detectedTapWithRecognizer:(UITapGestureRecognizer *)recognizer {
+  
+  CLDragView *tappedView = (CLDragView*)[recognizer view];
+  
+  if (![self.selectedIngredientsController isDragViewLimitReached]) {
+    [tappedView setVisible:YES];
+    [self.selectedIngredientsController addIngredientWithView:tappedView];
+    tappedView.ingredient.selected = [NSNumber numberWithBool:YES];
+    [self saveManagedObjectContext];
+  }
+}
+
+- (void)dragView:(CLDragView *)dragView detectedLongPressWithRecognizer:(UILongPressGestureRecognizer *)recognizer {
 
   CLDragView *draggableView = (CLDragView*)[recognizer view];
   CGPoint touchPoint = [recognizer locationOfTouch:0 inView:self.view];
@@ -406,17 +418,6 @@
   }
 }
 
-- (void)returnDragViewToStartPoint:(CLDragView*)dragView {
-
-  [dragView stopDraggingAnimation];
-  [dragView setVisible:NO];
-
-  [UIView animateWithDuration:0.4 animations:^{
-    
-    dragView.center = _startingDragPosition;
-  } completion:^(BOOL finished){}];
-}
-
 - (void)removeDragView:(CLDragView*)dragView withIngredient:(CLIngredient*)ingredient {
 
   [_selectedIngredientsController removeIngredientWithView:dragView];
@@ -426,6 +427,16 @@
   [self saveManagedObjectContext];
 }
 
+- (void)returnDragViewToStartPoint:(CLDragView*)dragView {
+  
+  [dragView stopDraggingAnimation];
+  [dragView setVisible:NO];
+  
+  [UIView animateWithDuration:0.4 animations:^{
+    
+    dragView.center = _startingDragPosition;
+  } completion:^(BOOL finished){}];
+}
 #pragma mark - CLSearchBar Delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -442,6 +453,11 @@
   }
   [self reloadFetchRequest];
 
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+  [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - Action Sort Buttons

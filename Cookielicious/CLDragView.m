@@ -14,6 +14,7 @@
 
 - (IBAction)touchedRemoveButton:(UIButton*)sender;
 - (void)longPressDetected:(UILongPressGestureRecognizer*)sender;
+- (void)tapDetected:(UITapGestureRecognizer*)sender;
 
 // Custom animations for floating effect and scaling when dragging view
 - (void)animateRotationRight;
@@ -40,8 +41,12 @@
     [[UILongPressGestureRecognizer alloc] initWithTarget:self 
                                                   action:@selector(longPressDetected:)];
     longPress.minimumPressDuration = 0.2;
-    [self addGestureRecognizer:longPress];
     
+    UITapGestureRecognizer *tap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self 
+                                            action:@selector(tapDetected:)];
+    [self addGestureRecognizer:longPress];
+    [self addGestureRecognizer:tap];
 
   }
   return self;
@@ -59,8 +64,18 @@
 
 - (void)longPressDetected:(UILongPressGestureRecognizer*)sender {
   
-  if ([self.delegate respondsToSelector:@selector(detectedLongPressWithRecognizer:)]) {
-    [self.delegate performSelector:@selector(detectedLongPressWithRecognizer:) 
+  if ([self.delegate respondsToSelector:@selector(dragView:detectedLongPressWithRecognizer:)]) {
+    [self.delegate performSelector:@selector(dragView:detectedLongPressWithRecognizer:) 
+                        withObject:self
+                        withObject:sender];
+  }
+}
+
+- (void)tapDetected:(UITapGestureRecognizer*)sender {
+  
+  if ([self.delegate respondsToSelector:@selector(dragView:detectedTapWithRecognizer:)]) {
+    [self.delegate performSelector:@selector(dragView:detectedTapWithRecognizer:) 
+                        withObject:self
                         withObject:sender];
   }
 }
