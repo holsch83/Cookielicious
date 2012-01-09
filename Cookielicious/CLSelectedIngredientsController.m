@@ -21,6 +21,7 @@
 
 @synthesize selectedCountLabel = _selectedCountLabel;
 @synthesize maxCountLabel = _maxCountLabel;
+@synthesize delegate = _delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   
@@ -61,6 +62,37 @@
   }];
   
   NSLog(@"Items left in array: %d", [_uiViews count]);
+}
+
+- (void)removeAllIngredients {
+  
+  NSMutableArray *removedIngredients = [[NSMutableArray alloc] init];
+  
+  [UIView animateWithDuration:0.2 animations:^{
+    for (CLDragView *view in _uiViews) {
+      [view setAlpha:0];
+    }
+  } completion:^(BOOL finished){
+    for (CLDragView *view in _uiViews) {
+      [removedIngredients addObject:view.ingredient];
+      [view removeFromSuperview];
+    }
+    
+    [_uiViews removeAllObjects];
+    self.selectedCountLabel.text = 
+    [NSString stringWithFormat:@"%i", [_uiViews count]];
+    [self reorderDragViews];
+    
+    if ([_delegate respondsToSelector:@selector(selectedIngredientsController:didRemoveAllIngredients:)]) {
+      [_delegate performSelector:@selector(selectedIngredientsController:didRemoveAllIngredients:) 
+                      withObject:self 
+                      withObject:removedIngredients];
+    }
+
+  }];
+  
+  
+  
 }
 
 - (BOOL)addIngredientWithView:(CLDragView*)view {

@@ -15,11 +15,10 @@
 #import "CLUpdateRecipeCount.h"
 #import "CLSynchronizeIngredients.h"
 
-@class CLSelectedIngredientsController;
 
 @interface CLMainViewController : UIViewController <UITableViewDelegate, 
 UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate,
-CLDragViewDelegate, CLRecipeButtonDelegate, ASIHTTPRequestDelegate> {
+CLDragViewDelegate, CLSelectedIngredientsDelegate, CLRecipeButtonDelegate, ASIHTTPRequestDelegate> {
 
   @private
   CGPoint _startingDragPosition;

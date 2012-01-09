@@ -32,6 +32,9 @@
 - (IBAction)touchedAlphabetSortButton:(id)sender;
 - (IBAction)touchedUsageSortButton:(id)sender;
 
+// Clear Ingredients from Pot view Action
+- (IBAction)touchedClearIngredientsButton:(id)sender;
+
 // Show recipes Button Action
 - (IBAction)touchedShowRecipesButton:(id)sender;
 
@@ -95,6 +98,7 @@
   _selectedIngredientsController = 
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
                                                     bundle:nil];
+  self.selectedIngredientsController.delegate = self;
   [self.potView addSubview:self.selectedIngredientsController.view];
   
   for (CLIngredient *ingr in self.fetchedResultsController.fetchedObjects) {
@@ -473,6 +477,21 @@
     CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
     
     [self.navigationController pushViewController:resultRecipesController animated:YES];
+}
+
+#pragma mark - Clear Ingredients Button
+
+- (IBAction)touchedClearIngredientsButton:(id)sender {
+
+  [self.selectedIngredientsController removeAllIngredients];
+}
+
+- (void)selectedIngredientsController:(CLSelectedIngredientsController *)controller didRemoveAllIngredients:(NSMutableArray *)ingredients {
+
+  for (CLIngredient *ingr in ingredients) {
+    ingr.selected = [NSNumber numberWithBool:NO];
+  }
+  [self saveManagedObjectContext];
 }
 
 #pragma mark - Private

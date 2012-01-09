@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">11C74</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.AppKitVersion">1138.23</string>
+		<string key="IBDocument.HIToolboxVersion">567.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">933</string>
@@ -85,7 +85,7 @@
 								<string key="NSFrameSize">{550, 550}</string>
 								<reference key="NSSuperview" ref="249241605"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="154795243"/>
+								<reference key="NSNextKeyView" ref="755849605"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -123,11 +123,11 @@
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="197982477">
 							<string key="name">Noteworthy-Bold</string>
 							<string key="family">Noteworthy</string>
-							<int key="traits">0</int>
+							<int key="traits">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="676761694">
-							<string key="NSName">Helvetica</string>
+						<object class="NSFont" key="IBUIFont" id="565479318">
+							<string key="NSName">Noteworthy-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -155,7 +155,7 @@
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
 						<reference key="IBUIFontDescription" ref="197982477"/>
-						<reference key="IBUIFont" ref="676761694"/>
+						<reference key="IBUIFont" ref="565479318"/>
 					</object>
 					<object class="IBUIButton" id="154795243">
 						<reference key="NSNextResponder" ref="766721923"/>
@@ -171,7 +171,7 @@
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Show recipes</string>
 						<reference key="IBUIHighlightedTitleColor" ref="793391697"/>
-						<object class="NSColor" key="IBUIDisabledTitleColor">
+						<object class="NSColor" key="IBUIDisabledTitleColor" id="770646894">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 						</object>
@@ -180,15 +180,38 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="869101533"/>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="721251939">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="985038233">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
+					</object>
+					<object class="IBUIButton" id="755849605">
+						<reference key="NSNextResponder" ref="766721923"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{740, 653}, {126, 37}}</string>
+						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="154795243"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">Zurücksetzen</string>
+						<reference key="IBUIHighlightedTitleColor" ref="793391697"/>
+						<reference key="IBUIDisabledTitleColor" ref="770646894"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="869101533"/>
+						<reference key="IBUIFontDescription" ref="721251939"/>
+						<reference key="IBUIFont" ref="985038233"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
@@ -293,10 +316,19 @@
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">touchedShowRecipesButton:</string>
 						<reference key="source" ref="154795243"/>
-						<reference key="destination" ref="606714003"/>
+						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">28</int>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">touchedClearIngredientsButton:</string>
+						<reference key="source" ref="755849605"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">34</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -328,6 +360,7 @@
 							<reference ref="826361858"/>
 							<reference ref="249241605"/>
 							<reference ref="154795243"/>
+							<reference ref="755849605"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -370,6 +403,11 @@
 						<reference key="object" ref="154795243"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">31</int>
+						<reference key="object" ref="755849605"/>
+						<reference key="parent" ref="766721923"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -384,6 +422,8 @@
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="3" key="25.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="31.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.CustomClassName">CLSearchBar</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -392,7 +432,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">29</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -423,12 +463,17 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="touchedAlphabetSortButton:">id</string>
+						<string key="touchedClearIngredientsButton:">id</string>
 						<string key="touchedShowRecipesButton:">id</string>
 						<string key="touchedUsageSortButton:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="touchedAlphabetSortButton:">
 							<string key="name">touchedAlphabetSortButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="touchedClearIngredientsButton:">
+							<string key="name">touchedClearIngredientsButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="touchedShowRecipesButton:">

@@ -210,6 +210,7 @@
 		3C6C271714B9C2CE00AB1B4A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		3C6C272414B9C48F00AB1B4A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3C6C272514B9C48F00AB1B4A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		3C79ECC314BB48AC002C9CCB /* CLSelectedIngredientsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSelectedIngredientsDelegate.h; sourceTree = "<group>"; };
 		3C8344D714B4995400F053AA /* CLCookRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCookRecipeController.h; sourceTree = "<group>"; };
 		3C8344D814B4995400F053AA /* CLCookRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCookRecipeController.m; sourceTree = "<group>"; };
 		3C8344D914B4995400F053AA /* CLCookRecipeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLCookRecipeController.xib; sourceTree = "<group>"; };
@@ -467,6 +468,7 @@
 				3C5EC445146ADFFE00E8970A /* CLMainViewController.h */,
 				3C5EC446146ADFFE00E8970A /* CLMainViewController.m */,
 				3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */,
+				3C79ECC314BB48AC002C9CCB /* CLSelectedIngredientsDelegate.h */,
 				3CF56D3A148A5FD500B3BBF1 /* CLSelectedIngredientsController.h */,
 				3CF56D3B148A5FD500B3BBF1 /* CLSelectedIngredientsController.m */,
 				3CF56D3C148A5FD500B3BBF1 /* CLSelectedIngredientsController.xib */,
