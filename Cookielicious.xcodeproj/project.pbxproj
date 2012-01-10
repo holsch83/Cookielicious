@@ -85,6 +85,8 @@
 		5CC0A8D61496173200FAA0AE /* CLTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D51496173200FAA0AE /* CLTodo.m */; };
 		5CC0A8D91496178F00FAA0AE /* CLStepIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */; };
 		5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAB114BC998D001080EB /* CLDragTimersView.m */; };
+		5CE6CAFB14BCC61F001080EB /* CLTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFA14BCC61E001080EB /* CLTimerView.m */; };
+		5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */; };
 		5CEDF62814B6FC16008CE4A4 /* CLSynchronizeIngredients.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */; };
 		5CEDF62C14B701D7008CE4A4 /* CLUpdateRecipeCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */; };
 /* End PBXBuildFile section */
@@ -232,6 +234,10 @@
 		5CE6CAB014BC998D001080EB /* CLDragTimersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLDragTimersView.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.h; sourceTree = "<group>"; };
 		5CE6CAB114BC998D001080EB /* CLDragTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLDragTimersView.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.m; sourceTree = "<group>"; };
 		5CE6CAEE14BCB43E001080EB /* CLStepViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepViewDelegate.h; sourceTree = "<group>"; };
+		5CE6CAF914BCC61E001080EB /* CLTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerView.h; sourceTree = "<group>"; };
+		5CE6CAFA14BCC61E001080EB /* CLTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimerView.m; sourceTree = "<group>"; };
+		5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimersView.h; sourceTree = "<group>"; };
+		5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimersView.m; sourceTree = "<group>"; };
 		5CEDF62614B6FC16008CE4A4 /* CLSynchronizeIngredients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLSynchronizeIngredients.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.h; sourceTree = "<group>"; };
 		5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLSynchronizeIngredients.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.m; sourceTree = "<group>"; };
 		5CEDF62A14B701D7008CE4A4 /* CLUpdateRecipeCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLUpdateRecipeCount.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLUpdateRecipeCount.h; sourceTree = "<group>"; };
@@ -430,6 +436,10 @@
 				5CE6CAEE14BCB43E001080EB /* CLStepViewDelegate.h */,
 				5CE6CAB014BC998D001080EB /* CLDragTimersView.h */,
 				5CE6CAB114BC998D001080EB /* CLDragTimersView.m */,
+				5CE6CAF914BCC61E001080EB /* CLTimerView.h */,
+				5CE6CAFA14BCC61E001080EB /* CLTimerView.m */,
+				5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */,
+				5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */,
 			);
 			name = CookRecipe;
 			sourceTree = "<group>";
@@ -694,6 +704,8 @@
 				3C8344DE14B499DF00F053AA /* CLScrollViewEnhancer.m in Sources */,
 				3CB3E68314B49CD0001725D3 /* CLStepView.m in Sources */,
 				5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */,
+				5CE6CAFB14BCC61F001080EB /* CLTimerView.m in Sources */,
+				5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

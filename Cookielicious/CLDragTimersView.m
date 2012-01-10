@@ -64,13 +64,4 @@
   }
 }
 
-- (void)addSubview:(UIView *)view {
-  [super addSubview:view];
-  
-  if ([view isKindOfClass:NSClassFromString(@"CLTimerView")]) {
-    [view setFrame:CGRectMake(_currOffset, view.frame.origin.y, view.frame.size.width, view.frame.size.height)];
-    _currOffset += view.frame.size.width;
-  }
-}
-
 @end

@@ -11,10 +11,11 @@
 
 @class CLStepView;
 @class CLRecipe;
+@class CLTimersView;
 
 @interface CLCookRecipeController : UIViewController <CLStepViewDelegate> {
 
-  IBOutlet UIView *_timersView;
+  IBOutlet CLTimersView *_timersView;
   IBOutlet UIScrollView *_scrollView;
   IBOutlet CLStepView *_stepView;
   CLRecipe *_recipe;

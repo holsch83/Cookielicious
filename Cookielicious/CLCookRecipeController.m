@@ -10,6 +10,8 @@
 #import "CLStepView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
+#import "CLTimerView.h"
+#import "CLTimersView.h"
 
 @implementation CLCookRecipeController
 
@@ -54,7 +56,7 @@
   
   // Configure a timer view and a timer
   CGRect rect = CGRectMake(0, 2, 60, 40);
-  UIView *timerView = [[UIView alloc] initWithFrame:rect];
+  CLTimerView *timerView = [[CLTimerView alloc] initWithFrame:rect];
   [timerView setBackgroundColor:[UIColor blueColor]];
   
   [_timersView addSubview:timerView];
