@@ -42,7 +42,7 @@
 						<string key="NSFrame">{{212, 134}, {600, 500}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="403856902"/>
+						<reference key="NSNextKeyView" ref="534732266"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="587429571">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -51,10 +51,20 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
+					<object class="IBUIView" id="534732266">
+						<reference key="NSNextResponder" ref="888943880"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{812, 134}, {212, 500}}</string>
+						<reference key="NSSuperview" ref="888943880"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="403856902"/>
+						<reference key="IBUIBackgroundColor" ref="587429571"/>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
 					<object class="IBUIView" id="324319816">
 						<reference key="NSNextResponder" ref="888943880"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 134}, {1024, 500}}</string>
+						<string key="NSFrame">{{0, 134}, {212, 500}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="560991"/>
@@ -176,6 +186,14 @@
 					</object>
 					<int key="connectionID">8</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_scrollView</string>
+						<reference key="source" ref="534732266"/>
+						<reference key="destination" ref="560991"/>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -203,6 +221,7 @@
 							<reference ref="560991"/>
 							<reference ref="324319816"/>
 							<reference ref="403856902"/>
+							<reference ref="534732266"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -244,6 +263,11 @@
 						<reference key="object" ref="908276598"/>
 						<reference key="parent" ref="403856902"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="534732266"/>
+						<reference key="parent" ref="888943880"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -256,6 +280,8 @@
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="18.CustomClassName">CLScrollViewEnhancer</string>
+				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.CustomClassName">CLScrollViewEnhancer</string>
@@ -265,7 +291,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -323,12 +349,17 @@
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_descriptionLabel">UILabel</string>
+						<string key="_setTimerButton">UIButton</string>
 						<string key="_titleLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="_descriptionLabel">
 							<string key="name">_descriptionLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_setTimerButton">
+							<string key="name">_setTimerButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_titleLabel">
 							<string key="name">_titleLabel</string>
