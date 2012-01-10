@@ -15,6 +15,8 @@
 
   _titleLabel.text = [NSString stringWithFormat:@"%@", step.title];
   _descriptionLabel.text = [NSString stringWithFormat:@"%@", step.description];
+
+  // TODO: Show or hide button
   
 }
 

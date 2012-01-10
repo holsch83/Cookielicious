@@ -84,6 +84,7 @@
 		5CC0A8D3149615D700FAA0AE /* CLStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D2149615D700FAA0AE /* CLStep.m */; };
 		5CC0A8D61496173200FAA0AE /* CLTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D51496173200FAA0AE /* CLTodo.m */; };
 		5CC0A8D91496178F00FAA0AE /* CLStepIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */; };
+		5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAB114BC998D001080EB /* CLDragTimersView.m */; };
 		5CEDF62814B6FC16008CE4A4 /* CLSynchronizeIngredients.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */; };
 		5CEDF62C14B701D7008CE4A4 /* CLUpdateRecipeCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */; };
 /* End PBXBuildFile section */
@@ -228,6 +229,8 @@
 		5CC0A8D71496178F00FAA0AE /* CLStepIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepIngredient.h; sourceTree = "<group>"; };
 		5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepIngredient.m; sourceTree = "<group>"; };
 		5CC0A8DA1496192B00FAA0AE /* CLRecipeDetailViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecipeDetailViewDelegate.h; sourceTree = "<group>"; };
+		5CE6CAB014BC998D001080EB /* CLDragTimersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLDragTimersView.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.h; sourceTree = "<group>"; };
+		5CE6CAB114BC998D001080EB /* CLDragTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLDragTimersView.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.m; sourceTree = "<group>"; };
 		5CEDF62614B6FC16008CE4A4 /* CLSynchronizeIngredients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLSynchronizeIngredients.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.h; sourceTree = "<group>"; };
 		5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLSynchronizeIngredients.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.m; sourceTree = "<group>"; };
 		5CEDF62A14B701D7008CE4A4 /* CLUpdateRecipeCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLUpdateRecipeCount.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLUpdateRecipeCount.h; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 				3CB3E68114B49CCF001725D3 /* CLStepView.h */,
 				3CB3E68214B49CCF001725D3 /* CLStepView.m */,
 				3CB3E68514B49CF6001725D3 /* CLStepView.xib */,
+				5CE6CAB014BC998D001080EB /* CLDragTimersView.h */,
+				5CE6CAB114BC998D001080EB /* CLDragTimersView.m */,
 			);
 			name = CookRecipe;
 			sourceTree = "<group>";
@@ -686,6 +691,7 @@
 				3C8344DA14B4995400F053AA /* CLCookRecipeController.m in Sources */,
 				3C8344DE14B499DF00F053AA /* CLScrollViewEnhancer.m in Sources */,
 				3CB3E68314B49CD0001725D3 /* CLStepView.m in Sources */,
+				5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,14 +783,14 @@
 		3C34FF9714615502003D2644 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Orlando Schäfer (NUP3453W4F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Orlando Schäfer (NUP3453W4F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "96619D2A-7153-4681-90DF-7C37564D0F7B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "96619D2A-7153-4681-90DF-7C37564D0F7B";
+				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -792,12 +798,12 @@
 		3C34FF9814615502003D2644 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Orlando Schäfer (NUP3453W4F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "96619D2A-7153-4681-90DF-7C37564D0F7B";
+				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -17,6 +17,8 @@
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) NSString *description;
 @property(nonatomic, strong) UIImage *image;
+@property(nonatomic, strong) NSNumber *timeable;
+@property(nonatomic, strong) NSString *timerName;
 @property(nonatomic, strong) NSArray *ingredients;
 @property(nonatomic, strong) NSArray *todos;
 

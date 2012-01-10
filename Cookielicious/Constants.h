@@ -20,6 +20,8 @@ extern NSString * const CL_API_JSON_PREPARATIONTIMEKEY;
 extern NSString * const CL_API_JSON_DURATIONKEY;
 extern NSString * const CL_API_JSON_DESCRIPTIONKEY;
 extern NSString * const CL_API_JSON_TITLEKEY;
+extern NSString * const CL_API_JSON_TIMEABLEKEY;
+extern NSString * const CL_API_JSON_TIMERNAMEKEY;
 extern NSString * const CL_API_JSON_IMAGEKEY;
 extern NSString * const CL_API_JSON_STEPSKEY;
 extern NSString * const CL_API_JSON_TODOSKEY;

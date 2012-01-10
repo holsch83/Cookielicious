@@ -14,6 +14,7 @@
 
   IBOutlet UILabel *_titleLabel;
   IBOutlet UILabel *_descriptionLabel;
+  IBOutlet UIButton *_setTimerButton;
 }
 
 - (void)configureViewWithStep:(CLStep*)step;
