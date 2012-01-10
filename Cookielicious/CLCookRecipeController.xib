@@ -180,6 +180,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_timersView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="908276598"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_scrollView</string>
 						<reference key="source" ref="324319816"/>
 						<reference key="destination" ref="560991"/>
@@ -275,8 +283,8 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="12.CustomClassName">CLDragTimersView</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="13.CustomClassName">CLDragTimersView</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -291,7 +299,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">19</int>
+			<int key="maxID">20</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -301,6 +309,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_scrollView">UIScrollView</string>
 						<string key="_stepView">CLStepView</string>
+						<string key="_timersView">UIVIew</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="_scrollView">
@@ -310,6 +319,10 @@
 						<object class="IBToOneOutletInfo" key="_stepView">
 							<string key="name">_stepView</string>
 							<string key="candidateClassName">CLStepView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_timersView">
+							<string key="name">_timersView</string>
+							<string key="candidateClassName">UIVIew</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -347,6 +360,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CLStepView</string>
 					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">touchedSetTimerButton:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">touchedSetTimerButton:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">touchedSetTimerButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_descriptionLabel">UILabel</string>
 						<string key="_setTimerButton">UIButton</string>

@@ -7,16 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLStepViewDelegate.h"
 
 @class CLStep;
 
 @interface CLStepView : UIView {
-
+  CLStep *_step;
+  
   IBOutlet UILabel *_titleLabel;
   IBOutlet UILabel *_descriptionLabel;
   IBOutlet UIButton *_setTimerButton;
 }
 
+@property(nonatomic, assign) id<CLStepViewDelegate> delegate;
+
 - (void)configureViewWithStep:(CLStep*)step;
+- (IBAction)touchedSetTimerButton:(id)sender;
 
 @end

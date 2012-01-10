@@ -27,10 +27,40 @@
   self = [super initWithNibName:@"CLCookRecipeController" bundle:nil];
   if (self) {
     _recipe = recipe;
+    _timers = [[NSMutableArray alloc] init];
   }
   return self;
 }
 
+
+#pragma mark - CLStepViewDelegate
+
+- (NSNumber *) setTimer:(NSString *)timerName duration:(NSNumber *)duration {
+  NSLog(@"Set a timer %@ with duration %d", timerName, [duration intValue]);
+  
+  // Post local notification
+  UILocalNotification* notification = [[UILocalNotification alloc] init];
+  if(notification!=nil)
+  {
+    //Assign date for notification – endDate is the user selected endDate
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:[duration intValue] * 60];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.alertBody = timerName;
+    notification.alertAction = @"Thanks!";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+  }
+  
+  // Configure a timer view and a timer
+  CGRect rect = CGRectMake(0, 2, 60, 40);
+  UIView *timerView = [[UIView alloc] initWithFrame:rect];
+  [timerView setBackgroundColor:[UIColor blueColor]];
+  
+  [_timersView addSubview:timerView];
+  
+  return [NSNumber numberWithInt:1];
+}
 
 
 #pragma mark - View lifecycle
@@ -59,6 +89,7 @@
                                  _stepView.frame.size.height);
     _stepView.frame = stepViewFrame;
     [_stepView configureViewWithStep:step];
+    [_stepView setDelegate:self];
 		
     // Add POI view to scroll view
 		[_scrollView addSubview:_stepView];
@@ -71,6 +102,11 @@
     currentIndex++;
 	}
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  NSLog(@"View will disappear");
+  // Remove timers here
 }
 
 - (void)viewDidUnload

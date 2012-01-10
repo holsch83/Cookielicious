@@ -11,8 +11,12 @@
 @interface CLDragTimersView : UIView {
   BOOL isShowing;
   
-  CGPoint touchStartPoint;
-  CGRect touchStartFrame;
+  // The x offset for the timer subviews
+  float _currOffset;
+  
+  CGPoint _touchStartPoint;
+  CGRect _touchStartFrame;
+  CGRect _originFrame;
 }
 
 @end

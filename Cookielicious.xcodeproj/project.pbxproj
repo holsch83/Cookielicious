@@ -231,6 +231,7 @@
 		5CC0A8DA1496192B00FAA0AE /* CLRecipeDetailViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecipeDetailViewDelegate.h; sourceTree = "<group>"; };
 		5CE6CAB014BC998D001080EB /* CLDragTimersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLDragTimersView.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.h; sourceTree = "<group>"; };
 		5CE6CAB114BC998D001080EB /* CLDragTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLDragTimersView.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.m; sourceTree = "<group>"; };
+		5CE6CAEE14BCB43E001080EB /* CLStepViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepViewDelegate.h; sourceTree = "<group>"; };
 		5CEDF62614B6FC16008CE4A4 /* CLSynchronizeIngredients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLSynchronizeIngredients.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.h; sourceTree = "<group>"; };
 		5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLSynchronizeIngredients.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.m; sourceTree = "<group>"; };
 		5CEDF62A14B701D7008CE4A4 /* CLUpdateRecipeCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLUpdateRecipeCount.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLUpdateRecipeCount.h; sourceTree = "<group>"; };
@@ -426,6 +427,7 @@
 				3CB3E68114B49CCF001725D3 /* CLStepView.h */,
 				3CB3E68214B49CCF001725D3 /* CLStepView.m */,
 				3CB3E68514B49CF6001725D3 /* CLStepView.xib */,
+				5CE6CAEE14BCB43E001080EB /* CLStepViewDelegate.h */,
 				5CE6CAB014BC998D001080EB /* CLDragTimersView.h */,
 				5CE6CAB114BC998D001080EB /* CLDragTimersView.m */,
 			);

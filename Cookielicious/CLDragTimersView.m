@@ -14,6 +14,8 @@
   self = [super initWithCoder:aDecoder];
   if(self) {
     isShowing = false;
+    _currOffset = 0;
+    _originFrame = [self frame];
   }
   return self;
 }
@@ -23,43 +25,51 @@
   
   UITouch *touch = [touches anyObject];
   
-  touchStartFrame = [[self superview] frame];
-  touchStartPoint = [touch locationInView:[[self superview] superview]];
+  _touchStartFrame = [self frame];
+  _touchStartPoint = [touch locationInView:[self superview]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch *touch = [touches anyObject];
-  CGPoint currPoint = [touch locationInView:[[self superview] superview]];
-  float dy = touchStartPoint.y - currPoint.y;
+  CGPoint currPoint = [touch locationInView:[self superview]];
+  float dy = _touchStartPoint.y - currPoint.y;
   
   NSLog(@"Touches moved, dy: %f", dy);
   
   if((! isShowing && dy >= 0 && dy <= 44) || (isShowing && dy <= 0 && dy >= -44)) {
-    UIView *superview = [self superview];
-    CGPoint currSuperviewOrigin = CGPointMake(touchStartFrame.origin.x, touchStartFrame.origin.y - dy);
+    CGPoint currOrigin = CGPointMake(_touchStartFrame.origin.x, _touchStartFrame.origin.y - dy);
     
-    [superview setFrame:CGRectMake(currSuperviewOrigin.x, currSuperviewOrigin.y, superview.frame.size.width, superview.frame.size.height)];
+    [self setFrame:CGRectMake(currOrigin.x, currOrigin.y, self.frame.size.width, self.frame.size.height)];
   }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch *touch = [touches anyObject];
-  CGPoint currPoint = [touch locationInView:[[self superview] superview]];
-  float dy = touchStartPoint.y - currPoint.y;
+  CGPoint currPoint = [touch locationInView:[self superview]];
+  float dy = _touchStartPoint.y - currPoint.y;
   
   if(! isShowing && dy > 0) {
     isShowing = true;
     
     [UIView animateWithDuration:.3 animations:^{
-      [[self superview]  setFrame:CGRectMake(touchStartFrame.origin.x, touchStartFrame.origin.y - 44, touchStartFrame.size.width, touchStartFrame.size.height)];
+      [self setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y - 44, _originFrame.size.width, _originFrame.size.height)];
     }];
   }
   else if(isShowing && dy < 0) {
     isShowing = false;
     
     [UIView animateWithDuration:.3 animations:^{
-      [[self superview] setFrame:CGRectMake(touchStartFrame.origin.x, touchStartFrame.origin.y + 44, touchStartFrame.size.width, touchStartFrame.size.height)];
+      [self setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y, _originFrame.size.width, _originFrame.size.height)];
     }];
+  }
+}
+
+- (void)addSubview:(UIView *)view {
+  [super addSubview:view];
+  
+  if ([view isKindOfClass:NSClassFromString(@"CLTimerView")]) {
+    [view setFrame:CGRectMake(_currOffset, view.frame.origin.y, view.frame.size.width, view.frame.size.height)];
+    _currOffset += view.frame.size.width;
   }
 }
 

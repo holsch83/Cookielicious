@@ -7,16 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLStepViewDelegate.h"
 
 @class CLStepView;
 @class CLRecipe;
 
-@interface CLCookRecipeController : UIViewController {
+@interface CLCookRecipeController : UIViewController <CLStepViewDelegate> {
 
+  IBOutlet UIView *_timersView;
   IBOutlet UIScrollView *_scrollView;
   IBOutlet CLStepView *_stepView;
   CLRecipe *_recipe;
   
+  // The timers for the current recipe
+  NSMutableArray *_timers;
 }
 
 - (id)initWithRecipe:(CLRecipe*)recipe;
