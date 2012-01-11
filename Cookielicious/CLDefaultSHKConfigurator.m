@@ -79,10 +79,7 @@
 - (NSString*)facebookLocalAppId {
 	return @"";
 }
-// Read It Later - http://readitlaterlist.com/api/signup/ 
-- (NSString*)readItLaterKey {
-	return @"";
-}
+
 // Twitter - http://dev.twitter.com/apps/new
 /*
  Important Twitter settings to get right:

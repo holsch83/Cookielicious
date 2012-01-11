@@ -14,9 +14,15 @@
 @interface CLStepView : UIView {
   CLStep *_step;
   
-  IBOutlet UILabel *_titleLabel;
-  IBOutlet UILabel *_descriptionLabel;
   IBOutlet UIButton *_setTimerButton;
+
+  IBOutlet UIImageView *_imageView;
+  IBOutlet UILabel *_durationLabel;
+  IBOutlet UILabel *_titleLabel;
+  IBOutlet UITextView *_ingredientsText;
+  IBOutlet UITextView *_descriptionText;
+  IBOutlet UITextView *_todoText;
+  
 }
 
 @property(nonatomic, assign) id<CLStepViewDelegate> delegate;

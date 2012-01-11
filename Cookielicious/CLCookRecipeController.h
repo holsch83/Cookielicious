@@ -16,12 +16,14 @@
 @class CLRecipe;
 @class CLTimersView;
 
-@interface CLCookRecipeController : UIViewController <CLStepViewDelegate, CLTimerViewDelegate, CLTimerPopoverViewControllerDelegate> {
+@interface CLCookRecipeController : UIViewController <UIScrollViewDelegate, CLStepViewDelegate, CLTimerViewDelegate, CLTimerPopoverViewControllerDelegate> {
 
   IBOutlet CLTimersView *_timersView;
   IBOutlet UIScrollView *_scrollView;
   IBOutlet CLStepView *_stepView;
   IBOutlet CLTimerView *_timerView;
+  IBOutlet UIPageControl *_pageControl;
+  
   CLRecipe *_recipe;
   
   CLTimerView *_currSelectedTimerView;

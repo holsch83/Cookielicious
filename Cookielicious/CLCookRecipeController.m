@@ -175,10 +175,17 @@
   [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                 target:self 
                                                 action:@selector(shareRecipe)];
-
+  
+  // Horizontal paging for the steps of the recipe...
   _scrollView.clipsToBounds = NO;
 	_scrollView.pagingEnabled = YES;
 	_scrollView.showsHorizontalScrollIndicator = NO;
+  _scrollView.delegate = self;
+  
+  // Set up page control
+  _pageControl.numberOfPages = [_recipe.steps count];
+  _pageControl.currentPage = 0;
+  
   float contentOffset = 0.0;
   int currentIndex = 0;
   
@@ -210,9 +217,16 @@
 
 }
 
+
 - (void)viewWillDisappear:(BOOL)animated {
   NSLog(@"View will disappear");
   // Remove timers here
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+  // Update the page number
+  CGFloat pageWidth = _scrollView.frame.size.width;
+  _pageControl.currentPage = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 }
 
 - (void)shareRecipe {
