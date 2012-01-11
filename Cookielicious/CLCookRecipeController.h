@@ -23,7 +23,8 @@
   IBOutlet CLStepView *_stepView;
   IBOutlet CLTimerView *_timerView;
   IBOutlet UIPageControl *_pageControl;
-  
+  IBOutlet UILabel *_startLabel;
+
   CLRecipe *_recipe;
   
   CLTimerView *_currSelectedTimerView;

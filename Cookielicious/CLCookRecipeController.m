@@ -14,17 +14,22 @@
 #import "CLTimerView.h"
 #import "CLTimersView.h"
 #import "SHK.h"
-#import "SHKFacebook.h"
+
+@interface CLCookRecipeController (Private)
+
+- (void)setLabelAlphaForContentOffset:(CGFloat)offset;
+
+@end
 
 @implementation CLCookRecipeController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      _recipe = nil;
-    }
-    return self;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    _recipe = nil;
+  }
+  return self;
 }
 
 - (id)initWithRecipe:(CLRecipe*)recipe {
@@ -227,6 +232,22 @@
   // Update the page number
   CGFloat pageWidth = _scrollView.frame.size.width;
   _pageControl.currentPage = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+  
+  // Set start label transparancy
+  [self setLabelAlphaForContentOffset:_scrollView.contentOffset.x];
+}
+
+- (void)setLabelAlphaForContentOffset:(CGFloat)offset {
+
+  if (offset < 0) {
+    _startLabel.alpha = 1.0;
+  }
+  else if (offset > 100) {
+    _startLabel.alpha = 0.0;
+  }
+  else {
+    _startLabel.alpha = 1 - (offset/100);
+  }
 }
 
 - (void)shareRecipe {
