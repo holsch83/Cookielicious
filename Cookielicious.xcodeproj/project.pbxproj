@@ -69,6 +69,8 @@
 		3CFEB31314615FE100DCD93D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFEB31214615FE100DCD93D /* MobileCoreServices.framework */; };
 		3CFEB3151461601A00DCD93D /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */; };
 		3CFEB3181461625B00DCD93D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB3171461625B00DCD93D /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5C0D9F7714BE07B100A5B3CA /* CLTimerPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */; };
+		5C0D9F7814BE07B100A5B3CA /* CLTimerPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */; };
 		5C12AC0714A9EDDB0041DC45 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */; };
 		5C54F26E1495073C0011BD74 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C54F26C149505A50011BD74 /* Constants.m */; };
 		5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */; };
@@ -205,6 +207,10 @@
 		3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		3CFEB3161461625B00DCD93D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3CFEB3171461625B00DCD93D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerViewDelegate.h; sourceTree = "<group>"; };
+		5C0D9F7414BE07B100A5B3CA /* CLTimerPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerPopoverViewController.h; sourceTree = "<group>"; };
+		5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimerPopoverViewController.m; sourceTree = "<group>"; };
+		5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerPopoverViewController.xib; sourceTree = "<group>"; };
 		5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		5C54F26A149505810011BD74 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		5C54F26C149505A50011BD74 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -438,8 +444,12 @@
 				5CE6CAB114BC998D001080EB /* CLDragTimersView.m */,
 				5CE6CAF914BCC61E001080EB /* CLTimerView.h */,
 				5CE6CAFA14BCC61E001080EB /* CLTimerView.m */,
+				5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */,
 				5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */,
 				5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */,
+				5C0D9F7414BE07B100A5B3CA /* CLTimerPopoverViewController.h */,
+				5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */,
+				5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */,
 			);
 			name = CookRecipe;
 			sourceTree = "<group>";
@@ -623,6 +633,7 @@
 				5C12AC0714A9EDDB0041DC45 /* Default-Landscape.png in Resources */,
 				3C8344DB14B4995400F053AA /* CLCookRecipeController.xib in Resources */,
 				3CB3E68614B49CF6001725D3 /* CLStepView.xib in Resources */,
+				5C0D9F7814BE07B100A5B3CA /* CLTimerPopoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +717,7 @@
 				5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */,
 				5CE6CAFB14BCC61F001080EB /* CLTimerView.m in Sources */,
 				5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */,
+				5C0D9F7714BE07B100A5B3CA /* CLTimerPopoverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

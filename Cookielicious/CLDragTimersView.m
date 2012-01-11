@@ -15,7 +15,6 @@
   if(self) {
     isShowing = false;
     _currOffset = 0;
-    _originFrame = [self frame];
   }
   return self;
 }
@@ -25,13 +24,14 @@
   
   UITouch *touch = [touches anyObject];
   
-  _touchStartFrame = [self frame];
-  _touchStartPoint = [touch locationInView:[self superview]];
+  _originFrame = [[self superview] frame];
+  _touchStartFrame = [[self superview] frame];
+  _touchStartPoint = [touch locationInView:[[self superview] superview]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch *touch = [touches anyObject];
-  CGPoint currPoint = [touch locationInView:[self superview]];
+  CGPoint currPoint = [touch locationInView:[[self superview] superview]];
   float dy = _touchStartPoint.y - currPoint.y;
   
   NSLog(@"Touches moved, dy: %f", dy);
@@ -39,27 +39,27 @@
   if((! isShowing && dy >= 0 && dy <= 44) || (isShowing && dy <= 0 && dy >= -44)) {
     CGPoint currOrigin = CGPointMake(_touchStartFrame.origin.x, _touchStartFrame.origin.y - dy);
     
-    [self setFrame:CGRectMake(currOrigin.x, currOrigin.y, self.frame.size.width, self.frame.size.height)];
+    [[self superview] setFrame:CGRectMake(currOrigin.x, currOrigin.y, [self superview].frame.size.width, [self superview].frame.size.height)];
   }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch *touch = [touches anyObject];
-  CGPoint currPoint = [touch locationInView:[self superview]];
+  CGPoint currPoint = [touch locationInView:[[self superview] superview]];
   float dy = _touchStartPoint.y - currPoint.y;
-  
+  NSLog(@"_originFrame, x: %f, y: %f, w: %f, h: %f", _originFrame.origin.x, _originFrame.origin.y, _originFrame.size.width, _originFrame.size.height);
   if(! isShowing && dy > 0) {
     isShowing = true;
     
     [UIView animateWithDuration:.3 animations:^{
-      [self setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y - 44, _originFrame.size.width, _originFrame.size.height)];
+      [[self superview] setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y - 44, _originFrame.size.width, _originFrame.size.height)];
     }];
   }
   else if(isShowing && dy < 0) {
     isShowing = false;
     
     [UIView animateWithDuration:.3 animations:^{
-      [self setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y, _originFrame.size.width, _originFrame.size.height)];
+      [[self superview] setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y + 44, _originFrame.size.width, _originFrame.size.height)];
     }];
   }
 }

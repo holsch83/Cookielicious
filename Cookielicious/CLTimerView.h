@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLTimerViewDelegate.h"
 
 @interface CLTimerView : UIView {
   UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
+@property(nonatomic, assign) id<CLTimerViewDelegate> delegate;
+
 - (void) touchedView;
+- (void) updateTimer:(NSTimer *)theTimer;
 
 @end

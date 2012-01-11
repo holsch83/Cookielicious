@@ -45,7 +45,7 @@
   if(notification!=nil)
   {
     //Assign date for notification – endDate is the user selected endDate
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:[duration intValue] * 60];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:([duration intValue] * 60)];
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.alertBody = timerName;
     notification.alertAction = @"Thanks!";
@@ -58,6 +58,13 @@
   CGRect rect = CGRectMake(0, 2, 60, 40);
   CLTimerView *timerView = [[CLTimerView alloc] initWithFrame:rect];
   [timerView setBackgroundColor:[UIColor blueColor]];
+  
+  NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+  [userInfo setValue:[NSDate date] forKey:@"startDate"];
+  [userInfo setValue:notification forKey:@"notification"];
+  [userInfo setValue:duration forKey:@"duration"];
+  
+  [NSTimer scheduledTimerWithTimeInterval:30 target:timerView selector:@selector(updateTimer:) userInfo:userInfo repeats:YES];
   
   [_timersView addSubview:timerView];
   

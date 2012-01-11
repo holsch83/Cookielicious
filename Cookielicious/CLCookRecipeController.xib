@@ -283,8 +283,8 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="12.CustomClassName">CLDragTimersView</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="13.CustomClassName">CLDragTimersView</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.CustomClassName">CLTimersView</string>
@@ -310,7 +310,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_scrollView">UIScrollView</string>
 						<string key="_stepView">CLStepView</string>
-						<string key="_timersView">UIView</string>
+						<string key="_timersView">CLTimersView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="_scrollView">
@@ -323,7 +323,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="_timersView">
 							<string key="name">_timersView</string>
-							<string key="candidateClassName">UIView</string>
+							<string key="candidateClassName">CLTimersView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

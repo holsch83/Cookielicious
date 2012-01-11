@@ -40,7 +40,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   // Set flag to false, so CLMainViewController will perform an update of the ingredients
-  NSLog(@"Application did become active");
+  application.applicationIconBadgeNumber = 0;
   _didSynchronizeIngredients = NO;
 }
 

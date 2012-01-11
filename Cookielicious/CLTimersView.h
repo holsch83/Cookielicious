@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLTimerViewDelegate.h"
 
-@interface CLTimersView : UIView {
+@interface CLTimersView : UIView<CLTimerViewDelegate> {
   float _currOffset;
+  
+  UIPopoverController *_popoverController;
 }
 
 @end
