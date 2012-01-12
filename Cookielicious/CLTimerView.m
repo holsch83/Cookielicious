@@ -49,11 +49,11 @@
   
   // Stop the timer and remove the view
   if(seconds <= 0) {
+    if([_delegate respondsToSelector:@selector(timerFinished:forView:)]) {
+      [_delegate performSelector:@selector(timerFinished:forView:) withObject:[self timer] withObject:self];
+    }
+    
     [theTimer invalidate];
-
-    CLTimersView *superview = (CLTimersView *)[self superview];
-    [self removeFromSuperview];
-    [superview reorderSubviews];
   }
   
   NSLog(@"Updating timer. Time left until finished: %d minutes", minutes);

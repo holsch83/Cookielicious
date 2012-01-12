@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLTimerView.h"
 #import "CLStepViewDelegate.h"
-#import "CLTimersViewDelegate.h"
+#import "CLTimerViewDelegate.h"
+#import "CLTimerPopoverViewControllerDelegate.h"
 
 @class CLStepView;
 @class CLRecipe;
 @class CLTimersView;
 
-@interface CLCookRecipeController : UIViewController <CLStepViewDelegate, CLTimersViewDelegate> {
+@interface CLCookRecipeController : UIViewController <CLStepViewDelegate, CLTimerViewDelegate, CLTimerPopoverViewControllerDelegate> {
 
   IBOutlet CLTimersView *_timersView;
   IBOutlet UIScrollView *_scrollView;
@@ -22,10 +24,14 @@
   IBOutlet CLTimerView *_timerView;
   CLRecipe *_recipe;
   
+  CLTimerView *_currSelectedTimerView;
+  UIPopoverController *_timerPopoverController;
+  
   // The timers for the current recipe
   NSMutableArray *_timers;
 }
 
 - (id)initWithRecipe:(CLRecipe*)recipe;
+- (void)enableTimerButton:(NSString *)timerName;
 
 @end

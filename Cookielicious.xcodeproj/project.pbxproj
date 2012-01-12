@@ -213,7 +213,6 @@
 		5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimerPopoverViewController.m; sourceTree = "<group>"; };
 		5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerPopoverViewController.xib; sourceTree = "<group>"; };
 		5C0D9F7D14BE0DF000A5B3CA /* CLTimerPopoverViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerPopoverViewControllerDelegate.h; sourceTree = "<group>"; };
-		5C0D9F7E14BE1BB600A5B3CA /* CLTimersViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimersViewDelegate.h; sourceTree = "<group>"; };
 		5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		5C36288A14BF4E3F009AF403 /* CLTimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerView.xib; sourceTree = "<group>"; };
 		5C54F26A149505810011BD74 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -452,7 +451,6 @@
 				5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */,
 				5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */,
 				5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */,
-				5C0D9F7E14BE1BB600A5B3CA /* CLTimersViewDelegate.h */,
 				5C0D9F7414BE07B100A5B3CA /* CLTimerPopoverViewController.h */,
 				5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */,
 				5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */,

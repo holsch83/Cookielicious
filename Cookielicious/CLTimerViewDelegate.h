@@ -11,5 +11,6 @@
 @protocol CLTimerViewDelegate <NSObject>
 
 - (void) touchedTimerView:(UIView *)theView;
+- (void) timerFinished:(NSTimer *)theTimer forView:(UIView *)theView;
 
 @end
