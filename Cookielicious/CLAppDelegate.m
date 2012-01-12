@@ -49,6 +49,19 @@
   [self saveContext];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hinweis"
+                                                  message:[NSString stringWithFormat:@"Der Timer für %@ ist abgelaufen!", [notification alertBody]]
+                                                 delegate:nil
+                                        cancelButtonTitle:@"Danke!"
+                                        otherButtonTitles:nil];
+	[alert show];	
+}
+
+#pragma mark - UIAlertViewDelegate
+
+
+
 - (void)saveContext {
   
   NSError *error = nil;

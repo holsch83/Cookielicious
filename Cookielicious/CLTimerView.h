@@ -14,6 +14,10 @@
 }
 
 @property(nonatomic, assign) id<CLTimerViewDelegate> delegate;
+@property(nonatomic, strong) NSTimer *timer;
+
+@property(nonatomic, strong) IBOutlet UILabel *timerNameLabel;
+@property(nonatomic, strong) IBOutlet UILabel *timeLeftLabel;
 
 - (void) touchedView;
 - (void) updateTimer:(NSTimer *)theTimer;

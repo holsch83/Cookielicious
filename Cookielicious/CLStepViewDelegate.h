@@ -10,6 +10,6 @@
 
 @protocol CLStepViewDelegate <NSObject>
 
-- (NSNumber *) setTimer:(NSString *)timerName duration:(NSNumber *)duration;
+- (void) setTimer:(NSString *)timerName duration:(NSNumber *)duration;
 
 @end

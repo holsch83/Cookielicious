@@ -37,7 +37,7 @@
 
 #pragma mark - CLStepViewDelegate
 
-- (NSNumber *) setTimer:(NSString *)timerName duration:(NSNumber *)duration {
+- (void) setTimer:(NSString *)timerName duration:(NSNumber *)duration {
   NSLog(@"Set a timer %@ with duration %d", timerName, [duration intValue]);
   
   // Post local notification
@@ -55,20 +55,54 @@
   }
   
   // Configure a timer view and a timer
-  CGRect rect = CGRectMake(0, 2, 60, 40);
+  /*CGRect rect = CGRectMake(0, 2, 60, 40);
   CLTimerView *timerView = [[CLTimerView alloc] initWithFrame:rect];
-  [timerView setBackgroundColor:[UIColor blueColor]];
+  [timerView setBackgroundColor:[UIColor blueColor]];*/
+  [[NSBundle mainBundle] loadNibNamed:@"CLTimerView"
+                                owner:self
+                              options:nil];
   
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setValue:[NSDate date] forKey:@"startDate"];
   [userInfo setValue:notification forKey:@"notification"];
   [userInfo setValue:duration forKey:@"duration"];
+  [userInfo setValue:timerName forKey:@"timerName"];
   
-  [NSTimer scheduledTimerWithTimeInterval:30 target:timerView selector:@selector(updateTimer:) userInfo:userInfo repeats:YES];
+  NSTimer *theTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:_timerView selector:@selector(updateTimer:) userInfo:userInfo repeats:YES];
+  [_timerView setTimer:theTimer];
   
-  [_timersView addSubview:timerView];
+  // Fire the timer once, for a initial update of the view
+  [theTimer fire];
   
-  return [NSNumber numberWithInt:1];
+  [_timersView addSubview:_timerView];
+}
+
+#pragma mark - CLTimersViewDelegate
+
+- (void)deleteTimer:(NSTimer *)theTimer forView:(CLTimerView *)view {
+  NSDictionary *userInfo = (NSDictionary *)[theTimer userInfo];
+  
+  // Remove the local notification
+  [[UIApplication sharedApplication] cancelLocalNotification:(UILocalNotification *)[userInfo objectForKey:@"notification"]];
+  
+  // Remove the timer view
+  [UIView animateWithDuration:0.3 animations:^{
+    [view setAlpha:0];
+  } completion:^(BOOL finished) {
+    [view removeFromSuperview];
+    [_timersView reorderSubviews];
+  }];
+  
+  // Stop the timer
+  [theTimer invalidate];
+  
+  // Reenable the timer button
+  NSArray *subviews = [_scrollView subviews];
+  for(UIView *subview in subviews) {
+    if([subview respondsToSelector:@selector(enableTimer:)]) {
+      [subview performSelector:@selector(enableTimer:) withObject:[userInfo objectForKey:@"timerName"]];
+    }
+  }
 }
 
 
@@ -77,8 +111,12 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  // Do any additional setup after loading the view from its nib.
+  // Do any additional setup after loading the view from its nib.  
   self.navigationItem.title = _recipe.title;
+  
+  // Set the delegate for the timers view
+  [_timersView setDelegate:self];
+  
   _scrollView.clipsToBounds = NO;
 	_scrollView.pagingEnabled = YES;
 	_scrollView.showsHorizontalScrollIndicator = NO;

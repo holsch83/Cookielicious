@@ -10,6 +10,18 @@
 
 @implementation CLTimerPopoverViewController
 
+@synthesize delegate = _delegate;
+
+#pragma mark - Actions
+
+- (IBAction)touchedTimerDeleteButton:(id)sender {
+  if([_delegate respondsToSelector:@selector(touchedTimerDeleteButton)]) {
+    [_delegate performSelector:@selector(touchedTimerDeleteButton)];
+  }
+}
+
+#pragma mark - Initialization
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

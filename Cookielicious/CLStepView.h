@@ -22,6 +22,7 @@
 @property(nonatomic, assign) id<CLStepViewDelegate> delegate;
 
 - (void)configureViewWithStep:(CLStep*)step;
+- (void)enableTimer:(NSString *)timerName;
 - (IBAction)touchedSetTimerButton:(id)sender;
 
 @end

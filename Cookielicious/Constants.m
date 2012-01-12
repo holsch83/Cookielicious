@@ -14,8 +14,8 @@ NSString * const CL_API_ASSETSURL = @"http://cl.zurv.de/assets";
 */
 
 // Offline development
-NSString * const CL_API_URL = @"http://169.254.9.169:8888/cookielicious";
-NSString * const CL_API_ASSETSURL = @"http://169.254.9.169:8888/cookielicious/assets";
+NSString * const CL_API_URL = @"http://169.254.144.124:8888/cookielicious";
+NSString * const CL_API_ASSETSURL = @"http://169.254.144.124:8888/cookielicious/assets";
 
 // JSON keys
 NSString * const CL_API_JSON_IDKEY = @"id";

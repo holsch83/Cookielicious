@@ -29,15 +29,19 @@
   }
 }
 
+- (void)enableTimer:(NSString *)timerName {
+  if([_step.timerName isEqualToString:timerName]) {
+    [_setTimerButton setEnabled:YES];
+  }
+}
+
 - (IBAction)touchedSetTimerButton:(id)sender {
   NSLog(@"Touched set timer button");
   if([_delegate respondsToSelector:@selector(setTimer:duration:)]) {
-    NSNumber *result = [_delegate performSelector:@selector(setTimer:duration:) withObject:_step.timerName withObject:[NSNumber numberWithInt:_step.duration]];
+    [_delegate performSelector:@selector(setTimer:duration:) withObject:_step.timerName withObject:[NSNumber numberWithInt:_step.duration]];
     
-    // Disable button, if timer has been added successful
-    if([result boolValue]) {
-      [_setTimerButton setEnabled:NO];
-    }
+    // Disable button after timer has been added
+    [_setTimerButton setEnabled:NO];
   }
 }
 
