@@ -45,8 +45,12 @@
 		3C83AE9314BE0D3C00834CF3 /* icon_action.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C83AE9114BE0D3C00834CF3 /* icon_action.png */; };
 		3C83AE9414BE0D3C00834CF3 /* icon_action@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C83AE9214BE0D3C00834CF3 /* icon_action@2x.png */; };
 		3C83AE9614BE211700834CF3 /* cookielicious_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C83AE9514BE211600834CF3 /* cookielicious_icon.png */; };
+		3C8B5FF114BF681500A32793 /* CLCreditsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8B5FEF14BF681500A32793 /* CLCreditsController.m */; };
+		3C8B5FF214BF681500A32793 /* CLCreditsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C8B5FF014BF681500A32793 /* CLCreditsController.xib */; };
 		3CB3E68314B49CD0001725D3 /* CLStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB3E68214B49CCF001725D3 /* CLStepView.m */; };
 		3CB3E68614B49CF6001725D3 /* CLStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CB3E68514B49CF6001725D3 /* CLStepView.xib */; };
+		3CC228C314BF6D1900760BF8 /* image_knifeAndFork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC228C114BF6D1900760BF8 /* image_knifeAndFork.png */; };
+		3CC228C414BF6D1900760BF8 /* image_knifeAndFork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC228C214BF6D1900760BF8 /* image_knifeAndFork@2x.png */; };
 		3CC4DF961487DA5500DD83BB /* CLIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC4DF951487DA5500DD83BB /* CLIngredient.m */; };
 		3CC9CA1A148D648200F99EF2 /* icon_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9CA19148D648200F99EF2 /* icon_checkmark.png */; };
 		3CC9CA1D148D6A2D00F99EF2 /* cuttingboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9CA1C148D6A2D00F99EF2 /* cuttingboard.png */; };
@@ -222,9 +226,14 @@
 		3C83AE9114BE0D3C00834CF3 /* icon_action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_action.png; sourceTree = "<group>"; };
 		3C83AE9214BE0D3C00834CF3 /* icon_action@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_action@2x.png"; sourceTree = "<group>"; };
 		3C83AE9514BE211600834CF3 /* cookielicious_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cookielicious_icon.png; path = ../cookielicious_icon.png; sourceTree = "<group>"; };
+		3C8B5FEE14BF681500A32793 /* CLCreditsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCreditsController.h; sourceTree = "<group>"; };
+		3C8B5FEF14BF681500A32793 /* CLCreditsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCreditsController.m; sourceTree = "<group>"; };
+		3C8B5FF014BF681500A32793 /* CLCreditsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLCreditsController.xib; sourceTree = "<group>"; };
 		3CB3E68114B49CCF001725D3 /* CLStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepView.h; sourceTree = "<group>"; };
 		3CB3E68214B49CCF001725D3 /* CLStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepView.m; sourceTree = "<group>"; };
 		3CB3E68514B49CF6001725D3 /* CLStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLStepView.xib; sourceTree = "<group>"; };
+		3CC228C114BF6D1900760BF8 /* image_knifeAndFork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_knifeAndFork.png; sourceTree = "<group>"; };
+		3CC228C214BF6D1900760BF8 /* image_knifeAndFork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_knifeAndFork@2x.png"; sourceTree = "<group>"; };
 		3CC4DF941487DA5500DD83BB /* CLIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIngredient.h; sourceTree = "<group>"; };
 		3CC4DF951487DA5500DD83BB /* CLIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIngredient.m; sourceTree = "<group>"; };
 		3CC9CA19148D648200F99EF2 /* icon_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkmark.png; sourceTree = "<group>"; };
@@ -538,6 +547,7 @@
 		3C34FF6F14615502003D2644 /* Cookielicious */ = {
 			isa = PBXGroup;
 			children = (
+				3C8B5FEC14BF67F600A32793 /* Credits */,
 				3C57F57014B8ABD400B9AE9E /* SocialMedia */,
 				3C8344D514B4990100F053AA /* CookRecipe */,
 				5C4642F9148F8FA600DCB11B /* ResultRecipes */,
@@ -558,6 +568,8 @@
 		3C34FF7014615502003D2644 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3CC228C114BF6D1900760BF8 /* image_knifeAndFork.png */,
+				3CC228C214BF6D1900760BF8 /* image_knifeAndFork@2x.png */,
 				3C83AE9514BE211600834CF3 /* cookielicious_icon.png */,
 				3C83AE9114BE0D3C00834CF3 /* icon_action.png */,
 				3C83AE9214BE0D3C00834CF3 /* icon_action@2x.png */,
@@ -677,6 +689,16 @@
 				5C0D9F7D14BE0DF000A5B3CA /* CLTimerPopoverViewControllerDelegate.h */,
 			);
 			name = CookRecipe;
+			sourceTree = "<group>";
+		};
+		3C8B5FEC14BF67F600A32793 /* Credits */ = {
+			isa = PBXGroup;
+			children = (
+				3C8B5FEE14BF681500A32793 /* CLCreditsController.h */,
+				3C8B5FEF14BF681500A32793 /* CLCreditsController.m */,
+				3C8B5FF014BF681500A32793 /* CLCreditsController.xib */,
+			);
+			name = Credits;
 			sourceTree = "<group>";
 		};
 		3CCFB8EB14B8A6E7003E74C0 /* ShareKit */ = {
@@ -1144,6 +1166,9 @@
 				3C83AE9314BE0D3C00834CF3 /* icon_action.png in Resources */,
 				3C83AE9414BE0D3C00834CF3 /* icon_action@2x.png in Resources */,
 				3C83AE9614BE211700834CF3 /* cookielicious_icon.png in Resources */,
+				3C8B5FF214BF681500A32793 /* CLCreditsController.xib in Resources */,
+				3CC228C314BF6D1900760BF8 /* image_knifeAndFork.png in Resources */,
+				3CC228C414BF6D1900760BF8 /* image_knifeAndFork@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1277,6 +1302,7 @@
 				3C6C271C14B9C2CE00AB1B4A /* SBJsonParser.m in Sources */,
 				3C6C271D14B9C2CE00AB1B4A /* SBJsonWriter.m in Sources */,
 				3C6C272614B9C48F00AB1B4A /* Reachability.m in Sources */,
+				3C8B5FF114BF681500A32793 /* CLCreditsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

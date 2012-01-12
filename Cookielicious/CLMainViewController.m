@@ -9,6 +9,7 @@
 #import "CLMainViewController.h"
 #import "CLSelectedIngredientsController.h"
 #import "CLResultRecipesController.h"
+#import "CLCreditsController.h"
 #import "CLAppDelegate.h"
 #import "CLIngredient.h"
 #import "CLIngredientCell.h"
@@ -89,6 +90,14 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+  [infoButton addTarget:self 
+                 action:@selector(showCredits:) 
+       forControlEvents:UIControlEventTouchUpInside];
+
+  self.navigationItem.leftBarButtonItem = 
+  [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+   
   self.searchBar.delegate = self;
   
   CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
@@ -508,6 +517,18 @@
     ingr.selected = [NSNumber numberWithBool:NO];
   }
   [self saveManagedObjectContext];
+}
+
+#pragma mark - Show credits button
+
+- (void)showCredits:(id)sender {
+
+  CLCreditsController *cc = [[CLCreditsController alloc] initWithNibName:@"CLCreditsController" 
+                                                                  bundle:nil];
+  [cc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+  [cc setModalPresentationStyle:UIModalPresentationCurrentContext];
+  [self.navigationController presentModalViewController:cc animated:YES];
+  
 }
 
 #pragma mark - Private
