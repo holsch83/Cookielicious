@@ -8,7 +8,6 @@
 
 #import "CLRecipe.h"
 #import "CLStepIngredient.h"
-#import "SBJson.h"
 
 @implementation CLRecipe
 

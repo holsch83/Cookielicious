@@ -12,6 +12,8 @@
 #import "CLIngredient.h"
 #import "CLRecipe.h"
 #import "CLIngredientCell.h"
+#import "CLCookRecipeController.h"
+#import "JSONKit.h"
 
 @interface CLResultRecipesController (Private)
 
@@ -196,7 +198,7 @@
   NSLog(@"Response body: %@", [request responseString]);
   
   [[self recipes] removeAllObjects];
-  for(NSDictionary *recipeDict in [[request responseString] JSONValue]) {
+  for(NSDictionary *recipeDict in [[request responseString] objectFromJSONString]) {
     CLRecipe *recipe = [[CLRecipe alloc] initWithDictionary:recipeDict];
     [_recipes addObject:recipe];
   }
@@ -245,6 +247,8 @@
   for(NSObject *obj in objects) {
     if([obj isKindOfClass:NSClassFromString(@"CLRecipeDetailView")]) {
       _recipeDetailView = (CLRecipeDetailView *)obj;
+      // Set detail view delegate
+      _recipeDetailView.delegate = self;
     }
   }
   
@@ -266,7 +270,17 @@
 	return YES;
 }
 
+#pragma mark - CLRecipeDetailDelegate
+
+- (void)recipeDetailView:(CLRecipeDetailView*)recipeDetailView didSelectShowRecipeWithRecipe:(CLRecipe*)recipe; {
+
+  CLCookRecipeController *crc = [[CLCookRecipeController alloc] initWithRecipe:recipe];
+  [self.navigationController pushViewController:crc animated:YES];
+  
+}
+
 #pragma mark - CLRecipeDetailViewDelegate
+
 
 - (void) showRecipeDetailView:(CLRecipeView *)viewVal {  
   // Already showing a recipe?

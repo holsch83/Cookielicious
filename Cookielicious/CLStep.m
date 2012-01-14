@@ -16,6 +16,8 @@
 @synthesize title = _title;
 @synthesize description = _description;
 @synthesize image = _image;
+@synthesize timeable = _timeable;
+@synthesize timerName = _timerName;
 @synthesize ingredients = _ingredients;
 @synthesize todos = _todos;
 
@@ -26,6 +28,8 @@
     [self setDuration:[[dictionaryVal objectForKey:CL_API_JSON_DURATIONKEY] intValue]];
     [self setTitle:[dictionaryVal objectForKey:CL_API_JSON_TITLEKEY]];
     [self setDescription:[dictionaryVal objectForKey:CL_API_JSON_DESCRIPTIONKEY]];
+    [self setTimeable:[NSNumber numberWithInt:[[dictionaryVal objectForKey:CL_API_JSON_TIMEABLEKEY] intValue]]];
+    [self setTimerName:[dictionaryVal objectForKey:CL_API_JSON_TIMERNAMEKEY]];
     
     // Load the image
     NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];

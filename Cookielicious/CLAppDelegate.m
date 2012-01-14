@@ -9,6 +9,9 @@
 #import "CLAppDelegate.h"
 #import "CLMainViewController.h"
 #import "CLIngredient.h"
+#import "SHKConfiguration.h"
+#import "SHKFacebook.h"
+#import "CLDefaultSHKConfigurator.h"
 
 @implementation CLAppDelegate
 
@@ -21,6 +24,11 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
+  //Here you load ShareKit submodule with app specific configuration
+  CLDefaultSHKConfigurator *configurator = [[CLDefaultSHKConfigurator alloc] init];
+  [SHKConfiguration sharedInstanceWithConfigurator:configurator];
+  
   self.window.rootViewController = self.navigationController;
   [self.window makeKeyAndVisible];
   return YES;
@@ -40,7 +48,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   // Set flag to false, so CLMainViewController will perform an update of the ingredients
-  NSLog(@"Application did become active");
+  application.applicationIconBadgeNumber = 0;
   _didSynchronizeIngredients = NO;
 }
 
@@ -48,6 +56,19 @@
   // Saves changes in the application's managed object context before the application terminates.
   [self saveContext];
 }
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hinweis"
+                                                  message:[NSString stringWithFormat:@"Der Timer für %@ ist abgelaufen!", [notification alertBody]]
+                                                 delegate:nil
+                                        cancelButtonTitle:@"Danke!"
+                                        otherButtonTitles:nil];
+	[alert show];	
+}
+
+#pragma mark - UIAlertViewDelegate
+
+
 
 - (void)saveContext {
   
@@ -64,6 +85,31 @@
         abort();
     } 
   }
+}
+
+#pragma mark - Facebook SSO
+
+- (void)testOffline {	
+	[SHK flushOfflineQueue];
+}
+
+- (BOOL)handleOpenURL:(NSURL*)url {
+  
+  NSString* scheme = [url scheme];
+  NSString* prefix = [NSString stringWithFormat:@"fb%@", SHKCONFIG(facebookAppId)];
+  if ([scheme hasPrefix:prefix])
+    return [SHKFacebook handleOpenURL:url];
+  return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
+  
+  return [self handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+  
+  return [self handleOpenURL:url];  
 }
 
 #pragma mark - Core Data stack

@@ -8,7 +8,7 @@
 
 #import "CLUpdateRecipeCount.h"
 #import "ASIHTTPRequest.h"
-#import "SBJson.h"
+#import "JSONKit.h"
 
 @implementation CLUpdateRecipeCount
 
@@ -17,7 +17,7 @@
 - (void)requestFinished:(ASIHTTPRequest*) request {
   NSLog(@"Recipe count request finished");
   
-  NSDictionary *response = (NSDictionary *)[[request responseString] JSONValue];
+  NSDictionary *response = (NSDictionary *)[[request responseString] objectFromJSONString];
   for (NSString *key in [response allKeys]) {
     if([key isEqualToString:@"count"]) {
       int count = [[response objectForKey:@"count"] intValue];

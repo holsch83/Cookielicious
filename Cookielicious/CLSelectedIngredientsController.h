@@ -9,6 +9,7 @@
 #define MAX_DRAG_VIEWS 14
 
 #import <UIKit/UIKit.h>
+#import "CLSelectedIngredientsDelegate.h"
 
 @class CLDragView;
 
@@ -18,12 +19,13 @@
   NSMutableArray *_uiViews;
 
 }
-
+@property (nonatomic, assign) id<CLSelectedIngredientsDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UILabel *selectedCountLabel;
 @property (nonatomic, strong) IBOutlet UILabel *maxCountLabel;
 
 - (BOOL)addIngredientWithView:(CLDragView*)view;
 - (void)removeIngredientWithView:(CLDragView*)view;
+- (void)removeAllIngredients;
 - (BOOL)isDragViewLimitReached;
 
 @end

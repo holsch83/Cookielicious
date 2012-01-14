@@ -14,6 +14,7 @@
 @protocol CLDragViewDelegate <NSObject>
 
 - (void)removeDragView:(CLDragView*)dragView withIngredient:(CLIngredient*)ingredient;
-- (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer;
+- (void)dragView:(CLDragView*)dragView detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer;
+- (void)dragView:(CLDragView*)dragView detectedTapWithRecognizer:(UITapGestureRecognizer*)recognizer;
 
 @end

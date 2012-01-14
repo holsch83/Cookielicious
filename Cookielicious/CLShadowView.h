@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLRecipeDetailViewDelegate.h"
 
 @interface CLShadowView : UIView <UIGestureRecognizerDelegate> {
   UIGestureRecognizer *_tapGestureRecognizer;
 }
 
-@property(nonatomic, strong) id <NSObject> delegate;
+@property(nonatomic, assign) id <CLRecipeDetailViewDelegate> delegate;
 
 @end

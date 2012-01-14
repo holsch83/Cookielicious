@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ClRecipeView.h"
+#import "CLRecipe.h"
 
 @protocol CLRecipeDetailViewDelegate <NSObject>
 
-- (void) showRecipeDetailView:(CLRecipeView *)viewVal;
-- (void) hideRecipeDetailView;
+- (void)showRecipeDetailView:(UIView *)viewVal;
+- (void)hideRecipeDetailView;
+- (void)recipeDetailView:(UIView *)recipeDetailView didSelectShowRecipeWithRecipe:(CLRecipe*)recipe;
 
 @end

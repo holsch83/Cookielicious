@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
-#import "SBJson.h"
 #import "CLSearchBar.h"
 #import "CLIngredientCell.h"
 #import "CLDragViewDelegate.h"
@@ -16,11 +15,10 @@
 #import "CLUpdateRecipeCount.h"
 #import "CLSynchronizeIngredients.h"
 
-@class CLSelectedIngredientsController;
 
 @interface CLMainViewController : UIViewController <UITableViewDelegate, 
 UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate,
-CLDragViewDelegate, CLRecipeButtonDelegate, ASIHTTPRequestDelegate> {
+CLDragViewDelegate, CLSelectedIngredientsDelegate, CLRecipeButtonDelegate, ASIHTTPRequestDelegate> {
 
   @private
   CGPoint _startingDragPosition;

@@ -9,6 +9,7 @@
 #import "CLMainViewController.h"
 #import "CLSelectedIngredientsController.h"
 #import "CLResultRecipesController.h"
+#import "CLCreditsController.h"
 #import "CLAppDelegate.h"
 #import "CLIngredient.h"
 #import "CLIngredientCell.h"
@@ -16,6 +17,7 @@
 #import "CLSearchBarShadowView.h"
 #import "CLSynchronizeIngredients.h"
 #import <QuartzCore/QuartzCore.h>
+#import "JSONKit.h"
 
 @interface CLMainViewController (Private)
 
@@ -30,6 +32,9 @@
 // Sort Button Actions
 - (IBAction)touchedAlphabetSortButton:(id)sender;
 - (IBAction)touchedUsageSortButton:(id)sender;
+
+// Clear Ingredients from Pot view Action
+- (IBAction)touchedClearIngredientsButton:(id)sender;
 
 // Show recipes Button Action
 - (IBAction)touchedShowRecipesButton:(id)sender;
@@ -85,15 +90,24 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+  [infoButton addTarget:self 
+                 action:@selector(showCredits:) 
+       forControlEvents:UIControlEventTouchUpInside];
+
+  self.navigationItem.leftBarButtonItem = 
+  [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+   
   self.searchBar.delegate = self;
   
   CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
   [self.view insertSubview:view 
               belowSubview:self.searchBar];
-  
+
   _selectedIngredientsController = 
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
                                                     bundle:nil];
+  self.selectedIngredientsController.delegate = self;
   [self.potView addSubview:self.selectedIngredientsController.view];
   
   for (CLIngredient *ingr in self.fetchedResultsController.fetchedObjects) {
@@ -332,7 +346,19 @@
 
 #pragma mark - CLDragView Delegate
 
-- (void)detectedLongPressWithRecognizer:(UILongPressGestureRecognizer*)recognizer {
+- (void)dragView:(CLDragView *)dragView detectedTapWithRecognizer:(UITapGestureRecognizer *)recognizer {
+  
+  CLDragView *tappedView = (CLDragView*)[recognizer view];
+  
+  if (![self.selectedIngredientsController isDragViewLimitReached]) {
+    [tappedView setVisible:YES];
+    [self.selectedIngredientsController addIngredientWithView:tappedView];
+    tappedView.ingredient.selected = [NSNumber numberWithBool:YES];
+    [self saveManagedObjectContext];
+  }
+}
+
+- (void)dragView:(CLDragView *)dragView detectedLongPressWithRecognizer:(UILongPressGestureRecognizer *)recognizer {
 
   CLDragView *draggableView = (CLDragView*)[recognizer view];
   CGPoint touchPoint = [recognizer locationOfTouch:0 inView:self.view];
@@ -401,17 +427,6 @@
   }
 }
 
-- (void)returnDragViewToStartPoint:(CLDragView*)dragView {
-
-  [dragView stopDraggingAnimation];
-  [dragView setVisible:NO];
-
-  [UIView animateWithDuration:0.4 animations:^{
-    
-    dragView.center = _startingDragPosition;
-  } completion:^(BOOL finished){}];
-}
-
 - (void)removeDragView:(CLDragView*)dragView withIngredient:(CLIngredient*)ingredient {
 
   [_selectedIngredientsController removeIngredientWithView:dragView];
@@ -421,6 +436,16 @@
   [self saveManagedObjectContext];
 }
 
+- (void)returnDragViewToStartPoint:(CLDragView*)dragView {
+  
+  [dragView stopDraggingAnimation];
+  [dragView setVisible:NO];
+  
+  [UIView animateWithDuration:0.4 animations:^{
+    
+    dragView.center = _startingDragPosition;
+  } completion:^(BOOL finished){}];
+}
 #pragma mark - CLSearchBar Delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -437,6 +462,11 @@
   }
   [self reloadFetchRequest];
 
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+  [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - Action Sort Buttons
@@ -472,6 +502,33 @@
     CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
     
     [self.navigationController pushViewController:resultRecipesController animated:YES];
+}
+
+#pragma mark - Clear Ingredients Button
+
+- (IBAction)touchedClearIngredientsButton:(id)sender {
+
+  [self.selectedIngredientsController removeAllIngredients];
+}
+
+- (void)selectedIngredientsController:(CLSelectedIngredientsController *)controller didRemoveAllIngredients:(NSMutableArray *)ingredients {
+
+  for (CLIngredient *ingr in ingredients) {
+    ingr.selected = [NSNumber numberWithBool:NO];
+  }
+  [self saveManagedObjectContext];
+}
+
+#pragma mark - Show credits button
+
+- (void)showCredits:(id)sender {
+
+  CLCreditsController *cc = [[CLCreditsController alloc] initWithNibName:@"CLCreditsController" 
+                                                                  bundle:nil];
+  [cc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+  [cc setModalPresentationStyle:UIModalPresentationCurrentContext];
+  [self.navigationController presentModalViewController:cc animated:YES];
+  
 }
 
 #pragma mark - Private

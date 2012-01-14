@@ -8,10 +8,12 @@
 
 #import "CLRecipeDetailView.h"
 #import "CLStepIngredient.h"
+#import "SHK.h"
 
 @interface CLRecipeDetailView (Private)
 
 - (IBAction)touchedShowRecipeButton:(id)sender;
+- (IBAction)touchedShareButton:(id)sender;
 
 @end
 
@@ -24,6 +26,7 @@
 @synthesize ingredientsTextView = _ingredientsTextView;
 @synthesize descriptionTextView = _descriptionTextView;
 @synthesize showRecipe = _showRecipe;
+@synthesize shareRecipe = _shareRecipe;
 
 #pragma mark - Object initialization
 
@@ -54,7 +57,7 @@
 }
 
 - (IBAction)touchedShowRecipeButton:(id)sender {
-  NSLog(@"Clicked show recipe button.");
+  [_delegate recipeDetailView:self didSelectShowRecipeWithRecipe:_recipe];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -67,9 +70,26 @@
   return NO;
 }
 
+- (IBAction)touchedShareButton:(id)sender {
+    
+    NSLog(@"Sharing Recipe ...");
+    
+    // Create the item to share (in this example, a url)
+    NSString *shareText = [NSString stringWithFormat:@"Tolles Rezept bei Cookielicious: \"%@\"! Mjamm, klingt das nicht lecker!?", _recipe.title];
+    SHKItem *item = [SHKItem text:shareText];
+    
+    // Get the ShareKit action sheet
+    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    // Display the action sheet
+    [actionSheet showFromRect:_shareRecipe.frame inView:self animated:YES];
+
+}
+
 #pragma mark - View configuration
 
 - (void) configureView:(CLRecipe *)recipeVal {
+  _recipe = recipeVal;
   [[self imageView] setImage:[recipeVal image]];
   [[self titleLabel] setText:[recipeVal title]];
   [[self preparationTimeLabel] setText:[NSString stringWithFormat:@"%d Min.",[recipeVal preparationTime]]];
