@@ -10,13 +10,12 @@
 #import "CLTimerView.h"
 #import "CLStepViewDelegate.h"
 #import "CLTimerViewDelegate.h"
-#import "CLTimerPopoverViewControllerDelegate.h"
 
 @class CLStepView;
 @class CLRecipe;
 @class CLTimersView;
 
-@interface CLCookRecipeController : UIViewController <UIScrollViewDelegate, CLStepViewDelegate, CLTimerViewDelegate, CLTimerPopoverViewControllerDelegate> {
+@interface CLCookRecipeController : UIViewController <UIScrollViewDelegate, CLStepViewDelegate, CLTimerViewDelegate, UIActionSheetDelegate> {
 
   IBOutlet CLTimersView *_timersView;
   IBOutlet UIScrollView *_scrollView;
@@ -28,7 +27,7 @@
   CLRecipe *_recipe;
   
   CLTimerView *_currSelectedTimerView;
-  UIPopoverController *_timerPopoverController;
+  UIActionSheet *_timerActionSheet;
   
   // The timers for the current recipe
   NSMutableArray *_timers;

@@ -68,8 +68,6 @@
 		3CFEB31314615FE100DCD93D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFEB31214615FE100DCD93D /* MobileCoreServices.framework */; };
 		3CFEB3151461601A00DCD93D /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */; };
 		3CFEB3181461625B00DCD93D /* ASIReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB3171461625B00DCD93D /* ASIReachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5C0D9F7714BE07B100A5B3CA /* CLTimerPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */; };
-		5C0D9F7814BE07B100A5B3CA /* CLTimerPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */; };
 		5C12AC0714A9EDDB0041DC45 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */; };
 		5C36288B14BF4E3F009AF403 /* CLTimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C36288A14BF4E3F009AF403 /* CLTimerView.xib */; };
 		5C54F26E1495073C0011BD74 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C54F26C149505A50011BD74 /* Constants.m */; };
@@ -311,10 +309,6 @@
 		3CFEB3161461625B00DCD93D /* ASIReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIReachability.h; sourceTree = "<group>"; };
 		3CFEB3171461625B00DCD93D /* ASIReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIReachability.m; sourceTree = "<group>"; };
 		5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerViewDelegate.h; sourceTree = "<group>"; };
-		5C0D9F7414BE07B100A5B3CA /* CLTimerPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerPopoverViewController.h; sourceTree = "<group>"; };
-		5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimerPopoverViewController.m; sourceTree = "<group>"; };
-		5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerPopoverViewController.xib; sourceTree = "<group>"; };
-		5C0D9F7D14BE0DF000A5B3CA /* CLTimerPopoverViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerPopoverViewControllerDelegate.h; sourceTree = "<group>"; };
 		5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		5C36288A14BF4E3F009AF403 /* CLTimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerView.xib; sourceTree = "<group>"; };
 		5C54F26A149505810011BD74 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -755,10 +749,6 @@
 				5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */,
 				5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */,
 				5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */,
-				5C0D9F7414BE07B100A5B3CA /* CLTimerPopoverViewController.h */,
-				5C0D9F7514BE07B100A5B3CA /* CLTimerPopoverViewController.m */,
-				5C0D9F7614BE07B100A5B3CA /* CLTimerPopoverViewController.xib */,
-				5C0D9F7D14BE0DF000A5B3CA /* CLTimerPopoverViewControllerDelegate.h */,
 			);
 			name = CookRecipe;
 			sourceTree = "<group>";
@@ -1446,7 +1436,6 @@
 				5C12AC0714A9EDDB0041DC45 /* Default-Landscape.png in Resources */,
 				3C8344DB14B4995400F053AA /* CLCookRecipeController.xib in Resources */,
 				3CB3E68614B49CF6001725D3 /* CLStepView.xib in Resources */,
-				5C0D9F7814BE07B100A5B3CA /* CLTimerPopoverViewController.xib in Resources */,
 				5C36288B14BF4E3F009AF403 /* CLTimerView.xib in Resources */,
 				3C83AE9314BE0D3C00834CF3 /* icon_action.png in Resources */,
 				3C83AE9414BE0D3C00834CF3 /* icon_action@2x.png in Resources */,
@@ -1547,7 +1536,6 @@
 				5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */,
 				5CE6CAFB14BCC61F001080EB /* CLTimerView.m in Sources */,
 				5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */,
-				5C0D9F7714BE07B100A5B3CA /* CLTimerPopoverViewController.m in Sources */,
 				3C57F57314B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m in Sources */,
 				3C8B5FF114BF681500A32793 /* CLCreditsController.m in Sources */,
 				5CD5CD8A14C0E13F0089DFE9 /* DefaultSHKConfigurator.m in Sources */,

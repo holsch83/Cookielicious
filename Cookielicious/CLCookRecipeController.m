@@ -7,7 +7,6 @@
 //
 
 #import "CLCookRecipeController.h"
-#import "CLTimerPopoverViewController.h"
 #import "CLStepView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
@@ -39,12 +38,8 @@
     _recipe = recipe;
     _timers = [[NSMutableArray alloc] init];
     
-    // Initialize and configure the popover controller
-    CLTimerPopoverViewController *popoverViewController = [[CLTimerPopoverViewController alloc] init];
-    [popoverViewController setDelegate:self];
-    
-    _timerPopoverController = [[UIPopoverController alloc] initWithContentViewController:popoverViewController];
-    [_timerPopoverController setPopoverContentSize:popoverViewController.view.frame.size];
+    // Action sheet
+    _timerActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Timer löschen" otherButtonTitles:nil];
   }
   return self;
 }
@@ -59,11 +54,13 @@
   }
 }
 
-#pragma mark - CLTimerPopoverViewControllerDelegate
+#pragma mark - UIActionSheetDelegate
 
-- (void)touchedTimerDeleteButton {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSLog(@"%d is the current button index", buttonIndex);
+  
   // Break, if no timer view is currently selected
-  if(_currSelectedTimerView == nil) {
+  if(_currSelectedTimerView == nil || buttonIndex < 0) {
     return;
   }
   
@@ -89,8 +86,6 @@
   [theTimer invalidate];
   
   [self enableTimerButton:[userInfo objectForKey:@"timerName"]];
-  
-  [_timerPopoverController dismissPopoverAnimated:YES];
 }
 
 
@@ -144,7 +139,7 @@
   // present popover view controller
   CGRect rect = CGRectMake(theView.frame.origin.x, self.view.frame.size.height - [theView superview].frame.size.height, theView.frame.size.width, theView.frame.size.height);
   
-  [_timerPopoverController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+  [_timerActionSheet showFromRect:rect inView:self.view animated:YES];
 }
 
 - (void) timerFinished:(NSTimer *)theTimer forView:(UIView *)theView {
