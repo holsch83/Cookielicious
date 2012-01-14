@@ -10,7 +10,7 @@
 #import "CLAppDelegate.h"
 #import "CLIngredient.h"
 #import "ASIHTTPRequest.h"
-#import "SBJson.h"
+#import "JSONKit.h"
 
 @implementation CLSynchronizeIngredients
 
@@ -28,7 +28,7 @@
   NSArray *currIngredients = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
   
   // Now handle the received data and add it to core data
-  NSArray *ingredients = [[request responseString] JSONValue];
+  NSArray *ingredients = [[request responseString] objectFromJSONString];
   
   for(NSDictionary *ingrDict in ingredients) {
     NSNumber *identifier = [NSNumber numberWithDouble:[[ingrDict objectForKey:CL_API_JSON_IDKEY] doubleValue]];

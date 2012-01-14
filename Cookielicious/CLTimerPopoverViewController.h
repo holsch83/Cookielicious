@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CLTimerPopoverViewControllerDelegate.h"
 
-@interface CLTimerPopoverViewController : UIViewController
+@interface CLTimerPopoverViewController : UIViewController {
+  IBOutlet UIButton *_deleteTimerButton;
+}
 
 @property(nonatomic, assign) id<CLTimerPopoverViewControllerDelegate> delegate;
 

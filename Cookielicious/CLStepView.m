@@ -46,6 +46,7 @@
 }
 
 - (void)configureViewWithStep:(CLStep *)step {
+  _step = step;
   
   _imageView.image = step.image;
   _durationLabel.text = [NSString stringWithFormat:@"%i Min", step.duration];

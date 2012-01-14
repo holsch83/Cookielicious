@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CLRecipeDetailViewDelegate.h"
 
-@class CLRecipeDetailView;
 @class CLRecipe;
 
 
