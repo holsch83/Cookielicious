@@ -26,8 +26,7 @@
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Timer löschen" style:UIBarButtonItemStyleBordered target:self action:@selector(touchedTimerDeleteButton:)];
-    [self.view addSubview:button];
+
   }
   return self;
 }
