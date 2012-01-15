@@ -20,7 +20,7 @@
   NSString *ingredientString = [recipe ingredientsWithSeparator:@", "];
   [self.titleLabel setText:[recipe title]];
   [self.ingredientsLabel setText:ingredientString];
-  [self.imageView setImage:[recipe image]];
+  [self.imageView setImageWithUrlString:[recipe image]];
   [self setRecipe:recipe];
   
   CGSize maximumSize = CGSizeMake(self.ingredientsLabel.bounds.size.width, self.ingredientsLabel.bounds.size.height);

@@ -13,6 +13,6 @@
   UIView *_activityIndicatorView;
 }
 
-- (void)setImage:(NSString *)imageUrl;
+- (void)setImageWithUrlString:(NSString *)imageUrl;
 
 @end

@@ -10,8 +10,13 @@
 
 @implementation CLAsyncImageView
 
-- (void)setImage:(NSString *)imageUrl {
-  [super setImage:nil];
+- (void)setImageWithUrlString:(NSString *)imageUrl {
+  [self setImage:nil];
+  
+  // Remove any activity indicator
+  for(UIView *subview in [self subviews]) {
+    [subview removeFromSuperview];
+  }
   
   NSURL *url = [[NSURL alloc] initWithString:imageUrl];
   
