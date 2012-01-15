@@ -90,7 +90,7 @@
 
 - (void) configureView:(CLRecipe *)recipeVal {
   _recipe = recipeVal;
-  [[self imageView] setImage:[recipeVal image]];
+  [[self imageView] setImageWithUrlString:[recipeVal image]];
   [[self titleLabel] setText:[recipeVal title]];
   [[self preparationTimeLabel] setText:[NSString stringWithFormat:@"%d Min.",[recipeVal preparationTime]]];
   

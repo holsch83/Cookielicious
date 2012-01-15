@@ -100,7 +100,7 @@
 								<string key="NSFrame">{{10, 48}, {131, 224}}</string>
 								<reference key="NSSuperview" ref="908851975"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="154528931"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="820433333">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -229,7 +229,7 @@
 						<string key="NSFrame">{{20, 267}, {386, 57}}</string>
 						<reference key="NSSuperview" ref="985946061"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="154528931"/>
+						<reference key="NSNextKeyView" ref="221683450"/>
 						<reference key="IBUIBackgroundColor" ref="592769111"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -255,7 +255,7 @@
 						<string key="NSFrame">{{463, 493}, {117, 37}}</string>
 						<reference key="NSSuperview" ref="985946061"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="221683450"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -472,6 +472,7 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="13.CustomClassName">CLAsyncImageView</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -494,6 +495,14 @@
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CLAsyncImageView</string>
+					<string key="superclassName">UIImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CLAsyncImageView.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">CLCookRecipeController</string>
 					<string key="superclassName">UIViewController</string>
