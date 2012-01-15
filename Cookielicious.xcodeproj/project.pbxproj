@@ -1383,12 +1383,12 @@
 		3C34FF9714615502003D2644 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1396,12 +1396,12 @@
 		3C34FF9814615502003D2644 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
