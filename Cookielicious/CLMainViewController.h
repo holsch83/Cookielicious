@@ -12,23 +12,14 @@
 #import "CLIngredientCell.h"
 #import "CLDragViewDelegate.h"
 #import "CLSelectedIngredientsController.h"
-#import "CLUpdateRecipeCount.h"
-#import "CLSynchronizeIngredients.h"
-
 
 @interface CLMainViewController : UIViewController <UITableViewDelegate, 
 UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate,
-CLDragViewDelegate, CLSelectedIngredientsDelegate, CLRecipeButtonDelegate, ASIHTTPRequestDelegate> {
+CLDragViewDelegate, CLSelectedIngredientsDelegate> {
 
   @private
   CGPoint _startingDragPosition;
   bool _didSynchronizeIngredients;
-  
-  // Implements ASIHttpRequestDelegate and handels recipe count requests
-  CLUpdateRecipeCount *updateRecipeCountDelegate;
-  
-  // Implements ASIHttpRequestDelegate and handels synchronize ingredient requests
-  CLSynchronizeIngredients *synchronizeIngredientsDelegate;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

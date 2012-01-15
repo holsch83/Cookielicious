@@ -151,8 +151,6 @@
 		5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAB114BC998D001080EB /* CLDragTimersView.m */; };
 		5CE6CAFB14BCC61F001080EB /* CLTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFA14BCC61E001080EB /* CLTimerView.m */; };
 		5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */; };
-		5CEDF62814B6FC16008CE4A4 /* CLSynchronizeIngredients.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */; };
-		5CEDF62C14B701D7008CE4A4 /* CLUpdateRecipeCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -422,10 +420,6 @@
 		5CE6CAFA14BCC61E001080EB /* CLTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimerView.m; sourceTree = "<group>"; };
 		5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimersView.h; sourceTree = "<group>"; };
 		5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimersView.m; sourceTree = "<group>"; };
-		5CEDF62614B6FC16008CE4A4 /* CLSynchronizeIngredients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLSynchronizeIngredients.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.h; sourceTree = "<group>"; };
-		5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLSynchronizeIngredients.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLSynchronizeIngredients.m; sourceTree = "<group>"; };
-		5CEDF62A14B701D7008CE4A4 /* CLUpdateRecipeCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLUpdateRecipeCount.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLUpdateRecipeCount.h; sourceTree = "<group>"; };
-		5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLUpdateRecipeCount.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLUpdateRecipeCount.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -493,10 +487,6 @@
 				3CF56D32148A41A600B3BBF1 /* CLDragView.xib */,
 				5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */,
 				5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */,
-				5CEDF62614B6FC16008CE4A4 /* CLSynchronizeIngredients.h */,
-				5CEDF62714B6FC16008CE4A4 /* CLSynchronizeIngredients.m */,
-				5CEDF62A14B701D7008CE4A4 /* CLUpdateRecipeCount.h */,
-				5CEDF62B14B701D7008CE4A4 /* CLUpdateRecipeCount.m */,
 			);
 			name = SelectIngredients;
 			sourceTree = "<group>";
@@ -1224,8 +1214,6 @@
 				5CC0A8D61496173200FAA0AE /* CLTodo.m in Sources */,
 				5CC0A8D91496178F00FAA0AE /* CLStepIngredient.m in Sources */,
 				5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */,
-				5CEDF62814B6FC16008CE4A4 /* CLSynchronizeIngredients.m in Sources */,
-				5CEDF62C14B701D7008CE4A4 /* CLUpdateRecipeCount.m in Sources */,
 				3C8344DA14B4995400F053AA /* CLCookRecipeController.m in Sources */,
 				3C8344DE14B499DF00F053AA /* CLScrollViewEnhancer.m in Sources */,
 				3CB3E68314B49CD0001725D3 /* CLStepView.m in Sources */,
@@ -1389,12 +1377,12 @@
 		3C34FF9714615502003D2644 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1402,11 +1390,12 @@
 		3C34FF9814615502003D2644 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maurício Hanika (VWC3D2S568)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BD17E75B-64F5-4964-9B1C-F1DE8DFAB08E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

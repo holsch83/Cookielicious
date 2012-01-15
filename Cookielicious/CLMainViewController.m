@@ -15,7 +15,6 @@
 #import "CLIngredientCell.h"
 #import "CLDragView.h"
 #import "CLSearchBarShadowView.h"
-#import "CLSynchronizeIngredients.h"
 #import <QuartzCore/QuartzCore.h>
 #import "JSONKit.h"
 
@@ -45,7 +44,11 @@
 // Save changes in core data
 - (void)saveManagedObjectContext;
 
+// Synchronize ingredients with remote database
 - (void)synchronizeIngredients:(NSNotification *)aNotification;
+
+// After (de)selecting a ingredient, update the matched recipes
+- (void) updateRecipeCount:(int)count;
 
 @end
 
@@ -288,7 +291,8 @@
     case NSFetchedResultsChangeInsert:
       [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] 
                        withRowAnimation:UITableViewRowAnimationFade];
-      //[tableView reloadData];
+      [tableView reloadData];
+      NSLog(@"Insert");
       break;
       
     case NSFetchedResultsChangeDelete:
@@ -322,13 +326,13 @@
 
 #pragma mark - CLRecipeButtonDelegate
 
-- (void) updateRecipeCount:(NSNumber *)count {
-  if([count intValue] < 1) {
+- (void) updateRecipeCount:(int)count {
+  if(count < 1) {
     [[self showRecipesButton] setTitle:@"Keine Rezepte" forState:UIControlStateDisabled];
     [[self showRecipesButton] setEnabled:NO];
   }
   else {
-    [[self showRecipesButton] setTitle:[NSString stringWithFormat:@"%d Rezept(e)", [count intValue]] forState:UIControlStateNormal];
+    [[self showRecipesButton] setTitle:[NSString stringWithFormat:@"%d Rezept(e)", count] forState:UIControlStateNormal];
     [[self showRecipesButton] setEnabled:YES];
   }
 }
@@ -570,14 +574,22 @@
   
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/recipes/count?%@",CL_API_URL,parameters]];
   ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+  __unsafe_unretained __block ASIHTTPRequest *blockRequest = request;
   
   [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
                                                                 forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
   
-  updateRecipeCountDelegate = [[CLUpdateRecipeCount alloc] init];
-  [updateRecipeCountDelegate setDelegate:self];
+  [request setCompletionBlock:^{
+    NSLog(@"Recipe count request finished");
+    
+    NSDictionary *response = (NSDictionary *)[[blockRequest responseString] objectFromJSONString];
+    [self updateRecipeCount:[[response objectForKey:@"count"] intValue]];
+  }];
   
-  [request setDelegate:updateRecipeCountDelegate];
+  [request setFailedBlock:^{
+    NSLog(@"Request recipe count failed.");
+  }];
+  
   [request startAsynchronous];
 }
 
@@ -588,14 +600,64 @@
   
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/ingredients",CL_API_URL]];
   
+  /*
+   In order to prevent xcode from throwing a retain cycle warning, we need to create
+   a second __unsafe_unretained __block variable to be used within the block.
+  */
   ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+  __unsafe_unretained __block ASIHTTPRequest *blockRequest = request;
   
   [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
                                                                 forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
+
+  [request setCompletionBlock:^{    
+    // Select all existing ingredients
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Ingredient" inManagedObjectContext:[self managedObjectContext]];
+    
+    [fetchRequest setEntity:entityDescription];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"identifier" ascending:YES]]];
+    
+    NSError *error = nil;
+    NSArray *currIngredients = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    
+    // Now handle the received data and add it to core data
+    NSArray *ingredients = [[blockRequest responseString] objectFromJSONString];
+    
+    for(NSDictionary *ingrDict in ingredients) {
+      NSNumber *identifier = [NSNumber numberWithDouble:[[ingrDict objectForKey:CL_API_JSON_IDKEY] doubleValue]];
+      NSString *name = [ingrDict objectForKey:CL_API_JSON_NAMEKEY];
+      
+      bool create = YES;
+      for(CLIngredient *currIngr in currIngredients) {
+        if([identifier isEqualToNumber:[currIngr identifier]]) {
+          create = NO;
+          break;
+        }
+      }
+      
+      if (create) {
+        CLIngredient *ingr = (CLIngredient *)[NSEntityDescription insertNewObjectForEntityForName:@"Ingredient"
+                                                                           inManagedObjectContext:[self managedObjectContext]];
+        ingr.identifier = identifier;
+        ingr.name = name;
+      }
+    }
+    
+    [[self managedObjectContext] save:&error];
+    if (error != nil) {
+      NSLog(@"Error saving data");
+    }
+    
+    [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] setDidSynchronizeIngredients:YES];
+    
+    NSLog(@"Finished updating ingredients");
+  }];
   
-  synchronizeIngredientsDelegate = [[CLSynchronizeIngredients alloc] init];
+  [request setFailedBlock:^{
+    NSLog(@"Request ingredients failed");
+  }];
   
-  [request setDelegate:synchronizeIngredientsDelegate];
   [request startAsynchronous];
 }
 @end
