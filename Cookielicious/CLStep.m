@@ -29,7 +29,9 @@
     [self setTitle:[dictionaryVal objectForKey:CL_API_JSON_TITLEKEY]];
     [self setDescription:[dictionaryVal objectForKey:CL_API_JSON_DESCRIPTIONKEY]];
     [self setTimeable:[NSNumber numberWithInt:[[dictionaryVal objectForKey:CL_API_JSON_TIMEABLEKEY] intValue]]];
-    [self setTimerName:[dictionaryVal objectForKey:CL_API_JSON_TIMERNAMEKEY]];
+    if([[self timeable] boolValue]) {
+      [self setTimerName:[dictionaryVal objectForKey:CL_API_JSON_TIMERNAMEKEY]];
+    }
     
     // Load the image
     NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];

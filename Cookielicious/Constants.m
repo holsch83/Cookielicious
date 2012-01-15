@@ -8,14 +8,13 @@
 
 #include "Constants.h"
 
-/*// Online development
+// Online development
 NSString * const CL_API_URL = @"http://cl.zurv.de";
 NSString * const CL_API_ASSETSURL = @"http://cl.zurv.de/assets";
-*/
 
-// Offline development
+/*// Offline development
 NSString * const CL_API_URL = @"http://127.0.0.1:8888/cookielicious";
-NSString * const CL_API_ASSETSURL = @"http://127.0.0.1:8888/cookielicious/assets";
+NSString * const CL_API_ASSETSURL = @"http://127.0.0.1:8888/cookielicious/assets";*/
 
 // JSON keys
 NSString * const CL_API_JSON_IDKEY = @"id";

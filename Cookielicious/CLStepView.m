@@ -22,7 +22,6 @@
 }
 
 - (IBAction)touchedSetTimerButton:(id)sender {
-  NSLog(@"Touched set timer button");
   if([_delegate respondsToSelector:@selector(setTimer:duration:)]) {
     [_delegate performSelector:@selector(setTimer:duration:) withObject:_step.timerName withObject:[NSNumber numberWithInt:_step.duration]];
     
