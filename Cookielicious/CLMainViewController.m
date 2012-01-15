@@ -59,6 +59,7 @@
 @synthesize potView = _potView;
 @synthesize ingredientCell = _ingredientCell;
 @synthesize showRecipesButton = _showRecipesButton;
+@synthesize removeAllIngredientsButton = _removeAllIngredientsButton;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -559,6 +560,14 @@
 
 - (void) fetchRecipeCount {
   NSArray *ingredients = [self selectedIngredients];
+  
+  // Show the reset button only if ingredients are availble
+  if([ingredients count] < 1) {
+    [[self removeAllIngredientsButton] setHidden:YES];
+  }
+  else {
+    [[self removeAllIngredientsButton] setHidden:NO];
+  }
   
   // Build get parameters
   NSMutableString *parameters = [[NSMutableString alloc] init];

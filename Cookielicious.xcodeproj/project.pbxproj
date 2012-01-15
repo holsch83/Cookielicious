@@ -72,6 +72,12 @@
 		3CFEB3181461625B00DCD93D /* ASIReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB3171461625B00DCD93D /* ASIReachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C12AC0714A9EDDB0041DC45 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */; };
 		5C36288B14BF4E3F009AF403 /* CLTimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C36288A14BF4E3F009AF403 /* CLTimerView.xib */; };
+		5C3AB69B14C346EF00DF5038 /* screen_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AB69914C346EF00DF5038 /* screen_1.png */; };
+		5C3AB69C14C346EF00DF5038 /* screen_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AB69A14C346EF00DF5038 /* screen_2.png */; };
+		5C3AB6A614C3549A00DF5038 /* CLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3AB6A514C3549A00DF5038 /* CLButton.m */; };
+		5C3AB6A814C3588E00DF5038 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AB6A714C3588E00DF5038 /* button.png */; };
+		5C3AB6AA14C3905000DF5038 /* button_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AB6A914C3905000DF5038 /* button_selected.png */; };
+		5C3AB6AC14C3965100DF5038 /* screen_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AB6AB14C3965100DF5038 /* screen_3.png */; };
 		5C54F26E1495073C0011BD74 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C54F26C149505A50011BD74 /* Constants.m */; };
 		5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */; };
 		5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */; };
@@ -264,6 +270,13 @@
 		5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerViewDelegate.h; sourceTree = "<group>"; };
 		5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		5C36288A14BF4E3F009AF403 /* CLTimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerView.xib; sourceTree = "<group>"; };
+		5C3AB69914C346EF00DF5038 /* screen_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_1.png; sourceTree = "<group>"; };
+		5C3AB69A14C346EF00DF5038 /* screen_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_2.png; sourceTree = "<group>"; };
+		5C3AB6A414C3549A00DF5038 /* CLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLButton.h; sourceTree = "<group>"; };
+		5C3AB6A514C3549A00DF5038 /* CLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLButton.m; sourceTree = "<group>"; };
+		5C3AB6A714C3588E00DF5038 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		5C3AB6A914C3905000DF5038 /* button_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_selected.png; sourceTree = "<group>"; };
+		5C3AB6AB14C3965100DF5038 /* screen_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_3.png; sourceTree = "<group>"; };
 		5C54F26A149505810011BD74 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		5C54F26C149505A50011BD74 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLRecipeView.xib; sourceTree = "<group>"; };
@@ -473,6 +486,8 @@
 				3C26B1F6147D387E00BE8BD6 /* CLSearchBar.m */,
 				5C81C87014C31DCB00773925 /* CLAsyncImageView.h */,
 				5C81C87114C31DCB00773925 /* CLAsyncImageView.m */,
+				5C3AB6A414C3549A00DF5038 /* CLButton.h */,
+				5C3AB6A514C3549A00DF5038 /* CLButton.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -565,6 +580,11 @@
 		3C34FF7014615502003D2644 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5C3AB6A714C3588E00DF5038 /* button.png */,
+				5C3AB6A914C3905000DF5038 /* button_selected.png */,
+				5C3AB69914C346EF00DF5038 /* screen_1.png */,
+				5C3AB69A14C346EF00DF5038 /* screen_2.png */,
+				5C3AB6AB14C3965100DF5038 /* screen_3.png */,
 				3CF1288B14C33A9300A9541F /* image_default.png */,
 				3CF1288C14C33A9300A9541F /* image_default@2x.png */,
 				3CC228C114BF6D1900760BF8 /* image_knifeAndFork.png */,
@@ -1164,6 +1184,11 @@
 				5C81C85614C2F3D400773925 /* ShareKit.bundle in Resources */,
 				3CF1288D14C33A9300A9541F /* image_default.png in Resources */,
 				3CF1288E14C33A9300A9541F /* image_default@2x.png in Resources */,
+				5C3AB69B14C346EF00DF5038 /* screen_1.png in Resources */,
+				5C3AB69C14C346EF00DF5038 /* screen_2.png in Resources */,
+				5C3AB6A814C3588E00DF5038 /* button.png in Resources */,
+				5C3AB6AA14C3905000DF5038 /* button_selected.png in Resources */,
+				5C3AB6AC14C3965100DF5038 /* screen_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1296,6 +1321,7 @@
 				5C81C85414C2F3D400773925 /* Reachability.m in Sources */,
 				5C81C85514C2F3D400773925 /* JSONKit.m in Sources */,
 				5C81C87214C31DCB00773925 /* CLAsyncImageView.m in Sources */,
+				5C3AB6A614C3549A00DF5038 /* CLButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1395,6 +1421,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1408,6 +1435,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cookielicious/Cookielicious-Prefix.pch";
 				INFOPLIST_FILE = "Cookielicious/Cookielicious-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

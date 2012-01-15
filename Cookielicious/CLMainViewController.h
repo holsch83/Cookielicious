@@ -27,6 +27,7 @@ CLDragViewDelegate, CLSelectedIngredientsDelegate> {
 @property (strong, nonatomic) IBOutlet UIView *potView;
 @property (strong, nonatomic) IBOutlet CLIngredientCell *ingredientCell;
 @property (strong, nonatomic) IBOutlet UIButton *showRecipesButton;
+@property (strong, nonatomic) IBOutlet UIButton *removeAllIngredientsButton;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
