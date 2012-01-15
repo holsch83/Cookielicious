@@ -32,10 +32,7 @@
     if([[self timeable] boolValue]) {
       [self setTimerName:[dictionaryVal objectForKey:CL_API_JSON_TIMERNAMEKEY]];
     }
-    
-    // Load the image
-    NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];
-    [self setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:currImageUrl]]]; 
+    [self setImage:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];
     
     NSMutableArray *todos = [[NSMutableArray alloc] init];
     for(NSDictionary *todoDict in [dictionaryVal objectForKey:CL_API_JSON_TODOSKEY]) {

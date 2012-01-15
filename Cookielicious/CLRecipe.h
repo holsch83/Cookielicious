@@ -14,7 +14,7 @@
 @property(nonatomic) int identifier;
 @property(nonatomic) int preparationTime;
 @property(nonatomic, strong) NSString *title;
-@property(nonatomic, strong) UIImage *image;
+@property(nonatomic, strong) NSString *image;
 @property(nonatomic, strong) NSArray *steps;
 
 - (id) initWithDictionary:(NSDictionary *)dictionaryVal;

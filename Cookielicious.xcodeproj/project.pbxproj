@@ -137,6 +137,7 @@
 		5C81C85414C2F3D400773925 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C7EA14C2F3D400773925 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C81C85514C2F3D400773925 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C7EC14C2F3D400773925 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C81C85614C2F3D400773925 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C81C6ED14C2F3D400773925 /* ShareKit.bundle */; };
+		5C81C87214C31DCB00773925 /* CLAsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C87114C31DCB00773925 /* CLAsyncImageView.m */; };
 		5CB10C6D148FA15F0025EBA3 /* CLResultRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */; };
 		5CB10C6E148FA15F0025EBA3 /* CLResultRecipesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */; };
 		5CB97FEB149389030028D06A /* CLShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB97FEA149389030028D06A /* CLShadowView.m */; };
@@ -394,6 +395,8 @@
 		5C81C7EA14C2F3D400773925 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5C81C7EB14C2F3D400773925 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		5C81C7EC14C2F3D400773925 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		5C81C87014C31DCB00773925 /* CLAsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAsyncImageView.h; sourceTree = "<group>"; };
+		5C81C87114C31DCB00773925 /* CLAsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAsyncImageView.m; sourceTree = "<group>"; };
 		5CB10C6A148FA15F0025EBA3 /* CLResultRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLResultRecipesController.h; sourceTree = "<group>"; };
 		5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLResultRecipesController.m; sourceTree = "<group>"; };
 		5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLResultRecipesController.xib; sourceTree = "<group>"; };
@@ -464,6 +467,8 @@
 				3C26B1F3147D374000BE8BD6 /* CLNavigationBar.m */,
 				3C26B1F5147D387E00BE8BD6 /* CLSearchBar.h */,
 				3C26B1F6147D387E00BE8BD6 /* CLSearchBar.m */,
+				5C81C87014C31DCB00773925 /* CLAsyncImageView.h */,
+				5C81C87114C31DCB00773925 /* CLAsyncImageView.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -1282,6 +1287,7 @@
 				5C81C85314C2F3D400773925 /* SHKViewControllerWrapper.m in Sources */,
 				5C81C85414C2F3D400773925 /* Reachability.m in Sources */,
 				5C81C85514C2F3D400773925 /* JSONKit.m in Sources */,
+				5C81C87214C31DCB00773925 /* CLAsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

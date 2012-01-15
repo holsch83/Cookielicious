@@ -23,10 +23,7 @@
     [self setIdentifier:[[dictionaryVal objectForKey:CL_API_JSON_IDKEY] intValue]];
     [self setPreparationTime:[[dictionaryVal objectForKey:CL_API_JSON_PREPARATIONTIMEKEY] intValue]];
     [self setTitle:[dictionaryVal objectForKey:CL_API_JSON_TITLEKEY]];
-    
-    // Load the image
-    NSURL *currImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];
-    [self setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:currImageUrl]]];
+    [self setImage:[NSString stringWithFormat:@"%@/%@",CL_API_ASSETSURL,[dictionaryVal objectForKey:CL_API_JSON_IMAGEKEY]]];
 
     // Set up steps
     NSMutableArray *steps = [[NSMutableArray alloc] init];

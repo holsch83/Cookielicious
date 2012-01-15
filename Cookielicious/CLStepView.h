@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CLAsyncImageView.h"
 #import "CLStepViewDelegate.h"
 
 @class CLStep;
@@ -16,7 +17,7 @@
   
   IBOutlet UIButton *_setTimerButton;
 
-  IBOutlet UIImageView *_imageView;
+  IBOutlet CLAsyncImageView *_imageView;
   IBOutlet UILabel *_durationLabel;
   IBOutlet UILabel *_titleLabel;
   IBOutlet UITextView *_ingredientsText;
