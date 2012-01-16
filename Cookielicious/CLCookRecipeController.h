@@ -14,6 +14,7 @@
 @class CLStepView;
 @class CLRecipe;
 @class CLTimersView;
+@class SHKActionSheet;
 
 @interface CLCookRecipeController : UIViewController <UIScrollViewDelegate, CLStepViewDelegate, CLTimerViewDelegate, UIActionSheetDelegate> {
 
@@ -28,6 +29,7 @@
   
   CLTimerView *_currSelectedTimerView;
   UIActionSheet *_timerActionSheet;
+  SHKActionSheet *_sharingActionSheet;
   
   // The timers for the current recipe
   NSMutableArray *_timers;

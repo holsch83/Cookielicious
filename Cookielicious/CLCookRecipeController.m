@@ -248,16 +248,22 @@
 - (void)shareRecipe {
 
   NSLog(@"Sharing Recipe ...");
+  if (_sharingActionSheet) {
+    [_sharingActionSheet dismissWithClickedButtonIndex:-1 
+                                              animated:YES];
+    _sharingActionSheet = nil;
+    return;
+  }
   
   // Create the item to share (in this example, a url)
   NSString *shareText = [NSString stringWithFormat:@"Koche gerade mit Cookielicious \"%@\"! Mjamm!", _recipe.title];
   SHKItem *item = [SHKItem text:shareText];
     
   // Get the ShareKit action sheet
-  SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+  _sharingActionSheet = [SHKActionSheet actionSheetForItem:item];
   
   // Display the action sheet
-  [actionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem 
+  [_sharingActionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem 
                             animated:YES];
 }
 
