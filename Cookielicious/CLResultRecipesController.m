@@ -255,6 +255,14 @@
 {
   [super viewDidLoad];
   
+  // Show back button for next view controller in navigation controller stack
+  UIBarButtonItem *backButton = 
+  [[UIBarButtonItem alloc] initWithTitle:@"Zurück" 
+                                   style:UIBarButtonItemStylePlain 
+                                  target:nil 
+                                  action:nil];
+  self.navigationItem.backBarButtonItem = backButton;
+  
   _currSelectedIngredients = [[NSMutableArray alloc] init];
   
   // Set the delegate for the shadow view

@@ -101,6 +101,14 @@
 
   self.navigationItem.leftBarButtonItem = 
   [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+
+  // Show back button for next view controller in navigation controller stack
+  UIBarButtonItem *backButton = 
+  [[UIBarButtonItem alloc] initWithTitle:@"Zurück" 
+                                   style:UIBarButtonItemStylePlain 
+                                  target:nil 
+                                  action:nil];
+  self.navigationItem.backBarButtonItem = backButton;
    
   self.searchBar.delegate = self;
   
