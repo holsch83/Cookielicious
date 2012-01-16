@@ -157,7 +157,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-	return (UIInterfaceOrientationIsLandscape(interfaceOrientation)) ? YES : NO;
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 #pragma mark - UITableViewDataSource
@@ -615,7 +615,7 @@
   */
   ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
   __unsafe_unretained __block ASIHTTPRequest *blockRequest = request;
-  
+
   [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
                                                                 forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
 
