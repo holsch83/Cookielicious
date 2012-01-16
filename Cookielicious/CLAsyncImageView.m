@@ -46,7 +46,6 @@
 //}
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-  NSLog(@"Request finished");
   
   UIImage *theImage = [[UIImage alloc] initWithData:[request responseData]];
   [self setContentMode:UIViewContentModeScaleAspectFill];

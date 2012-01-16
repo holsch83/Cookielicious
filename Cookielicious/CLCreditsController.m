@@ -37,7 +37,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
-	return (UIInterfaceOrientationIsLandscape(interfaceOrientation)) ? YES : NO;
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 #pragma mark Touch event

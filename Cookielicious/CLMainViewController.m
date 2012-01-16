@@ -59,6 +59,7 @@
 @synthesize potView = _potView;
 @synthesize ingredientCell = _ingredientCell;
 @synthesize showRecipesButton = _showRecipesButton;
+@synthesize removeAllIngredientsButton = _removeAllIngredientsButton;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -156,7 +157,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-	return (UIInterfaceOrientationIsLandscape(interfaceOrientation)) ? YES : NO;
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 #pragma mark - UITableViewDataSource
@@ -560,6 +561,14 @@
 - (void) fetchRecipeCount {
   NSArray *ingredients = [self selectedIngredients];
   
+  // Show the reset button only if ingredients are availble
+  if([ingredients count] < 1) {
+    [[self removeAllIngredientsButton] setHidden:YES];
+  }
+  else {
+    [[self removeAllIngredientsButton] setHidden:NO];
+  }
+  
   // Build get parameters
   NSMutableString *parameters = [[NSMutableString alloc] init];
   for(int i = 0, j = [ingredients count]; i < j; i++) {
@@ -606,7 +615,7 @@
   */
   ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
   __unsafe_unretained __block ASIHTTPRequest *blockRequest = request;
-  
+
   [request setRequestHeaders:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObject:@"XMLHttpRequest"]
                                                                 forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
 

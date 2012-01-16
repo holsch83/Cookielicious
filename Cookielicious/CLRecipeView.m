@@ -59,7 +59,7 @@
   rect.size = CGSizeMake(rect.size.width - 2*padding, rect.size.height - 2*padding);
   
   // Set shadow
-  CGContextSetShadow(currentContext, CGSizeMake(0, 0), 5);
+  CGContextSetShadow(currentContext, CGSizeMake(0, 0), 8);
   
   // draw the rect
   CGContextSetRGBFillColor(currentContext, 255, 255, 255, 1);

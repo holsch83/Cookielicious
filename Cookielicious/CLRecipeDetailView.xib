@@ -195,7 +195,7 @@
 					<object class="IBUIButton" id="1016957650">
 						<reference key="NSNextResponder" ref="576393240"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{444, 493}, {136, 37}}</string>
+						<string key="NSFrame">{{444, 487}, {136, 43}}</string>
 						<reference key="NSSuperview" ref="576393240"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -204,15 +204,15 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
+						<string key="IBUITitleShadowOffset">{0, -1}</string>
 						<string key="IBUINormalTitle">Rezept kochen!</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="89230649">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUIDisabledTitleColor" ref="89230649"/>
+						<reference key="IBUISelectedTitleColor" ref="89230649"/>
+						<reference key="IBUINormalTitleColor" ref="89230649"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="916306622">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
@@ -421,7 +421,9 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="16.CustomClassName">CLButton</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="16.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="20.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="3.CustomClassName">CLRecipeDetailView</string>
@@ -451,6 +453,14 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">CLButton</string>
+					<string key="superclassName">UIButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CLButton.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">CLRecipeDetailView</string>
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
@@ -469,7 +479,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="descriptionTextView">UITextView</string>
-						<string key="imageView">UIImageView</string>
+						<string key="imageView">CLAsyncImageView</string>
 						<string key="ingredientsTextView">UITextView</string>
 						<string key="preparationTimeLabel">UILabel</string>
 						<string key="shareRecipe">UIButton</string>
@@ -483,7 +493,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="imageView">
 							<string key="name">imageView</string>
-							<string key="candidateClassName">UIImageView</string>
+							<string key="candidateClassName">CLAsyncImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="ingredientsTextView">
 							<string key="name">ingredientsTextView</string>
