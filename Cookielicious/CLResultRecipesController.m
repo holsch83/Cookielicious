@@ -19,6 +19,7 @@
 
 - (NSArray *) selectedIngredients;
 - (void) requestRecipes;
+- (void) displayFilteredRecipes;
 - (void) displayRecipes:(NSArray *)recipes;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -121,6 +122,17 @@
   NSLog(@"%@", parameters);
 }
 
+- (void) displayFilteredRecipes {
+  NSMutableArray *filteredRecipes = [[NSMutableArray alloc] init];
+  for(CLRecipe *currRecipe in _recipes) {
+    if ([currRecipe containsIngredients:_currSelectedIngredients]) {
+      [filteredRecipes addObject:currRecipe];
+    }
+  }
+  
+  [self displayRecipes:filteredRecipes];
+}
+
 - (void) displayRecipes:(NSArray *)recipes {
   // Clear grid
   for (UIView *currSubview in [_recipeGridView subviews]) {
@@ -128,6 +140,18 @@
       [currSubview removeFromSuperview];
     }
   }
+  
+  /*if([recipes count] < 1) {
+    // No recipes to show
+    UILabel *noRecipesLabel = [[UILabel alloc] init];
+    [noRecipesLabel setText:@"Keine Rezepte"];
+    
+    noRecipesLabel setFrame:CGRectMake(_recipeGridView.frame.size.width/2, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    
+    [_recipeGridView addSubview:noRecipesLabel];
+    
+    return;
+  }*/
   
   // We want the recipe detail view to be in the center of the result view
   _recipeDetailView.center = CGPointMake(_recipeGridView.bounds.size.width/2, _recipeGridView.bounds.size.height/2);
@@ -230,6 +254,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
+  _currSelectedIngredients = [[NSMutableArray alloc] init];
   
   // Set the delegate for the shadow view
   _shadowView.delegate = self;
@@ -378,17 +404,16 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  [_currSelectedIngredients addObject:currIngredient];
   
-  NSMutableArray *filteredRecipes = [[NSMutableArray alloc] init];
-  for(CLRecipe *currRecipe in _recipes) {
-    NSLog(@"Loop ...s");
-    if ([currRecipe containsIngredient:currIngredient]) {
-      NSLog(@"Match :)");
-      [filteredRecipes addObject:currRecipe];
-    }
-  }
+  [self displayFilteredRecipes];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+  CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  [_currSelectedIngredients removeObject:currIngredient];
   
-  [self displayRecipes:filteredRecipes];
+  [self displayFilteredRecipes];
 }
 
 #pragma mark - UITableViewDataSource

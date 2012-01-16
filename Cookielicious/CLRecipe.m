@@ -47,6 +47,24 @@
   return NO;
 }
 
+- (bool) containsIngredients:(NSArray *)ingredientsVal {
+  for(CLIngredient *currIngredient in ingredientsVal) {
+    bool contains = NO;
+    for(CLStepIngredient *currStepIngredient in [self ingredients]) {
+      if([currStepIngredient.name isEqualToString:currIngredient.name]) {
+        contains = YES;
+        break;
+      }
+    }
+    
+    if(! contains) {
+      return NO;
+    }
+  }
+  
+  return YES;
+}
+
 - (NSArray *) ingredients {
   NSMutableArray *ingredients = [[NSMutableArray alloc] init];
   for(CLStep *step in [self steps]) {
