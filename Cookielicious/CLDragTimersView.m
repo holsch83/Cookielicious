@@ -8,6 +8,15 @@
 
 #import "CLDragTimersView.h"
 
+#define CL_DRAG_TIMERS_VIEW_RECT_HIDDEN CGRectMake(0, 660, 1024, 94)
+#define CL_DRAG_TIMERS_VIEW_RECT CGRectMake(0, 616, 1024, 94)
+
+@interface CLDragTimersView (Private)
+
+- (void) slideView;
+
+@end
+
 @implementation CLDragTimersView
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
@@ -15,13 +24,36 @@
   if(self) {
     isShowing = false;
     _currOffset = 0;
+    
+    // Tap gesture recognizer
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(slideView)];
+    [self addGestureRecognizer:_tapGestureRecognizer];
   }
   return self;
 }
 
+#pragma mark - Private
+
+- (void)slideView {
+  if(! isShowing) {
+    isShowing = true;
+    
+    [UIView animateWithDuration:.3 animations:^{
+      [[self superview] setFrame:CL_DRAG_TIMERS_VIEW_RECT];
+    }];
+  }
+  else {
+    isShowing = false;
+    
+    [UIView animateWithDuration:.3 animations:^{
+      [[self superview] setFrame:CL_DRAG_TIMERS_VIEW_RECT_HIDDEN];
+    }];
+  }
+}
+
+#pragma mark - Touch handling
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  NSLog(@"Touches began");
-  
   UITouch *touch = [touches anyObject];
   
   _originFrame = [[self superview] frame];
@@ -34,8 +66,6 @@
   CGPoint currPoint = [touch locationInView:[[self superview] superview]];
   float dy = _touchStartPoint.y - currPoint.y;
   
-  NSLog(@"Touches moved, dy: %f", dy);
-  
   if((! isShowing && dy >= 0 && dy <= 44) || (isShowing && dy <= 0 && dy >= -44)) {
     CGPoint currOrigin = CGPointMake(_touchStartFrame.origin.x, _touchStartFrame.origin.y - dy);
     
@@ -46,20 +76,21 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch *touch = [touches anyObject];
   CGPoint currPoint = [touch locationInView:[[self superview] superview]];
+
   float dy = _touchStartPoint.y - currPoint.y;
-  NSLog(@"_originFrame, x: %f, y: %f, w: %f, h: %f", _originFrame.origin.x, _originFrame.origin.y, _originFrame.size.width, _originFrame.size.height);
-  if(! isShowing && dy > 0) {
+
+  if(dy > 0) {
     isShowing = true;
     
     [UIView animateWithDuration:.3 animations:^{
-      [[self superview] setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y - 44, _originFrame.size.width, _originFrame.size.height)];
+      [[self superview] setFrame:CL_DRAG_TIMERS_VIEW_RECT];
     }];
   }
-  else if(isShowing && dy < 0) {
+  else if(dy < 0) {
     isShowing = false;
     
     [UIView animateWithDuration:.3 animations:^{
-      [[self superview] setFrame:CGRectMake(_originFrame.origin.x, _originFrame.origin.y + 44, _originFrame.size.width, _originFrame.size.height)];
+      [[self superview] setFrame:CL_DRAG_TIMERS_VIEW_RECT_HIDDEN];
     }];
   }
 }

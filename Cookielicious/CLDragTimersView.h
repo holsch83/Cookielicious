@@ -14,6 +14,8 @@
   // The x offset for the timer subviews
   float _currOffset;
   
+  UITapGestureRecognizer *_tapGestureRecognizer;
+  
   CGPoint _touchStartPoint;
   CGRect _touchStartFrame;
   CGRect _originFrame;
