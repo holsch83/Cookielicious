@@ -15,8 +15,9 @@
 #import "CLIngredientCell.h"
 #import "CLDragView.h"
 #import "CLSearchBarShadowView.h"
-#import <QuartzCore/QuartzCore.h>
+#import "NSOperationQueue+SharedQueue.h"
 #import "JSONKit.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CLMainViewController (Private)
 
@@ -607,7 +608,8 @@
     NSLog(@"Request recipe count failed.");
   }];
   
-  [request startAsynchronous];
+  [[NSOperationQueue sharedOperationQueue] cancelAllOperations];
+  [[NSOperationQueue sharedOperationQueue] addOperation:request];
 }
 
 - (void)synchronizeIngredients:(NSNotification *)aNotification {

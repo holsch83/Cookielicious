@@ -13,6 +13,7 @@
 #import "CLRecipe.h"
 #import "CLIngredientCell.h"
 #import "CLCookRecipeController.h"
+#import "NSOperationQueue+SharedQueue.h"
 #import "JSONKit.h"
 
 @interface CLResultRecipesController (Private)
@@ -23,6 +24,7 @@
 - (void) displayRecipes:(NSArray *)recipes;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)setCellState:(UITableViewCell *)cell isSelected:(BOOL)state;
 // Maybe put animations in separate member
 @end
 
@@ -74,6 +76,18 @@
 }
 
 #pragma mark - Private members
+
+- (void)setCellState:(UITableViewCell *)cell isSelected:(BOOL)state {
+  // Set background view for selected cell
+  if(state) {
+    UIView *view = [[UIView alloc] initWithFrame:cell.selectedBackgroundView.frame];
+    [view setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.1]];
+    [cell setBackgroundView:view]; 
+  }
+  else {
+    [cell setBackgroundView:nil];
+  }
+}
 
 - (NSArray *) selectedIngredients {
   NSEntityDescription *entityDescription = [NSEntityDescription
@@ -134,6 +148,9 @@
 }
 
 - (void) displayRecipes:(NSArray *)recipes {
+  // Clear all network operations
+  [[NSOperationQueue sharedOperationQueue] cancelAllOperations];
+  
   // Clear grid
   for (UIView *currSubview in [_recipeGridView subviews]) {
     if(currSubview != _shadowView && currSubview != _flipView) {
@@ -167,8 +184,6 @@
   
   for (int i = 0, j = [recipes count]; i < j; i++) {
     CLRecipe *recipe = (CLRecipe *)[recipes objectAtIndex:i];
-    
-    NSLog(@"%@", recipe.title);
     
     NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLRecipeView" 
                                                      owner:self 
@@ -412,18 +427,35 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  [_currSelectedIngredients addObject:currIngredient];
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  
+  if([_currSelectedIngredients containsObject:currIngredient]) {
+    NSLog(@"Deselect");
+    
+    [self setCellState:cell isSelected:NO];
+    [_currSelectedIngredients removeObject:currIngredient];
+  }
+  else {
+    NSLog(@"Select");
+    
+    [self setCellState:cell isSelected:YES];
+    [_currSelectedIngredients addObject:currIngredient];
+  }
+  
+  NSLog(@"Did select row %d", indexPath.row);
   
   [self displayFilteredRecipes];
 }
-
+/*
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
   CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
   [_currSelectedIngredients removeObject:currIngredient];
   
+  NSLog(@"Did deselect row %d", indexPath.row);
+  
   [self displayFilteredRecipes];
 }
-
+*/
 #pragma mark - UITableViewDataSource
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -435,11 +467,8 @@
   [cell.textLabel setText:managedObject.name];
   [cell.textLabel setFont:font];
   [cell.textLabel setTextColor:[UIColor whiteColor]];
-
-  // Set background view for selected cell
-  UIView *view = [[UIView alloc] initWithFrame:cell.selectedBackgroundView.frame];
-  [view setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.1]];
-  [cell setSelectedBackgroundView:view];
+  
+  [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

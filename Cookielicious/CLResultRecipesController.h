@@ -17,6 +17,7 @@
 @interface CLResultRecipesController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate, ASIHTTPRequestDelegate> {
   NSMutableArray *_currSelectedIngredients;
   CLRecipeView *_currRecipeView;
+  UIView *_selectedCellBackgroundView;
   CGPoint _currRecipeCenterPoint;
 }
 

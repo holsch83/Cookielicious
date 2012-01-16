@@ -81,6 +81,7 @@
 		5C54F26E1495073C0011BD74 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C54F26C149505A50011BD74 /* Constants.m */; };
 		5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */; };
 		5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */; };
+		5C58CE3E14C466D3005FB039 /* NSOperationQueue+SharedQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */; };
 		5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */; };
 		5C81C7ED14C2F3D400773925 /* SHKCustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6EF14C2F3D400773925 /* SHKCustomActionSheet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C81C7EE14C2F3D400773925 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6F314C2F3D400773925 /* SHKCustomFormController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -146,6 +147,7 @@
 		5C81C85514C2F3D400773925 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C7EC14C2F3D400773925 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C81C85614C2F3D400773925 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C81C6ED14C2F3D400773925 /* ShareKit.bundle */; };
 		5C81C87214C31DCB00773925 /* CLAsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C87114C31DCB00773925 /* CLAsyncImageView.m */; };
+		5C97D54F14C436B200EC5FB7 /* timers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C97D54E14C436B200EC5FB7 /* timers_bg.png */; };
 		5CB10C6D148FA15F0025EBA3 /* CLResultRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */; };
 		5CB10C6E148FA15F0025EBA3 /* CLResultRecipesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */; };
 		5CB97FEB149389030028D06A /* CLShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB97FEA149389030028D06A /* CLShadowView.m */; };
@@ -282,6 +284,8 @@
 		5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLRecipeView.xib; sourceTree = "<group>"; };
 		5C55D7C5148FBE30005DC9CC /* CLRecipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecipeView.h; sourceTree = "<group>"; };
 		5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRecipeView.m; sourceTree = "<group>"; };
+		5C58CE3C14C466D3005FB039 /* NSOperationQueue+SharedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+SharedQueue.h"; sourceTree = "<group>"; };
+		5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+SharedQueue.m"; sourceTree = "<group>"; };
 		5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSearchBarShadowView.h; sourceTree = "<group>"; };
 		5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSearchBarShadowView.m; sourceTree = "<group>"; };
 		5C81C6E614C2F3D400773925 /* SHKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKConfig.h; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 		5C81C7EC14C2F3D400773925 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		5C81C87014C31DCB00773925 /* CLAsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAsyncImageView.h; sourceTree = "<group>"; };
 		5C81C87114C31DCB00773925 /* CLAsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAsyncImageView.m; sourceTree = "<group>"; };
+		5C97D54E14C436B200EC5FB7 /* timers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timers_bg.png; sourceTree = "<group>"; };
 		5CB10C6A148FA15F0025EBA3 /* CLResultRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLResultRecipesController.h; sourceTree = "<group>"; };
 		5CB10C6B148FA15F0025EBA3 /* CLResultRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLResultRecipesController.m; sourceTree = "<group>"; };
 		5CB10C6C148FA15F0025EBA3 /* CLResultRecipesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLResultRecipesController.xib; sourceTree = "<group>"; };
@@ -570,6 +575,7 @@
 				3C34FF7914615502003D2644 /* CLAppDelegate.m */,
 				3C26B1E8147D315B00BE8BD6 /* CLMainWindow.xib */,
 				3C34FF7B14615502003D2644 /* Cookielicious.xcdatamodeld */,
+				5C58CE3A14C466A0005FB039 /* Categories */,
 				3C34FF7014615502003D2644 /* Supporting Files */,
 				5C54F26A149505810011BD74 /* Constants.h */,
 				5C54F26C149505A50011BD74 /* Constants.m */,
@@ -582,6 +588,7 @@
 			children = (
 				5C3AB6A714C3588E00DF5038 /* button.png */,
 				5C3AB6A914C3905000DF5038 /* button_selected.png */,
+				5C97D54E14C436B200EC5FB7 /* timers_bg.png */,
 				5C3AB69914C346EF00DF5038 /* screen_1.png */,
 				5C3AB69A14C346EF00DF5038 /* screen_2.png */,
 				5C3AB6AB14C3965100DF5038 /* screen_3.png */,
@@ -741,6 +748,15 @@
 				5CC0A8DA1496192B00FAA0AE /* CLRecipeDetailViewDelegate.h */,
 			);
 			name = ResultRecipes;
+			sourceTree = "<group>";
+		};
+		5C58CE3A14C466A0005FB039 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5C58CE3C14C466D3005FB039 /* NSOperationQueue+SharedQueue.h */,
+				5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		5C81C6E514C2F3D400773925 /* ShareKit */ = {
@@ -1189,6 +1205,7 @@
 				5C3AB6A814C3588E00DF5038 /* button.png in Resources */,
 				5C3AB6AA14C3905000DF5038 /* button_selected.png in Resources */,
 				5C3AB6AC14C3965100DF5038 /* screen_3.png in Resources */,
+				5C97D54F14C436B200EC5FB7 /* timers_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1322,6 +1339,7 @@
 				5C81C85514C2F3D400773925 /* JSONKit.m in Sources */,
 				5C81C87214C31DCB00773925 /* CLAsyncImageView.m in Sources */,
 				5C3AB6A614C3549A00DF5038 /* CLButton.m in Sources */,
+				5C58CE3E14C466D3005FB039 /* NSOperationQueue+SharedQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,10 @@
   self = [super initWithCoder:aDecoder];
   if(self) {
     _currOffset = CL_VIEW_OFFSET;
+    
+    // Set background pattern 
+    UIColor *background = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timers_bg.png"]];
+    [self setBackgroundColor:background];
   }
   return self;
 }

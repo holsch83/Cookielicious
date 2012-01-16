@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
 
-@interface CLAsyncImageView : UIImageView <ASIHTTPRequestDelegate> {
+@interface CLAsyncImageView : UIImageView {
   UIView *_activityIndicatorView;
 }
 
