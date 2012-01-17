@@ -248,10 +248,19 @@
                                                 action:@selector(shareRecipe)];
   _shareButton.style = UIBarButtonItemStyleBordered;
   
+  UIImage *image;
+  if([[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
+    image = [UIImage imageNamed:@"icon_heart_faved.png"];
+  }
+  else {
+    image = [UIImage imageNamed:@"icon_heart.png"];
+  }
+  
   _favoriteButton = 
-  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                target:self 
-                                                action:@selector(favoriteRecipe)];
+  [[UIBarButtonItem alloc] initWithImage:image
+                                   style:UIBarButtonItemStyleBordered
+                                  target:self
+                                  action:@selector(favoriteRecipe)];
   _favoriteButton.style = UIBarButtonItemStyleBordered;
   
   // Add buttons to a toolbar
@@ -299,8 +308,15 @@
 }
 
 - (void)favoriteRecipe {
-
-  [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
+  if(! [[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
+    [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
+    
+    [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart_faved.png"]];
+  }
+  else {
+    [[CLFavoritesController shared] removeFavoriteWithRecipe:_recipe];
+    [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart.png"]];
+  }
 }
 
 @end

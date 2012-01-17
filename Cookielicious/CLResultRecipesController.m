@@ -306,6 +306,13 @@
   [self requestRecipes];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  // Reload the view as we could have changed the favorite state from within the cook recipe view
+  if(_currRecipeView != nil) {
+    [_recipeDetailView configureView:[_currRecipeView recipe]];
+  }
+}
+
 - (void)viewDidUnload
 {
   [super viewDidUnload];
