@@ -8,6 +8,7 @@
 
 #import "CLFavoritesController.h"
 #import "CLCookRecipeController.h"
+#import "CLFavoriteCell.h"
 #import "CLRecipe.h"
 #import "CLFavorite.h"
 #import "CLAppDelegate.h"
@@ -47,6 +48,7 @@
 
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -61,17 +63,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"Cell";
   
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  static NSString *CellIdentifier = @"FavoriteCell";
+  
+  CLFavoriteCell *cell = (CLFavoriteCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLFavoriteCell" 
+                                                     owner:self 
+                                                   options:nil];
+    
+    for (NSObject *obj in objects) {
+      if ([obj isKindOfClass:NSClassFromString(@"CLFavoriteCell")]) {
+        cell = (CLFavoriteCell*)obj;
+      }
+    }
   }
   
   // Configure the cell...
   CLFavorite *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  cell.textLabel.text = managedObject.title;
-  
+  cell.titleLabel.text = managedObject.title;
+  cell.dateLabel.text = managedObject.title;
   
   return cell;
 }
@@ -83,38 +94,35 @@
     return YES;
 }
 
-
-/*
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    // Delete the row from the data source
+    CLFavorite *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [_managedObjectContext deleteObject:managedObject];
+    
+    NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if (error != nil) {
+      NSLog(@"Error saving data");
+    }
+  }      
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+
+  UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+  return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+  return 66.0f;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
