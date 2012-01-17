@@ -90,9 +90,16 @@
 }
 
 - (IBAction)touchedFavoriteButton:(id)sender {
-  
-  [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
-
+  if(! [[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
+    [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
+    
+    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart_faved.png"] forState:UIControlStateNormal];
+  }
+  else {
+    [[CLFavoritesController shared] removeFavoriteWithRecipe:_recipe];
+    
+    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart.png"] forState:UIControlStateNormal];
+  }
 }
 
 #pragma mark - View configuration
@@ -119,19 +126,12 @@
   }
   [[self ingredientsTextView] setText:ingredientString];
   
-  // Calculate frame size
-//  int ingredientTextViewBottomY = _ingredientsTextView.bounds.size.height - _ingredientsTextView.contentSize.height;
-//  int descriptionTextViewBottomY = _descriptionTextView.bounds.size.height - _descriptionTextView.contentSize.height;
-//
-//  int containerHeight;
-//  if(ingredientTextViewBottomY > descriptionTextViewBottomY) {
-//    containerHeight = _descriptionTextView.bounds.size.height - descriptionTextViewBottomY;
-//  }
-//  else {
-//    containerHeight = _ingredientsTextView.bounds.size.height - ingredientTextViewBottomY;
-//  }
-//  
-//  self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, containerHeight);
+  if([[CLFavoritesController shared] isRecipeFavorite:recipeVal]) {
+    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart_faved.png"] forState:UIControlStateNormal];
+  }
+  else {
+    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart.png"] forState:UIControlStateNormal];
+  }
 }
 
 #pragma mark - Custom drawing

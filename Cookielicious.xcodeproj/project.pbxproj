@@ -38,7 +38,6 @@
 		3C7C944714C481CD007BD1EA /* CLFavoritesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C944514C481CD007BD1EA /* CLFavoritesController.m */; };
 		3C7C944814C481CD007BD1EA /* CLFavoritesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C944614C481CD007BD1EA /* CLFavoritesController.xib */; };
 		3C7C945514C48EBE007BD1EA /* icon_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C945314C48EBE007BD1EA /* icon_heart.png */; };
-		3C7C945614C48EBE007BD1EA /* icon_heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C945414C48EBE007BD1EA /* icon_heart@2x.png */; };
 		3C7C945914C4912C007BD1EA /* CLFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C945814C4912B007BD1EA /* CLFavorite.m */; };
 		3C8344DA14B4995400F053AA /* CLCookRecipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8344D814B4995400F053AA /* CLCookRecipeController.m */; };
 		3C8344DB14B4995400F053AA /* CLCookRecipeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C8344D914B4995400F053AA /* CLCookRecipeController.xib */; };
@@ -170,6 +169,8 @@
 		5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAB114BC998D001080EB /* CLDragTimersView.m */; };
 		5CE6CAFB14BCC61F001080EB /* CLTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFA14BCC61E001080EB /* CLTimerView.m */; };
 		5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */; };
+		5CFBDE7414C5E0E6006A7BC6 /* icon_heart_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */; };
+		5CFBDE7714C5E8D0006A7BC6 /* icon_heart_faved.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,7 +229,6 @@
 		3C7C944514C481CD007BD1EA /* CLFavoritesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLFavoritesController.m; sourceTree = "<group>"; };
 		3C7C944614C481CD007BD1EA /* CLFavoritesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLFavoritesController.xib; sourceTree = "<group>"; };
 		3C7C945314C48EBE007BD1EA /* icon_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart.png; sourceTree = "<group>"; };
-		3C7C945414C48EBE007BD1EA /* icon_heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_heart@2x.png"; sourceTree = "<group>"; };
 		3C7C945714C4912B007BD1EA /* CLFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLFavorite.h; sourceTree = "<group>"; };
 		3C7C945814C4912B007BD1EA /* CLFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLFavorite.m; sourceTree = "<group>"; };
 		3C8344D714B4995400F053AA /* CLCookRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCookRecipeController.h; sourceTree = "<group>"; };
@@ -465,6 +465,8 @@
 		5CE6CAFA14BCC61E001080EB /* CLTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimerView.m; sourceTree = "<group>"; };
 		5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimersView.h; sourceTree = "<group>"; };
 		5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimersView.m; sourceTree = "<group>"; };
+		5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_active.png; sourceTree = "<group>"; };
+		5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_faved.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -609,11 +611,12 @@
 		3C34FF7014615502003D2644 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */,
+				5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */,
 				5C3AB6A714C3588E00DF5038 /* button.png */,
 				5C3AB6A914C3905000DF5038 /* button_selected.png */,
 				5C97D54E14C436B200EC5FB7 /* timers_bg.png */,
 				3C7C945314C48EBE007BD1EA /* icon_heart.png */,
-				3C7C945414C48EBE007BD1EA /* icon_heart@2x.png */,
 				5C3AB69914C346EF00DF5038 /* screen_1.png */,
 				5C3AB69A14C346EF00DF5038 /* screen_2.png */,
 				5C3AB6AB14C3965100DF5038 /* screen_3.png */,
@@ -1248,8 +1251,9 @@
 				5C97D54F14C436B200EC5FB7 /* timers_bg.png in Resources */,
 				3C7C944814C481CD007BD1EA /* CLFavoritesController.xib in Resources */,
 				3C7C945514C48EBE007BD1EA /* icon_heart.png in Resources */,
-				3C7C945614C48EBE007BD1EA /* icon_heart@2x.png in Resources */,
 				3C77437714C5D0A800F8BF54 /* CLFavoriteCell.xib in Resources */,
+				5CFBDE7414C5E0E6006A7BC6 /* icon_heart_active.png in Resources */,
+				5CFBDE7714C5E8D0006A7BC6 /* icon_heart_faved.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

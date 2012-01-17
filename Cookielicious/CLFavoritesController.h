@@ -34,7 +34,12 @@
  Adds a recipes id, title and image to core data. If id already exists in core data,
  the recipe is not being added.
  */
-- (void)addFavoriteWithRecipe:(CLRecipe*)recipe;
+- (void)addFavoriteWithRecipe:(CLRecipe *)recipe;
+
+/**
+ Remove a favorite recipe from the core data stack.
+ */
+- (void)removeFavoriteWithRecipe:(CLRecipe *)recipe;
 
 
 /**
