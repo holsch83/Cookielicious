@@ -280,13 +280,41 @@
 - (void)addFavoriteWithRecipe:(CLRecipe *)recipe {
   
   if (![self isRecipeFavorite:recipe]) {
-   
     CLFavorite *favorite = (CLFavorite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorite"
                                                                        inManagedObjectContext:_managedObjectContext];
     favorite.identifier = [NSNumber numberWithInt:recipe.identifier];
     favorite.title = recipe.title;
     
     NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if (error != nil) {
+      NSLog(@"Error saving data");
+    }
+  }
+}
+
+- (void)removeFavoriteWithRecipe:(CLRecipe *)recipe {
+  if ([self isRecipeFavorite:recipe]) {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Favorite"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %d", [recipe identifier]];
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *result = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(error != nil) {
+      NSLog(@"Error fetching entities");
+    }
+    
+    if([result count] < 1) {
+      return;
+    }
+    
+          NSLog(@"%d", [result count]);
+    
+    [_managedObjectContext deleteObject:[result objectAtIndex:0]];
+    
+    error = nil;
     [_managedObjectContext save:&error];
     if (error != nil) {
       NSLog(@"Error saving data");

@@ -20,7 +20,7 @@
     UIImage *buttonBackground = [[UIImage imageNamed:@"button.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:0];
     [self setBackgroundImage:buttonBackground forState:UIControlStateNormal];
     
-    UIImage *buttonSelectedBackground = [[UIImage imageNamed:@"button_selected.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:0];
+    UIImage *buttonSelectedBackground = [[UIImage imageNamed:@"button_selected.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
     [self setBackgroundImage:buttonSelectedBackground forState:UIControlStateHighlighted];
   }
   return self;
