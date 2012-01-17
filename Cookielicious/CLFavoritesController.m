@@ -271,22 +271,40 @@
 
 - (void)addFavoriteWithRecipe:(CLRecipe *)recipe {
   
-  CLFavorite *favorite = (CLFavorite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorite"
-                                                                     inManagedObjectContext:_managedObjectContext];
-  favorite.identifier = [NSNumber numberWithInt:recipe.identifier];
-  favorite.title = recipe.title;
-  
-  NSError *error = nil;
-  [_managedObjectContext save:&error];
-  if (error != nil) {
-    NSLog(@"Error saving data");
+  if (![self isRecipeFavorite:recipe]) {
+   
+    CLFavorite *favorite = (CLFavorite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorite"
+                                                                       inManagedObjectContext:_managedObjectContext];
+    favorite.identifier = [NSNumber numberWithInt:recipe.identifier];
+    favorite.title = recipe.title;
+    
+    NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if (error != nil) {
+      NSLog(@"Error saving data");
+    }
   }
-  
 }
 
 - (BOOL)isRecipeFavorite:(CLRecipe *)recipe {
-
-  return NO;
+  
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" 
+                                            inManagedObjectContext:_managedObjectContext];
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  [fetchRequest setEntity:entity];
+  
+  NSPredicate *predicate = 
+  [NSPredicate predicateWithFormat:@"identifier == %d", recipe.identifier];
+  [fetchRequest setPredicate:predicate];
+  
+  NSError *error = nil;
+  NSUInteger count = [_managedObjectContext countForFetchRequest:fetchRequest 
+                                                           error:&error];
+  
+  if (!error){
+    return (count >= 1) ? YES : NO;
+  }
+  return -1;
 }
 
 @end

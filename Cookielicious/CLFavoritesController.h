@@ -25,10 +25,21 @@
 @property (nonatomic, assign) id <CLFavoritesDelegate> delegate;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+/**
+ Class method to access the Favorite controller as singleton
+ */
 + (CLFavoritesController*)shared;
 
+/**
+ Adds a recipes id, title and image to core data. If id already exists in core data,
+ the recipe is not being added.
+ */
 - (void)addFavoriteWithRecipe:(CLRecipe*)recipe;
 
+
+/**
+ Returns a boolean whether a recipe is marked as favorite or not.
+ */
 - (BOOL)isRecipeFavorite:(CLRecipe*)recipe;
 
 @end
