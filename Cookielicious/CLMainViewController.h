@@ -12,14 +12,17 @@
 #import "CLIngredientCell.h"
 #import "CLDragViewDelegate.h"
 #import "CLSelectedIngredientsController.h"
+#import "CLFavoritesController.h"
 
 @interface CLMainViewController : UIViewController <UITableViewDelegate, 
 UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate,
-CLDragViewDelegate, CLSelectedIngredientsDelegate> {
+CLDragViewDelegate, CLSelectedIngredientsDelegate, CLFavoritesDelegate,UIPopoverControllerDelegate> {
 
   @private
   CGPoint _startingDragPosition;
   bool _didSynchronizeIngredients;
+  UIPopoverController *_favoritesPopoverController;
+  
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

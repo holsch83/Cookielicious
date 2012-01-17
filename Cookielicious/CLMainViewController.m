@@ -9,6 +9,7 @@
 #import "CLMainViewController.h"
 #import "CLSelectedIngredientsController.h"
 #import "CLResultRecipesController.h"
+#import "CLCookRecipeController.h"
 #import "CLCreditsController.h"
 #import "CLAppDelegate.h"
 #import "CLIngredient.h"
@@ -25,6 +26,10 @@
 - (NSArray *) selectedIngredients;
 
 - (void)configureCell:(CLIngredientCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+// Bar button actions
+- (void)showFavorites:(id)sender;
+- (void)showCredits:(id)sender;
 
 // If we search or sort our ingredients, we refetch the data from store
 - (void)reloadFetchRequest;
@@ -95,6 +100,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  // Set info button
   UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [infoButton addTarget:self 
                  action:@selector(showCredits:) 
@@ -102,6 +108,12 @@
 
   self.navigationItem.leftBarButtonItem = 
   [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+  
+  // Set favorites button
+  self.navigationItem.rightBarButtonItem = 
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks 
+                                                target:self 
+                                                action:@selector(showFavorites:)];
 
   // Show back button for next view controller in navigation controller stack
   UIBarButtonItem *backButton = 
@@ -533,7 +545,17 @@
   [self saveManagedObjectContext];
 }
 
-#pragma mark - Show credits button
+#pragma mark - CLFavoriteDelegate
+
+- (void)favoritesController:(CLFavoritesController *)controller didSelectFavoriteWithRecipe:(CLRecipe *)recipe {
+
+  [_favoritesPopoverController dismissPopoverAnimated:YES];
+  _favoritesPopoverController = nil;
+  CLCookRecipeController *crc = [[CLCookRecipeController alloc] initWithRecipe:recipe];
+  [self.navigationController pushViewController:crc animated:YES];
+}
+
+#pragma mark - Bar buttons actions
 
 - (void)showCredits:(id)sender {
 
@@ -543,6 +565,31 @@
   [cc setModalPresentationStyle:UIModalPresentationCurrentContext];
   [self.navigationController presentModalViewController:cc animated:YES];
   
+}
+
+- (void)showFavorites:(id)sender {
+  
+  if (_favoritesPopoverController) {
+    [_favoritesPopoverController dismissPopoverAnimated:YES];
+    _favoritesPopoverController = nil;
+    return;
+  }
+
+  UIPopoverController *popover = 
+  [[UIPopoverController alloc] initWithContentViewController:[CLFavoritesController shared]];
+  _favoritesPopoverController = popover;
+  _favoritesPopoverController.delegate = self;
+  [CLFavoritesController shared].delegate = self;
+  
+  [_favoritesPopoverController presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem 
+                                      permittedArrowDirections:UIPopoverArrowDirectionAny 
+                                                      animated:YES];
+}
+
+#pragma mark - Popover Delegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  _favoritesPopoverController = nil;
 }
 
 #pragma mark - Private

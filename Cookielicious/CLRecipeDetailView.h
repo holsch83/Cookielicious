@@ -26,6 +26,7 @@
 @property(nonatomic, strong) IBOutlet UITextView *descriptionTextView;
 @property(nonatomic, strong) IBOutlet UIButton *showRecipe;
 @property(nonatomic, strong) IBOutlet UIButton *shareRecipe;
+@property(nonatomic, strong) IBOutlet UIButton *favoriteRecipe;
 
 - (void) configureView:(CLRecipe *)recipeVal;
 - (void) touchedView:(id)sender;
