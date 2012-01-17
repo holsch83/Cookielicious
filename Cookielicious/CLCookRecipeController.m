@@ -7,16 +7,21 @@
 //
 
 #import "CLCookRecipeController.h"
+#import "CLFavoritesController.h"
 #import "CLStepView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
 #import "CLTimerView.h"
 #import "CLTimersView.h"
+#import "CLToolbar.h"
 #import "SHK.h"
 
 @interface CLCookRecipeController (Private)
 
+- (void)shareRecipe;
+- (void)favoriteRecipe;
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset;
+- (void)createMultipleNavigationBarButtons;
 
 @end
 
@@ -133,6 +138,7 @@
 }
 
 #pragma mark - CLTimerViewDelegate
+
 - (void) touchedTimerView:(CLTimerView *)theView {
   _currSelectedTimerView = theView;
   
@@ -169,12 +175,10 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  [self createMultipleNavigationBarButtons];
+  
   // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = _recipe.title;
-  self.navigationItem.rightBarButtonItem = 
-  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                target:self 
-                                                action:@selector(shareRecipe)];
   
   // Horizontal paging for the steps of the recipe...
   _scrollView.clipsToBounds = NO;
@@ -217,7 +221,6 @@
 
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated {
   NSLog(@"View will disappear");
   // Remove timers here
@@ -232,8 +235,36 @@
   [self setLabelAlphaForContentOffset:_scrollView.contentOffset.x];
 }
 
-- (void)setLabelAlphaForContentOffset:(CGFloat)offset {
 
+#pragma mark - Actions
+
+
+- (void)createMultipleNavigationBarButtons {
+  
+  // Create buttons
+  _shareButton = 
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                target:self 
+                                                action:@selector(shareRecipe)];
+  _shareButton.style = UIBarButtonItemStyleBordered;
+  
+  _favoriteButton = 
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                target:self 
+                                                action:@selector(favoriteRecipe)];
+  _favoriteButton.style = UIBarButtonItemStyleBordered;
+  
+  // Add buttons to a toolbar
+  CLToolbar* toolbar = [[CLToolbar alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
+  NSArray* buttons = [NSArray arrayWithObjects:_shareButton, _favoriteButton, nil];
+  [toolbar setItems:buttons animated:NO];
+  
+  // Set toolbar as right bar button item
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:toolbar];
+}
+
+- (void)setLabelAlphaForContentOffset:(CGFloat)offset {
+  
   if (offset < 0) {
     _startLabel.alpha = 1.0;
   }
@@ -246,7 +277,7 @@
 }
 
 - (void)shareRecipe {
-
+  
   NSLog(@"Sharing Recipe ...");
   if (_sharingActionSheet) {
     [_sharingActionSheet dismissWithClickedButtonIndex:-1 
@@ -258,22 +289,18 @@
   // Create the item to share (in this example, a url)
   NSString *shareText = [NSString stringWithFormat:@"Koche gerade mit Cookielicious \"%@\"! Mjamm!", _recipe.title];
   SHKItem *item = [SHKItem text:shareText];
-    
+  
   // Get the ShareKit action sheet
   _sharingActionSheet = [SHKActionSheet actionSheetForItem:item];
   
   // Display the action sheet
-  [_sharingActionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem 
-                            animated:YES];
+  [_sharingActionSheet showFromBarButtonItem:_shareButton
+                                    animated:YES];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)favoriteRecipe {
+
+  [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
 }
-
-
 
 @end

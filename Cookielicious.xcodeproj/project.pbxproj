@@ -29,9 +29,15 @@
 		3C34FF8814615502003D2644 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C34FF6D14615502003D2644 /* CoreData.framework */; };
 		3C34FF9014615502003D2644 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C34FF8E14615502003D2644 /* InfoPlist.strings */; };
 		3C34FF9314615502003D2644 /* CookieliciousTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF9214615502003D2644 /* CookieliciousTests.m */; };
+		3C35D4F114C5A056006E7C45 /* CLToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C35D4F014C5A056006E7C45 /* CLToolbar.m */; };
 		3C57F57314B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C57F57214B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m */; };
 		3C5EC448146ADFFE00E8970A /* CLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EC446146ADFFE00E8970A /* CLMainViewController.m */; };
 		3C5EC449146ADFFE00E8970A /* CLMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */; };
+		3C7C944714C481CD007BD1EA /* CLFavoritesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C944514C481CD007BD1EA /* CLFavoritesController.m */; };
+		3C7C944814C481CD007BD1EA /* CLFavoritesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C944614C481CD007BD1EA /* CLFavoritesController.xib */; };
+		3C7C945514C48EBE007BD1EA /* icon_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C945314C48EBE007BD1EA /* icon_heart.png */; };
+		3C7C945614C48EBE007BD1EA /* icon_heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7C945414C48EBE007BD1EA /* icon_heart@2x.png */; };
+		3C7C945914C4912C007BD1EA /* CLFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C945814C4912B007BD1EA /* CLFavorite.m */; };
 		3C8344DA14B4995400F053AA /* CLCookRecipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8344D814B4995400F053AA /* CLCookRecipeController.m */; };
 		3C8344DB14B4995400F053AA /* CLCookRecipeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C8344D914B4995400F053AA /* CLCookRecipeController.xib */; };
 		3C8344DE14B499DF00F053AA /* CLScrollViewEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8344DD14B499DF00F053AA /* CLScrollViewEnhancer.m */; };
@@ -205,12 +211,21 @@
 		3C34FF8F14615502003D2644 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3C34FF9114615502003D2644 /* CookieliciousTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CookieliciousTests.h; sourceTree = "<group>"; };
 		3C34FF9214615502003D2644 /* CookieliciousTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookieliciousTests.m; sourceTree = "<group>"; };
+		3C35D4EF14C5A056006E7C45 /* CLToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLToolbar.h; sourceTree = "<group>"; };
+		3C35D4F014C5A056006E7C45 /* CLToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLToolbar.m; sourceTree = "<group>"; };
 		3C57F57114B8AC3100B9AE9E /* CLDefaultSHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDefaultSHKConfigurator.h; sourceTree = "<group>"; };
 		3C57F57214B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDefaultSHKConfigurator.m; sourceTree = "<group>"; };
 		3C5EC445146ADFFE00E8970A /* CLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMainViewController.h; sourceTree = "<group>"; };
 		3C5EC446146ADFFE00E8970A /* CLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMainViewController.m; sourceTree = "<group>"; };
 		3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLMainViewController.xib; sourceTree = "<group>"; };
 		3C79ECC314BB48AC002C9CCB /* CLSelectedIngredientsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSelectedIngredientsDelegate.h; sourceTree = "<group>"; };
+		3C7C944414C481CD007BD1EA /* CLFavoritesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLFavoritesController.h; sourceTree = "<group>"; };
+		3C7C944514C481CD007BD1EA /* CLFavoritesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLFavoritesController.m; sourceTree = "<group>"; };
+		3C7C944614C481CD007BD1EA /* CLFavoritesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLFavoritesController.xib; sourceTree = "<group>"; };
+		3C7C945314C48EBE007BD1EA /* icon_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart.png; sourceTree = "<group>"; };
+		3C7C945414C48EBE007BD1EA /* icon_heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_heart@2x.png"; sourceTree = "<group>"; };
+		3C7C945714C4912B007BD1EA /* CLFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLFavorite.h; sourceTree = "<group>"; };
+		3C7C945814C4912B007BD1EA /* CLFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLFavorite.m; sourceTree = "<group>"; };
 		3C8344D714B4995400F053AA /* CLCookRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCookRecipeController.h; sourceTree = "<group>"; };
 		3C8344D814B4995400F053AA /* CLCookRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCookRecipeController.m; sourceTree = "<group>"; };
 		3C8344D914B4995400F053AA /* CLCookRecipeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLCookRecipeController.xib; sourceTree = "<group>"; };
@@ -493,6 +508,8 @@
 				5C81C87114C31DCB00773925 /* CLAsyncImageView.m */,
 				5C3AB6A414C3549A00DF5038 /* CLButton.h */,
 				5C3AB6A514C3549A00DF5038 /* CLButton.m */,
+				3C35D4EF14C5A056006E7C45 /* CLToolbar.h */,
+				3C35D4F014C5A056006E7C45 /* CLToolbar.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -564,6 +581,7 @@
 		3C34FF6F14615502003D2644 /* Cookielicious */ = {
 			isa = PBXGroup;
 			children = (
+				3C7C944214C4810F007BD1EA /* Favorites */,
 				3C8B5FEC14BF67F600A32793 /* Credits */,
 				3C57F57014B8ABD400B9AE9E /* SocialMedia */,
 				3C8344D514B4990100F053AA /* CookRecipe */,
@@ -589,6 +607,8 @@
 				5C3AB6A714C3588E00DF5038 /* button.png */,
 				5C3AB6A914C3905000DF5038 /* button_selected.png */,
 				5C97D54E14C436B200EC5FB7 /* timers_bg.png */,
+				3C7C945314C48EBE007BD1EA /* icon_heart.png */,
+				3C7C945414C48EBE007BD1EA /* icon_heart@2x.png */,
 				5C3AB69914C346EF00DF5038 /* screen_1.png */,
 				5C3AB69A14C346EF00DF5038 /* screen_2.png */,
 				5C3AB6AB14C3965100DF5038 /* screen_3.png */,
@@ -646,6 +666,8 @@
 				5CC0A8D51496173200FAA0AE /* CLTodo.m */,
 				5CC0A8D71496178F00FAA0AE /* CLStepIngredient.h */,
 				5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */,
+				3C7C945714C4912B007BD1EA /* CLFavorite.h */,
+				3C7C945814C4912B007BD1EA /* CLFavorite.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -657,6 +679,16 @@
 				3C57F57214B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m */,
 			);
 			name = SocialMedia;
+			sourceTree = "<group>";
+		};
+		3C7C944214C4810F007BD1EA /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				3C7C944414C481CD007BD1EA /* CLFavoritesController.h */,
+				3C7C944514C481CD007BD1EA /* CLFavoritesController.m */,
+				3C7C944614C481CD007BD1EA /* CLFavoritesController.xib */,
+			);
+			name = Favorites;
 			sourceTree = "<group>";
 		};
 		3C8344D514B4990100F053AA /* CookRecipe */ = {
@@ -1206,6 +1238,9 @@
 				5C3AB6AA14C3905000DF5038 /* button_selected.png in Resources */,
 				5C3AB6AC14C3965100DF5038 /* screen_3.png in Resources */,
 				5C97D54F14C436B200EC5FB7 /* timers_bg.png in Resources */,
+				3C7C944814C481CD007BD1EA /* CLFavoritesController.xib in Resources */,
+				3C7C945514C48EBE007BD1EA /* icon_heart.png in Resources */,
+				3C7C945614C48EBE007BD1EA /* icon_heart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,6 +1375,9 @@
 				5C81C87214C31DCB00773925 /* CLAsyncImageView.m in Sources */,
 				5C3AB6A614C3549A00DF5038 /* CLButton.m in Sources */,
 				5C58CE3E14C466D3005FB039 /* NSOperationQueue+SharedQueue.m in Sources */,
+				3C7C944714C481CD007BD1EA /* CLFavoritesController.m in Sources */,
+				3C7C945914C4912C007BD1EA /* CLFavorite.m in Sources */,
+				3C35D4F114C5A056006E7C45 /* CLToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

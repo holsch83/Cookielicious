@@ -24,6 +24,9 @@
   IBOutlet CLTimerView *_timerView;
   IBOutlet UIPageControl *_pageControl;
   IBOutlet UILabel *_startLabel;
+  
+  UIBarButtonItem *_shareButton;
+  UIBarButtonItem *_favoriteButton;
 
   CLRecipe *_recipe;
   
