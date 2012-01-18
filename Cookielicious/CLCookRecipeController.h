@@ -31,6 +31,8 @@
   UIBarButtonItem *_liveModeButton;
   
   // Live mode
+  BOOL _blockLiveMode;
+  BOOL _startLiveMode;
   NSTimer *_liveModeTimer;
   
   CLRecipe *_recipe;
