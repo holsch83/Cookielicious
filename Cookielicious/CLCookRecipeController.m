@@ -22,7 +22,11 @@
 - (void)shareRecipe;
 - (void)favoriteRecipe;
 - (void)toggleLiveMode;
+- (void)startLiveMode;
+- (void)stopLiveMode;
 - (void)liveMode:(NSTimer *)theTimer;
+- (void)setLiveModeTimerForStep:(CLStep *)theStep;
+- (void)invalidateLiveModeTimer;
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset;
 - (void)createMultipleNavigationBarButtons;
 
@@ -229,15 +233,6 @@
   // Remove timers here
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)sender {
-  // Update the page number
-  CGFloat pageWidth = _scrollView.frame.size.width;
-  _pageControl.currentPage = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-  
-  // Set start label transparancy
-  [self setLabelAlphaForContentOffset:_scrollView.contentOffset.x];
-}
-
 /**
  
  */
@@ -250,9 +245,35 @@
   [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
 }
 
+#pragma mark - UIScrollViewDelegate
+
+/**
+ We want the live mode to be stopped, when the user drags the scroll view manually.
+ */
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+  [self stopLiveMode];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+  // Update the page number
+  _pageControl.currentPage = [_scrollView currentPage];
+  
+  // Set start label transparancy
+  [self setLabelAlphaForContentOffset:_scrollView.contentOffset.x];
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+  if(_liveModeTimer != nil) {
+    [self invalidateLiveModeTimer];
+    
+    if([_scrollView hasNextPage]) {
+      CLStep *currStep = [[_recipe steps] objectAtIndex:[_scrollView currentPage]];
+      [self setLiveModeTimerForStep:currStep];
+    }
+  }
+}
 
 #pragma mark - Actions
-
 
 - (void)createMultipleNavigationBarButtons {
   
@@ -307,8 +328,6 @@
 }
 
 - (void)shareRecipe {
-  
-  NSLog(@"Sharing Recipe ...");
   if (_sharingActionSheet) {
     [_sharingActionSheet dismissWithClickedButtonIndex:-1 
                                               animated:YES];
@@ -340,34 +359,54 @@
   }
 }
 
+#pragma mark - Live mode
+
 - (void)toggleLiveMode {
   if(_liveModeTimer == nil) {
-    NSLog(@"Starting live mode ...");
-    
-    int currStepIndex = _scrollView.contentOffset.x / _scrollView.frame.size.width;
-    CLStep *currStep = [[_recipe steps] objectAtIndex:currStepIndex];
-    
-    _liveModeTimer = [NSTimer scheduledTimerWithTimeInterval:([currStep duration] * 60) target:self selector:@selector(liveMode:) userInfo:nil repeats:NO];
-    
-    [_liveModeButton setImage:[UIImage imageNamed:@"icon_pause.png"]];
+    [self startLiveMode];
   }
   else {
-    NSLog(@"Pausing live mode ...");
-    
-    [_liveModeTimer invalidate];
-    _liveModeTimer = nil;
-    
-    [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+    [self stopLiveMode];
   }
 }
 
-- (void)liveMode:(NSTimer *)theTimer {
-  CGPoint currOffset = [_scrollView contentOffset];
+- (void)startLiveMode {
+  NSLog(@"Starting live mode ...");
   
-  currOffset.x += _scrollView.frame.size.width;
-  if(currOffset.x < [_scrollView contentSize].width) {
-    [_scrollView setContentOffset:currOffset animated:YES];
+  CLStep *currStep = [[_recipe steps] objectAtIndex:[_scrollView currentPage]];
+  [self setLiveModeTimerForStep:currStep];
+  
+  [_liveModeButton setImage:[UIImage imageNamed:@"icon_pause.png"]];
+}
+
+- (void)stopLiveMode; {
+  NSLog(@"Pausing live mode ...");
+  
+  [self invalidateLiveModeTimer];
+  
+  [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+}
+
+/**
+ This method is invoked when the current timer for a step elapsed.
+ */
+- (void)liveMode:(NSTimer *)theTimer {
+  [_scrollView scrollToNextPageAnimated:YES];
+}
+
+- (void)setLiveModeTimerForStep:(CLStep *)theStep {
+  NSLog(@"Set live mode timer for step %@ with duration %d", theStep.title, theStep.duration);
+  [self invalidateLiveModeTimer];
+  
+  _liveModeTimer = [NSTimer scheduledTimerWithTimeInterval:([theStep duration]) target:self selector:@selector(liveMode:) userInfo:nil repeats:NO];
+}
+
+- (void)invalidateLiveModeTimer {
+  if(_liveModeTimer != nil) {
+    [_liveModeTimer invalidate];
+    _liveModeTimer = nil;
   }
 }
+
 
 @end

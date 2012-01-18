@@ -20,4 +20,5 @@
 - (void) scrollToPreviousPageAnimated:(BOOL)animated;
 - (void) scrollToNextPageAnimated:(BOOL)animated;
 
+- (int) currentPage;
 @end

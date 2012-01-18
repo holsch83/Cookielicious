@@ -46,7 +46,4 @@
 - (id)initWithRecipe:(CLRecipe*)recipe;
 - (void)enableTimerButton:(NSString *)timerName;
 
-- (IBAction) previousStep:(id)sender;
-- (IBAction) nextStep:(id)sender;
-
 @end

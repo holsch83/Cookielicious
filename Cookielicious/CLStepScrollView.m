@@ -52,4 +52,19 @@
   return (self.contentOffset.x + self.frame.size.width) < self.contentSize.width;
 }
 
+- (int) currentPage {
+  int maxPage = ceil(self.contentSize.width / self.frame.size.width) - 1;
+  int currPage = (int) round(self.contentOffset.x / self.frame.size.width);
+
+  if(currPage < 0) {
+    return 0;
+  }
+  else if(currPage > maxPage) {
+    return maxPage;
+  }
+  else {
+    return currPage;
+  }
+}
+
 @end
