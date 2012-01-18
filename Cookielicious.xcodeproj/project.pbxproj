@@ -611,12 +611,10 @@
 		3C34FF7014615502003D2644 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */,
-				5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */,
+				3C45A4B114C6C5A900CAD563 /* Icons */,
 				5C3AB6A714C3588E00DF5038 /* button.png */,
 				5C3AB6A914C3905000DF5038 /* button_selected.png */,
 				5C97D54E14C436B200EC5FB7 /* timers_bg.png */,
-				3C7C945314C48EBE007BD1EA /* icon_heart.png */,
 				5C3AB69914C346EF00DF5038 /* screen_1.png */,
 				5C3AB69A14C346EF00DF5038 /* screen_2.png */,
 				5C3AB6AB14C3965100DF5038 /* screen_3.png */,
@@ -625,13 +623,8 @@
 				3CC228C114BF6D1900760BF8 /* image_knifeAndFork.png */,
 				3CC228C214BF6D1900760BF8 /* image_knifeAndFork@2x.png */,
 				3C83AE9514BE211600834CF3 /* cookielicious_icon.png */,
-				3C83AE9114BE0D3C00834CF3 /* icon_action.png */,
-				3C83AE9214BE0D3C00834CF3 /* icon_action@2x.png */,
 				5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */,
 				3CC9CA1C148D6A2D00F99EF2 /* cuttingboard.png */,
-				3CC9CA19148D648200F99EF2 /* icon_checkmark.png */,
-				3CF56D38148A457F00B3BBF1 /* icon_bag.png */,
-				3CF56D35148A428400B3BBF1 /* icon_cancel.png */,
 				3C26B216147D6B4000BE8BD6 /* pattern_wood.png */,
 				3C26B201147D46F400BE8BD6 /* pattern_navigationbar.png */,
 				3C34FF7114615502003D2644 /* Cookielicious-Info.plist */,
@@ -659,6 +652,21 @@
 				3C34FF8E14615502003D2644 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C45A4B114C6C5A900CAD563 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */,
+				5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */,
+				3C7C945314C48EBE007BD1EA /* icon_heart.png */,
+				3C83AE9114BE0D3C00834CF3 /* icon_action.png */,
+				3C83AE9214BE0D3C00834CF3 /* icon_action@2x.png */,
+				3CC9CA19148D648200F99EF2 /* icon_checkmark.png */,
+				3CF56D38148A457F00B3BBF1 /* icon_bag.png */,
+				3CF56D35148A428400B3BBF1 /* icon_cancel.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		3C4AAC9D148120B700A906B8 /* Models */ = {

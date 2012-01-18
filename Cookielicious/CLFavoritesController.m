@@ -16,6 +16,12 @@
 #import "JSONKit.h"
 #import "NSOperationQueue+SharedQueue.h"
 
+@interface CLFavoritesController (Private)
+
+- (NSFetchRequest*)fetchRequestForRecipe:(CLRecipe*)recipe;
+
+@end
+
 @implementation CLFavoritesController
 
 @synthesize fetchedResultsController = _fetchedResultsController;
@@ -295,10 +301,8 @@
 
 - (void)removeFavoriteWithRecipe:(CLRecipe *)recipe {
   if ([self isRecipeFavorite:recipe]) {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Favorite"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %d", [recipe identifier]];
     
-    [fetchRequest setPredicate:predicate];
+    NSFetchRequest *fetchRequest = [self fetchRequestForRecipe:recipe];
     
     NSError *error = nil;
     NSArray *result = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -310,7 +314,7 @@
       return;
     }
     
-          NSLog(@"%d", [result count]);
+    NSLog(@"%d", [result count]);
     
     [_managedObjectContext deleteObject:[result objectAtIndex:0]];
     
@@ -324,14 +328,7 @@
 
 - (BOOL)isRecipeFavorite:(CLRecipe *)recipe {
   
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" 
-                                            inManagedObjectContext:_managedObjectContext];
-  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-  [fetchRequest setEntity:entity];
-  
-  NSPredicate *predicate = 
-  [NSPredicate predicateWithFormat:@"identifier == %d", recipe.identifier];
-  [fetchRequest setPredicate:predicate];
+  NSFetchRequest *fetchRequest = [self fetchRequestForRecipe:recipe];
   
   NSError *error = nil;
   NSUInteger count = [_managedObjectContext countForFetchRequest:fetchRequest 
@@ -341,6 +338,23 @@
     return (count >= 1) ? YES : NO;
   }
   return -1;
+}
+
+#pragma mark - Private
+
+- (NSFetchRequest*)fetchRequestForRecipe:(CLRecipe *)recipe {
+
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" 
+                                            inManagedObjectContext:_managedObjectContext];
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  [fetchRequest setEntity:entity];
+  
+  NSPredicate *predicate = 
+  [NSPredicate predicateWithFormat:@"identifier = %d", recipe.identifier];
+  [fetchRequest setPredicate:predicate];
+  
+  return fetchRequest;
+  
 }
 
 @end
