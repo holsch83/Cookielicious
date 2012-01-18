@@ -148,8 +148,6 @@
       float dx = radius * cos(currAngleRad);
       float dy = radius * sin(currAngleRad);
       
-      NSLog(@"dx: %f, dy: %f, i: %d, j: %d, i/j: %f, currAngle: %f", dx, dy, i, j, ((float)i/(float)j), currAngleRad * (180 / M_PI));
-      
       // Add dx and dy to the center of the circle, thus placing
       // the current item on the outer circle on its calculated position.
       float newX = circleCenter.x + dx;

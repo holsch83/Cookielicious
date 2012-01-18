@@ -14,5 +14,19 @@
 @dynamic title;
 @dynamic identifier;
 @dynamic previewImage;
+@dynamic date;
+
+- (NSString*)formattedDate {
+  
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+  [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+  
+  NSLocale *deLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"];
+  [dateFormatter setLocale:deLocale];
+  
+  return [dateFormatter stringFromDate:self.date];
+}
+
 
 @end

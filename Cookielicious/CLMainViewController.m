@@ -558,6 +558,11 @@
 #pragma mark - Bar buttons actions
 
 - (void)showCredits:(id)sender {
+  
+  if (_favoritesPopoverController) {
+    [_favoritesPopoverController dismissPopoverAnimated:YES];
+    _favoritesPopoverController = nil;
+  }
 
   CLCreditsController *cc = [[CLCreditsController alloc] initWithNibName:@"CLCreditsController" 
                                                                   bundle:nil];

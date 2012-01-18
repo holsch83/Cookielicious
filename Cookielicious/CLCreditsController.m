@@ -42,7 +42,7 @@
 
 #pragma mark Touch event
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 
   [self dismissModalViewControllerAnimated:YES];
 }

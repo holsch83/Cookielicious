@@ -19,6 +19,7 @@
 @interface CLFavoritesController : UITableViewController <NSFetchedResultsControllerDelegate>{
 
   NSManagedObjectContext *_managedObjectContext;
+  UIView *_emptyView;
   
 }
 

@@ -20,6 +20,7 @@
 
 - (NSFetchRequest*)fetchRequestForRecipe:(CLRecipe*)recipe;
 - (void)saveManagedObjectContext;
+- (void)showViewForEmptyTableView:(BOOL)show;
 
 @end
 
@@ -49,14 +50,18 @@
   return self;
 }
 
+- (CGSize)contentSizeForViewInPopover {
+  
+  return CGSizeMake(320, 400);
+}
+
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
 }
-
 
 #pragma mark - Table view data source
 
@@ -68,6 +73,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
   id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+
+  if ([sectionInfo numberOfObjects] <= 0) 
+    [self showViewForEmptyTableView:YES];
+  else
+    [self showViewForEmptyTableView:NO];
+  
   return [sectionInfo numberOfObjects];
 }
 
@@ -89,14 +100,15 @@
   }
   
   // Configure the cell...
-  CLFavorite *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  CLFavorite *managedObject = (CLFavorite*)[self.fetchedResultsController objectAtIndexPath:indexPath];
   cell.titleLabel.text = managedObject.title;
-  cell.dateLabel.text = managedObject.title;
+  cell.dateLabel.text = 
+  [NSString stringWithFormat:@"Hinzugefügt am: %@", 
+   [managedObject formattedDate]];
   [cell.previewImage setImage:managedObject.previewImage];
   
   return cell;
 }
-
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -250,7 +262,6 @@
     case NSFetchedResultsChangeInsert:
       [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] 
                        withRowAnimation:UITableViewRowAnimationFade];
-      [tableView reloadData];
       break;
       
     case NSFetchedResultsChangeDelete:
@@ -259,7 +270,7 @@
       break;
       
     case NSFetchedResultsChangeUpdate:
-      [self reloadFetchRequest];
+      [self.tableView reloadData];
       break;
       
     case NSFetchedResultsChangeMove:
@@ -281,17 +292,6 @@
   [self.tableView endUpdates];
 }
 
-#pragma mark - Managed Object context
-
-- (void)saveManagedObjectContext {
-
-  NSError *error = nil;
-  [_managedObjectContext save:&error];
-  if (error != nil) {
-    NSLog(@"Error saving data");
-  }
-}
-
 #pragma mark - Actions
 
 - (void)addFavoriteWithRecipe:(CLRecipe *)recipe {
@@ -300,8 +300,13 @@
     
     CLFavorite *favorite = (CLFavorite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorite"
                                                                        inManagedObjectContext:_managedObjectContext];
+    // Set id and title
     favorite.identifier = [NSNumber numberWithInt:recipe.identifier];
     favorite.title = recipe.title;
+    
+    // Set current date
+    NSDate *now = [NSDate date];
+    favorite.date = now;
     
     // Retrieve preview image to store it in core data
     NSURL *url = [[NSURL alloc] initWithString:recipe.image];
@@ -364,7 +369,7 @@
 #pragma mark - Private
 
 - (NSFetchRequest*)fetchRequestForRecipe:(CLRecipe *)recipe {
-
+  
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" 
                                             inManagedObjectContext:_managedObjectContext];
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -376,6 +381,39 @@
   
   return fetchRequest;
   
+}
+
+- (void)saveManagedObjectContext {
+  
+  NSError *error = nil;
+  [_managedObjectContext save:&error];
+  if (error != nil) {
+    NSLog(@"Error saving data");
+  }
+}
+
+- (void)showViewForEmptyTableView:(BOOL)show {
+  
+  if (show) {
+    if (!_emptyView) {
+      NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLEmptyView" 
+                                                       owner:self 
+                                                     options:nil];
+      
+      for (NSObject *obj in objects) {
+        if ([obj isKindOfClass:NSClassFromString(@"UIView")]) {
+          _emptyView = (UIView*)obj;
+        }
+      }
+      [self.tableView addSubview:_emptyView];
+      [self.tableView setUserInteractionEnabled:NO];
+    }
+  }
+  else {
+    [_emptyView removeFromSuperview];
+    _emptyView = nil;
+    [self.tableView setUserInteractionEnabled:YES]; 
+  }
 }
 
 @end

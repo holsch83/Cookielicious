@@ -13,8 +13,11 @@
 
 @interface CLFavorite : NSManagedObject
 
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSNumber * identifier;
-@property (nonatomic, retain) UIImage * previewImage;
+@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) NSNumber * identifier;
+@property (nonatomic, strong) UIImage * previewImage;
+@property (nonatomic, strong) NSDate * date;
+
+- (NSString*)formattedDate;
 
 @end
