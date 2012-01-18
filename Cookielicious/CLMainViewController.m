@@ -513,8 +513,8 @@
   
   [self.fetchRequest setSortDescriptors:nil];
   
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"identifier" 
-                                                                 ascending:YES];
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"searchCount" 
+                                                                 ascending:NO];
   NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
   [self.fetchRequest setSortDescriptors:sortDescriptors];
   
@@ -525,9 +525,17 @@
 #pragma mark - Show results Buttons
 
 - (IBAction)touchedShowRecipesButton:(id)sender {
-    CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
+  
+  NSArray *ingredients = [self.selectedIngredientsController selectedIngredients];
+  
+  for (CLIngredient *ingr in ingredients) {
+    ingr.searchCount = [NSNumber numberWithInt:([ingr.searchCount intValue]+1)];
+  }
+  [self saveManagedObjectContext];
+  
+  CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
     
-    [self.navigationController pushViewController:resultRecipesController animated:YES];
+  [self.navigationController pushViewController:resultRecipesController animated:YES];
 }
 
 #pragma mark - Clear Ingredients Button
@@ -599,28 +607,8 @@
 
 #pragma mark - Private
 
-- (NSArray *) selectedIngredients {
-  NSEntityDescription *entityDescription = [NSEntityDescription
-                                            entityForName:@"Ingredient" inManagedObjectContext:[self managedObjectContext]];
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
-  
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selected = %f", 1.0];
-  [request setPredicate:predicate];
-  
-  NSError *error = nil;
-  NSArray *array = [[self managedObjectContext] executeFetchRequest:request error:&error];
-  if (array == nil)
-  {
-    NSLog(@"Failed fetching selected ingredients");
-    exit(-1);
-  }
-  
-  return array;
-}
-
 - (void) fetchRecipeCount {
-  NSArray *ingredients = [self selectedIngredients];
+  NSArray *ingredients = [self.selectedIngredientsController selectedIngredients];;
   
   // Show the reset button only if ingredients are availble
   if([ingredients count] < 1) {
@@ -712,6 +700,7 @@
                                                                            inManagedObjectContext:[self managedObjectContext]];
         ingr.identifier = identifier;
         ingr.name = name;
+        ingr.searchCount = [NSNumber numberWithInt:0];
       }
     }
     

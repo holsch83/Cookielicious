@@ -17,6 +17,7 @@
   
   @private
   NSMutableArray *_uiViews;
+  NSMutableArray *_selectedIngredients;
 
 }
 @property (nonatomic, assign) id<CLSelectedIngredientsDelegate> delegate;
@@ -27,5 +28,6 @@
 - (void)removeIngredientWithView:(CLDragView*)view;
 - (void)removeAllIngredients;
 - (BOOL)isDragViewLimitReached;
+- (NSArray*)selectedIngredients;
 
 @end

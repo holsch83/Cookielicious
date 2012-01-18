@@ -9,10 +9,11 @@
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="searchCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="selected" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Favorite" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Ingredient" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Favorite" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Ingredient" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

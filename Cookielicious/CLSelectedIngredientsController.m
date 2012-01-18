@@ -29,6 +29,7 @@
   if (self) {
       
     _uiViews = [[NSMutableArray alloc] init];
+    _selectedIngredients = [[NSMutableArray alloc] init];
     self.view.clipsToBounds = NO;
   }
   return self;
@@ -123,6 +124,15 @@
 - (BOOL)isDragViewLimitReached {
 
   return (([_uiViews count] == MAX_DRAG_VIEWS) ? YES : NO);
+}
+
+- (NSArray*)selectedIngredients {
+  
+  NSMutableArray *array = [[NSMutableArray alloc] init];
+  for (CLDragView *dv in _uiViews) {
+    [array addObject:dv.ingredient];
+  }
+  return array;
 }
 
 #pragma mark - Private

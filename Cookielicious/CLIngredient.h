@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSNumber *identifier;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *selected;
+@property (nonatomic, strong) NSNumber *searchCount;
 
 @end
