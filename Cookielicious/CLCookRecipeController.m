@@ -20,6 +20,8 @@
 
 - (void)shareRecipe;
 - (void)favoriteRecipe;
+- (void)toggleLiveMode;
+- (void)liveMode:(NSTimer *)theTimer;
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset;
 - (void)createMultipleNavigationBarButtons;
 
@@ -235,6 +237,18 @@
   [self setLabelAlphaForContentOffset:_scrollView.contentOffset.x];
 }
 
+/**
+ 
+ */
+- (void)viewWillAppear:(BOOL)animated {
+  if(_liveModeTimer != nil) {
+    [_liveModeTimer invalidate];
+    _liveModeTimer = nil;
+  }
+  
+  [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+}
+
 
 #pragma mark - Actions
 
@@ -263,9 +277,15 @@
                                   action:@selector(favoriteRecipe)];
   _favoriteButton.style = UIBarButtonItemStyleBordered;
   
+  _liveModeButton = 
+  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_play.png"]
+                                   style:UIBarButtonItemStyleBordered
+                                  target:self
+                                  action:@selector(toggleLiveMode)];
+  
   // Add buttons to a toolbar
-  CLToolbar* toolbar = [[CLToolbar alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
-  NSArray* buttons = [NSArray arrayWithObjects:_shareButton, _favoriteButton, nil];
+  CLToolbar* toolbar = [[CLToolbar alloc] initWithFrame:CGRectMake(0, 0, 160, 45)];
+  NSArray* buttons = [NSArray arrayWithObjects:_liveModeButton, _shareButton, _favoriteButton, nil];
   [toolbar setItems:buttons animated:NO];
   
   // Set toolbar as right bar button item
@@ -316,6 +336,36 @@
   else {
     [[CLFavoritesController shared] removeFavoriteWithRecipe:_recipe];
     [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart.png"]];
+  }
+}
+
+- (void)toggleLiveMode {
+  if(_liveModeTimer == nil) {
+    NSLog(@"Starting live mode ...");
+    
+    int currStepIndex = _scrollView.contentOffset.x / _scrollView.frame.size.width;
+    CLStep *currStep = [[_recipe steps] objectAtIndex:currStepIndex];
+    
+    _liveModeTimer = [NSTimer scheduledTimerWithTimeInterval:([currStep duration] * 60) target:self selector:@selector(liveMode:) userInfo:nil repeats:NO];
+    
+    [_liveModeButton setImage:[UIImage imageNamed:@"icon_pause.png"]];
+  }
+  else {
+    NSLog(@"Pausing live mode ...");
+    
+    [_liveModeTimer invalidate];
+    _liveModeTimer = nil;
+    
+    [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+  }
+}
+
+- (void)liveMode:(NSTimer *)theTimer {
+  CGPoint currOffset = [_scrollView contentOffset];
+  
+  currOffset.x += _scrollView.frame.size.width;
+  if(currOffset.x < [_scrollView contentSize].width) {
+    [_scrollView setContentOffset:currOffset animated:YES];
   }
 }
 

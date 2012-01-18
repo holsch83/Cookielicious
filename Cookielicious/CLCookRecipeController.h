@@ -27,7 +27,11 @@
   
   UIBarButtonItem *_shareButton;
   UIBarButtonItem *_favoriteButton;
-
+  UIBarButtonItem *_liveModeButton;
+  
+  // Live mode
+  NSTimer *_liveModeTimer;
+  
   CLRecipe *_recipe;
   
   CLTimerView *_currSelectedTimerView;
@@ -40,5 +44,8 @@
 
 - (id)initWithRecipe:(CLRecipe*)recipe;
 - (void)enableTimerButton:(NSString *)timerName;
+
+- (IBAction) previousStep:(id)sender;
+- (IBAction) nextStep:(id)sender;
 
 @end

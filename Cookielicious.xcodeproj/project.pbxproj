@@ -91,6 +91,7 @@
 		5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */; };
 		5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */; };
 		5C58CE3E14C466D3005FB039 /* NSOperationQueue+SharedQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */; };
+		5C69E2A814C6CE380036DEA0 /* icon_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C69E2A714C6CE380036DEA0 /* icon_pause.png */; };
 		5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */; };
 		5C81C7ED14C2F3D400773925 /* SHKCustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6EF14C2F3D400773925 /* SHKCustomActionSheet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C81C7EE14C2F3D400773925 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6F314C2F3D400773925 /* SHKCustomFormController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -173,6 +174,7 @@
 		5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */; };
 		5CFBDE7414C5E0E6006A7BC6 /* icon_heart_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */; };
 		5CFBDE7714C5E8D0006A7BC6 /* icon_heart_faved.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */; };
+		5CFBDE7D14C5F713006A7BC6 /* icon_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7C14C5F713006A7BC6 /* icon_play.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +313,7 @@
 		5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRecipeView.m; sourceTree = "<group>"; };
 		5C58CE3C14C466D3005FB039 /* NSOperationQueue+SharedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+SharedQueue.h"; sourceTree = "<group>"; };
 		5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+SharedQueue.m"; sourceTree = "<group>"; };
+		5C69E2A714C6CE380036DEA0 /* icon_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pause.png; sourceTree = "<group>"; };
 		5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSearchBarShadowView.h; sourceTree = "<group>"; };
 		5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSearchBarShadowView.m; sourceTree = "<group>"; };
 		5C81C6E614C2F3D400773925 /* SHKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKConfig.h; sourceTree = "<group>"; };
@@ -472,6 +475,7 @@
 		5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimersView.m; sourceTree = "<group>"; };
 		5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_active.png; sourceTree = "<group>"; };
 		5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_faved.png; sourceTree = "<group>"; };
+		5CFBDE7C14C5F713006A7BC6 /* icon_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_play.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -669,6 +673,8 @@
 				3C83AE9214BE0D3C00834CF3 /* icon_action@2x.png */,
 				3CC9CA19148D648200F99EF2 /* icon_checkmark.png */,
 				3CF56D38148A457F00B3BBF1 /* icon_bag.png */,
+				5CFBDE7C14C5F713006A7BC6 /* icon_play.png */,
+				5C69E2A714C6CE380036DEA0 /* icon_pause.png */,
 				3CF56D35148A428400B3BBF1 /* icon_cancel.png */,
 			);
 			name = Icons;
@@ -1271,6 +1277,8 @@
 				5CFBDE7414C5E0E6006A7BC6 /* icon_heart_active.png in Resources */,
 				5CFBDE7714C5E8D0006A7BC6 /* icon_heart_faved.png in Resources */,
 				3C45A4B914C714DC00CAD563 /* CLEmptyView.xib in Resources */,
+				5CFBDE7D14C5F713006A7BC6 /* icon_play.png in Resources */,
+				5C69E2A814C6CE380036DEA0 /* icon_pause.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
