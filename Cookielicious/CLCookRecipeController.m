@@ -9,6 +9,7 @@
 #import "CLCookRecipeController.h"
 #import "CLFavoritesController.h"
 #import "CLStepView.h"
+#import "CLStepScrollView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
 #import "CLTimerView.h"

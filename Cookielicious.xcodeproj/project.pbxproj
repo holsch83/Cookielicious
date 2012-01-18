@@ -92,6 +92,7 @@
 		5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */; };
 		5C58CE3E14C466D3005FB039 /* NSOperationQueue+SharedQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */; };
 		5C69E2A814C6CE380036DEA0 /* icon_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C69E2A714C6CE380036DEA0 /* icon_pause.png */; };
+		5C69E2AC14C6D6CE0036DEA0 /* CLStepScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C69E2AB14C6D6CE0036DEA0 /* CLStepScrollView.m */; };
 		5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */; };
 		5C81C7ED14C2F3D400773925 /* SHKCustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6EF14C2F3D400773925 /* SHKCustomActionSheet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C81C7EE14C2F3D400773925 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6F314C2F3D400773925 /* SHKCustomFormController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -314,6 +315,8 @@
 		5C58CE3C14C466D3005FB039 /* NSOperationQueue+SharedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+SharedQueue.h"; sourceTree = "<group>"; };
 		5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+SharedQueue.m"; sourceTree = "<group>"; };
 		5C69E2A714C6CE380036DEA0 /* icon_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pause.png; sourceTree = "<group>"; };
+		5C69E2AA14C6D6CE0036DEA0 /* CLStepScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepScrollView.h; sourceTree = "<group>"; };
+		5C69E2AB14C6D6CE0036DEA0 /* CLStepScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepScrollView.m; sourceTree = "<group>"; };
 		5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSearchBarShadowView.h; sourceTree = "<group>"; };
 		5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSearchBarShadowView.m; sourceTree = "<group>"; };
 		5C81C6E614C2F3D400773925 /* SHKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKConfig.h; sourceTree = "<group>"; };
@@ -744,6 +747,8 @@
 				5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */,
 				5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */,
 				5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */,
+				5C69E2AA14C6D6CE0036DEA0 /* CLStepScrollView.h */,
+				5C69E2AB14C6D6CE0036DEA0 /* CLStepScrollView.m */,
 			);
 			name = CookRecipe;
 			sourceTree = "<group>";
@@ -1418,6 +1423,7 @@
 				3C35D4F114C5A056006E7C45 /* CLToolbar.m in Sources */,
 				3C77437414C5CF3A00F8BF54 /* CLFavoriteCell.m in Sources */,
 				3C45A4B514C6D24900CAD563 /* CLImageTransformer.m in Sources */,
+				5C69E2AC14C6D6CE0036DEA0 /* CLStepScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
