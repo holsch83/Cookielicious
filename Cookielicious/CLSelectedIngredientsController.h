@@ -21,8 +21,6 @@
 
 }
 @property (nonatomic, assign) id<CLSelectedIngredientsDelegate> delegate;
-@property (nonatomic, strong) IBOutlet UILabel *selectedCountLabel;
-@property (nonatomic, strong) IBOutlet UILabel *maxCountLabel;
 
 - (BOOL)addIngredientWithView:(CLDragView*)view;
 - (void)removeIngredientWithView:(CLDragView*)view;

@@ -19,8 +19,6 @@
 
 @implementation CLSelectedIngredientsController
 
-@synthesize selectedCountLabel = _selectedCountLabel;
-@synthesize maxCountLabel = _maxCountLabel;
 @synthesize delegate = _delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -40,10 +38,7 @@
 - (void)viewDidLoad {
   
   [super viewDidLoad];
-  self.maxCountLabel.text = 
-  [NSString stringWithFormat:@"/%i", MAX_DRAG_VIEWS];
-  self.selectedCountLabel.text = 
-  [NSString stringWithFormat:@"%i", [_uiViews count]];
+
 	// Do any additional setup after loading the view, typically from a nib.
   
 }
@@ -57,8 +52,6 @@
   } completion:^(BOOL finished){
     [_uiViews removeObjectIdenticalTo:view];
     [view removeFromSuperview];
-    self.selectedCountLabel.text = 
-    [NSString stringWithFormat:@"%i", [_uiViews count]];
     [self reorderDragViews];
   }];
   
@@ -80,8 +73,6 @@
     }
     
     [_uiViews removeAllObjects];
-    self.selectedCountLabel.text = 
-    [NSString stringWithFormat:@"%i", [_uiViews count]];
     [self reorderDragViews];
     
     if ([_delegate respondsToSelector:@selector(selectedIngredientsController:didRemoveAllIngredients:)]) {
@@ -110,7 +101,6 @@
     
     [_uiViews addObject:view];
     [self.view addSubview:view];
-    self.selectedCountLabel.text = [NSString stringWithFormat:@"%i", [_uiViews count]];
     
     [self reorderDragViews];
 
