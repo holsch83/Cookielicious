@@ -43,7 +43,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{1024, 768}</string>
 						<reference key="NSSuperview" ref="888943880"/>
-						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="324319816"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -56,7 +56,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{40, 375}, {133, 53}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="166575457"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -89,7 +88,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{212, 134}, {600, 550}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="463082655"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -100,7 +98,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{0, 134}, {212, 550}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="522754349"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="125910913">
 							<int key="NSColorSpace">3</int>
@@ -113,7 +110,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{812, 134}, {212, 550}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="991819180"/>
 						<reference key="IBUIBackgroundColor" ref="125910913"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -124,7 +120,6 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{119, 692}, {787, 36}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -145,7 +140,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{78, 11}, {44, 21}}</string>
 										<reference key="NSSuperview" ref="171269784"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="776232625"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -166,7 +160,6 @@
 								</array>
 								<string key="NSFrame">{{412, 0}, {200, 44}}</string>
 								<reference key="NSSuperview" ref="166575457"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="687466430"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -179,7 +172,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 44}, {1024, 50}}</string>
 								<reference key="NSSuperview" ref="166575457"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="560991"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -190,7 +182,6 @@
 						</array>
 						<string key="NSFrame">{{0, 660}, {1024, 94}}</string>
 						<reference key="NSSuperview" ref="888943880"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="171269784"/>
 						<reference key="IBUIBackgroundColor" ref="125910913"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -198,8 +189,7 @@
 				</array>
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="324319816"/>
+				<reference key="NSNextKeyView" ref="602922793"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
@@ -380,6 +370,7 @@
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="6.CustomClassName">CLStepScrollView</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.CustomClassName">CLScrollViewEnhancer</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -390,177 +381,13 @@
 			<nil key="sourceID"/>
 			<int key="maxID">30</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">CLAsyncImageView</string>
-					<string key="superclassName">UIImageView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLAsyncImageView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CLCookRecipeController</string>
-					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_pageControl">UIPageControl</string>
-						<string key="_scrollView">UIScrollView</string>
-						<string key="_startLabel">UILabel</string>
-						<string key="_stepView">CLStepView</string>
-						<string key="_timerView">CLTimerView</string>
-						<string key="_timersView">CLTimersView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_pageControl">
-							<string key="name">_pageControl</string>
-							<string key="candidateClassName">UIPageControl</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_scrollView">
-							<string key="name">_scrollView</string>
-							<string key="candidateClassName">UIScrollView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_startLabel">
-							<string key="name">_startLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_stepView">
-							<string key="name">_stepView</string>
-							<string key="candidateClassName">CLStepView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_timerView">
-							<string key="name">_timerView</string>
-							<string key="candidateClassName">CLTimerView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_timersView">
-							<string key="name">_timersView</string>
-							<string key="candidateClassName">CLTimersView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLCookRecipeController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CLDragTimersView</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLDragTimersView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CLScrollViewEnhancer</string>
-					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">_scrollView</string>
-						<string key="NS.object.0">UIScrollView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">_scrollView</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">_scrollView</string>
-							<string key="candidateClassName">UIScrollView</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLScrollViewEnhancer.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CLStepView</string>
-					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">touchedSetTimerButton:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">touchedSetTimerButton:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">touchedSetTimerButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_descriptionText">UITextView</string>
-						<string key="_durationLabel">UILabel</string>
-						<string key="_imageView">CLAsyncImageView</string>
-						<string key="_ingredientsText">UITextView</string>
-						<string key="_setTimerButton">UIButton</string>
-						<string key="_titleLabel">UILabel</string>
-						<string key="_todoText">UITextView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_descriptionText">
-							<string key="name">_descriptionText</string>
-							<string key="candidateClassName">UITextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_durationLabel">
-							<string key="name">_durationLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_imageView">
-							<string key="name">_imageView</string>
-							<string key="candidateClassName">CLAsyncImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_ingredientsText">
-							<string key="name">_ingredientsText</string>
-							<string key="candidateClassName">UITextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_setTimerButton">
-							<string key="name">_setTimerButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_titleLabel">
-							<string key="name">_titleLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_todoText">
-							<string key="name">_todoText</string>
-							<string key="candidateClassName">UITextView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLStepView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CLTimerView</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="timeLeftLabel">UILabel</string>
-						<string key="timerNameLabel">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="timeLeftLabel">
-							<string key="name">timeLeftLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="timerNameLabel">
-							<string key="name">timerNameLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLTimerView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CLTimersView</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLTimersView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
+			<real value="4200" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">

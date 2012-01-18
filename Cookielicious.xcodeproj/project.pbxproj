@@ -80,6 +80,9 @@
 		3CFEB3151461601A00DCD93D /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFEB3141461601A00DCD93D /* libz.1.2.5.dylib */; };
 		3CFEB3181461625B00DCD93D /* ASIReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB3171461625B00DCD93D /* ASIReachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C12AC0714A9EDDB0041DC45 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */; };
+		5C18BEBC14C70F900012C1A9 /* CLActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C18BEBB14C70F900012C1A9 /* CLActivityIndicator.m */; };
+		5C18BEBF14C71A350012C1A9 /* action_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C18BEBE14C71A350012C1A9 /* action_play.png */; };
+		5C18BEC114C71F200012C1A9 /* action_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C18BEC014C71F200012C1A9 /* action_pause.png */; };
 		5C36288B14BF4E3F009AF403 /* CLTimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C36288A14BF4E3F009AF403 /* CLTimerView.xib */; };
 		5C3AB69B14C346EF00DF5038 /* screen_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AB69914C346EF00DF5038 /* screen_1.png */; };
 		5C3AB69C14C346EF00DF5038 /* screen_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AB69A14C346EF00DF5038 /* screen_2.png */; };
@@ -91,6 +94,8 @@
 		5C55D7C4148FBE0C005DC9CC /* CLRecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C55D7C3148FBE0C005DC9CC /* CLRecipeView.xib */; };
 		5C55D7C7148FBE31005DC9CC /* CLRecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */; };
 		5C58CE3E14C466D3005FB039 /* NSOperationQueue+SharedQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */; };
+		5C69E2A814C6CE380036DEA0 /* icon_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C69E2A714C6CE380036DEA0 /* icon_pause.png */; };
+		5C69E2AC14C6D6CE0036DEA0 /* CLStepScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C69E2AB14C6D6CE0036DEA0 /* CLStepScrollView.m */; };
 		5C81B100149F618200A59264 /* CLSearchBarShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */; };
 		5C81C7ED14C2F3D400773925 /* SHKCustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6EF14C2F3D400773925 /* SHKCustomActionSheet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C81C7EE14C2F3D400773925 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C6F314C2F3D400773925 /* SHKCustomFormController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -173,6 +178,7 @@
 		5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */; };
 		5CFBDE7414C5E0E6006A7BC6 /* icon_heart_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */; };
 		5CFBDE7714C5E8D0006A7BC6 /* icon_heart_faved.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */; };
+		5CFBDE7D14C5F713006A7BC6 /* icon_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBDE7C14C5F713006A7BC6 /* icon_play.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +302,10 @@
 		3CFEB3171461625B00DCD93D /* ASIReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIReachability.m; sourceTree = "<group>"; };
 		5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerViewDelegate.h; sourceTree = "<group>"; };
 		5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
+		5C18BEBA14C70F900012C1A9 /* CLActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLActivityIndicator.h; sourceTree = "<group>"; };
+		5C18BEBB14C70F900012C1A9 /* CLActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLActivityIndicator.m; sourceTree = "<group>"; };
+		5C18BEBE14C71A350012C1A9 /* action_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = action_play.png; sourceTree = "<group>"; };
+		5C18BEC014C71F200012C1A9 /* action_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = action_pause.png; sourceTree = "<group>"; };
 		5C36288A14BF4E3F009AF403 /* CLTimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerView.xib; sourceTree = "<group>"; };
 		5C3AB69914C346EF00DF5038 /* screen_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_1.png; sourceTree = "<group>"; };
 		5C3AB69A14C346EF00DF5038 /* screen_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_2.png; sourceTree = "<group>"; };
@@ -311,6 +321,9 @@
 		5C55D7C6148FBE31005DC9CC /* CLRecipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRecipeView.m; sourceTree = "<group>"; };
 		5C58CE3C14C466D3005FB039 /* NSOperationQueue+SharedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+SharedQueue.h"; sourceTree = "<group>"; };
 		5C58CE3D14C466D3005FB039 /* NSOperationQueue+SharedQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+SharedQueue.m"; sourceTree = "<group>"; };
+		5C69E2A714C6CE380036DEA0 /* icon_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pause.png; sourceTree = "<group>"; };
+		5C69E2AA14C6D6CE0036DEA0 /* CLStepScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepScrollView.h; sourceTree = "<group>"; };
+		5C69E2AB14C6D6CE0036DEA0 /* CLStepScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepScrollView.m; sourceTree = "<group>"; };
 		5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSearchBarShadowView.h; sourceTree = "<group>"; };
 		5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSearchBarShadowView.m; sourceTree = "<group>"; };
 		5C81C6E614C2F3D400773925 /* SHKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKConfig.h; sourceTree = "<group>"; };
@@ -472,6 +485,7 @@
 		5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTimersView.m; sourceTree = "<group>"; };
 		5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_active.png; sourceTree = "<group>"; };
 		5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_faved.png; sourceTree = "<group>"; };
+		5CFBDE7C14C5F713006A7BC6 /* icon_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_play.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +536,8 @@
 				5C3AB6A514C3549A00DF5038 /* CLButton.m */,
 				3C35D4EF14C5A056006E7C45 /* CLToolbar.h */,
 				3C35D4F014C5A056006E7C45 /* CLToolbar.m */,
+				5C18BEBA14C70F900012C1A9 /* CLActivityIndicator.h */,
+				5C18BEBB14C70F900012C1A9 /* CLActivityIndicator.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -662,6 +678,8 @@
 		3C45A4B114C6C5A900CAD563 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				5C18BEC014C71F200012C1A9 /* action_pause.png */,
+				5C18BEBE14C71A350012C1A9 /* action_play.png */,
 				5CFBDE7314C5E0E6006A7BC6 /* icon_heart_active.png */,
 				5CFBDE7614C5E8D0006A7BC6 /* icon_heart_faved.png */,
 				3C7C945314C48EBE007BD1EA /* icon_heart.png */,
@@ -669,6 +687,8 @@
 				3C83AE9214BE0D3C00834CF3 /* icon_action@2x.png */,
 				3CC9CA19148D648200F99EF2 /* icon_checkmark.png */,
 				3CF56D38148A457F00B3BBF1 /* icon_bag.png */,
+				5CFBDE7C14C5F713006A7BC6 /* icon_play.png */,
+				5C69E2A714C6CE380036DEA0 /* icon_pause.png */,
 				3CF56D35148A428400B3BBF1 /* icon_cancel.png */,
 			);
 			name = Icons;
@@ -738,6 +758,8 @@
 				5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */,
 				5CE6CAFC14BCC6C2001080EB /* CLTimersView.h */,
 				5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */,
+				5C69E2AA14C6D6CE0036DEA0 /* CLStepScrollView.h */,
+				5C69E2AB14C6D6CE0036DEA0 /* CLStepScrollView.m */,
 			);
 			name = CookRecipe;
 			sourceTree = "<group>";
@@ -1271,6 +1293,10 @@
 				5CFBDE7414C5E0E6006A7BC6 /* icon_heart_active.png in Resources */,
 				5CFBDE7714C5E8D0006A7BC6 /* icon_heart_faved.png in Resources */,
 				3C45A4B914C714DC00CAD563 /* CLEmptyView.xib in Resources */,
+				5CFBDE7D14C5F713006A7BC6 /* icon_play.png in Resources */,
+				5C69E2A814C6CE380036DEA0 /* icon_pause.png in Resources */,
+				5C18BEBF14C71A350012C1A9 /* action_play.png in Resources */,
+				5C18BEC114C71F200012C1A9 /* action_pause.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1410,6 +1436,8 @@
 				3C35D4F114C5A056006E7C45 /* CLToolbar.m in Sources */,
 				3C77437414C5CF3A00F8BF54 /* CLFavoriteCell.m in Sources */,
 				3C45A4B514C6D24900CAD563 /* CLImageTransformer.m in Sources */,
+				5C69E2AC14C6D6CE0036DEA0 /* CLStepScrollView.m in Sources */,
+				5C18BEBC14C70F900012C1A9 /* CLActivityIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

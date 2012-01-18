@@ -9,17 +9,26 @@
 #import "CLCookRecipeController.h"
 #import "CLFavoritesController.h"
 #import "CLStepView.h"
+#import "CLStepScrollView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
 #import "CLTimerView.h"
 #import "CLTimersView.h"
 #import "CLToolbar.h"
+#import "CLActivityIndicator.h"
 #import "SHK.h"
 
 @interface CLCookRecipeController (Private)
 
 - (void)shareRecipe;
 - (void)favoriteRecipe;
+- (void)toggleLiveMode;
+- (void)startLiveMode;
+- (void)stopLiveMode;
+- (BOOL)isLiveModeActive;
+- (void)liveMode:(NSTimer *)theTimer;
+- (void)setLiveModeTimerForStep:(CLStep *)theStep;
+- (void)invalidateLiveModeTimer;
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset;
 - (void)createMultipleNavigationBarButtons;
 
@@ -222,22 +231,76 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  NSLog(@"View will disappear");
   // Remove timers here
+  
+  [self invalidateLiveModeTimer];
+}
+
+/**
+ 
+ */
+- (void)viewWillAppear:(BOOL)animated {
+  if(_liveModeTimer != nil) {
+    [_liveModeTimer invalidate];
+    _liveModeTimer = nil;
+  }
+  
+  [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+/**
+ We want the live mode to be stopped, when the user drags the scroll view manually.
+ */
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+  _blockLiveMode = YES;
+  
+  [self stopLiveMode];
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+  _blockLiveMode = NO;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
   // Update the page number
-  CGFloat pageWidth = _scrollView.frame.size.width;
-  _pageControl.currentPage = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+  _pageControl.currentPage = [_scrollView currentPage];
   
   // Set start label transparancy
   [self setLabelAlphaForContentOffset:_scrollView.contentOffset.x];
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+  if(_liveModeTimer != nil) {
+    [self invalidateLiveModeTimer];
+    
+    if([_scrollView hasNextPage]) {
+      CLStep *currStep = [[_recipe steps] objectAtIndex:[_scrollView currentPage]];
+      [self setLiveModeTimerForStep:currStep];
+    }
+  }
+  
+  if(! [_scrollView hasNextPage]) {
+    [self stopLiveMode];
+  }
+  
+  // If the user taps the start button on the last page, the scroll view rewinds to the first page
+  // and the live mode should start after the animation.
+  if(_startLiveMode) {
+    _startLiveMode = NO;
+    [self startLiveMode];
+  }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  if(_startLiveMode) {
+    _startLiveMode = NO;
+    [self startLiveMode];
+  }
+}
 
 #pragma mark - Actions
-
 
 - (void)createMultipleNavigationBarButtons {
   
@@ -263,9 +326,15 @@
                                   action:@selector(favoriteRecipe)];
   _favoriteButton.style = UIBarButtonItemStyleBordered;
   
+  _liveModeButton = 
+  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_play.png"]
+                                   style:UIBarButtonItemStyleBordered
+                                  target:self
+                                  action:@selector(toggleLiveMode)];
+  
   // Add buttons to a toolbar
-  CLToolbar* toolbar = [[CLToolbar alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
-  NSArray* buttons = [NSArray arrayWithObjects:_shareButton, _favoriteButton, nil];
+  CLToolbar* toolbar = [[CLToolbar alloc] initWithFrame:CGRectMake(0, 0, 160, 45)];
+  NSArray* buttons = [NSArray arrayWithObjects:_liveModeButton, _shareButton, _favoriteButton, nil];
   [toolbar setItems:buttons animated:NO];
   
   // Set toolbar as right bar button item
@@ -286,8 +355,6 @@
 }
 
 - (void)shareRecipe {
-  
-  NSLog(@"Sharing Recipe ...");
   if (_sharingActionSheet) {
     [_sharingActionSheet dismissWithClickedButtonIndex:-1 
                                               animated:YES];
@@ -318,5 +385,87 @@
     [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart.png"]];
   }
 }
+
+#pragma mark - Live mode
+
+- (void)toggleLiveMode {
+  // Block live mode is set to yes, when the user starts dragging the scroll view
+  if(_blockLiveMode) {
+    _startLiveMode = YES;
+    return;
+  }
+  
+  if(_liveModeTimer == nil) {
+    [self startLiveMode];
+  }
+  else {
+    [self stopLiveMode];
+  }
+}
+
+- (void)startLiveMode {
+  // Only start live mode if we are not on recipes last page
+  if(! [_scrollView hasNextPage]) {
+    _startLiveMode = YES;
+    [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y) animated:YES];
+  }
+  
+  CLStep *currStep = [[_recipe steps] objectAtIndex:[_scrollView currentPage]];
+  [self setLiveModeTimerForStep:currStep];
+  
+  [_liveModeButton setImage:[UIImage imageNamed:@"icon_pause.png"]];
+  
+  UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_play.png"]];
+  
+  CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+  [activityIndicator setCenterView:centerImage];
+  [activityIndicator setSubMessage:@"Livemodus gestartet"];
+  
+  [activityIndicator show];
+  [activityIndicator hideAfterDelay:1.4];
+}
+
+- (void)stopLiveMode; {
+  // Only present activity indicator, if live mode is active
+  if([self isLiveModeActive]) {
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_pause.png"]];
+    
+    CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+    [activityIndicator setCenterView:centerImage];
+    [activityIndicator setSubMessage:@"Livemodus beendet"];
+    
+    [activityIndicator show];
+    [activityIndicator hideAfterDelay:1.4];
+  }
+  
+  [self invalidateLiveModeTimer];
+  
+  [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+}
+
+- (BOOL)isLiveModeActive {
+  return _liveModeTimer != nil;
+}
+
+/**
+ This method is invoked when the current timer for a step elapsed.
+ */
+- (void)liveMode:(NSTimer *)theTimer {
+  [_scrollView scrollToNextPageAnimated:YES];
+}
+
+- (void)setLiveModeTimerForStep:(CLStep *)theStep {
+  [self invalidateLiveModeTimer];
+  
+  _liveModeTimer = [NSTimer scheduledTimerWithTimeInterval:([theStep duration]) target:self selector:@selector(liveMode:) userInfo:nil repeats:NO];
+}
+
+- (void)invalidateLiveModeTimer {
+  if(_liveModeTimer != nil) {
+    [_liveModeTimer invalidate];
+    _liveModeTimer = nil;
+  }
+}
+
 
 @end

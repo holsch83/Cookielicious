@@ -15,11 +15,12 @@
 @class CLRecipe;
 @class CLTimersView;
 @class SHKActionSheet;
+@class CLStepScrollView;
 
 @interface CLCookRecipeController : UIViewController <UIScrollViewDelegate, CLStepViewDelegate, CLTimerViewDelegate, UIActionSheetDelegate> {
 
   IBOutlet CLTimersView *_timersView;
-  IBOutlet UIScrollView *_scrollView;
+  IBOutlet CLStepScrollView *_scrollView;
   IBOutlet CLStepView *_stepView;
   IBOutlet CLTimerView *_timerView;
   IBOutlet UIPageControl *_pageControl;
@@ -27,7 +28,13 @@
   
   UIBarButtonItem *_shareButton;
   UIBarButtonItem *_favoriteButton;
-
+  UIBarButtonItem *_liveModeButton;
+  
+  // Live mode
+  BOOL _blockLiveMode;
+  BOOL _startLiveMode;
+  NSTimer *_liveModeTimer;
+  
   CLRecipe *_recipe;
   
   CLTimerView *_currSelectedTimerView;
