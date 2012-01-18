@@ -30,6 +30,7 @@
 		3C34FF9014615502003D2644 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C34FF8E14615502003D2644 /* InfoPlist.strings */; };
 		3C34FF9314615502003D2644 /* CookieliciousTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C34FF9214615502003D2644 /* CookieliciousTests.m */; };
 		3C35D4F114C5A056006E7C45 /* CLToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C35D4F014C5A056006E7C45 /* CLToolbar.m */; };
+		3C45A4B514C6D24900CAD563 /* CLImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C45A4B414C6D24900CAD563 /* CLImageTransformer.m */; };
 		3C57F57314B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C57F57214B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m */; };
 		3C5EC448146ADFFE00E8970A /* CLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EC446146ADFFE00E8970A /* CLMainViewController.m */; };
 		3C5EC449146ADFFE00E8970A /* CLMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EC447146ADFFE00E8970A /* CLMainViewController.xib */; };
@@ -216,6 +217,8 @@
 		3C34FF9214615502003D2644 /* CookieliciousTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookieliciousTests.m; sourceTree = "<group>"; };
 		3C35D4EF14C5A056006E7C45 /* CLToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLToolbar.h; sourceTree = "<group>"; };
 		3C35D4F014C5A056006E7C45 /* CLToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLToolbar.m; sourceTree = "<group>"; };
+		3C45A4B314C6D24900CAD563 /* CLImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLImageTransformer.h; sourceTree = "<group>"; };
+		3C45A4B414C6D24900CAD563 /* CLImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLImageTransformer.m; sourceTree = "<group>"; };
 		3C57F57114B8AC3100B9AE9E /* CLDefaultSHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDefaultSHKConfigurator.h; sourceTree = "<group>"; };
 		3C57F57214B8AC3100B9AE9E /* CLDefaultSHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDefaultSHKConfigurator.m; sourceTree = "<group>"; };
 		3C5EC445146ADFFE00E8970A /* CLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMainViewController.h; sourceTree = "<group>"; };
@@ -684,6 +687,8 @@
 				5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */,
 				3C7C945714C4912B007BD1EA /* CLFavorite.h */,
 				3C7C945814C4912B007BD1EA /* CLFavorite.m */,
+				3C45A4B314C6D24900CAD563 /* CLImageTransformer.h */,
+				3C45A4B414C6D24900CAD563 /* CLImageTransformer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1400,6 +1405,7 @@
 				3C7C945914C4912C007BD1EA /* CLFavorite.m in Sources */,
 				3C35D4F114C5A056006E7C45 /* CLToolbar.m in Sources */,
 				3C77437414C5CF3A00F8BF54 /* CLFavoriteCell.m in Sources */,
+				3C45A4B514C6D24900CAD563 /* CLImageTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

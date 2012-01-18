@@ -19,6 +19,7 @@
 @interface CLFavoritesController (Private)
 
 - (NSFetchRequest*)fetchRequestForRecipe:(CLRecipe*)recipe;
+- (void)saveManagedObjectContext;
 
 @end
 
@@ -31,7 +32,9 @@
   static dispatch_once_t pred;
   static CLFavoritesController *fc = nil;
   
-  dispatch_once(&pred, ^{ fc = [[self alloc] initWithStyle:UITableViewStylePlain]; });
+  dispatch_once(&pred, ^{ 
+    fc = [[self alloc] initWithStyle:UITableViewStylePlain]; 
+  });
   return fc;
 }
 
@@ -89,6 +92,7 @@
   CLFavorite *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
   cell.titleLabel.text = managedObject.title;
   cell.dateLabel.text = managedObject.title;
+  [cell.previewImage setImage:managedObject.previewImage];
   
   return cell;
 }
@@ -108,11 +112,7 @@
     CLFavorite *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [_managedObjectContext deleteObject:managedObject];
     
-    NSError *error = nil;
-    [_managedObjectContext save:&error];
-    if (error != nil) {
-      NSLog(@"Error saving data");
-    }
+    [self saveManagedObjectContext];
   }      
 }
 
@@ -281,21 +281,46 @@
   [self.tableView endUpdates];
 }
 
+#pragma mark - Managed Object context
+
+- (void)saveManagedObjectContext {
+
+  NSError *error = nil;
+  [_managedObjectContext save:&error];
+  if (error != nil) {
+    NSLog(@"Error saving data");
+  }
+}
+
 #pragma mark - Actions
 
 - (void)addFavoriteWithRecipe:(CLRecipe *)recipe {
   
   if (![self isRecipeFavorite:recipe]) {
+    
     CLFavorite *favorite = (CLFavorite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorite"
                                                                        inManagedObjectContext:_managedObjectContext];
     favorite.identifier = [NSNumber numberWithInt:recipe.identifier];
     favorite.title = recipe.title;
     
-    NSError *error = nil;
-    [_managedObjectContext save:&error];
-    if (error != nil) {
-      NSLog(@"Error saving data");
-    }
+    // Retrieve preview image to store it in core data
+    NSURL *url = [[NSURL alloc] initWithString:recipe.image];
+    
+    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+    __unsafe_unretained __block ASIHTTPRequest *blockRequest = request;
+    
+    [request setCompletionBlock:^{
+      // Set the retrieved image
+      UIImage *theImage = [[UIImage alloc] initWithData:[blockRequest responseData]];
+      favorite.previewImage = theImage;
+      [self saveManagedObjectContext];
+    }];
+    [request setFailedBlock:^{
+      // Add to core data without image
+      [self saveManagedObjectContext];
+    }];
+    
+    [[NSOperationQueue sharedOperationQueue] addOperation:request];
   }
 }
 
@@ -318,11 +343,7 @@
     
     [_managedObjectContext deleteObject:[result objectAtIndex:0]];
     
-    error = nil;
-    [_managedObjectContext save:&error];
-    if (error != nil) {
-      NSLog(@"Error saving data");
-    }
+    [self saveManagedObjectContext];
   }
 }
 

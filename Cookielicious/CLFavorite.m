@@ -13,5 +13,6 @@
 
 @dynamic title;
 @dynamic identifier;
+@dynamic previewImage;
 
 @end
