@@ -9,6 +9,7 @@
 #import "CLRecipeDetailView.h"
 #import "CLStepIngredient.h"
 #import "CLFavoritesController.h"
+#import "CLActivityIndicator.h"
 #import "SHK.h"
 
 @interface CLRecipeDetailView (Private)
@@ -94,11 +95,34 @@
     [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
     
     [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart_faved.png"] forState:UIControlStateNormal];
+    
+    // Show activity indicator
+    CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+    
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart.png"]];
+    
+    [activityIndicator setCenterView:centerImage];
+    [activityIndicator setSubMessage:@"Als Favorit markiert"];
+    
+    [activityIndicator show];
+    [activityIndicator hideAfterDelay:2];
   }
   else {
     [[CLFavoritesController shared] removeFavoriteWithRecipe:_recipe];
     
     [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart.png"] forState:UIControlStateNormal];
+    
+    // Show activity indicator
+    CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+    
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart_broken.png"]];
+    
+    [activityIndicator setCenterView:centerImage];
+    [activityIndicator setSubMessage:@"Favorit entfernt"];
+    
+    
+    [activityIndicator show];
+    [activityIndicator hideAfterDelay:2];
   }
 }
 

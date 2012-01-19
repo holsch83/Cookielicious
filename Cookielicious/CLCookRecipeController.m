@@ -379,10 +379,31 @@
     [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
     
     [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart_faved.png"]];
+    
+    CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+    
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart.png"]];
+    
+    [activityIndicator setCenterView:centerImage];
+    [activityIndicator setSubMessage:@"Als Favorit markiert"];
+    
+    [activityIndicator show];
+    [activityIndicator hideAfterDelay:2];
   }
   else {
     [[CLFavoritesController shared] removeFavoriteWithRecipe:_recipe];
+    
     [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart.png"]];
+    
+    CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+    
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart_broken.png"]];
+    
+    [activityIndicator setCenterView:centerImage];
+    [activityIndicator setSubMessage:@"Favorit entfernt"];
+    
+    [activityIndicator show];
+    [activityIndicator hideAfterDelay:2];
   }
 }
 

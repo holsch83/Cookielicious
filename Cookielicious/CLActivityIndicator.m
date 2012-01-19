@@ -51,7 +51,7 @@ static CLActivityIndicator *_currentIndicator = nil;
 		
 		_currentIndicator = [[super allocWithZone:NULL] initWithFrame:centeredFrame];
 		
-		_currentIndicator.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+		_currentIndicator.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
 		_currentIndicator.opaque = NO;
 		_currentIndicator.alpha = 0;		
 		_currentIndicator.layer.cornerRadius = 10;		
@@ -143,11 +143,11 @@ static CLActivityIndicator *_currentIndicator = nil;
 			_subMessageLabel.backgroundColor = [UIColor clearColor];
 			_subMessageLabel.opaque = NO;
 			_subMessageLabel.textColor = [UIColor whiteColor];
-			_subMessageLabel.font = [UIFont boldSystemFontOfSize:17];
+			_subMessageLabel.font = [UIFont boldSystemFontOfSize:12];
 			_subMessageLabel.textAlignment = UITextAlignmentCenter;
 			_subMessageLabel.shadowColor = [UIColor darkGrayColor];
 			_subMessageLabel.shadowOffset = CGSizeMake(1,1);
-			_subMessageLabel.adjustsFontSizeToFitWidth = YES;
+			_subMessageLabel.adjustsFontSizeToFitWidth = NO;
 			
 			[self addSubview:_subMessageLabel];
 		}
