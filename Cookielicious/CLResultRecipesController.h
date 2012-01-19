@@ -15,12 +15,17 @@
 #import "ASIHTTPRequest.h"
 
 @interface CLResultRecipesController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate, ASIHTTPRequestDelegate> {
+  // All user selected ingredients
+  NSArray *_selectedIngredients;
+  
+  // The ingredients to filter the recipes by
   NSMutableArray *_currSelectedIngredients;
-  CLRecipeView *_currRecipeView;
+  
   UIView *_selectedCellBackgroundView;
+  
   CGPoint _currRecipeCenterPoint;
   
-  UIImageView *_arrowImageView;
+  CLRecipeView *_currRecipeView;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *recipeGridView;
@@ -31,11 +36,6 @@
 @property (strong, nonatomic) CLIngredientCell *ingredientCell;
 @property (strong, nonatomic) NSMutableArray *recipes;
 
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSFetchRequest *fetchRequest;
-
-
+- (id) initWithIngredients:(NSArray *)ingredients;
 
 @end

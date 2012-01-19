@@ -524,7 +524,8 @@
   }
   [self saveManagedObjectContext];
   
-  CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
+//  CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
+  CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithIngredients:[self.selectedIngredientsController selectedIngredients]];
     
   [self.navigationController pushViewController:resultRecipesController animated:YES];
 }
