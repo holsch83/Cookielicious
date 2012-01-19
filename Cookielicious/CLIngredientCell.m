@@ -70,16 +70,8 @@
       
       self.ingredientLabel.alpha = 1.0;
       self.accessoryView = nil;
-      
-      NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLDragView" 
-                                                          owner:self 
-                                                        options:nil];
-      
-      for (NSObject *obj in objects) {
-        if ([obj isKindOfClass:NSClassFromString(@"CLDragView")]) {
-          dragView = (CLDragView*)obj;
-        }
-      }
+
+      dragView = [[CLDragView alloc] initWithFrame:self.bounds];
       dragView.delegate = self.rootController;
       dragView.label.text = _ingredient.name;
       dragView.ingredient = _ingredient;

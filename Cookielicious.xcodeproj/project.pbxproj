@@ -62,7 +62,6 @@
 		3CCFB8CC14B89DBC003E74C0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCFB8CB14B89DBC003E74C0 /* Twitter.framework */; };
 		3CF1288D14C33A9300A9541F /* image_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF1288B14C33A9300A9541F /* image_default.png */; };
 		3CF1288E14C33A9300A9541F /* image_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF1288C14C33A9300A9541F /* image_default@2x.png */; };
-		3CF56D33148A41A600B3BBF1 /* CLDragView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF56D32148A41A600B3BBF1 /* CLDragView.xib */; };
 		3CF56D3D148A5FD600B3BBF1 /* CLSelectedIngredientsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF56D3B148A5FD500B3BBF1 /* CLSelectedIngredientsController.m */; };
 		3CF56D3E148A5FD600B3BBF1 /* CLSelectedIngredientsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF56D3C148A5FD500B3BBF1 /* CLSelectedIngredientsController.xib */; };
 		3CFEB2C314615F4F00DCD93D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB27214615F4E00DCD93D /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -272,7 +271,6 @@
 		3CCFB8CB14B89DBC003E74C0 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		3CF1288B14C33A9300A9541F /* image_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_default.png; sourceTree = "<group>"; };
 		3CF1288C14C33A9300A9541F /* image_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_default@2x.png"; sourceTree = "<group>"; };
-		3CF56D32148A41A600B3BBF1 /* CLDragView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLDragView.xib; sourceTree = "<group>"; };
 		3CF56D37148A443D00B3BBF1 /* CLDragViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDragViewDelegate.h; sourceTree = "<group>"; };
 		3CF56D3A148A5FD500B3BBF1 /* CLSelectedIngredientsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSelectedIngredientsController.h; sourceTree = "<group>"; };
 		3CF56D3B148A5FD500B3BBF1 /* CLSelectedIngredientsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSelectedIngredientsController.m; sourceTree = "<group>"; };
@@ -566,7 +564,6 @@
 				3CF56D37148A443D00B3BBF1 /* CLDragViewDelegate.h */,
 				3C2412E214882D1F00D41C3D /* CLDragView.h */,
 				3C2412E314882D1F00D41C3D /* CLDragView.m */,
-				3CF56D32148A41A600B3BBF1 /* CLDragView.xib */,
 				5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */,
 				5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */,
 			);
@@ -1269,7 +1266,6 @@
 				3C26B202147D46F400BE8BD6 /* pattern_navigationbar.png in Resources */,
 				3C26B20A147D4A6300BE8BD6 /* CLIngredientCell.xib in Resources */,
 				3C26B217147D6B4000BE8BD6 /* pattern_wood.png in Resources */,
-				3CF56D33148A41A600B3BBF1 /* CLDragView.xib in Resources */,
 				3CF56D3E148A5FD600B3BBF1 /* CLSelectedIngredientsController.xib in Resources */,
 				3CC9CA1A148D648200F99EF2 /* icon_checkmark.png in Resources */,
 				3CC9CA1D148D6A2D00F99EF2 /* cuttingboard.png in Resources */,

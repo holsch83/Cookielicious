@@ -138,16 +138,7 @@
   for (CLIngredient *ingr in self.fetchedResultsController.fetchedObjects) {
     if ([ingr.selected boolValue]) {
 
-      CLDragView *dragView;
-      NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CLDragView" 
-                                                       owner:self 
-                                                     options:nil];
-      
-      for (NSObject *obj in objects) {
-        if ([obj isKindOfClass:NSClassFromString(@"CLDragView")]) {
-          dragView = (CLDragView*)obj;
-        }
-      }
+      CLDragView *dragView = [[CLDragView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
       
       dragView.delegate = self;
       dragView.label.text = ingr.name;

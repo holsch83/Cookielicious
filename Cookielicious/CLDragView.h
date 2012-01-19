@@ -20,12 +20,11 @@ typedef enum {
 
   @private
   BOOL _isDragging;
+  UIButton *_removeButton;
 }
 
 @property (nonatomic, strong) id <NSObject> delegate;
-@property (nonatomic, strong) IBOutlet UILabel *label;
-@property (nonatomic, strong) IBOutlet UIButton *removeButton;
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) CLIngredient *ingredient;
 
 - (void)setVisible:(BOOL)visible;
