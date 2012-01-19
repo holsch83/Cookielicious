@@ -146,10 +146,6 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  [self resetDragViewsAnimated:YES];
-}
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
   return YES;
 }
