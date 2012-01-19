@@ -304,6 +304,17 @@
   
   [_recipeDetailView setDelegate:self];
   
+  // Add explanation
+  UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"text_filter_explanation.png"]];
+  
+  int x = (self.tableView.frame.size.width - imageView.frame.size.width) / 2;
+  int y = -1 * (imageView.frame.size.height + 20);
+  
+  [imageView setFrame:CGRectMake(x, y, imageView.frame.size.width, imageView.frame.size.height)];
+  
+  [[self tableView] addSubview:imageView];
+  [[self tableView]sendSubviewToBack:imageView];
+  
   [self requestRecipes];
 }
 
@@ -465,16 +476,7 @@
   
   [self displayFilteredRecipes];
 }
-/*
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-  CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  [_currSelectedIngredients removeObject:currIngredient];
-  
-  NSLog(@"Did deselect row %d", indexPath.row);
-  
-  [self displayFilteredRecipes];
-}
-*/
+
 #pragma mark - UITableViewDataSource
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {

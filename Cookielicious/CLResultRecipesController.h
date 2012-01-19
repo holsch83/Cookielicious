@@ -19,6 +19,8 @@
   CLRecipeView *_currRecipeView;
   UIView *_selectedCellBackgroundView;
   CGPoint _currRecipeCenterPoint;
+  
+  UIImageView *_arrowImageView;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *recipeGridView;
