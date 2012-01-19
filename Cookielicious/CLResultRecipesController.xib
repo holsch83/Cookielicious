@@ -43,7 +43,7 @@
 						<string key="NSFrame">{{320, 0}, {684, 768}}</string>
 						<reference key="NSSuperview" ref="39669158"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="705810618"/>
+						<reference key="NSNextKeyView" ref="908769691"/>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -62,6 +62,7 @@
 								<string key="NSFrame">{{-10, 0}, {704, 768}}</string>
 								<reference key="NSSuperview" ref="908769691"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwLjA1ODg3MTU3NjQgMCAwAA</bytes>
@@ -97,7 +98,7 @@
 						<string key="NSFrameSize">{300, 768}</string>
 						<reference key="NSSuperview" ref="39669158"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="908769691"/>
+						<reference key="NSNextKeyView" ref="536605311"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MSAwAA</bytes>
@@ -106,7 +107,6 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-						<bool key="IBUIAllowsMultipleSelection">YES</bool>
 						<float key="IBUIRowHeight">44</float>
 						<float key="IBUISectionHeaderHeight">22</float>
 						<float key="IBUISectionFooterHeight">22</float>
@@ -115,7 +115,7 @@
 				<string key="NSFrameSize">{1004, 768}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="536605311"/>
+				<reference key="NSNextKeyView" ref="705810618"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>

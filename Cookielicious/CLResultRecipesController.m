@@ -13,6 +13,7 @@
 #import "CLRecipe.h"
 #import "CLIngredientCell.h"
 #import "CLCookRecipeController.h"
+#import "CLActivityIndicator.h"
 #import "NSOperationQueue+SharedQueue.h"
 #import "JSONKit.h"
 
@@ -436,19 +437,31 @@
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
   
   if([_currSelectedIngredients containsObject:currIngredient]) {
-    NSLog(@"Deselect");
-    
     [self setCellState:cell isSelected:NO];
     [_currSelectedIngredients removeObject:currIngredient];
   }
   else {
-    NSLog(@"Select");
-    
     [self setCellState:cell isSelected:YES];
     [_currSelectedIngredients addObject:currIngredient];
   }
   
-  NSLog(@"Did select row %d", indexPath.row);
+  // Show activity indicator
+  CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+  
+  UIImageView *centerImage;
+  if([_currSelectedIngredients count] > 0) {
+    centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_cone.png"]];
+    [activityIndicator setSubMessage:@"Rezepte gefiltert"];
+  }
+  else {
+    centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_cone_broken.png"]];
+    [activityIndicator setSubMessage:@"Filter entfernt"];
+  }
+  
+  [activityIndicator setCenterView:centerImage];
+  
+  [activityIndicator show];
+  [activityIndicator hideAfterDelay:2];
   
   [self displayFilteredRecipes];
 }
