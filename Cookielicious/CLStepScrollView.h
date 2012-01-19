@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CLStepScrollView : UIScrollView {
+@interface CLStepScrollView : UIScrollView <UIGestureRecognizerDelegate> {
   UITapGestureRecognizer *_tapGestureRecognizer;
 }
 

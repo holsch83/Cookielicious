@@ -14,6 +14,7 @@
   self = [super initWithCoder:aDecoder];
   if(self) {
     _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchedView:)];
+    [_tapGestureRecognizer setDelegate:self];
     [self addGestureRecognizer:_tapGestureRecognizer];
   }
   return self;
@@ -65,6 +66,14 @@
   else {
     return currPage;
   }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+  if([touch.view isKindOfClass:NSClassFromString(@"CLStepScrollView")]) {
+    return YES;
+  }
+  return NO;
 }
 
 @end
