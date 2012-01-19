@@ -9,6 +9,7 @@
 #import "CLCookRecipeController.h"
 #import "CLFavoritesController.h"
 #import "CLStepView.h"
+#import "CLStepIngredient.h"
 #import "CLStepScrollView.h"
 #import "CLRecipe.h"
 #import "CLStep.h"
@@ -30,7 +31,9 @@
 - (void)setLiveModeTimerForStep:(CLStep *)theStep;
 - (void)invalidateLiveModeTimer;
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset;
+- (void)setIngredientsViewRotation:(CGFloat)offset;
 - (void)createMultipleNavigationBarButtons;
+- (void)createIngredientsList;
 
 @end
 
@@ -185,6 +188,7 @@
   [super viewDidLoad];
   
   [self createMultipleNavigationBarButtons];
+  [self createIngredientsList];
   
   // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = _recipe.title;
@@ -227,6 +231,7 @@
     
     currentIndex++;
 	}
+  [_scrollView setContentOffset:CGPointZero];
 
 }
 
@@ -246,6 +251,7 @@
   }
   
   [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4/2);
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -269,6 +275,7 @@
   
   // Set start label transparancy
   [self setLabelAlphaForContentOffset:_scrollView.contentOffset.x];
+  [self setIngredientsViewRotation:_scrollView.contentOffset.x];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
@@ -341,7 +348,42 @@
   self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:toolbar];
 }
 
+- (void)createIngredientsList {
+
+  NSMutableString *ingredientString = [[NSMutableString alloc] init];
+  
+  for(CLStepIngredient *ingr in [_recipe ingredients]) {
+    // Only display decimal if number is not natural
+    if([ingr amount] == 0) {
+      [ingredientString appendFormat:@"\u2022 %@\n",[ingr name]];
+    }
+    else if([ingr amount] == floor([ingr amount])) {
+      [ingredientString appendFormat:@"\u2022 %.0f %@\t%@\n",[ingr amount],[ingr unit],[ingr name]];
+    }
+    else {
+      [ingredientString appendFormat:@"\u2022 %.02f %@\t%@\n",[ingr amount],[ingr unit],[ingr name]];
+    }
+  }
+  _ingredientsView.text = ingredientString;
+  
+}
+
+- (void)setIngredientsViewRotation:(CGFloat)offset {
+
+  if (offset >= 0) {
+    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4/2);
+  
+  }
+  else if (offset <= -100) {
+    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, 0);
+  }
+  else if (offset < 0 && offset > -100) {
+    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (-M_PI_4/2) + (-M_PI_4/2) * (offset/100));
+  }
+}
+
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset {
+  
   
   if (offset < 0) {
     _startLabel.alpha = 1.0;
