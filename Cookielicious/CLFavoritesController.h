@@ -20,6 +20,7 @@
 
   NSManagedObjectContext *_managedObjectContext;
   UIView *_emptyView;
+  BOOL _requestIsPerforming;
   
 }
 

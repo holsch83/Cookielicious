@@ -319,17 +319,24 @@
       UIImage *theImage = [[UIImage alloc] initWithData:[blockRequest responseData]];
       favorite.previewImage = theImage;
       [self saveManagedObjectContext];
+      _requestIsPerforming = NO;
     }];
     [request setFailedBlock:^{
       // Add to core data without image
       [self saveManagedObjectContext];
+      _requestIsPerforming = NO;
     }];
-    
+
     [[NSOperationQueue sharedOperationQueue] addOperation:request];
+    _requestIsPerforming = YES;
   }
 }
 
 - (void)removeFavoriteWithRecipe:(CLRecipe *)recipe {
+  
+  if (_requestIsPerforming) {
+    return;
+  }
   if ([self isRecipeFavorite:recipe]) {
     
     NSFetchRequest *fetchRequest = [self fetchRequestForRecipe:recipe];
