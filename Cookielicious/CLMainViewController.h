@@ -31,6 +31,8 @@ CLDragViewDelegate, CLSelectedIngredientsDelegate, CLFavoritesDelegate,UIPopover
 @property (strong, nonatomic) IBOutlet CLIngredientCell *ingredientCell;
 @property (strong, nonatomic) IBOutlet UIButton *showRecipesButton;
 @property (strong, nonatomic) IBOutlet UIButton *removeAllIngredientsButton;
+@property (strong, nonatomic) IBOutlet UIButton *alphabeticalSortButton;
+@property (strong, nonatomic) IBOutlet UIButton *usageSortButton;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

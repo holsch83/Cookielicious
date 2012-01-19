@@ -261,7 +261,7 @@
  */
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
   _blockLiveMode = YES;
-  
+
   [self stopLiveMode];
 }
 
