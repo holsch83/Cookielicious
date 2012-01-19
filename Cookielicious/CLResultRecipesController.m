@@ -19,7 +19,6 @@
 
 @interface CLResultRecipesController (Private)
 
-- (NSArray *) selectedIngredients;
 - (void) requestRecipes;
 - (void) displayFilteredRecipes;
 - (void) displayRecipes:(NSArray *)recipes;
@@ -39,10 +38,6 @@
 @synthesize recipes = _recipes;
 @synthesize ingredientCell = _ingredientCell;
 
-@synthesize fetchedResultsController = __fetchedResultsController;
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize fetchRequest = _fetchRequest;
-
 - (NSMutableArray *) recipes {
   if(_recipes == nil) {
     _recipes = [[NSMutableArray alloc] init];
@@ -53,27 +48,12 @@
 
 #pragma mark - Object initialization
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if(self) {
-        if (__managedObjectContext == nil) { 
-            __managedObjectContext = 
-            [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
-        }
-    }
-    return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        if (__managedObjectContext == nil) { 
-            __managedObjectContext = 
-            [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
-        }
-    }
-    return self;
+- (id) initWithIngredients:(NSArray *)ingredients {
+  self = [super initWithNibName:@"CLResultRecipesController" bundle:nil];
+  if(self) {
+    _selectedIngredients = ingredients;
+  }
+  return self;
 }
 
 #pragma mark - Private members
@@ -90,33 +70,11 @@
   }
 }
 
-- (NSArray *) selectedIngredients {
-  NSEntityDescription *entityDescription = [NSEntityDescription
-                                            entityForName:@"Ingredient" inManagedObjectContext:[self managedObjectContext]];
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
-  
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selected = %f", 1.0];
-  [request setPredicate:predicate];
-  
-  NSError *error = nil;
-  NSArray *array = [[self managedObjectContext] executeFetchRequest:request error:&error];
-  if (array == nil)
-  {
-    NSLog(@"Failed fetching selected ingredients");
-    exit(-1);
-  }
-  
-  return array;
-}
-
 - (void) requestRecipes {
-  NSArray *ingredients = [self selectedIngredients];
-  
   // Build get parameters
   NSMutableString *parameters = [[NSMutableString alloc] init];
-  for(int i = 0, j = [ingredients count]; i < j; i++) {
-    CLIngredient *ingr = (CLIngredient *)[ingredients objectAtIndex:i];
+  for(int i = 0, j = [_selectedIngredients count]; i < j; i++) {
+    CLIngredient *ingr = (CLIngredient *)[_selectedIngredients objectAtIndex:i];
     if(i == 0) {
       [parameters appendFormat:@"ingredients[]=%@",[[ingr name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
@@ -444,7 +402,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  CLIngredient *currIngredient = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  CLIngredient *currIngredient = [_selectedIngredients objectAtIndex:indexPath.row];
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
   
   if([_currSelectedIngredients containsObject:currIngredient]) {
@@ -480,12 +438,11 @@
 #pragma mark - UITableViewDataSource
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-  
-  CLIngredient *managedObject = (CLIngredient *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+  CLIngredient *ingredient = (CLIngredient *)[_selectedIngredients objectAtIndex:indexPath.row];
 
   UIFont *font = [UIFont fontWithName:@"Noteworthy-Bold" size:18.0];
   
-  [cell.textLabel setText:managedObject.name];
+  [cell.textLabel setText:ingredient.name];
   [cell.textLabel setFont:font];
   [cell.textLabel setTextColor:[UIColor whiteColor]];
   
@@ -493,14 +450,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  
-  return [[self.fetchedResultsController sections] count];
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  
-  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-  return [sectionInfo numberOfObjects];
+  return [_selectedIngredients count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -518,110 +472,5 @@
   
   return cell;
 }
-
-#pragma mark - NSFetchedResultControllerDelegate
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-  if (__fetchedResultsController != nil) {
-      return __fetchedResultsController;
-  }
-  
-  [NSFetchedResultsController deleteCacheWithName:@"Master"];
-  __fetchedResultsController = nil;
-  // Set up the fetched results controller.
-  // Create the fetch request for the entity.
-  
-  _fetchRequest = [[NSFetchRequest alloc] init];
-  // Edit the entity name as appropriate.
-  
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ingredient" 
-                                            inManagedObjectContext:self.managedObjectContext];
-  [self.fetchRequest setEntity:entity];
-  
-  // Set the batch size to a suitable number.
-  
-  [self.fetchRequest setFetchBatchSize:20];
-  
-  // Edit the sort key as appropriate.
-  
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
-                                                                 ascending:YES];
-  NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-  
-  [self.fetchRequest setSortDescriptors:sortDescriptors];
-
-  // Add filter
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selected = %f",1.0];
-  
-  [self.fetchRequest setPredicate:predicate];
-  
-  // Edit the section name key path and cache name if appropriate.
-  // nil for section name key path means "no sections".
-  
-  NSFetchedResultsController *aFetchedResultsController = 
-  [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest 
-                                      managedObjectContext:self.managedObjectContext 
-                                        sectionNameKeyPath:nil 
-                                                 cacheName:@"Master"];
-  aFetchedResultsController.delegate = self;
-  self.fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         abort() causes the application to generate a crash log and terminate. 
-         You should not use this function in a shipping application, although it may 
-         be useful during development. 
-         */
-        
-        NSLog(@"fetchedResultsController::Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-	}
-    
-    return __fetchedResultsController;
-}
-
-- (void)reloadFetchRequest {
-    
-    [NSFetchedResultsController deleteCacheWithName:@"Master"];
-    NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         abort() causes the application to generate a crash log and terminate. 
-         You should not use this function in a shipping application, although it may 
-         be useful during development. 
-         */
-        
-        NSLog(@"reloadFetchRequest::Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-	}
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            break;
-    }
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {}
-
 
 @end
