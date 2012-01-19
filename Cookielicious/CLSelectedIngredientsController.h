@@ -13,11 +13,17 @@
 
 @class CLDragView;
 
-@interface CLSelectedIngredientsController : UIViewController {
+@interface CLSelectedIngredientsController : UIViewController <UIGestureRecognizerDelegate> {
   
   @private
   NSMutableArray *_uiViews;
   NSMutableArray *_selectedIngredients;
+  
+  UIPinchGestureRecognizer *_pinchGestureRecognizer;
+  UIRotationGestureRecognizer *_rotationGestureRecognizer;
+  
+  float _radius;
+  float _rotation;
 
 }
 @property (nonatomic, assign) id<CLSelectedIngredientsDelegate> delegate;
