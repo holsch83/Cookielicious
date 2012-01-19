@@ -10,6 +10,22 @@
 
 @implementation CLSearchBar
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if(self) {
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y + 4, 320, 44);
+    
+    // Add background image
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"banderole.png"]];
+    
+    backgroundView.frame = CGRectMake(-7, -2, backgroundView.frame.size.width, backgroundView.frame.size.height);
+    
+    [self addSubview:backgroundView];
+    [self sendSubviewToBack:backgroundView];
+  }
+  return self;
+}
+
 /**
  * We want a UISearchBar without the "bar"-background.
  * We support iOS 4 so we have only this possibility to remove the
@@ -27,14 +43,18 @@
   
   [super layoutSubviews];
   
-  self.backgroundColor = [UIColor clearColor];
-  
   for (UIView *subview in self.subviews) {
     if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")] ||
         [subview isKindOfClass:NSClassFromString(@"UISegmentedControl")]) {
       [subview removeFromSuperview];
     }
+    
+    if([subview isKindOfClass:NSClassFromString(@"UISearchBarTextField")]) {
+      [(UITextField *)subview setBackground:[[UIImage imageNamed:@"search_bar.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:17]];
+    }
   }
+  
+  self.backgroundColor = [UIColor clearColor];
 }
 
 @end

@@ -229,7 +229,7 @@
 						<string key="NSFrame">{{20, 267}, {386, 57}}</string>
 						<reference key="NSSuperview" ref="985946061"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="221683450"/>
+						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="592769111"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -255,6 +255,7 @@
 						<string key="NSFrame">{{463, 487}, {117, 43}}</string>
 						<reference key="NSSuperview" ref="985946061"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -369,7 +370,7 @@
 						<reference key="destination" ref="985946061"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">28</int>
+					<int key="connectionID">29</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -487,7 +488,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">28</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -510,20 +511,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CLCookRecipeController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="nextStep:">id</string>
-						<string key="previousStep:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="nextStep:">
-							<string key="name">nextStep:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="previousStep:">
-							<string key="name">previousStep:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_pageControl">UIPageControl</string>
 						<string key="_scrollView">CLStepScrollView</string>

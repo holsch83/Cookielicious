@@ -66,6 +66,8 @@
 @synthesize ingredientCell = _ingredientCell;
 @synthesize showRecipesButton = _showRecipesButton;
 @synthesize removeAllIngredientsButton = _removeAllIngredientsButton;
+@synthesize alphabeticalSortButton = _alphabeticalSortButton;
+@synthesize usageSortButton = _usageSortButton;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -125,10 +127,21 @@
    
   self.searchBar.delegate = self;
   
-  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
+  CGRect searchBarShadowViewRect = CGRectMake(0, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height); //CGRectMake(0, 0, 320, 748)
+  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:searchBarShadowViewRect];
   [self.view insertSubview:view 
-              belowSubview:self.searchBar];
-
+              belowSubview:self.tableView];
+  
+  // We need to add a small padding to the top of the table in order to avoid a cut scroll indicator by the search bar
+  self.tableView.contentInset = UIEdgeInsetsMake(7, 0, 0, 0);
+  
+  // Set background for tab buttons
+  [_alphabeticalSortButton setBackgroundImage:[UIImage imageNamed:@"tab1_active.png"]
+                                     forState:(UIControlStateHighlighted|UIControlStateSelected)];
+  
+  [_usageSortButton setBackgroundImage:[UIImage imageNamed:@"tab2_active.png"]
+                              forState:(UIControlStateHighlighted|UIControlStateSelected)];
+  
   _selectedIngredientsController = 
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
                                                     bundle:nil];
@@ -490,6 +503,10 @@
 
 - (IBAction)touchedAlphabetSortButton:(id)sender {
   
+  // Set button states
+  [_alphabeticalSortButton setSelected:YES];
+  [_usageSortButton setSelected:NO];
+  
   [self.fetchRequest setSortDescriptors:nil];
   
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
@@ -502,6 +519,10 @@
 
 - (IBAction)touchedUsageSortButton:(id)sender {
   
+  // Set button states
+  [_alphabeticalSortButton setSelected:NO];
+  [_usageSortButton setSelected:YES];
+  
   [self.fetchRequest setSortDescriptors:nil];
   
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"searchCount" 
@@ -510,7 +531,6 @@
   [self.fetchRequest setSortDescriptors:sortDescriptors];
   
   [self reloadFetchRequest];
-  
 }
 
 #pragma mark - Show results Buttons
