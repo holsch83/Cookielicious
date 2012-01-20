@@ -251,7 +251,7 @@
   [_ingredientsView setFrame:CGRectMake(_ingredientsView.frame.origin.x, 95, _ingredientsView.frame.size.width, _ingredientsView.frame.size.height)];
   
   [_ingredientsView addSubview:_ingredientsTextView];
-  [_ingredientsTextView setFrame:CGRectMake(40, 40, _ingredientsView.frame.size.width - 2*40, _ingredientsView.frame.size.height - 2 * 40)];
+  [_ingredientsTextView setFrame:CGRectMake(40, 50, _ingredientsView.frame.size.width - 2*40, _ingredientsView.frame.size.height - 2 * 40)];
   
   _ingredientsViewInitialFrame = _ingredientsView.frame;
   
@@ -391,6 +391,7 @@
 }
 
 - (void)setIngredientsViewRotation:(CGFloat)offset {
+  
   if (offset >= 0) {
     _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CL_INGREDIENTVIEW_ROTATION);
   
@@ -412,6 +413,18 @@
     CGRect rect = CGRectMake(_ingredientsViewInitialFrame.origin.x + x, _ingredientsView.frame.origin.y, _ingredientsView.frame.size.width, _ingredientsView.frame.size.height);
     
     [_ingredientsView setFrame:rect];
+  }
+  else if(offset > _scrollView.contentSize.width - _scrollView.frame.size.width + 75) {
+    float x = (_scrollView.contentSize.width - _scrollView.frame.size.width + 75) - offset;
+    
+    CGAffineTransform tmpTransform = _ingredientsView.transform;
+    _ingredientsView.transform = CGAffineTransformIdentity;
+    
+    CGRect rect = CGRectMake(_ingredientsViewInitialFrame.origin.x + x, _ingredientsView.frame.origin.y, _ingredientsView.frame.size.width, _ingredientsView.frame.size.height);
+    
+    [_ingredientsView setFrame:rect];
+    
+    _ingredientsView.transform = tmpTransform;
   }
 }
 
@@ -526,7 +539,11 @@
   // Only start live mode if we are not on recipes last page
   if(! [_scrollView hasNextPage]) {
     _startLiveMode = YES;
-    [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentOffset.y) animated:YES];
+    [_scrollView setContentOffset:CGPointZero animated:YES];
+  }
+  
+  if(_scrollView.contentOffset.x < 0) {
+    [_scrollView setContentOffset:CGPointZero animated:YES];
   }
   
   CLStep *currStep = [[_recipe steps] objectAtIndex:[_scrollView currentPage]];

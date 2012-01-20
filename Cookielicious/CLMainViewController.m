@@ -657,7 +657,7 @@
   }];
   
   [request setFailedBlock:^{
-    NSLog(@"Request recipe count failed.");
+    NSLog(@"fetchRecipeCount error: %@", [[blockRequest error] localizedDescription]);
   }];
   
   [[NSOperationQueue sharedOperationQueue] cancelAllOperations];
@@ -727,7 +727,7 @@
   }];
   
   [request setFailedBlock:^{
-    NSLog(@"Request ingredients failed");
+    NSLog(@"synchronizeIngredients error: %@", [[blockRequest error] localizedDescription]);
   }];
   
   [request startAsynchronous];
