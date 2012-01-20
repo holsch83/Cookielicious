@@ -8,6 +8,7 @@
 
 #import "CLMainViewController.h"
 #import "CLSelectedIngredientsController.h"
+#import "CLActivityIndicator.h"
 #import "CLResultRecipesController.h"
 #import "CLCookRecipeController.h"
 #import "CLCreditsController.h"
@@ -55,6 +56,9 @@
 
 // After (de)selecting a ingredient, update the matched recipes
 - (void) updateRecipeCount:(int)count;
+
+// If maximum of ingredients are selected inform the user
+- (void)showMaxIngredientsReachedIndicator;
 
 @end
 
@@ -386,6 +390,9 @@
     tappedView.ingredient.selected = [NSNumber numberWithBool:YES];
     [self saveManagedObjectContext];
   }
+  else {
+    [self showMaxIngredientsReachedIndicator];
+  }
 }
 
 - (void)dragView:(CLDragView *)dragView detectedLongPressWithRecognizer:(UILongPressGestureRecognizer *)recognizer {
@@ -436,6 +443,9 @@
       else {
         draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
         [self returnDragViewToStartPoint:draggableView];
+        if ([self.selectedIngredientsController isDragViewLimitReached]) {
+          [self showMaxIngredientsReachedIndicator];
+        }
       }
       [draggableView stopDraggingAnimation];
       [self saveManagedObjectContext];
@@ -732,4 +742,15 @@
   
   [request startAsynchronous];
 }
+
+- (void)showMaxIngredientsReachedIndicator {
+
+  CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+  
+  [activityIndicator setSubMessage:@"Maximum erreicht"];
+  
+  [activityIndicator show];
+  [activityIndicator hideAfterDelay:2];
+}
+
 @end
