@@ -11,6 +11,7 @@
 #import "CLStepViewDelegate.h"
 #import "CLTimerViewDelegate.h"
 
+@class DDPageControl;
 @class CLStepView;
 @class CLRecipe;
 @class CLTimersView;
@@ -23,7 +24,7 @@
   IBOutlet CLStepScrollView *_scrollView;
   IBOutlet CLStepView *_stepView;
   IBOutlet CLTimerView *_timerView;
-  IBOutlet UIPageControl *_pageControl;
+  DDPageControl *_pageControl;
   IBOutlet UILabel *_startLabel;
   
   IBOutlet UIImageView *_ingredientsView;

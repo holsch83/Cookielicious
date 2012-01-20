@@ -17,6 +17,7 @@
 #import "CLTimersView.h"
 #import "CLToolbar.h"
 #import "CLActivityIndicator.h"
+#import "DDPageControl.h"
 #import "SHK.h"
 
 #define CL_INGREDIENTVIEW_ROTATION -M_PI_4/10
@@ -38,6 +39,7 @@
 - (void)configureFavoriteButton;
 - (void)recipeFavoredSuccessfull;
 - (void)createIngredientsList;
+- (void)configurePageControl;
 
 @end
 
@@ -214,9 +216,7 @@
 	_scrollView.showsHorizontalScrollIndicator = NO;
   _scrollView.delegate = self;
   
-  // Set up page control
-  _pageControl.numberOfPages = [_recipe.steps count];
-  _pageControl.currentPage = 0;
+  [self configurePageControl];
   
   float contentOffset = 0.0;
   int currentIndex = 0;
@@ -256,6 +256,25 @@
   _ingredientsViewInitialFrame = _ingredientsView.frame;
   
   [_scrollView setContentOffset:CGPointZero];
+}
+
+- (void)configurePageControl {
+  
+  // Set up page control
+  _pageControl = [[DDPageControl alloc] init];
+	[_pageControl setCenter: CGPointMake(self.view.bounds.size.width/2, 
+                                       self.view.bounds.size.height - 125)];
+  _pageControl.numberOfPages = [_recipe.steps count];
+  _pageControl.currentPage = 0;
+  _pageControl.userInteractionEnabled = NO;
+  [_pageControl setType: DDPageControlTypeOnFullOffFull];
+	[_pageControl setOnColor: [UIColor darkGrayColor]];
+	[_pageControl setOffColor: [UIColor lightGrayColor]];
+	[_pageControl setIndicatorDiameter: 5.0f];
+	[_pageControl setIndicatorSpace: 10.0f];
+	[self.view insertSubview:_pageControl 
+              belowSubview:[_timersView superview]];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
