@@ -24,16 +24,12 @@
     _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideView)];
     [_tapGestureRecognizer setDelegate:self];
     
-    //[self addGestureRecognizer:_tapGestureRecognizer];
+    [self addGestureRecognizer:_tapGestureRecognizer];
   }
   return self;
 }
 
 #pragma mark - Touch events
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  [self hideView];
-}
 
 - (void) hideView {
   if([delegate respondsToSelector:@selector(hideRecipeDetailView)]) {
@@ -41,9 +37,7 @@
   }
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-  NSLog(@"View: %@", [touch.view class]);
-  
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {  
   if([touch.view isKindOfClass:NSClassFromString(@"UIButton")]) {
     return NO;
   }

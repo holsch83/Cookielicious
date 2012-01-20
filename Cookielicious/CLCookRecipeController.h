@@ -25,7 +25,9 @@
   IBOutlet CLTimerView *_timerView;
   IBOutlet UIPageControl *_pageControl;
   IBOutlet UILabel *_startLabel;
-  IBOutlet UITextView *_ingredientsView;
+  
+  IBOutlet UIImageView *_ingredientsView;
+  IBOutlet UITextView *_ingredientsTextView;
   
   
   UIBarButtonItem *_shareButton;
@@ -42,6 +44,8 @@
   CLTimerView *_currSelectedTimerView;
   UIActionSheet *_timerActionSheet;
   SHKActionSheet *_sharingActionSheet;
+  
+  CGRect _ingredientsViewInitialFrame;
   
   // The timers for the current recipe
   NSMutableArray *_timers;
