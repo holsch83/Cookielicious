@@ -19,6 +19,8 @@
 #import "CLActivityIndicator.h"
 #import "SHK.h"
 
+#define CL_INGREDIENTVIEW_ROTATION -M_PI_4/10
+
 @interface CLCookRecipeController (Private)
 
 - (void)shareRecipe;
@@ -231,8 +233,16 @@
     
     currentIndex++;
 	}
-  [_scrollView setContentOffset:CGPointZero];
 
+  // Configure ingredients view  
+  [_ingredientsView setFrame:CGRectMake(_ingredientsView.frame.origin.x, 95, _ingredientsView.frame.size.width, _ingredientsView.frame.size.height)];
+  
+  [_ingredientsView addSubview:_ingredientsTextView];
+  [_ingredientsTextView setFrame:CGRectMake(40, 40, _ingredientsView.frame.size.width - 2*40, _ingredientsView.frame.size.height - 2 * 40)];
+  
+  _ingredientsViewInitialFrame = _ingredientsView.frame;
+  
+  [_scrollView setContentOffset:CGPointZero];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -251,7 +261,8 @@
   }
   
   [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
-    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4/2);
+  
+  _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CL_INGREDIENTVIEW_ROTATION);
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -364,21 +375,32 @@
       [ingredientString appendFormat:@"\u2022 %.02f %@\t%@\n",[ingr amount],[ingr unit],[ingr name]];
     }
   }
-  _ingredientsView.text = ingredientString;
+  _ingredientsTextView.text = ingredientString;
   
 }
 
 - (void)setIngredientsViewRotation:(CGFloat)offset {
-
   if (offset >= 0) {
-    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4/2);
+    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CL_INGREDIENTVIEW_ROTATION);
   
   }
   else if (offset <= -100) {
     _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, 0);
+    
+    // After the scroll view decelerated, we need to reset the ingredient view to its initial position
+    [_ingredientsView setFrame:_ingredientsViewInitialFrame];
   }
   else if (offset < 0 && offset > -100) {
-    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (-M_PI_4/2) + (-M_PI_4/2) * (offset/100));
+    _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CL_INGREDIENTVIEW_ROTATION + CL_INGREDIENTVIEW_ROTATION * (offset/100));
+  }
+  
+  if(offset < -200) {
+    // Stick the ingredients to the step
+    float x = abs(offset) - 200;
+    
+    CGRect rect = CGRectMake(_ingredientsViewInitialFrame.origin.x + x, _ingredientsView.frame.origin.y, _ingredientsView.frame.size.width, _ingredientsView.frame.size.height);
+    
+    [_ingredientsView setFrame:rect];
   }
 }
 

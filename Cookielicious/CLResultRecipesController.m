@@ -241,9 +241,10 @@
   
   // Set the delegate for the shadow view
   _shadowView.delegate = self;
+  [_shadowView setFrame:CGRectMake(-320, 0, 1024, 768)];
   
   // Add background to the table view
-  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, 0, 320, 748)];
+  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, self.tableView.frame.origin.y - 35, 320, 768)];
   
   [self.view insertSubview:view 
               belowSubview:self.tableView];
@@ -271,7 +272,8 @@
   [imageView setFrame:CGRectMake(x, y, imageView.frame.size.width, imageView.frame.size.height)];
   
   [[self tableView] addSubview:imageView];
-  [[self tableView]sendSubviewToBack:imageView];
+  [[self tableView] sendSubviewToBack:imageView];
+  [[self tableView] setCanCancelContentTouches:NO];
   
   [self requestRecipes];
 }
@@ -318,8 +320,8 @@
   CGPoint flipViewCenterPoint = CGPointMake(_flipView.bounds.size.width/2, _flipView.bounds.size.height/2);
   CGPoint recipeGridViewCenterPoint = CGPointMake(_recipeGridView.bounds.size.width/2, _recipeGridView.bounds.size.height/2 + _recipeGridView.contentOffset.y);
 
-  [_recipeGridView addSubview:_shadowView];
   [_recipeGridView addSubview:_flipView];
+  [_recipeGridView addSubview:_shadowView];
   
   // Save the current center point of the recipe in order to flip it back
   _currRecipeView = viewVal;
@@ -336,11 +338,10 @@
   viewVal.center = flipViewCenterPoint;
   _recipeDetailView.center = flipViewCenterPoint;
   
-  _shadowView.center = recipeGridViewCenterPoint;
-  
   // Position flip and shadow views in front of all recipe views
   [_recipeGridView bringSubviewToFront:_shadowView];
   [_recipeGridView bringSubviewToFront:_flipView];
+  
   
   // Stop scrolling in recipe grid
   [_recipeGridView setScrollEnabled:NO];

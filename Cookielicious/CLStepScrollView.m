@@ -70,10 +70,10 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-  if([touch.view isKindOfClass:NSClassFromString(@"CLStepScrollView")]) {
-    return YES;
+  if([touch.view isKindOfClass:NSClassFromString(@"UIButton")]) {
+    return NO;
   }
-  return NO;
+  return YES;
 }
 
 @end

@@ -54,6 +54,7 @@
 }
 
 #pragma mark - Actions
+
 - (void) touchedView:(id)sender {
   if(_delegate != nil && [_delegate respondsToSelector:@selector(hideRecipeDetailView)]) {
     [_delegate performSelector:@selector(hideRecipeDetailView)];
