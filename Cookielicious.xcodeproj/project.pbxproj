@@ -51,6 +51,7 @@
 		3C8B5FF214BF681500A32793 /* CLCreditsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C8B5FF014BF681500A32793 /* CLCreditsController.xib */; };
 		3C9CF66514C73A57000ED4B9 /* icon_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C9CF66414C73A57000ED4B9 /* icon_cancel.png */; };
 		3CA1A1F114C9A410009DD540 /* DDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA1A1F014C9A410009DD540 /* DDPageControl.m */; };
+		3CA1A20014C9B7DC009DD540 /* CLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA1A1FF14C9B7DC009DD540 /* CLLabel.m */; };
 		3CB3E68314B49CD0001725D3 /* CLStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB3E68214B49CCF001725D3 /* CLStepView.m */; };
 		3CB3E68614B49CF6001725D3 /* CLStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CB3E68514B49CF6001725D3 /* CLStepView.xib */; };
 		3CC228C314BF6D1900760BF8 /* image_knifeAndFork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CC228C114BF6D1900760BF8 /* image_knifeAndFork.png */; };
@@ -267,6 +268,8 @@
 		3C9CF66414C73A57000ED4B9 /* icon_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cancel.png; sourceTree = "<group>"; };
 		3CA1A1EF14C9A410009DD540 /* DDPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPageControl.h; sourceTree = "<group>"; };
 		3CA1A1F014C9A410009DD540 /* DDPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPageControl.m; sourceTree = "<group>"; };
+		3CA1A1FE14C9B7DC009DD540 /* CLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLLabel.h; sourceTree = "<group>"; };
+		3CA1A1FF14C9B7DC009DD540 /* CLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLLabel.m; sourceTree = "<group>"; };
 		3CB3E68114B49CCF001725D3 /* CLStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepView.h; sourceTree = "<group>"; };
 		3CB3E68214B49CCF001725D3 /* CLStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepView.m; sourceTree = "<group>"; };
 		3CB3E68514B49CF6001725D3 /* CLStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLStepView.xib; sourceTree = "<group>"; };
@@ -563,6 +566,8 @@
 				3C35D4F014C5A056006E7C45 /* CLToolbar.m */,
 				5C18BEBA14C70F900012C1A9 /* CLActivityIndicator.h */,
 				5C18BEBB14C70F900012C1A9 /* CLActivityIndicator.m */,
+				3CA1A1FE14C9B7DC009DD540 /* CLLabel.h */,
+				3CA1A1FF14C9B7DC009DD540 /* CLLabel.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -1484,6 +1489,7 @@
 				5C69E2AC14C6D6CE0036DEA0 /* CLStepScrollView.m in Sources */,
 				5C18BEBC14C70F900012C1A9 /* CLActivityIndicator.m in Sources */,
 				3CA1A1F114C9A410009DD540 /* DDPageControl.m in Sources */,
+				3CA1A20014C9B7DC009DD540 /* CLLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

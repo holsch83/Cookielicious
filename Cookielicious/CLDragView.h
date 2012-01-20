@@ -13,6 +13,7 @@ typedef enum {
 } CLShadow;
 
 #import <UIKit/UIKit.h>
+#import "CLLabel.h"
 
 @class CLIngredient;
 
@@ -24,7 +25,7 @@ typedef enum {
 }
 
 @property (nonatomic, strong) id <NSObject> delegate;
-@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) CLLabel *label;
 @property (nonatomic, strong) CLIngredient *ingredient;
 
 - (void)setVisible:(BOOL)visible;

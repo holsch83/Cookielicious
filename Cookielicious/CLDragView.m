@@ -65,10 +65,10 @@
 
 - (void)createLabel {
 
-  _label = [[UILabel alloc] initWithFrame:self.bounds];
+  _label = [[CLLabel alloc] initWithFrame:self.bounds];
+  _label.textColor = [UIColor whiteColor];
+  _label.glowColor = [UIColor blackColor];
   _label.backgroundColor = [UIColor clearColor];
-//  _label.backgroundColor =
-//  [UIColor colorWithRed:(255.0/255.0) green:(255.0/255.0) blue:(198.0/255.0) alpha:1.0];
   _label.font = [UIFont fontWithName:@"Noteworthy-Bold" size:18.0];
   _label.textAlignment = UITextAlignmentCenter;
   
@@ -89,49 +89,6 @@
   [self addSubview:_removeButton];
   
 }
-
-#pragma mark - Drawing
-
-//- (void)drawRect:(CGRect)rect {
-//    
-//  rect.origin = CGPointMake(rect.origin.x + DRAG_VIEW_PADDING, 
-//                               rect.origin.y + DRAG_VIEW_PADDING/2);
-//  rect.size = CGSizeMake(rect.size.width - 2*DRAG_VIEW_PADDING, 
-//                            rect.size.height - DRAG_VIEW_PADDING);
-//  
-//  
-//  CGContextRef currentContext = UIGraphicsGetCurrentContext();    
-// 
-//  
-//  CGContextSaveGState(currentContext);
-//  
-//  int radius = rect.size.height/2;
-//  
-//  // Set shadow
-//  CGContextSetShadowWithColor(currentContext, CGSizeMake(0, 0), 5, [UIColor blackColor].CGColor);
-//  
-//  // draw the rect
-//  UIColor *color = [UIColor blackColor];
-//  CGContextSetFillColorWithColor(currentContext, color.CGColor);
-//  //CGContextFillRect(currentContext, newRect);
-//  
-//  CGContextMoveToPoint(currentContext, rect.origin.x, rect.origin.y);
-//  CGContextAddLineToPoint(currentContext, rect.origin.x, rect.origin.y + rect.size.height);
-//
-//  CGContextAddLineToPoint(currentContext, rect.origin.x + rect.size.width - radius, 
-//                          rect.origin.y + rect.size.height);
-//  CGContextAddArc(currentContext, rect.origin.x + rect.size.width - radius, 
-//                  rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
-//  CGContextAddLineToPoint(currentContext, rect.origin.x + rect.size.width, rect.origin.y + radius);
-//  CGContextAddArc(currentContext, rect.origin.x + rect.size.width - radius, rect.origin.y + radius, 
-//                  radius, 0.0f, -M_PI / 2, 1);
-//  CGContextAddLineToPoint(currentContext, rect.origin.x, rect.origin.y);
-//  
-//  CGContextFillPath(currentContext);
-//  
-//  CGContextClearRect(currentContext, rect);
-//  CGContextRestoreGState(currentContext);
-//}
 
 
 #pragma mark - Layout
@@ -185,14 +142,17 @@
 - (void)setVisible:(BOOL)visible {
 
   if (visible) {
+    
+    CGPoint center = self.center;
+    CGRect newRect = self.frame;
+    newRect.size.width = newRect.size.width/2;
+    self.frame = newRect;
+    self.center = center;
+    
     [UIView animateWithDuration:0.4 animations:^{
       
       _removeButton.alpha = 1.0;
       self.label.alpha = 1.0;
-      
-      CGRect newRect = self.frame;
-      newRect.size.width = newRect.size.width/2;
-      self.frame = newRect;
       
     } completion:^(BOOL finished){
     }];
@@ -215,21 +175,19 @@
 
 - (void)setShadow:(CLShadow)shadow {
 
-  [UIView animateWithDuration:0.4 animations:^{
-    switch (shadow) {
-      case CLShadowGreen:
-
-        break;
-      case CLShadowRed:
- 
-        break;
-      case CLShadowDefault:
-
-        break;
-      default:
-        break;
-    }
-  } completion:^(BOOL finished){}];
+  switch (shadow) {
+    case CLShadowGreen:
+      _label.glowColor = [UIColor greenColor];
+      break;
+    case CLShadowRed:
+      _label.glowColor = [UIColor redColor];
+      break;
+    case CLShadowDefault:
+      _label.glowColor = [UIColor blackColor];
+      break;
+    default:
+      break;
+  }
 }
 
 - (void)startDraggingAnimation {

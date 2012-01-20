@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 cookcrowd. All rights reserved.
 //
 
-#define MAX_DRAG_VIEWS 14
+#define MAX_DRAG_VIEWS 7
 
 #import <UIKit/UIKit.h>
 #import "CLSelectedIngredientsDelegate.h"
