@@ -253,7 +253,7 @@
 		3C7C945714C4912B007BD1EA /* CLFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLFavorite.h; sourceTree = "<group>"; };
 		3C7C945814C4912B007BD1EA /* CLFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLFavorite.m; sourceTree = "<group>"; };
 		3C8344D714B4995400F053AA /* CLCookRecipeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCookRecipeController.h; sourceTree = "<group>"; };
-		3C8344D814B4995400F053AA /* CLCookRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCookRecipeController.m; sourceTree = "<group>"; };
+		3C8344D814B4995400F053AA /* CLCookRecipeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CLCookRecipeController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3C8344D914B4995400F053AA /* CLCookRecipeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLCookRecipeController.xib; sourceTree = "<group>"; };
 		3C8344DC14B499DF00F053AA /* CLScrollViewEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScrollViewEnhancer.h; sourceTree = "<group>"; };
 		3C8344DD14B499DF00F053AA /* CLScrollViewEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLScrollViewEnhancer.m; sourceTree = "<group>"; };
@@ -310,8 +310,8 @@
 		3CFEB3171461625B00DCD93D /* ASIReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIReachability.m; sourceTree = "<group>"; };
 		5C0D9F7214BE040A00A5B3CA /* CLTimerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTimerViewDelegate.h; sourceTree = "<group>"; };
 		5C12AC0614A9EDDB0041DC45 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
-		5C18BEBA14C70F900012C1A9 /* CLActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLActivityIndicator.h; sourceTree = "<group>"; };
-		5C18BEBB14C70F900012C1A9 /* CLActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLActivityIndicator.m; sourceTree = "<group>"; };
+		5C18BEBA14C70F900012C1A9 /* CLActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CLActivityIndicator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		5C18BEBB14C70F900012C1A9 /* CLActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CLActivityIndicator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		5C18BEBE14C71A350012C1A9 /* action_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = action_play.png; sourceTree = "<group>"; };
 		5C18BEC014C71F200012C1A9 /* action_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = action_pause.png; sourceTree = "<group>"; };
 		5C36288A14BF4E3F009AF403 /* CLTimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLTimerView.xib; sourceTree = "<group>"; };
@@ -562,7 +562,7 @@
 			name = CustomUI;
 			sourceTree = "<group>";
 		};
-		3C26B203147D4A0700BE8BD6 /* SelectIngredients */ = {
+		3C26B203147D4A0700BE8BD6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				3C5EC445146ADFFE00E8970A /* CLMainViewController.h */,
@@ -581,7 +581,7 @@
 				5C81B0FE149F618200A59264 /* CLSearchBarShadowView.h */,
 				5C81B0FF149F618200A59264 /* CLSearchBarShadowView.m */,
 			);
-			name = SelectIngredients;
+			name = Home;
 			sourceTree = "<group>";
 		};
 		3C34FF5814615502003D2644 = {
@@ -634,7 +634,7 @@
 				3C8344D514B4990100F053AA /* CookRecipe */,
 				5C4642F9148F8FA600DCB11B /* ResultRecipes */,
 				3C4AAC9D148120B700A906B8 /* Models */,
-				3C26B203147D4A0700BE8BD6 /* SelectIngredients */,
+				3C26B203147D4A0700BE8BD6 /* Home */,
 				3C26B1F1147D371800BE8BD6 /* CustomUI */,
 				3C34FF7814615502003D2644 /* CLAppDelegate.h */,
 				3C34FF7914615502003D2644 /* CLAppDelegate.m */,

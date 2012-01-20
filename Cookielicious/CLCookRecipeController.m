@@ -35,6 +35,8 @@
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset;
 - (void)setIngredientsViewRotation:(CGFloat)offset;
 - (void)createMultipleNavigationBarButtons;
+- (void)configureFavoriteButton;
+- (void)recipeFavoredSuccessfull;
 - (void)createIngredientsList;
 
 @end
@@ -59,8 +61,19 @@
     
     // Action sheet
     _timerActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Timer löschen" otherButtonTitles:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(recipeFavoredSuccessfull) 
+                                                 name:CL_NOTIFY_FAVORITE_ADDED
+                                               object:nil];
   }
   return self;
+}
+
+- (void)dealloc {
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  
 }
 
 - (void)enableTimerButton:(NSString *)timerName {
@@ -259,10 +272,8 @@
     [_liveModeTimer invalidate];
     _liveModeTimer = nil;
   }
-  
-  [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
-  
   _ingredientsView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CL_INGREDIENTVIEW_ROTATION);
+  [_liveModeButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_LIVE]];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -331,10 +342,10 @@
   
   UIImage *image;
   if([[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
-    image = [UIImage imageNamed:@"icon_heart_faved.png"];
+    image = [UIImage imageNamed:CL_IMAGE_ICON_FAVED_NO];
   }
   else {
-    image = [UIImage imageNamed:@"icon_heart.png"];
+    image = [UIImage imageNamed:CL_IMAGE_ICON_FAVED];
   }
   
   _favoriteButton = 
@@ -345,7 +356,7 @@
   _favoriteButton.style = UIBarButtonItemStyleBordered;
   
   _liveModeButton = 
-  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_play.png"]
+  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ICON_LIVE]
                                    style:UIBarButtonItemStyleBordered
                                   target:self
                                   action:@selector(toggleLiveMode)];
@@ -440,28 +451,19 @@
 
 - (void)favoriteRecipe {
   if(! [[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
+    
     [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
-    
-    [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart_faved.png"]];
-    
-    CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
-    
-    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart.png"]];
-    
-    [activityIndicator setCenterView:centerImage];
-    [activityIndicator setSubMessage:@"Als Favorit markiert"];
-    
-    [activityIndicator show];
-    [activityIndicator hideAfterDelay:2];
+    [_favoriteButton setEnabled:NO];
+
   }
   else {
     [[CLFavoritesController shared] removeFavoriteWithRecipe:_recipe];
     
-    [_favoriteButton setImage:[UIImage imageNamed:@"icon_heart.png"]];
+    [_favoriteButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVED]];
     
     CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
     
-    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart_broken.png"]];
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_FAVED_NO]];
     
     [activityIndicator setCenterView:centerImage];
     [activityIndicator setSubMessage:@"Favorit entfernt"];
@@ -470,6 +472,38 @@
     [activityIndicator hideAfterDelay:2];
   }
 }
+
+- (void)configureFavoriteButton {
+  
+  if([[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
+    [_favoriteButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVED_NO]];
+  }
+  else {
+    [_favoriteButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVED]];
+  }
+  
+}
+
+#pragma mark - NSNotification
+
+- (void)recipeFavoredSuccessfull {
+  
+  [_favoriteButton setEnabled:YES];
+  [self configureFavoriteButton];
+  
+  // Show activity indicator
+  CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+  
+  UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_FAVED]];
+  
+  [activityIndicator setCenterView:centerImage];
+  [activityIndicator setSubMessage:@"Als Favorit markiert"];
+  
+  [activityIndicator show];
+  [activityIndicator hideAfterDelay:2];
+  
+}
+
 
 #pragma mark - Live mode
 
@@ -498,9 +532,9 @@
   CLStep *currStep = [[_recipe steps] objectAtIndex:[_scrollView currentPage]];
   [self setLiveModeTimerForStep:currStep];
   
-  [_liveModeButton setImage:[UIImage imageNamed:@"icon_pause.png"]];
+  [_liveModeButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_LIVE_NO]];
   
-  UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_play.png"]];
+  UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_LIVE]];
   
   CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
   [activityIndicator setCenterView:centerImage];
@@ -513,7 +547,7 @@
 - (void)stopLiveMode; {
   // Only present activity indicator, if live mode is active
   if([self isLiveModeActive]) {
-    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_pause.png"]];
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_LIVE_NO]];
     
     CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
     [activityIndicator setCenterView:centerImage];
@@ -525,7 +559,7 @@
   
   [self invalidateLiveModeTimer];
   
-  [_liveModeButton setImage:[UIImage imageNamed:@"icon_play.png"]];
+  [_liveModeButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_LIVE]];
 }
 
 - (BOOL)isLiveModeActive {

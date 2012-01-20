@@ -78,7 +78,7 @@
 - (void)createButton {
   _removeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-24, 10, 
                                                              24, 24)];
-  [_removeButton setImage:[UIImage imageNamed:@"icon_cancel.png"] 
+  [_removeButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_DELETE] 
                  forState:UIControlStateNormal];
   [_removeButton addTarget:self 
                     action:@selector(touchedRemoveButton:) 

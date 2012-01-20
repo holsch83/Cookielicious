@@ -27,4 +27,24 @@ extern NSString * const CL_API_JSON_STEPSKEY;
 extern NSString * const CL_API_JSON_TODOSKEY;
 extern NSString * const CL_API_JSON_INGREDIENTSKEY;
 
+// Notification Center Strings
+extern NSString * const CL_NOTIFY_FAVORITE_ADDED;
+
+// Activity Indicator image constants
+extern NSString * const CL_IMAGE_ACTION_FILTER;
+extern NSString * const CL_IMAGE_ACTION_FILTER_NO;
+extern NSString * const CL_IMAGE_ACTION_LIVE;
+extern NSString * const CL_IMAGE_ACTION_LIVE_NO;
+extern NSString * const CL_IMAGE_ACTION_FAVED;
+extern NSString * const CL_IMAGE_ACTION_FAVED_NO;
+
+// Icon images contants
+extern NSString * const CL_IMAGE_ICON_ACTION;
+extern NSString * const CL_IMAGE_ICON_LIVE;
+extern NSString * const CL_IMAGE_ICON_LIVE_NO;
+extern NSString * const CL_IMAGE_ICON_CHECKMARK;
+extern NSString * const CL_IMAGE_ICON_DELETE;
+extern NSString * const CL_IMAGE_ICON_FAVED;
+extern NSString * const CL_IMAGE_ICON_FAVED_NO;
+
 #endif

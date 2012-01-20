@@ -420,11 +420,11 @@
   
   UIImageView *centerImage;
   if([_currSelectedIngredients count] > 0) {
-    centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_cone.png"]];
+    centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_FILTER]];
     [activityIndicator setSubMessage:@"Rezepte gefiltert"];
   }
   else {
-    centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_cone_broken.png"]];
+    centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_FILTER_NO]];
     [activityIndicator setSubMessage:@"Filter entfernt"];
   }
   

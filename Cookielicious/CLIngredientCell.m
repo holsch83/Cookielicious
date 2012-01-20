@@ -26,7 +26,7 @@
   self = [super initWithCoder:aDecoder];
   if (self) {
     _checkmark = 
-    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_checkmark.png"]];
+    [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ICON_CHECKMARK]];
   }
   return self;
 }

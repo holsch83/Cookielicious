@@ -17,6 +17,8 @@
 - (IBAction)touchedShowRecipeButton:(id)sender;
 - (IBAction)touchedShareButton:(id)sender;
 - (IBAction)touchedFavoriteButton:(id)sender;
+- (void)configureFavoriteButton;
+- (void)recipeFavoredSuccessfull;
 
 @end
 
@@ -49,8 +51,18 @@
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchedView:)];
     [tapGestureRecognizer setDelegate:self];
     [self addGestureRecognizer:tapGestureRecognizer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(recipeFavoredSuccessfull) 
+                                                 name:CL_NOTIFY_FAVORITE_ADDED
+                                               object:nil];
   }
   return self;
+}
+
+- (void)dealloc {
+
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Actions
@@ -94,29 +106,19 @@
 - (IBAction)touchedFavoriteButton:(id)sender {
   if(! [[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
     [[CLFavoritesController shared] addFavoriteWithRecipe:_recipe];
+    [_favoriteRecipe setEnabled:NO];
     
-    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart_faved.png"] forState:UIControlStateNormal];
-    
-    // Show activity indicator
-    CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
-    
-    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart.png"]];
-    
-    [activityIndicator setCenterView:centerImage];
-    [activityIndicator setSubMessage:@"Als Favorit markiert"];
-    
-    [activityIndicator show];
-    [activityIndicator hideAfterDelay:2];
   }
   else {
     [[CLFavoritesController shared] removeFavoriteWithRecipe:_recipe];
     
-    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart.png"] forState:UIControlStateNormal];
+    [[self favoriteRecipe] setImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVED] 
+                           forState:UIControlStateNormal];
     
     // Show activity indicator
     CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
     
-    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"action_heart_broken.png"]];
+    UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_FAVED_NO]];
     
     [activityIndicator setCenterView:centerImage];
     [activityIndicator setSubMessage:@"Favorit entfernt"];
@@ -127,17 +129,40 @@
   }
 }
 
+#pragma mark - NSNotification
+
+- (void)recipeFavoredSuccessfull {
+
+  [_favoriteRecipe setEnabled:YES];
+  [self configureFavoriteButton];
+  
+  // Show activity indicator
+  CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+  
+  UIImageView *centerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_FAVED]];
+  
+  [activityIndicator setCenterView:centerImage];
+  [activityIndicator setSubMessage:@"Als Favorit markiert"];
+  
+  [activityIndicator show];
+  [activityIndicator hideAfterDelay:2];
+  
+}
+
+
 #pragma mark - View configuration
 
 - (void) configureView:(CLRecipe *)recipeVal {
+  
   _recipe = recipeVal;
-  [[self imageView] setImageWithUrlString:[recipeVal image]];
-  [[self titleLabel] setText:[recipeVal title]];
-  [[self preparationTimeLabel] setText:[NSString stringWithFormat:@"%d Min.",[recipeVal preparationTime]]];
+  
+  [[self imageView] setImageWithUrlString:[_recipe image]];
+  [[self titleLabel] setText:[_recipe title]];
+  [[self preparationTimeLabel] setText:[NSString stringWithFormat:@"%d Min.",[_recipe preparationTime]]];
   
   // Set ingredients as bulleted list
   NSMutableString *ingredientString = [[NSMutableString alloc] init];
-  for(CLStepIngredient *ingr in [recipeVal ingredients]) {
+  for(CLStepIngredient *ingr in [_recipe ingredients]) {
     // Only display decimal if number is not natural
     if([ingr amount] == 0) {
       [ingredientString appendFormat:@"\u2022 %@\n",[ingr name]];
@@ -150,13 +175,22 @@
     }
   }
   [[self ingredientsTextView] setText:ingredientString];
+  [self configureFavoriteButton];
   
-  if([[CLFavoritesController shared] isRecipeFavorite:recipeVal]) {
-    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart_faved.png"] forState:UIControlStateNormal];
+  
+}
+
+- (void)configureFavoriteButton {
+  
+  if([[CLFavoritesController shared] isRecipeFavorite:_recipe]) {
+    [[self favoriteRecipe] setImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVED_NO] 
+                           forState:UIControlStateNormal];
   }
   else {
-    [[self favoriteRecipe] setImage:[UIImage imageNamed:@"icon_heart.png"] forState:UIControlStateNormal];
+    [[self favoriteRecipe] setImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVED] 
+                           forState:UIControlStateNormal];
   }
+
 }
 
 #pragma mark - Custom drawing

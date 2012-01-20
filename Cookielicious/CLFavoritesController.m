@@ -320,6 +320,9 @@
       favorite.previewImage = theImage;
       [self saveManagedObjectContext];
       _requestIsPerforming = NO;
+      [[NSNotificationCenter defaultCenter] postNotificationName:CL_NOTIFY_FAVORITE_ADDED 
+                                                          object:self];
+
     }];
     [request setFailedBlock:^{
       // Add to core data without image
