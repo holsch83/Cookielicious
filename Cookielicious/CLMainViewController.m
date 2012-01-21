@@ -387,8 +387,7 @@
   if (![self.selectedIngredientsController isDragViewLimitReached]) {
     [tappedView setVisible:YES];
     [self.selectedIngredientsController addIngredientWithView:tappedView];
-    tappedView.ingredient.selected = [NSNumber numberWithBool:YES];
-    [self saveManagedObjectContext];
+    
   }
   else {
     [self showMaxIngredientsReachedIndicator];
@@ -438,7 +437,6 @@
           ![self.selectedIngredientsController isDragViewLimitReached]) {
         
         [self.selectedIngredientsController addIngredientWithView:draggableView];
-        draggableView.ingredient.selected = [NSNumber numberWithBool:YES];
       }
       else {
         draggableView.ingredient.selected = [NSNumber numberWithBool:NO];
@@ -471,9 +469,6 @@
 
   [_selectedIngredientsController removeIngredientWithView:dragView];
   
-  ingredient.selected = [NSNumber numberWithBool:NO];
-  
-  [self saveManagedObjectContext];
 }
 
 - (void)returnDragViewToStartPoint:(CLDragView*)dragView {
@@ -554,8 +549,9 @@
   }
   [self saveManagedObjectContext];
   
-//  CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithNibName:@"CLResultRecipesController" bundle:nil];
-  CLResultRecipesController *resultRecipesController = [[CLResultRecipesController alloc] initWithIngredients:[self.selectedIngredientsController selectedIngredients]];
+  CLResultRecipesController *resultRecipesController = 
+  [[CLResultRecipesController alloc] initWithIngredients:
+   [self.selectedIngredientsController selectedIngredients]];
     
   [self.navigationController pushViewController:resultRecipesController animated:YES];
 }
@@ -567,11 +563,26 @@
   [self.selectedIngredientsController removeAllIngredients];
 }
 
+#pragma mark - Selected Ingredients Delegate
+
+
 - (void)selectedIngredientsController:(CLSelectedIngredientsController *)controller didRemoveAllIngredients:(NSMutableArray *)ingredients {
 
   for (CLIngredient *ingr in ingredients) {
     ingr.selected = [NSNumber numberWithBool:NO];
   }
+  [self saveManagedObjectContext];
+}
+
+- (void)selectedIngredientsController:(CLSelectedIngredientsController *)controller didRemoveIngredient:(CLIngredient *)ingredient {
+
+  ingredient.selected = [NSNumber numberWithBool:NO];
+  [self saveManagedObjectContext];
+}
+
+- (void)selectedIngredientsController:(CLSelectedIngredientsController*)controller didAddIngredient:(CLIngredient*)ingredient {
+
+  ingredient.selected = [NSNumber numberWithBool:YES];
   [self saveManagedObjectContext];
 }
 

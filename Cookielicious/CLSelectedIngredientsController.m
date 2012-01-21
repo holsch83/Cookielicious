@@ -61,11 +61,20 @@
 #pragma mark - Action handlers
 
 - (void)removeIngredientWithView:(CLDragView*)view {
-    
+  
+  CLIngredient *ingr = view.ingredient;
+  
   [UIView animateWithDuration:0.2 animations:^{
     [view setAlpha:0];
   } completion:^(BOOL finished){
     [_uiViews removeObjectIdenticalTo:view];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(selectedIngredientsController:didRemoveIngredient:)]) {
+      [_delegate performSelector:@selector(selectedIngredientsController:didRemoveIngredient:) 
+                      withObject:self 
+                      withObject:ingr];
+    }
+    
     [view removeFromSuperview];
     
     _radius = [self radius];
@@ -92,7 +101,7 @@
     
     _radius = 0.0;
     
-    if ([_delegate respondsToSelector:@selector(selectedIngredientsController:didRemoveAllIngredients:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(selectedIngredientsController:didRemoveAllIngredients:)]) {
       [_delegate performSelector:@selector(selectedIngredientsController:didRemoveAllIngredients:) 
                       withObject:self 
                       withObject:removedIngredients];
@@ -119,6 +128,11 @@
     [_uiViews addObject:view];
     [self.view addSubview:view];
     
+    if (_delegate && [_delegate respondsToSelector:@selector(selectedIngredientsController:didAddIngredient:)]) {
+      [_delegate performSelector:@selector(selectedIngredientsController:didAddIngredient:) 
+                      withObject:self 
+                      withObject:view.ingredient];
+    }
     _radius = [self radius];
     
     [self reorderDragViewsAnimated:YES];
