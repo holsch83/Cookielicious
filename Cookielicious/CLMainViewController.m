@@ -768,7 +768,7 @@
 - (void)showMaxIngredientsReachedIndicator {
 
   CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
-  
+  [activityIndicator setCenterView:nil];
   [activityIndicator setSubMessage:@"Maximum erreicht"];
   
   [activityIndicator show];
