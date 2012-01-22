@@ -61,12 +61,14 @@
 - (void)setCellState:(UITableViewCell *)cell isSelected:(BOOL)state {
   // Set background view for selected cell
   if(state) {
-    UIView *view = [[UIView alloc] initWithFrame:cell.selectedBackgroundView.frame];
-    [view setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.1]];
-    [cell setBackgroundView:view]; 
+    UIImageView *_checkmark = 
+    [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ICON_CHECKMARK]];
+    
+    [cell setAccessoryView:_checkmark];
   }
   else {
-    [cell setBackgroundView:nil];
+    [cell setAccessoryView
+     :nil];
   }
 }
 
