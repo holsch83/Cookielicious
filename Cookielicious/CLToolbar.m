@@ -15,7 +15,7 @@
   if (self = [super initWithFrame:frame]) {
     
     self.backgroundColor = [UIColor clearColor];
-    self.tintColor = [UIColor blackColor];
+    self.tintColor = [UIColor colorWithRed:60.0/255.0 green:20.0/255.0 blue:0.0/255.0 alpha:1.0];
   }
   return self;
 }
