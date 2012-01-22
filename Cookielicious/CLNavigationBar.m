@@ -58,7 +58,7 @@
   // add the drop shadow
   self.layer.shadowColor = [[UIColor blackColor] CGColor];
   self.layer.shadowOffset = CGSizeMake(0.0, 3);
-  self.layer.shadowRadius = 10.0;
+  self.layer.shadowRadius = 3.0;
   self.layer.shadowOpacity = 1.0;
   self.layer.masksToBounds = NO;
   self.layer.shouldRasterize = YES;
