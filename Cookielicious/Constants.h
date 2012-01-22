@@ -46,5 +46,6 @@ extern NSString * const CL_IMAGE_ICON_CHECKMARK;
 extern NSString * const CL_IMAGE_ICON_DELETE;
 extern NSString * const CL_IMAGE_ICON_FAVED;
 extern NSString * const CL_IMAGE_ICON_FAVED_NO;
+extern NSString * const CL_IMAGE_ICON_FAVORITES;
 
 #endif

@@ -127,9 +127,10 @@
   
   // Set favorites button
   self.navigationItem.rightBarButtonItem = 
-  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks 
-                                                target:self 
-                                                action:@selector(showFavorites:)];
+  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVORITES]
+                                   style:UIBarButtonItemStyleBordered
+                                  target:self
+                                  action:@selector(showFavorites:)];
 
   // Show back button for next view controller in navigation controller stack
   UIBarButtonItem *backButton = 

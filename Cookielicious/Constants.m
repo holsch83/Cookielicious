@@ -51,3 +51,4 @@ NSString * const CL_IMAGE_ICON_CHECKMARK = @"icon_checkmark.png";
 NSString * const CL_IMAGE_ICON_DELETE = @"icon_cancel.png";
 NSString * const CL_IMAGE_ICON_FAVED = @"icon_heart.png";
 NSString * const CL_IMAGE_ICON_FAVED_NO = @"icon_heart_faved.png";
+NSString * const CL_IMAGE_ICON_FAVORITES = @"icon_favorites.png";
