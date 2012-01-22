@@ -45,7 +45,8 @@
   CGContextSetFillColorWithColor(context, fillColor);
   CGContextFillRect(context, self.bounds);
   
-  self.tintColor = [UIColor blackColor];
+  // Tint color that integrates well with navigation bar background...
+  self.tintColor = [UIColor colorWithRed:60.0/255.0 green:20.0/255.0 blue:0.0/255.0 alpha:1.0];  
   
 }
 
