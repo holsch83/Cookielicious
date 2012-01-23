@@ -54,7 +54,7 @@
   int minutes = ceilf(seconds / 60);
   
   [[self timerNameLabel] setText:[userInfo objectForKey:@"timerName"]];
-  [[self timeLeftLabel] setText:[NSString stringWithFormat:@"%d Minuten", minutes]];
+  [[self timeLeftLabel] setText:[NSString stringWithFormat:@"in %d Minuten", minutes]];
   
   // Stop the timer and remove the view
   if(seconds <= 0) {
@@ -64,8 +64,6 @@
     
     [theTimer invalidate];
   }
-  
-  NSLog(@"Updating timer. Time left until finished: %d minutes", minutes);
 }
 
 @end

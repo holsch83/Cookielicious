@@ -168,7 +168,6 @@
 }
 
 - (void) timerFinished:(NSTimer *)theTimer forView:(UIView *)theView {
-  NSLog(@"Timer finished");
   NSDictionary *userInfo = [theTimer userInfo];
   
   [self enableTimerButton:[userInfo objectForKey:@"timerName"]];

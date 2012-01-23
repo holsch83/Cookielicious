@@ -229,6 +229,9 @@
 {
   [super viewDidLoad];
   
+  UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_logo.png"]];
+  self.navigationItem.titleView = titleView;
+  
   // Show back button for next view controller in navigation controller stack
   UIBarButtonItem *backButton = 
   [[UIBarButtonItem alloc] initWithTitle:@"Zurück" 

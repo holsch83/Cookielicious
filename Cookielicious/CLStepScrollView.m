@@ -33,24 +33,24 @@
 
 - (void) scrollToPreviousPageAnimated:(BOOL)animated {
   if([self hasPreviousPage]) {
-    CGPoint offset = CGPointMake(self.contentOffset.x - self.frame.size.width, self.contentOffset.y);
+    CGPoint offset = CGPointMake(([self currentPage] - 1) * self.frame.size.width, self.contentOffset.y);
     [self setContentOffset:offset animated:animated];
   }
 }
 
 - (void) scrollToNextPageAnimated:(BOOL)animated {
   if([self hasNextPage]) {
-    CGPoint offset = CGPointMake(self.contentOffset.x + self.frame.size.width, self.contentOffset.y);
+    CGPoint offset = CGPointMake(([self currentPage] + 1) * self.frame.size.width, self.contentOffset.y);
     [self setContentOffset:offset animated:animated];
   }
 }
 
 - (BOOL) hasPreviousPage {
-  return (self.contentOffset.x - self.frame.size.width) >= 0;
+  return [self currentPage] > 0;
 }
 
 - (BOOL) hasNextPage {
-  return (self.contentOffset.x + self.frame.size.width) < self.contentSize.width;
+  return (([self currentPage] + 1) * self.frame.size.width) < self.contentSize.width;
 }
 
 - (int) currentPage {

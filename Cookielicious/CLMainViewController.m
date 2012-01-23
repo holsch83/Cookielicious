@@ -106,14 +106,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  /*UILabel *titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 44)];
-  [titleView setBackgroundColor:[UIColor clearColor]];
-  [titleView setShadowColor:[UIColor lightGrayColor]];
-  [titleView setTextColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.4]];
-  [titleView setTextAlignment:UITextAlignmentCenter];
-  [titleView setText:@"Cookielicious"];*/
   UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_logo.png"]];
-  
   self.navigationItem.titleView = titleView;
   
   // Set info button
