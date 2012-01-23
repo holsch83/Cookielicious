@@ -37,6 +37,9 @@ extern NSString * const CL_IMAGE_ACTION_LIVE;
 extern NSString * const CL_IMAGE_ACTION_LIVE_NO;
 extern NSString * const CL_IMAGE_ACTION_FAVED;
 extern NSString * const CL_IMAGE_ACTION_FAVED_NO;
+extern NSString * const CL_IMAGE_ACTION_TIMER;
+extern NSString * const CL_IMAGE_ACTION_TIMER_NO;
+extern NSString * const CL_IMAGE_ACTION_FORBIDDEN;
 
 // Icon images contants
 extern NSString * const CL_IMAGE_ICON_ACTION;

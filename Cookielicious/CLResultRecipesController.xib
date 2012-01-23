@@ -44,7 +44,7 @@
 						<string key="NSFrameSize">{684, 768}</string>
 						<reference key="NSSuperview" ref="39669158"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="705810618"/>
+						<reference key="NSNextKeyView" ref="579499054"/>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -55,7 +55,7 @@
 					</object>
 					<object class="IBUITableView" id="705810618">
 						<reference key="NSNextResponder" ref="39669158"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">308</int>
 						<string key="NSFrame">{{0, 69}, {300, 615}}</string>
 						<reference key="NSSuperview" ref="39669158"/>
 						<reference key="NSWindow"/>
@@ -68,7 +68,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
-						<int key="IBUIIndicatorStyle">2</int>
+						<int key="IBUIIndicatorStyle">1</int>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 						<float key="IBUIRowHeight">44</float>
 						<float key="IBUISectionHeaderHeight">22</float>
@@ -77,10 +77,10 @@
 					<object class="IBUIButton" id="579499054">
 						<reference key="NSNextResponder" ref="39669158"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{120, 30}, {160, 30}}</string>
+						<string key="NSFrame">{{120, 26}, {160, 34}}</string>
 						<reference key="NSSuperview" ref="39669158"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="536605311"/>
+						<reference key="NSNextKeyView" ref="705810618"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -152,7 +152,7 @@
 				<string key="NSFrameSize">{1004, 768}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="579499054"/>
+				<reference key="NSNextKeyView" ref="536605311"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>

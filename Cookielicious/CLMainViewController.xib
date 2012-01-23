@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">11C74</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.23</string>
-		<string key="IBDocument.HIToolboxVersion">567.00</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">933</string>
@@ -56,7 +56,7 @@
 					<object class="IBUITableView" id="826361858">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">308</int>
-						<string key="NSFrame">{{0, 105}, {320, 615}}</string>
+						<string key="NSFrame">{{0, 105}, {300, 615}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="249241605"/>
@@ -68,8 +68,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
-						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
-						<int key="IBUIIndicatorStyle">2</int>
+						<int key="IBUIIndicatorStyle">1</int>
 						<object class="NSColor" key="IBUISeparatorColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC45MTYwNTgzOTQyAA</bytes>

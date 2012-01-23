@@ -778,7 +778,10 @@
 - (void)showMaxIngredientsReachedIndicator {
 
   CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
-  [activityIndicator setCenterView:nil];
+  
+  UIImageView *forbiddenImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_FORBIDDEN]];
+  
+  [activityIndicator setCenterView:forbiddenImageView];
   [activityIndicator setSubMessage:@"Maximum erreicht"];
   
   [activityIndicator show];

@@ -42,6 +42,9 @@ NSString * const CL_IMAGE_ACTION_LIVE = @"action_play.png";
 NSString * const CL_IMAGE_ACTION_LIVE_NO = @"action_pause.png";
 NSString * const CL_IMAGE_ACTION_FAVED = @"action_heart.png";
 NSString * const CL_IMAGE_ACTION_FAVED_NO = @"action_heart_broken.png";
+NSString * const CL_IMAGE_ACTION_TIMER = @"action_timer.png";
+NSString * const CL_IMAGE_ACTION_TIMER_NO = @"action_timer_broken.png";
+NSString * const CL_IMAGE_ACTION_FORBIDDEN = @"action_forbidden.png";
 
 // Icon images contants
 NSString * const CL_IMAGE_ICON_ACTION = @"icon_action.png";

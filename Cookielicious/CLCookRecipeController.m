@@ -94,8 +94,6 @@
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  NSLog(@"%d is the current button index", buttonIndex);
-  
   // Break, if no timer view is currently selected
   if(_currSelectedTimerView == nil || buttonIndex < 0) {
     return;
@@ -108,8 +106,6 @@
 #pragma mark - CLStepViewDelegate
 
 - (void) setTimer:(NSString *)timerName duration:(NSNumber *)duration {
-  NSLog(@"Set a timer %@ with duration %d", timerName, [duration intValue]);
-  
   // Post local notification
   UILocalNotification* notification = [[UILocalNotification alloc] init];
   if(notification!=nil)
@@ -146,6 +142,17 @@
   [theTimer fire];
   
   [_timersView addSubview:_timerView];
+  
+  // Notify the user
+  CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+  
+  UIImageView *timerActivityImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_TIMER]];
+  
+  [activityIndicator setCenterView:timerActivityImageView];
+  [activityIndicator setSubMessage:@"Timer gesetzt"];
+  
+  [activityIndicator show];
+  [activityIndicator hideAfterDelay:2.0];
 }
 
 #pragma mark - CLTimerViewDelegate
@@ -522,6 +529,17 @@
   [theTimer invalidate];
   
   [self enableTimerButton:[userInfo objectForKey:@"timerName"]];
+  
+  // Show activity indicator
+  CLActivityIndicator *activityIndicator = [CLActivityIndicator currentIndicator];
+  
+  UIImageView *timerActivityImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CL_IMAGE_ACTION_TIMER_NO]];
+  
+  [activityIndicator setCenterView:timerActivityImageView];
+  [activityIndicator setSubMessage:@"Timer gelöscht"];
+  
+  [activityIndicator show];
+  [activityIndicator hideAfterDelay:2.0];
 }
 
 - (void)deleteAllTimers {
