@@ -27,6 +27,7 @@
   DDPageControl *_pageControl;
   IBOutlet UILabel *_startLabel;
   
+  IBOutlet UIImageView *_backgroundImageView;
   IBOutlet UIImageView *_ingredientsView;
   IBOutlet UITextView *_ingredientsTextView;
   

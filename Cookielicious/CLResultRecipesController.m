@@ -195,8 +195,6 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-  NSLog(@"Response body: %@", [request responseString]);
-  
   [[self recipes] removeAllObjects];
   for(NSDictionary *recipeDict in [[request responseString] objectFromJSONString]) {
     CLRecipe *recipe = [[CLRecipe alloc] initWithDictionary:recipeDict];
@@ -212,7 +210,7 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-  NSLog(@"Requesting recipe failed");
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Memory warnings
@@ -354,7 +352,8 @@
   [_recipeGridView setScrollEnabled:NO];
   
   [_recipeDetailView configureView:recipeVal];
-  
+  CGRect r = _recipeGridView.frame;
+  NSLog(@"Recipe grid view x: %f, y: %f, w: %f, h: %f",r.origin.x, r.origin.y, r.size.width, r.size.height);
   [UIView animateWithDuration:0
                    animations:^{
                      [_flipView addSubview:viewVal];
@@ -372,11 +371,16 @@
                                        [_flipView addSubview:_recipeDetailView];
                                      }
                                      completion:^(BOOL finished) {
+                                       _recipeGridView.frame = CGRectMake(0, 0, 1024, 768);
+                                       _recipeGridView.contentInset = UIEdgeInsetsMake(0, 320, 0, 0);
                                      }];
                    }];
 }
 
 - (void) hideRecipeDetailView {
+  _recipeGridView.frame = CGRectMake(320, 0, 704, 704);
+  _recipeGridView.contentInset = UIEdgeInsetsZero;
+  
   [UIView transitionWithView:_flipView
                     duration:0.3
                      options:UIViewAnimationOptionTransitionFlipFromRight

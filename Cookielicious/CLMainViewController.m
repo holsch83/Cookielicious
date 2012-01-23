@@ -375,7 +375,6 @@
 
 - (void) updateRecipeCount:(int)count {
   if(count < 1) {
-    [[self showRecipesButton] setTitle:@"Keine Rezepte" forState:UIControlStateDisabled];
     [[self showRecipesButton] setEnabled:NO];
   }
   else {
@@ -580,7 +579,6 @@
 #pragma mark - Clear Ingredients Button
 
 - (IBAction)touchedClearIngredientsButton:(id)sender {
-
   [self.selectedIngredientsController removeAllIngredients];
 }
 
@@ -588,7 +586,8 @@
 
 
 - (void)selectedIngredientsController:(CLSelectedIngredientsController *)controller didRemoveAllIngredients:(NSMutableArray *)ingredients {
-
+  [_showRecipesButton setEnabled:NO];
+  
   for (CLIngredient *ingr in ingredients) {
     ingr.selected = [NSNumber numberWithBool:NO];
   }
@@ -692,13 +691,13 @@
                                                                 forKeys:[NSArray arrayWithObject:@"X-Requested-With"]]];
   
   [request setCompletionBlock:^{
-    NSLog(@"Recipe count request finished");
-    
     NSDictionary *response = (NSDictionary *)[[blockRequest responseString] objectFromJSONString];
     [self updateRecipeCount:[[response objectForKey:@"count"] intValue]];
   }];
   
   [request setFailedBlock:^{
+    [_showRecipesButton setEnabled:NO];
+    
     NSLog(@"fetchRecipeCount error: %@", [[blockRequest error] localizedDescription]);
   }];
   
@@ -764,8 +763,6 @@
     }
     
     [(CLAppDelegate *)[[UIApplication sharedApplication] delegate] setDidSynchronizeIngredients:YES];
-    
-    NSLog(@"Finished updating ingredients");
   }];
   
   [request setFailedBlock:^{

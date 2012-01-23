@@ -188,6 +188,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUITitleShadowOffset">{0, -1}</string>
+						<string key="IBUIDisabledTitle">Keine Rezepte</string>
 						<string key="IBUINormalTitle">Keine Rezepte</string>
 						<reference key="IBUIHighlightedTitleColor" ref="793391697"/>
 						<reference key="IBUIDisabledTitleColor" ref="793391697"/>

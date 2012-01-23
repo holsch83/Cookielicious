@@ -21,6 +21,7 @@
 #import "SHK.h"
 
 #define CL_INGREDIENTVIEW_ROTATION -M_PI_4/10
+#define CL_BACKGROUND_INITIAL_X -180
 
 @interface CLCookRecipeController (Private)
 
@@ -435,6 +436,23 @@
     
     _ingredientsView.transform = tmpTransform;
   }
+  
+  CGRect backgroundImageViewFrame;
+  if(offset > _scrollView.contentSize.width - _scrollView.frame.size.width) {
+    float dx = CL_BACKGROUND_INITIAL_X + ((_scrollView.contentSize.width - _scrollView.frame.size.width) - offset)/1.2;
+    
+    backgroundImageViewFrame = CGRectMake(dx, 0, _backgroundImageView.frame.size.width, _backgroundImageView.frame.size.height);
+  }
+  else if(offset < -200) {
+    float dx = CL_BACKGROUND_INITIAL_X + abs(offset+200)/5;
+    
+    backgroundImageViewFrame = CGRectMake(dx, 0, _backgroundImageView.frame.size.width, _backgroundImageView.frame.size.height);
+  }
+  else {
+    backgroundImageViewFrame = CGRectMake(CL_BACKGROUND_INITIAL_X, 0, _backgroundImageView.frame.size.width, _backgroundImageView.frame.size.height);
+  }
+  
+  [_backgroundImageView setFrame:backgroundImageViewFrame];
 }
 
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset {
