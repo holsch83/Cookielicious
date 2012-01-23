@@ -13,7 +13,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
-    self.frame = CGRectMake(self.frame.origin.x + 7, self.frame.origin.y + 5, 320, self.frame.size.height);
+    self.frame = CGRectMake(self.frame.origin.x + 7, self.frame.origin.y + 5, 280, self.frame.size.height);
   }
   return self;
 }
