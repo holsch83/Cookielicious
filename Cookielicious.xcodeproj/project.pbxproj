@@ -180,6 +180,9 @@
 		5CC0A8D61496173200FAA0AE /* CLTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D51496173200FAA0AE /* CLTodo.m */; };
 		5CC0A8D91496178F00FAA0AE /* CLStepIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */; };
 		5CD5CE7C14C0E5440089DFE9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD5CE7B14C0E5440089DFE9 /* CoreLocation.framework */; };
+		5CDDE3E814CDB6C700D1F5BE /* progressview_progress.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDDE3E614CDB6C700D1F5BE /* progressview_progress.png */; };
+		5CDDE3E914CDB6C700D1F5BE /* progressview_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDDE3E714CDB6C700D1F5BE /* progressview_bar.png */; };
+		5CDDE3ED14CDB75300D1F5BE /* CLProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDDE3EC14CDB75300D1F5BE /* CLProgressView.m */; };
 		5CE6CAB214BC998D001080EB /* CLDragTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAB114BC998D001080EB /* CLDragTimersView.m */; };
 		5CE6CAFB14BCC61F001080EB /* CLTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFA14BCC61E001080EB /* CLTimerView.m */; };
 		5CE6CAFE14BCC6C3001080EB /* CLTimersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6CAFD14BCC6C3001080EB /* CLTimersView.m */; };
@@ -505,6 +508,10 @@
 		5CC0A8D81496178F00FAA0AE /* CLStepIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStepIngredient.m; sourceTree = "<group>"; };
 		5CC0A8DA1496192B00FAA0AE /* CLRecipeDetailViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecipeDetailViewDelegate.h; sourceTree = "<group>"; };
 		5CD5CE7B14C0E5440089DFE9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5CDDE3E614CDB6C700D1F5BE /* progressview_progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressview_progress.png; sourceTree = "<group>"; };
+		5CDDE3E714CDB6C700D1F5BE /* progressview_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressview_bar.png; sourceTree = "<group>"; };
+		5CDDE3EB14CDB75300D1F5BE /* CLProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLProgressView.h; sourceTree = "<group>"; };
+		5CDDE3EC14CDB75300D1F5BE /* CLProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLProgressView.m; sourceTree = "<group>"; };
 		5CE6CAB014BC998D001080EB /* CLDragTimersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLDragTimersView.h; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.h; sourceTree = "<group>"; };
 		5CE6CAB114BC998D001080EB /* CLDragTimersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLDragTimersView.m; path = ../../../Workspace/Cookielicious/Cookielicious/CLDragTimersView.m; sourceTree = "<group>"; };
 		5CE6CAEE14BCB43E001080EB /* CLStepViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStepViewDelegate.h; sourceTree = "<group>"; };
@@ -584,6 +591,8 @@
 				5C18BEBB14C70F900012C1A9 /* CLActivityIndicator.m */,
 				3CA1A1FE14C9B7DC009DD540 /* CLLabel.h */,
 				3CA1A1FF14C9B7DC009DD540 /* CLLabel.m */,
+				5CDDE3EB14CDB75300D1F5BE /* CLProgressView.h */,
+				5CDDE3EC14CDB75300D1F5BE /* CLProgressView.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -683,6 +692,8 @@
 				5CFFD02D14C88E8E00321CB3 /* tab2_active.png */,
 				5CFFD02E14C88E8E00321CB3 /* tab2.png */,
 				5CFFD02914C8843400321CB3 /* search_bar.png */,
+				5CDDE3E614CDB6C700D1F5BE /* progressview_progress.png */,
+				5CDDE3E714CDB6C700D1F5BE /* progressview_bar.png */,
 				5C3FA3DD14CD7DD400A1B5C6 /* todos.png */,
 				5C4202EB14CC7D5600828269 /* leatherbook.png */,
 				3C45A4B114C6C5A900CAD563 /* Icons */,
@@ -1379,6 +1390,8 @@
 				5C3FA3D514CD646D00A1B5C6 /* action_timer.png in Resources */,
 				5C3FA3D814CD680700A1B5C6 /* action_timer_broken.png in Resources */,
 				5C3FA3DE14CD7DD400A1B5C6 /* todos.png in Resources */,
+				5CDDE3E814CDB6C700D1F5BE /* progressview_progress.png in Resources */,
+				5CDDE3E914CDB6C700D1F5BE /* progressview_bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1522,6 +1535,7 @@
 				5C18BEBC14C70F900012C1A9 /* CLActivityIndicator.m in Sources */,
 				3CA1A1F114C9A410009DD540 /* DDPageControl.m in Sources */,
 				3CA1A20014C9B7DC009DD540 /* CLLabel.m in Sources */,
+				5CDDE3ED14CDB75300D1F5BE /* CLProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

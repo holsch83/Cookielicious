@@ -34,6 +34,7 @@
 - (void)liveMode:(NSTimer *)theTimer;
 - (void)setLiveModeTimerForStep:(CLStep *)theStep;
 - (void)invalidateLiveModeTimer;
+- (void)updateProgressView:(NSTimer *)theTimer;
 - (void)setLabelAlphaForContentOffset:(CGFloat)offset;
 - (void)setIngredientsViewRotation:(CGFloat)offset;
 - (void)createMultipleNavigationBarButtons;
@@ -195,6 +196,9 @@
   
   [self createMultipleNavigationBarButtons];
   [self createIngredientsList];
+  
+  // Hide progressbar
+  [_liveModeStepProgressView setAlpha:0];
   
   // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = _recipe.title;
@@ -624,6 +628,11 @@
     [_scrollView setContentOffset:CGPointZero animated:YES];
   }
   
+  // Fade in the timer
+  [UIView animateWithDuration:0.3 animations:^{
+    [_liveModeStepProgressView setAlpha:1];
+  }];
+  
   CLStep *currStep = [[_recipe steps] objectAtIndex:[_scrollView currentPage]];
   [self setLiveModeTimerForStep:currStep];
   
@@ -654,6 +663,11 @@
   
   [self invalidateLiveModeTimer];
   
+  // Hide the progress view
+  [UIView animateWithDuration:0.3 animations:^{
+    [_liveModeStepProgressView setAlpha:0];
+  }];
+  
   [_liveModeButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_LIVE]];
 }
 
@@ -671,13 +685,32 @@
 - (void)setLiveModeTimerForStep:(CLStep *)theStep {
   [self invalidateLiveModeTimer];
   
-  _liveModeTimer = [NSTimer scheduledTimerWithTimeInterval:([theStep duration]) target:self selector:@selector(liveMode:) userInfo:nil repeats:NO];
+  // Set the progress bar properties
+  [_liveModeStepProgressView setProgress:0.0];
+  
+  NSDictionary *userInfo = [[NSDictionary alloc] initWithObjects:[[NSArray alloc] initWithObjects:[NSNumber numberWithFloat:theStep.duration], nil]
+                                                         forKeys:[[NSArray alloc] initWithObjects:@"duration", nil]];
+  
+  _liveModeTimer = [NSTimer scheduledTimerWithTimeInterval:([theStep duration] * 60) target:self selector:@selector(liveMode:) userInfo:nil repeats:NO];
+  _liveModeProgressViewTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgressView:) userInfo:userInfo repeats:YES];
+}
+
+- (void)updateProgressView:(NSTimer *)theTimer {
+  NSDictionary *userInfo = theTimer.userInfo;
+  float progress = 1 / ([[userInfo objectForKey:@"duration"] floatValue] * 60) + [_liveModeStepProgressView progress];
+  
+  [_liveModeStepProgressView setProgress:progress];
 }
 
 - (void)invalidateLiveModeTimer {
   if(_liveModeTimer != nil) {
     [_liveModeTimer invalidate];
     _liveModeTimer = nil;
+  }
+  
+  if(_liveModeProgressViewTimer) {
+    [_liveModeProgressViewTimer invalidate];
+    _liveModeProgressViewTimer = nil;
   }
 }
 

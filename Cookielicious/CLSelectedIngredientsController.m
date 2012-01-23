@@ -22,6 +22,7 @@
 - (void) resetDragViewsAnimated:(BOOL)animated;
 
 - (float) radius;
+- (float) rotation;
 
 @end
 
@@ -39,7 +40,7 @@
     self.view.clipsToBounds = NO;
     
     _radius = 0.0;
-    _rotation = M_PI_2;
+    _rotation = [self rotation];
     
     _pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self
                                                                         action:@selector(pinchedView:)];
@@ -134,6 +135,7 @@
                       withObject:view.ingredient];
     }
     _radius = [self radius];
+    _rotation = [self rotation];
     
     [self reorderDragViewsAnimated:YES];
 
@@ -199,7 +201,7 @@
   UIGestureRecognizerState state = gestureRecognizer.state;
   switch(state) {
     case UIGestureRecognizerStateChanged:
-      _rotation = M_PI_2 - gestureRecognizer.rotation;
+      _rotation = [self rotation] - gestureRecognizer.rotation;
       [self reorderDragViewsAnimated:NO];
       break;
       
@@ -265,13 +267,21 @@
 
 - (void)resetDragViewsAnimated:(BOOL)animated {
   _radius = [self radius];
-  _rotation = M_PI_2;
+  _rotation = [self rotation];
   
   [self reorderDragViewsAnimated:animated];
 }
 
 - (float) radius {
+  if([_uiViews count] < 2) {
+    return 0;
+  }
+  
   return (100 + (50 * ([_uiViews count] / 4 )));
+}
+
+- (float) rotation {
+  return M_PI_2 - ((float)[_uiViews count] / (float)MAX_DRAG_VIEWS) * M_PI_4/3;
 }
 
 @end

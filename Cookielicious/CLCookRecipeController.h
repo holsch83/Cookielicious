@@ -31,6 +31,7 @@
   IBOutlet UIImageView *_ingredientsView;
   IBOutlet UITextView *_ingredientsTextView;
   
+  IBOutlet UIProgressView *_liveModeStepProgressView;
   
   UIBarButtonItem *_shareButton;
   UIBarButtonItem *_favoriteButton;
@@ -40,6 +41,7 @@
   BOOL _blockLiveMode;
   BOOL _startLiveMode;
   NSTimer *_liveModeTimer;
+  NSTimer *_liveModeProgressViewTimer;
   
   CLRecipe *_recipe;
   
