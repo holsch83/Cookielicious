@@ -25,6 +25,15 @@
     
     // Center vertically in superview
     [self setFrame:CGRectMake(self.frame.origin.x, 2, self.frame.size.width, self.frame.size.height)];
+    
+    // Set background
+    UIImage *timerBackground = [[UIImage imageNamed:@"timer.png"] stretchableImageWithLeftCapWidth:17 topCapHeight:19];
+    UIImageView *timerBackgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [timerBackgroundImageView setImage:timerBackground];
+    
+    [self addSubview:timerBackgroundImageView];
+    [self sendSubviewToBack:timerBackgroundImageView];
+    
   }
   return self;
 }

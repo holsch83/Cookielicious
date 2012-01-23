@@ -8,7 +8,7 @@
 
 #import "CLTimersView.h"
 
-#define CL_VIEW_OFFSET 15
+#define CL_VIEW_OFFSET 5
 
 @implementation CLTimersView
 

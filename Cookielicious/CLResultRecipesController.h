@@ -15,6 +15,8 @@
 #import "ASIHTTPRequest.h"
 
 @interface CLResultRecipesController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CLRecipeDetailViewDelegate, ASIHTTPRequestDelegate> {
+  IBOutlet UIButton *_selectedIngredientsButton;
+  
   // All user selected ingredients
   NSArray *_selectedIngredients;
   

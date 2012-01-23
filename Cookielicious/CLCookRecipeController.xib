@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">11C74</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.23</string>
-		<string key="IBDocument.HIToolboxVersion">567.00</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">933</string>
@@ -45,6 +45,7 @@
 						<reference key="NSSuperview" ref="888943880"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="324319816"/>
+						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -65,7 +66,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">Los geht's...</string>
-						<object class="NSColor" key="IBUITextColor" id="201489486">
+						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -76,11 +77,11 @@
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">Noteworthy-Bold</string>
 							<string key="family">Noteworthy</string>
-							<int key="traits">2</int>
+							<int key="traits">0</int>
 							<double key="pointSize">17</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Noteworthy-Bold</string>
+							<string key="NSName">Helvetica</string>
 							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -116,7 +117,7 @@
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIEditable">NO</bool>
 						<string key="IBUIText">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-						<object class="NSColor" key="IBUITextColor">
+						<object class="NSColor" key="IBUITextColor" id="695765044">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 						</object>
@@ -131,7 +132,7 @@
 							<double key="pointSize">15</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Noteworthy-Light</string>
+							<string key="NSName">Helvetica</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -182,7 +183,7 @@
 									<object class="IBUILabel" id="687466430">
 										<reference key="NSNextResponder" ref="171269784"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{78, 11}, {44, 21}}</string>
+										<string key="NSFrame">{{78, 7}, {44, 21}}</string>
 										<reference key="NSSuperview" ref="171269784"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="776232625"/>
@@ -192,29 +193,34 @@
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 										<string key="IBUIText">Timer</string>
-										<reference key="IBUITextColor" ref="201489486"/>
+										<object class="NSColor" key="IBUITextColor">
+											<int key="NSColorSpace">3</int>
+											<bytes key="NSWhite">MQA</bytes>
+										</object>
 										<nil key="IBUIHighlightedColor"/>
+										<reference key="IBUIShadowColor" ref="695765044"/>
+										<string key="IBUIShadowOffset">{0, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
+										<int key="IBUITextAlignment">1</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<int key="type">1</int>
-											<double key="pointSize">17</double>
+											<string key="name">Helvetica-Bold</string>
+											<string key="family">Helvetica</string>
+											<int key="traits">2</int>
+											<double key="pointSize">13</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Helvetica</string>
-											<double key="NSSize">17</double>
+											<string key="NSName">Helvetica-Bold</string>
+											<double key="NSSize">13</double>
 											<int key="NSfFlags">16</int>
 										</object>
 									</object>
 								</array>
-								<string key="NSFrame">{{412, 0}, {200, 44}}</string>
+								<string key="NSFrame">{{412, 10}, {200, 34}}</string>
 								<reference key="NSSuperview" ref="166575457"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="687466430"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAxIDAuMDc0NTM2ODk4AA</bytes>
-								</object>
+								<reference key="IBUIBackgroundColor" ref="125910913"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIView" id="776232625">
@@ -465,7 +471,6 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_ingredientsTextView">UITextView</string>
 						<string key="_ingredientsView">UIImageView</string>
-						<string key="_pageControl">UIPageControl</string>
 						<string key="_scrollView">CLStepScrollView</string>
 						<string key="_startLabel">UILabel</string>
 						<string key="_stepView">CLStepView</string>
@@ -480,10 +485,6 @@
 						<object class="IBToOneOutletInfo" key="_ingredientsView">
 							<string key="name">_ingredientsView</string>
 							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_pageControl">
-							<string key="name">_pageControl</string>
-							<string key="candidateClassName">UIPageControl</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_scrollView">
 							<string key="name">_scrollView</string>
@@ -646,7 +647,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="napkin.png">{320, 560}</string>
-			<string key="screen_3.png">{1024, 768}</string>
+			<string key="screen_3.png">{2048, 768}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

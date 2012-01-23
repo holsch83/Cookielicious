@@ -142,8 +142,9 @@
    
   self.searchBar.delegate = self;
   
-  CGRect searchBarShadowViewRect = CGRectMake(0, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height); //CGRectMake(0, 0, 320, 748)
+  CGRect searchBarShadowViewRect = CGRectMake(-30, 30, 380, 680); //CGRectMake(0, 0, 320, 748)
   CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:searchBarShadowViewRect];
+  
   [self.view insertSubview:view 
               belowSubview:self.tableView];
   
@@ -151,11 +152,16 @@
   self.tableView.contentInset = UIEdgeInsetsMake(7, 0, 0, 0);
   
   // Set background for tab buttons
-  [_alphabeticalSortButton setBackgroundImage:[UIImage imageNamed:@"tab1_active.png"]
+  UIImage *buttonBackground = [[UIImage imageNamed:@"tab2.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:15];
+  
+  [_alphabeticalSortButton setBackgroundImage:buttonBackground forState:UIControlStateNormal];
+  [_usageSortButton setBackgroundImage:buttonBackground forState:UIControlStateNormal];
+  
+  /*[_alphabeticalSortButton setBackgroundImage:[UIImage imageNamed:@"tab1_active.png"]
                                      forState:(UIControlStateHighlighted|UIControlStateSelected)];
   
   [_usageSortButton setBackgroundImage:[UIImage imageNamed:@"tab2_active.png"]
-                              forState:(UIControlStateHighlighted|UIControlStateSelected)];
+                              forState:(UIControlStateHighlighted|UIControlStateSelected)];*/
   
   _selectedIngredientsController = 
   [[CLSelectedIngredientsController alloc] initWithNibName:@"CLSelectedIngredientsController" 
@@ -523,6 +529,8 @@
   [_alphabeticalSortButton setSelected:YES];
   [_usageSortButton setSelected:NO];
   
+  [self.view insertSubview:_alphabeticalSortButton aboveSubview:_usageSortButton];
+  
   [self.fetchRequest setSortDescriptors:nil];
   
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" 
@@ -538,6 +546,8 @@
   // Set button states
   [_alphabeticalSortButton setSelected:NO];
   [_usageSortButton setSelected:YES];
+  
+  [self.view insertSubview:_usageSortButton aboveSubview:_alphabeticalSortButton];
   
   [self.fetchRequest setSortDescriptors:nil];
   

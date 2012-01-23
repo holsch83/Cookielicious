@@ -13,15 +13,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if(self) {
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y + 4, 320, 44);
-    
-    // Add background image
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"banderole.png"]];
-    
-    backgroundView.frame = CGRectMake(-7, -2, backgroundView.frame.size.width, backgroundView.frame.size.height);
-    
-    [self addSubview:backgroundView];
-    [self sendSubviewToBack:backgroundView];
+    self.frame = CGRectMake(self.frame.origin.x + 7, self.frame.origin.y + 5, 320, self.frame.size.height);
   }
   return self;
 }

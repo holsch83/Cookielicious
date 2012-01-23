@@ -246,7 +246,7 @@
   [_shadowView setFrame:CGRectMake(-320, 0, 1024, 768)];
   
   // Add background to the table view
-  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(0, self.tableView.frame.origin.y - 35, 320, 768)];
+  CLSearchBarShadowView *view = [[CLSearchBarShadowView alloc] initWithFrame:CGRectMake(-30, 30, 380, 680)];
   
   [self.view insertSubview:view 
               belowSubview:self.tableView];
@@ -276,6 +276,11 @@
   [[self tableView] addSubview:imageView];
   [[self tableView] sendSubviewToBack:imageView];
   [[self tableView] setCanCancelContentTouches:NO];
+  
+  // Set background for tab buttons
+  UIImage *buttonBackground = [[UIImage imageNamed:@"tab2.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:15];
+  
+  [_selectedIngredientsButton setBackgroundImage:buttonBackground forState:UIControlStateNormal];
   
   [self requestRecipes];
 }
@@ -447,7 +452,7 @@
   
   [cell.textLabel setText:ingredient.name];
   [cell.textLabel setFont:font];
-  [cell.textLabel setTextColor:[UIColor whiteColor]];
+  [cell.textLabel setTextColor:[UIColor darkGrayColor]];
   
   [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 }

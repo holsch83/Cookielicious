@@ -41,6 +41,9 @@
 - (void)createIngredientsList;
 - (void)configurePageControl;
 
+- (void)deleteCurrentTimer;
+- (void)deleteAllTimers;
+
 @end
 
 @implementation CLCookRecipeController
@@ -98,28 +101,7 @@
     return;
   }
   
-  NSTimer *theTimer = [_currSelectedTimerView timer];
-  NSDictionary *userInfo = (NSDictionary *)[theTimer userInfo];
-  
-  // Remove the local notification
-  [[UIApplication sharedApplication] cancelLocalNotification:(UILocalNotification *)[userInfo objectForKey:@"notification"]];
-  
-  // Remove the timer view
-  [UIView animateWithDuration:0.3 animations:^{
-    [_currSelectedTimerView setAlpha:0];
-  } completion:^(BOOL finished) {
-    if(finished) {
-      [_currSelectedTimerView removeFromSuperview];
-      [_timersView reorderSubviews];
-      
-      _currSelectedTimerView = nil;
-    }
-  }];
-  
-  // Stop the timer
-  [theTimer invalidate];
-  
-  [self enableTimerButton:[userInfo objectForKey:@"timerName"]];
+  [self deleteCurrentTimer];
 }
 
 
@@ -279,6 +261,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
   // Remove timers here
+  [self deleteAllTimers];
   
   [self invalidateLiveModeTimer];
 }
@@ -514,6 +497,47 @@
     [_favoriteButton setImage:[UIImage imageNamed:CL_IMAGE_ICON_FAVED]];
   }
   
+}
+
+- (void)deleteCurrentTimer {
+  NSTimer *theTimer = [_currSelectedTimerView timer];
+  NSDictionary *userInfo = (NSDictionary *)[theTimer userInfo];
+  
+  // Remove the local notification
+  [[UIApplication sharedApplication] cancelLocalNotification:(UILocalNotification *)[userInfo objectForKey:@"notification"]];
+  
+  // Remove the timer view
+  [UIView animateWithDuration:0.3 animations:^{
+    [_currSelectedTimerView setAlpha:0];
+  } completion:^(BOOL finished) {
+    if(finished) {
+      [_currSelectedTimerView removeFromSuperview];
+      [_timersView reorderSubviews];
+      
+      _currSelectedTimerView = nil;
+    }
+  }];
+  
+  // Stop the timer
+  [theTimer invalidate];
+  
+  [self enableTimerButton:[userInfo objectForKey:@"timerName"]];
+}
+
+- (void)deleteAllTimers {
+  for (CLTimerView *currView in [_timersView subviews]) {
+    NSTimer *theTimer = [currView timer];
+    NSDictionary *userInfo = (NSDictionary *)[theTimer userInfo];
+    
+    // Remove the local notification
+    [[UIApplication sharedApplication] cancelLocalNotification:(UILocalNotification *)[userInfo objectForKey:@"notification"]];
+    
+    // Remove the timer view
+    [currView removeFromSuperview];
+    
+    // Stop the timer
+    [theTimer invalidate]; 
+  }
 }
 
 #pragma mark - NSNotification

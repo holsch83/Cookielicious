@@ -28,6 +28,14 @@
     // Tap gesture recognizer
     _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(slideView)];
     [self addGestureRecognizer:_tapGestureRecognizer];
+    
+    // Background
+    UIImage *buttonBackground = [[UIImage imageNamed:@"tab2.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:15];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [backgroundImageView setImage:buttonBackground];
+    
+    [self addSubview:backgroundImageView];
+    [self sendSubviewToBack:backgroundImageView];
   }
   return self;
 }

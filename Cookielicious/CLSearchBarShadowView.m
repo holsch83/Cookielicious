@@ -38,7 +38,7 @@
   CGContextSetShadow(currentContext, offset, blur);
 
   // Add wooden pattern
-  UIColor *pattern = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern_wood.png"]];
+  UIColor *pattern = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leatherbook.png"]];
   //UIColor *pattern = [UIColor colorWithRed:1 green:1 blue:(198.0/255.0) alpha:1];
   CGContextSetFillColorWithColor(currentContext, [pattern CGColor]);
   CGContextFillRect(currentContext, newRect);
